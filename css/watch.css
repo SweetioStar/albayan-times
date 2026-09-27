@@ -1,0 +1,568 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - WATCH PAGE
+   ============================================ */
+
+/* ==========================================
+   1. PAGE HEADER
+   ========================================== */
+
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. FEATURED VIDEO
+   ========================================== */
+
+.featured-video-section {
+    background-color: var(--color-cream);
+    padding: 40px 0 48px;
+}
+
+.featured-video-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.featured-video-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-navy);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(26, 44, 66, 0.15);
+    margin-bottom: 24px;
+}
+
+.featured-video-player img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+}
+
+.featured-video-player .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 44, 66, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.featured-video-player .play-overlay:hover {
+    background: rgba(26, 44, 66, 0.4);
+}
+
+.featured-video-player .play-button {
+    width: 90px;
+    height: 90px;
+    background-color: var(--color-coral);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.4);
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.featured-video-player .play-button::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 24px solid var(--color-white);
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    margin-left: 6px;
+}
+
+.featured-video-player .play-overlay:hover .play-button {
+    background-color: var(--color-orange);
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px rgba(245, 166, 35, 0.5);
+}
+
+/* Featured video info */
+.featured-video-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+}
+
+.featured-video-badge {
+    display: inline-block;
+    align-self: center;
+    padding: 6px 16px;
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-radius: var(--radius-full);
+    margin-bottom: 4px;
+}
+
+.featured-video-title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    line-height: 1.2;
+    color: var(--color-navy);
+    margin: 0;
+}
+
+.featured-video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-gray);
+}
+
+.featured-video-meta .meta-author {
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.featured-video-meta .meta-divider {
+    color: var(--color-gray-light);
+}
+
+/* ==========================================
+   3. FILTER SECTION
+   ========================================== */
+
+.filter-section {
+    background-color: var(--color-white);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 8px 18px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    background-color: var(--color-coral);
+    border-color: var(--color-coral);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+
+.filter-pill.active {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+.search-inline {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-cream);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-full);
+    padding: 4px 4px 4px 18px;
+    min-width: 240px;
+    transition: border-color 0.2s ease;
+}
+
+.search-inline:focus-within {
+    border-color: var(--color-coral);
+}
+
+.search-inline input {
+    flex: 1;
+    padding: 6px 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-navy);
+    background: transparent;
+    border: none;
+    min-width: 0;
+}
+
+.search-inline input::placeholder {
+    color: var(--color-gray);
+}
+
+.search-inline input:focus {
+    outline: none;
+}
+
+.search-inline button {
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.search-inline button:hover {
+    background-color: var(--color-navy);
+}
+
+/* ==========================================
+   4. VIDEO GRID
+   ========================================== */
+
+.videos-section {
+    padding: 48px 0 64px;
+    background-color: var(--color-cream);
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+/* ==========================================
+   5. VIDEO CARD
+   ========================================== */
+
+.video-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.1);
+    border-color: var(--color-coral);
+}
+
+.video-card .video-thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--color-navy);
+}
+
+.video-card .video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+    transition: transform 0.4s ease;
+}
+
+.video-card:hover .video-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* Play button on thumbnail */
+.video-card .mini-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px;
+    height: 52px;
+    background-color: rgba(255, 107, 107, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.video-card .mini-play::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 14px solid var(--color-white);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 4px;
+}
+
+.video-card:hover .mini-play {
+    background-color: var(--color-orange);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Duration badge */
+.video-card .video-duration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(26, 44, 66, 0.9);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    z-index: 2;
+    letter-spacing: 0.5px;
+}
+
+.video-card .video-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.video-card .video-title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    line-height: 1.3;
+    color: var(--color-navy);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+}
+
+.video-card:hover .video-title {
+    color: var(--color-coral);
+}
+
+.video-card .video-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-gray);
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-gray-light);
+    flex-wrap: wrap;
+}
+
+.video-card .video-meta .meta-author {
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.video-card .video-meta .meta-divider {
+    color: var(--color-gray-light);
+}
+
+/* ==========================================
+   6. LOAD MORE
+   ========================================== */
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 40px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-load-more:hover {
+    background-color: var(--color-coral);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 107, 107, 0.3);
+}
+
+.btn-load-more::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    background-color: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.btn-load-more:hover::after {
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   7. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1100px) {
+    .videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .featured-video-title {
+        font-size: 26px;
+    }
+
+    .featured-video-player .play-button {
+        width: 74px;
+        height: 74px;
+    }
+
+    .featured-video-player .play-button::before {
+        border-left-width: 20px;
+        border-top-width: 13px;
+        border-bottom-width: 13px;
+    }
+
+    .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 32px 0 24px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .featured-video-section {
+        padding: 24px 0 32px;
+    }
+
+    .featured-video-player {
+        border-radius: var(--radius-md);
+        margin-bottom: 18px;
+    }
+
+    .featured-video-player .play-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .featured-video-player .play-button::before {
+        border-left-width: 16px;
+        border-top-width: 10px;
+        border-bottom-width: 10px;
+    }
+
+    .featured-video-title {
+        font-size: 22px;
+    }
+
+    .filter-section {
+        padding: 16px 0;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-pills {
+        justify-content: flex-start;
+    }
+
+    .search-inline {
+        min-width: 100%;
+    }
+
+    .videos-section {
+        padding: 32px 0 48px;
+    }
+
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

@@ -1,0 +1,169 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - DESIGN VARIABLES
+   ============================================
+   All colors, fonts, spacing, and design tokens
+   used throughout the entire website.
+   ============================================ */
+
+:root {
+
+    /* ==========================================
+       1. COLOR PALETTE
+       ========================================== */
+
+    /* Backgrounds */
+    --color-cream: #FDF8F0;           /* Main paper background */
+    --color-white: #FFFFFF;           /* Card backgrounds */
+    
+    /* Primary */
+    --color-navy: #1A2C42;            /* Main text, headers, footer bg */
+    --color-navy-light: #2A3F5A;      /* Hover state for navy elements */
+    
+    /* Accents */
+    --color-orange: #F5A623;          /* Category labels, primary buttons */
+    --color-orange-dark: #D98F10;     /* Hover state for orange */
+    
+    --color-teal: #2EC4B6;            /* Links, interactive elements */
+    --color-teal-dark: #25A99D;       /* Hover state for teal */
+    
+    --color-coral: #FF6B6B;           /* Featured badge, decorative accents */
+    --color-coral-dark: #E85555;      /* Hover state for coral */
+    
+    --color-yellow: #FFD166;          /* Highlights, stars, featured writer */
+    --color-yellow-dark: #F5BC4A;     /* Hover state for yellow */
+    
+    --color-mint: #06D6A0;            /* Monthly challenge, success messages */
+    --color-mint-dark: #05B888;       /* Hover state for mint */
+    
+    /* Neutrals */
+    --color-gray: #6B6B6B;            /* Secondary text, dates */
+    --color-gray-light: #E8E4DD;      /* Borders, dividers */
+    --color-gray-lighter: #F5F1EA;    /* Subtle backgrounds */
+
+    /* ==========================================
+       2. TYPOGRAPHY
+       ========================================== */
+
+    /* Font Families */
+    --font-heading: 'Patrick Hand', 'Comic Neue', cursive, sans-serif;
+    --font-body: 'Nunito', 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-quote: 'Merriweather', 'Lora', Georgia, serif;
+
+    /* Font Sizes - Desktop */
+    --fs-h1: 48px;
+    --fs-h2: 36px;
+    --fs-h3: 28px;
+    --fs-h4: 22px;
+    --fs-h5: 18px;
+    --fs-h6: 16px;
+    --fs-body: 16px;
+    --fs-small: 14px;
+    --fs-tiny: 12px;
+
+    /* Font Weights */
+    --fw-regular: 400;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* Line Heights */
+    --lh-tight: 1.2;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.7;
+
+    /* Letter Spacing */
+    --ls-tight: -0.5px;
+    --ls-normal: 0;
+    --ls-wide: 0.5px;
+    --ls-wider: 1px;
+
+    /* ==========================================
+       3. SPACING SCALE (8px base)
+       ========================================== */
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+    --space-4xl: 80px;
+
+    /* ==========================================
+       4. LAYOUT
+       ========================================== */
+
+    --container-max: 1200px;
+    --container-padding: 24px;
+    
+    --card-padding: 24px;
+    --section-spacing: 64px;
+
+    /* ==========================================
+       5. BORDER RADIUS
+       ========================================== */
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
+    --radius-blob: 60% 40% 55% 45% / 50% 55% 45% 50%; /* Irregular card shape */
+
+    /* ==========================================
+       6. SHADOWS
+       ========================================== */
+
+    --shadow-sm: 0 1px 2px rgba(26, 44, 66, 0.05);
+    --shadow-md: 0 2px 8px rgba(26, 44, 66, 0.08);
+    --shadow-lg: 0 4px 16px rgba(26, 44, 66, 0.10);
+    --shadow-xl: 0 8px 24px rgba(26, 44, 66, 0.12);
+    --shadow-hover: 0 6px 20px rgba(26, 44, 66, 0.15);
+
+    /* ==========================================
+       7. TRANSITIONS
+       ========================================== */
+
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 250ms ease-in-out;
+    --transition-slow: 400ms ease-in-out;
+
+    /* ==========================================
+       8. Z-INDEX SCALE
+       ========================================== */
+
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 500;
+    --z-header: 1000;
+    --z-modal: 2000;
+    --z-lightbox: 3000;
+    --z-tooltip: 4000;
+
+    /* ==========================================
+       9. CATEGORY COLORS (for badges & tags)
+       ========================================== */
+
+    --cat-news: var(--color-orange);
+    --cat-young-writers: var(--color-yellow);
+    --cat-watch: var(--color-coral);
+    --cat-book-corner: var(--color-teal);
+    --cat-creative-corner: var(--color-mint);
+    --cat-discussions: var(--color-teal);
+    --cat-events: var(--color-orange);
+    --cat-health: var(--color-coral);
+    --cat-values: var(--color-mint);
+    --cat-featured: var(--color-coral);
+
+    /* ==========================================
+       10. BREAKPOINTS (reference - used in media queries)
+       ========================================== */
+
+    /* 
+       Mobile:  0 - 767px
+       Tablet:  768px - 1199px
+       Desktop: 1200px+
+    */
+
+}

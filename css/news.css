@@ -1,0 +1,384 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - NEWS PAGE
+   ============================================ */
+
+/* ==========================================
+   1. PAGE HEADER
+   ========================================== */
+
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. FILTER BAR
+   ========================================== */
+
+.filter-section {
+    background-color: var(--color-white);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 8px 18px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--color-navy);
+    transform: translateY(-1px);
+}
+
+.filter-pill.active {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+/* Search inline */
+.search-inline {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-cream);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-full);
+    padding: 4px 4px 4px 18px;
+    min-width: 240px;
+    transition: border-color 0.2s ease;
+}
+
+.search-inline:focus-within {
+    border-color: var(--color-orange);
+}
+
+.search-inline input {
+    flex: 1;
+    padding: 6px 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-navy);
+    background: transparent;
+    border: none;
+    min-width: 0;
+}
+
+.search-inline input::placeholder {
+    color: var(--color-gray);
+}
+
+.search-inline input:focus {
+    outline: none;
+}
+
+.search-inline button {
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.search-inline button:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+/* ==========================================
+   3. ARTICLES SECTION
+   ========================================== */
+
+.articles-section {
+    padding: 48px 0 64px;
+    background-color: var(--color-cream);
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+/* ==========================================
+   4. ARTICLE CARD
+   ========================================== */
+
+.article-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.1);
+    border-color: var(--color-orange);
+}
+
+.article-card .card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--color-gray-lighter);
+}
+
+.article-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.article-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.article-card .card-image .badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    padding: 5px 12px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+}
+
+.article-card .card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.article-card .card-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    line-height: 1.3;
+    color: var(--color-navy);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.article-card:hover .card-title {
+    color: var(--color-orange);
+}
+
+.article-card .card-excerpt {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-gray);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.article-card .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-gray);
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-gray-light);
+    flex-wrap: wrap;
+}
+
+.article-card .meta-author {
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.article-card .meta-divider {
+    color: var(--color-gray-light);
+}
+
+/* Category badge color variants */
+.badge-school-news { background-color: var(--color-orange); color: var(--color-navy); }
+.badge-events { background-color: var(--color-coral); color: var(--color-white); }
+.badge-health { background-color: var(--color-teal); color: var(--color-white); }
+.badge-values { background-color: var(--color-mint); color: var(--color-navy); }
+.badge-interviews { background-color: var(--color-yellow); color: var(--color-navy); }
+
+/* ==========================================
+   5. LOAD MORE / PAGINATION
+   ========================================== */
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 40px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-load-more:hover {
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(245, 166, 35, 0.3);
+}
+
+.btn-load-more::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    background-color: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.btn-load-more:hover::after {
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   6. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .page-header h1 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 32px 0 24px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .filter-section {
+        padding: 16px 0;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-pills {
+        justify-content: center;
+    }
+
+    .search-inline {
+        min-width: 100%;
+    }
+
+    .articles-section {
+        padding: 32px 0 48px;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .article-card .card-title {
+        font-size: 18px;
+    }
+}

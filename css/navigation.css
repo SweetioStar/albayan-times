@@ -1,0 +1,382 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - NAVIGATION
+   ============================================ */
+
+/* ==========================================
+   1. NAVIGATION BAR
+   ========================================== */
+
+.main-navigation {
+    background-color: var(--color-cream);
+    border-bottom: 2px solid var(--color-gray-light);
+    box-shadow: 0 1px 3px rgba(26, 44, 66, 0.04);
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+
+.nav-links-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 0 8px;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 15px 11px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    position: relative;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--color-orange);
+    border-radius: var(--radius-full);
+    transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-orange);
+}
+
+.nav-link:hover::after {
+    width: calc(100% - 16px);
+}
+
+.nav-link.active {
+    color: var(--color-orange);
+}
+
+.nav-link.active::after {
+    width: calc(100% - 16px);
+    background-color: var(--color-orange);
+}
+
+/* ==========================================
+   2. SPECIAL FEATURES DROPDOWN
+   ========================================== */
+
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 15px 11px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    background: none;
+    border: none;
+}
+
+.nav-dropdown-toggle::before {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--color-orange);
+    border-radius: var(--radius-full);
+    transition: width 0.25s ease;
+}
+
+.nav-dropdown-toggle:hover {
+    color: var(--color-orange);
+}
+
+.nav-dropdown-toggle:hover::before {
+    width: calc(100% - 16px);
+}
+
+.nav-dropdown-toggle::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transition: transform 0.2s ease;
+    margin-left: 2px;
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle {
+    color: var(--color-orange);
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle::before {
+    width: calc(100% - 16px);
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+/* Dropdown panel */
+.nav-dropdown-panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 40px rgba(26, 44, 66, 0.15);
+    padding: 16px;
+    margin-top: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: all 0.25s ease;
+    z-index: 200;
+    min-width: 460px;
+    pointer-events: none;
+}
+
+.nav-dropdown-panel::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 40px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-gray-light);
+    border-left: 1px solid var(--color-gray-light);
+    transform: rotate(45deg);
+    border-top-left-radius: 2px;
+}
+
+.nav-dropdown:hover .nav-dropdown-panel,
+.nav-dropdown-panel.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-dropdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-navy);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.nav-dropdown-link:hover {
+    background-color: var(--color-cream);
+    color: var(--color-orange);
+    padding-left: 18px;
+}
+
+.nav-dropdown-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.nav-dropdown-link:nth-child(1) .nav-dropdown-dot { background-color: var(--color-mint); }
+.nav-dropdown-link:nth-child(2) .nav-dropdown-dot { background-color: var(--color-coral); }
+.nav-dropdown-link:nth-child(3) .nav-dropdown-dot { background-color: var(--color-yellow); }
+.nav-dropdown-link:nth-child(4) .nav-dropdown-dot { background-color: var(--color-teal); }
+.nav-dropdown-link:nth-child(5) .nav-dropdown-dot { background-color: var(--color-orange); }
+.nav-dropdown-link:nth-child(6) .nav-dropdown-dot { background-color: var(--color-navy); }
+
+/* ==========================================
+   3. MOBILE DRAWER (2 columns for main nav + 2 columns for special)
+   ========================================== */
+
+.nav-mobile-drawer {
+    display: none;
+    background-color: var(--color-cream);
+    border-bottom: 2px solid var(--color-orange);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.nav-mobile-drawer.active {
+    max-height: 900px;
+    padding: 16px 0;
+}
+
+/* Main nav links in 2 columns */
+.nav-mobile-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 0 var(--container-padding);
+}
+
+.nav-mobile-links .nav-link {
+    padding: 14px 14px;
+    border-radius: var(--radius-md);
+    text-align: left;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    color: var(--color-navy);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-mobile-links .nav-link::after {
+    display: none;
+}
+
+.nav-mobile-links .nav-link:hover,
+.nav-mobile-links .nav-link.active {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--color-navy);
+    transform: translateY(-1px);
+}
+
+/* Special Features heading inside drawer */
+.nav-mobile-heading {
+    grid-column: 1 / -1;
+    padding: 16px 0 6px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--color-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 10px;
+    border-top: 1px dashed var(--color-gray-light);
+    padding-top: 16px;
+}
+
+/* Special features links in 2 columns */
+.nav-mobile-features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    grid-column: 1 / -1;
+    padding: 0;
+}
+
+.nav-mobile-feature-link {
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nav-mobile-feature-link:hover {
+    background-color: var(--color-cream);
+    border-color: var(--color-orange);
+    color: var(--color-orange);
+    transform: translateY(-1px);
+}
+
+.nav-mobile-feature-label {
+    font-size: 10px;
+    color: var(--color-gray);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* ==========================================
+   4. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1200px) {
+    .nav-link,
+    .nav-dropdown-toggle {
+        padding: 15px 9px;
+        font-size: 11px;
+        letter-spacing: 0.2px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .main-navigation {
+        display: none;
+    }
+
+    .nav-mobile-drawer {
+        display: block;
+    }
+}
+
+/* On smaller phones, tighten spacing */
+@media (max-width: 400px) {
+    .nav-mobile-links,
+    .nav-mobile-features-grid {
+        gap: 4px;
+    }
+
+    .nav-mobile-links .nav-link {
+        padding: 12px 10px;
+        font-size: 11px;
+    }
+
+    .nav-mobile-feature-link {
+        padding: 10px 10px;
+        font-size: 11px;
+    }
+
+    .nav-mobile-feature-label {
+        font-size: 9px;
+    }
+}

@@ -1,0 +1,564 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - MEET THE REPORTERS
+   ============================================ */
+
+/* ==========================================
+   1. PAGE HEADER
+   ========================================== */
+
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. STATS STRIP
+   ========================================== */
+
+.stats-section {
+    background-color: var(--color-navy);
+    padding: 32px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.stats-section::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.stat-item {
+    text-align: center;
+    color: var(--color-white);
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    line-height: 1;
+    color: var(--color-orange);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ==========================================
+   3. REPORT EDITORS SPOTLIGHT
+   ========================================== */
+
+.editors-section {
+    padding: 56px 0 32px;
+    background-color: var(--color-cream);
+}
+
+.editors-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.editors-header .section-label {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-radius: var(--radius-full);
+    margin-bottom: 14px;
+}
+
+.editors-header h2 {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    color: var(--color-navy);
+    margin-bottom: 8px;
+}
+
+.editors-header p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-gray);
+    margin: 0;
+}
+
+.editors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+/* Editor card (featured style) */
+.editor-card {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-orange);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(245, 166, 35, 0.15);
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.editor-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background-color: var(--color-orange);
+    border-radius: var(--radius-full);
+    opacity: 0.3;
+}
+
+.editor-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(245, 166, 35, 0.25);
+}
+
+.editor-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 44px;
+    font-weight: 700;
+    border: 4px solid var(--color-white);
+    box-shadow: 0 4px 16px rgba(26, 44, 66, 0.15);
+    margin: 0 auto 20px;
+}
+
+.editor-name {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--color-navy);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.editor-role {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--color-orange);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.editor-bio {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-gray);
+    margin: 0;
+}
+
+/* ==========================================
+   4. ALL REPORTERS
+   ========================================== */
+
+.reporters-section {
+    padding: 40px 0 64px;
+    background-color: var(--color-cream);
+}
+
+.reporters-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--color-gray-light);
+}
+
+.reporters-header h2 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    color: var(--color-navy);
+    margin: 0;
+}
+
+.reporters-count {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.reporters-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+/* Reporter card */
+.reporter-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    padding: 24px 18px;
+    text-align: center;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.reporter-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.1);
+    border-color: var(--color-teal);
+}
+
+.reporter-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 700;
+    border: 3px solid var(--color-white);
+    box-shadow: 0 3px 12px rgba(26, 44, 66, 0.12);
+    transition: all 0.25s ease;
+}
+
+.reporter-card:hover .reporter-avatar {
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    transform: scale(1.05);
+}
+
+/* Avatar color variants - rotate through palette */
+.reporter-card:nth-child(4n+1) .reporter-avatar { background-color: var(--color-teal); }
+.reporter-card:nth-child(4n+2) .reporter-avatar { background-color: var(--color-coral); }
+.reporter-card:nth-child(4n+3) .reporter-avatar { background-color: var(--color-orange); color: var(--color-navy); }
+.reporter-card:nth-child(4n+4) .reporter-avatar { background-color: var(--color-mint); color: var(--color-navy); }
+
+.reporter-name {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    color: var(--color-navy);
+    margin: 0;
+    line-height: 1.25;
+}
+
+.reporter-grade {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: var(--color-gray-lighter);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--radius-full);
+}
+
+.reporter-role-tag {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   5. JOIN CTA BANNER
+   ========================================== */
+
+.join-cta {
+    background-color: var(--color-mint);
+    padding: 56px 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.join-cta::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.join-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -60px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.join-cta-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.join-cta h2 {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.15;
+}
+
+.join-cta p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-navy);
+    opacity: 0.85;
+    margin-bottom: 28px;
+}
+
+.join-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.join-cta-btn:hover {
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 166, 35, 0.35);
+}
+
+.join-cta-btn::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    background-color: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.join-cta-btn:hover::after {
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   6. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .reporters-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .editors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-header h1 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .reporters-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .editors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        gap: 16px;
+    }
+
+    .stat-number {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 32px 0 24px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .stats-section {
+        padding: 24px 0;
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .editors-section {
+        padding: 40px 0 24px;
+    }
+
+    .editors-header h2 {
+        font-size: 28px;
+    }
+
+    .editor-card {
+        padding: 24px 18px;
+    }
+
+    .editor-avatar {
+        width: 90px;
+        height: 90px;
+        font-size: 34px;
+    }
+
+    .editor-name {
+        font-size: 20px;
+    }
+
+    .reporters-header h2 {
+        font-size: 24px;
+    }
+
+    .reporters-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .reporter-card {
+        padding: 18px 12px;
+    }
+
+    .reporter-avatar {
+        width: 72px;
+        height: 72px;
+        font-size: 26px;
+    }
+
+    .reporter-name {
+        font-size: 15px;
+    }
+
+    .join-cta {
+        padding: 40px 0;
+    }
+
+    .join-cta h2 {
+        font-size: 28px;
+    }
+
+    .join-cta p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .reporters-grid {
+        grid-template-columns: 1fr;
+    }
+}

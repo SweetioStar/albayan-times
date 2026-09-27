@@ -1,0 +1,642 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - CREATIVE CORNER PAGE
+   ============================================ */
+
+/* ==========================================
+   1. PAGE HEADER
+   ========================================== */
+
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. FILTER SECTION
+   ========================================== */
+
+.filter-section {
+    background-color: var(--color-white);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gray);
+    flex-shrink: 0;
+    min-width: 70px;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 7px 16px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    background-color: var(--color-mint);
+    border-color: var(--color-mint);
+    color: var(--color-navy);
+    transform: translateY(-1px);
+}
+
+.filter-pill.active {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+/* ==========================================
+   3. GALLERY SECTION
+   ========================================== */
+
+.gallery-section {
+    padding: 48px 0 64px;
+    background-color: var(--color-cream);
+}
+
+.gallery-grid {
+    column-count: 3;
+    column-gap: 24px;
+}
+
+/* ==========================================
+   4. GALLERY CARD
+   ========================================== */
+
+.gallery-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 24px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
+    break-inside: avoid;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.12);
+    border-color: var(--color-mint);
+}
+
+.gallery-item .gallery-image {
+    width: 100%;
+    display: block;
+    background-color: var(--color-gray-lighter);
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item .gallery-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.03);
+}
+
+.gallery-item .gallery-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 12px;
+    background-color: var(--color-mint);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--radius-full);
+    z-index: 2;
+}
+
+.gallery-item .gallery-tag.tag-drawing { background-color: var(--color-mint); }
+.gallery-item .gallery-tag.tag-painting { background-color: var(--color-orange); }
+.gallery-item .gallery-tag.tag-story { background-color: var(--color-yellow); }
+.gallery-item .gallery-tag.tag-photography { background-color: var(--color-teal); color: var(--color-white); }
+.gallery-item .gallery-tag.tag-digital { background-color: var(--color-coral); color: var(--color-white); }
+
+.gallery-item .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 44, 66, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 3;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-item .gallery-overlay span {
+    padding: 10px 22px;
+    background-color: var(--color-mint);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--radius-full);
+}
+
+.gallery-item .gallery-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gallery-item .gallery-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--color-navy);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.gallery-item:hover .gallery-title {
+    color: var(--color-mint);
+}
+
+.gallery-item .gallery-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-gray);
+    flex-wrap: wrap;
+}
+
+.gallery-item .gallery-meta .meta-author {
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.gallery-item .gallery-meta .meta-divider {
+    color: var(--color-gray-light);
+}
+
+/* ==========================================
+   5. LIGHTBOX
+   ========================================== */
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(26, 44, 66, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9999;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-inner {
+    max-width: 1000px;
+    max-height: 90vh;
+    width: 100%;
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-navy);
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.lightbox-image img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+}
+
+.lightbox-info {
+    padding: 20px 24px;
+    background-color: var(--color-white);
+    border-top: 3px solid var(--color-mint);
+}
+
+.lightbox-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--color-navy);
+    margin-bottom: 6px;
+}
+
+.lightbox-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-gray);
+    flex-wrap: wrap;
+}
+
+.lightbox-meta .meta-author {
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.lightbox-meta .meta-divider {
+    color: var(--color-gray-light);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 800;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.lightbox-close:hover {
+    background-color: var(--color-navy);
+    transform: rotate(90deg);
+}
+
+.lightbox-close::before {
+    content: 'X';
+    display: block;
+    line-height: 1;
+}
+
+/* ==========================================
+   6. LOAD MORE
+   ========================================== */
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 40px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-load-more:hover {
+    background-color: var(--color-mint);
+    color: var(--color-navy);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(6, 214, 160, 0.3);
+}
+
+.btn-load-more::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    background-color: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.btn-load-more:hover::after {
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   7. RELATED FEATURE CARD
+   ========================================== */
+
+.related-feature-card {
+    margin-top: 48px;
+    padding: 28px 32px;
+    background-color: var(--color-coral);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.related-feature-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.related-feature-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    min-width: 240px;
+}
+
+.related-feature-label {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--radius-full);
+    margin-bottom: 10px;
+}
+
+.related-feature-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    color: var(--color-white);
+    margin: 0 0 6px 0;
+    line-height: 1.15;
+}
+
+.related-feature-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.related-feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background-color: var(--color-white);
+    color: var(--color-navy);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.related-feature-link:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   8. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 900px) {
+    .gallery-grid {
+        column-count: 2;
+    }
+
+    .page-header h1 {
+        font-size: 42px;
+    }
+
+    .filter-bar {
+        gap: 20px;
+    }
+
+    .filter-group {
+        gap: 10px;
+    }
+
+    .filter-pill {
+        padding: 6px 14px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-bar {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 32px 0 24px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .filter-section {
+        padding: 16px 0;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        background-color: var(--color-cream);
+        padding: 16px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-gray-light);
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .filter-label {
+        min-width: auto;
+        font-size: 10px;
+        color: var(--color-mint);
+    }
+
+    .filter-pills {
+        gap: 6px;
+    }
+
+    .filter-pill {
+        padding: 7px 13px;
+        font-size: 11px;
+    }
+
+    .gallery-section {
+        padding: 32px 0 48px;
+    }
+
+    .gallery-grid {
+        column-count: 1;
+        column-gap: 0;
+    }
+
+    .gallery-item {
+        margin-bottom: 20px;
+    }
+
+    .lightbox {
+        padding: 16px;
+    }
+
+    .lightbox-info {
+        padding: 16px 18px;
+    }
+
+    .lightbox-title {
+        font-size: 18px;
+    }
+
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .related-feature-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+    }
+
+    .related-feature-title {
+        font-size: 22px;
+    }
+}

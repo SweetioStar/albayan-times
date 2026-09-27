@@ -1,0 +1,614 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - BOOK/MOVIE SUGGESTIONS
+   ============================================ */
+
+/* ==========================================
+   1. PAGE HEADER
+   ========================================== */
+
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. FEATURED RECOMMENDATION
+   ========================================== */
+
+.featured-recommendation-section {
+    background-color: var(--color-teal);
+    padding: 48px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-recommendation-section::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.featured-recommendation-section::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -60px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.featured-recommendation-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.featured-recommendation-cover {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 40px rgba(26, 44, 66, 0.25);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+}
+
+.featured-recommendation-cover:hover {
+    transform: rotate(0deg);
+}
+
+.featured-recommendation-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+}
+
+.featured-recommendation-content {
+    color: var(--color-white);
+}
+
+.featured-recommendation-label {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: var(--color-navy);
+    color: var(--color-yellow);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-radius: var(--radius-full);
+    margin-bottom: 16px;
+}
+
+.featured-recommendation-title {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    line-height: 1.15;
+    color: var(--color-white);
+    margin-bottom: 8px;
+}
+
+.featured-recommendation-creator {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.featured-recommendation-type {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: var(--color-yellow);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--radius-full);
+    margin-bottom: 20px;
+}
+
+.featured-recommendation-excerpt {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 24px;
+    max-width: 620px;
+}
+
+.featured-recommendation-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.featured-recommendation-meta .meta-label {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.featured-recommendation-meta .meta-student {
+    font-weight: 800;
+    color: var(--color-yellow);
+    font-size: 15px;
+}
+
+.featured-recommendation-meta .meta-divider {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================
+   3. FILTER SECTION
+   ========================================== */
+
+.filter-section {
+    background-color: var(--color-white);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gray);
+    flex-shrink: 0;
+    min-width: 60px;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 7px 16px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    background-color: var(--color-teal);
+    border-color: var(--color-teal);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+
+.filter-pill.active {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+/* ==========================================
+   4. SUGGESTIONS GRID
+   ========================================== */
+
+.suggestions-section {
+    padding: 48px 0 64px;
+    background-color: var(--color-cream);
+}
+
+.suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+}
+
+/* ==========================================
+   5. SUGGESTION CARD
+   ========================================== */
+
+.suggestion-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.suggestion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.12);
+    border-color: var(--color-teal);
+}
+
+/* Type ribbon at top */
+.suggestion-type {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    padding: 4px 12px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--radius-full);
+}
+
+.suggestion-type.type-book {
+    background-color: var(--color-yellow);
+    color: var(--color-navy);
+}
+
+.suggestion-type.type-movie {
+    background-color: var(--color-coral);
+    color: var(--color-white);
+}
+
+/* Cover */
+.suggestion-cover {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: var(--color-gray-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.suggestion-cover img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 6px 20px rgba(26, 44, 66, 0.15);
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.suggestion-card:hover .suggestion-cover img {
+    transform: scale(1.04);
+}
+
+/* Body */
+.suggestion-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.suggestion-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--color-navy);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+}
+
+.suggestion-card:hover .suggestion-title {
+    color: var(--color-teal);
+}
+
+.suggestion-creator {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-gray);
+    font-style: italic;
+    margin: 0;
+}
+
+.suggestion-blurb {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-gray);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.suggestion-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--color-gray);
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-gray-light);
+    flex-wrap: wrap;
+}
+
+.suggestion-meta .meta-student {
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 12px;
+}
+
+.suggestion-meta .meta-divider {
+    color: var(--color-gray-light);
+}
+
+.suggestion-meta .meta-grade {
+    font-weight: 700;
+    color: var(--color-teal);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   6. LOAD MORE
+   ========================================== */
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 40px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-load-more:hover {
+    background-color: var(--color-teal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(46, 196, 182, 0.3);
+}
+
+.btn-load-more::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    background-color: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.btn-load-more:hover::after {
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   7. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .suggestions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .featured-recommendation-inner {
+        grid-template-columns: 220px 1fr;
+        gap: 32px;
+    }
+
+    .featured-recommendation-title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 900px) {
+    .featured-recommendation-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .featured-recommendation-cover {
+        width: 220px;
+        margin: 0 auto;
+        transform: rotate(0deg);
+    }
+
+    .featured-recommendation-meta {
+        justify-content: center;
+    }
+
+    .featured-recommendation-excerpt {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .filter-bar {
+        gap: 20px;
+    }
+
+    .filter-group {
+        gap: 10px;
+    }
+
+    .filter-pill {
+        padding: 6px 14px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .suggestions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .filter-bar {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 32px 0 24px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .featured-recommendation-section {
+        padding: 32px 0;
+    }
+
+    .featured-recommendation-title {
+        font-size: 26px;
+    }
+
+    .featured-recommendation-excerpt {
+        font-size: 15px;
+    }
+
+    .filter-section {
+        padding: 16px 0;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        background-color: var(--color-cream);
+        padding: 16px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-gray-light);
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .filter-label {
+        min-width: auto;
+        font-size: 10px;
+        color: var(--color-teal);
+    }
+
+    .filter-pills {
+        gap: 6px;
+    }
+
+    .filter-pill {
+        padding: 7px 13px;
+        font-size: 11px;
+    }
+
+    .suggestions-section {
+        padding: 32px 0 48px;
+    }
+
+    .suggestions-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .suggestion-cover {
+        aspect-ratio: 4 / 5;
+    }
+}

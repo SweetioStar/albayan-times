@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporter Dashboard | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+<div class="dashboard-layout">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="dash-sidebar" id="dashSidebar">
+
+        <div class="dash-brand">
+            <div class="dash-brand-text">
+                Albayan Times
+                <span>Reporter Area</span>
+            </div>
+        </div>
+
+        <div class="dash-section">
+            <span class="dash-section-label">Main</span>
+            <nav class="dash-nav">
+                <a href="reporter-dashboard.html" class="dash-link active">
+                    <span class="dash-link-icon"></span>
+                    Dashboard
+                </a>
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    My Submissions
+                </a>
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    Drafts
+                    <span class="dash-link-badge">3</span>
+                </a>
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    Published Work
+                </a>
+            </nav>
+        </div>
+
+        <div class="dash-section">
+            <span class="dash-section-label">Create</span>
+            <nav class="dash-nav">
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    New Article
+                </a>
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    New Book Review
+                </a>
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    New Video
+                </a>
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    New Creative Work
+                </a>
+            </nav>
+        </div>
+
+        <div class="dash-section">
+            <span class="dash-section-label">Account</span>
+            <nav class="dash-nav">
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    My Profile
+                </a>
+                <a href="#" class="dash-link">
+                    <span class="dash-link-icon"></span>
+                    Settings
+                </a>
+            </nav>
+        </div>
+
+        <div class="dash-sidebar-footer">
+            <a href="index.html">
+                <span class="dash-link-icon"></span>
+                Back to Site
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- ============ MAIN ============ -->
+    <main class="dash-main">
+
+        <!-- Top Bar -->
+        <header class="dash-topbar">
+
+            <div class="dash-welcome">
+                <span class="dash-welcome-label">Welcome back</span>
+                <span class="dash-welcome-name">Aisha Alamri</span>
+            </div>
+
+            <div class="dash-user">
+                <div class="dash-user-avatar">A</div>
+                <div class="dash-user-info">
+                    <span class="dash-user-name">Aisha Alamri</span>
+                    <span class="dash-user-role">Reporter - Grade 6C</span>
+                </div>
+                <a href="index.html" class="dash-logout">Logout</a>
+            </div>
+
+        </header>
+
+        <!-- Content -->
+        <div class="dash-content">
+
+            <!-- STATS -->
+            <section class="dash-stats">
+
+                <div class="stat-card stat-submitted">
+                    <span class="stat-card-label">Total Submitted</span>
+                    <p class="stat-card-value">14</p>
+                    <span class="stat-card-footer"><strong>2</strong> this month</span>
+                </div>
+
+                <div class="stat-card stat-published">
+                    <span class="stat-card-label">Published</span>
+                    <p class="stat-card-value">9</p>
+                    <span class="stat-card-footer">Across all sections</span>
+                </div>
+
+                <div class="stat-card stat-pending">
+                    <span class="stat-card-label">Pending Review</span>
+                    <p class="stat-card-value">3</p>
+                    <span class="stat-card-footer">Awaiting teacher</span>
+                </div>
+
+                <div class="stat-card stat-drafts">
+                    <span class="stat-card-label">Drafts</span>
+                    <p class="stat-card-value">3</p>
+                    <span class="stat-card-footer">Not yet submitted</span>
+                </div>
+
+            </section>
+
+            <!-- QUICK ACTIONS -->
+            <section class="dash-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Create Something New</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="quick-actions-grid">
+
+                        <a href="#" class="quick-action-btn">
+                            <span class="quick-action-icon">A</span>
+                            <span class="quick-action-label">Write an Article</span>
+                            <span class="quick-action-desc">Report on a school event or story</span>
+                        </a>
+
+                        <a href="#" class="quick-action-btn">
+                            <span class="quick-action-icon">B</span>
+                            <span class="quick-action-label">Book Review</span>
+                            <span class="quick-action-desc">Share your thoughts on a book</span>
+                        </a>
+
+                        <a href="#" class="quick-action-btn">
+                            <span class="quick-action-icon">V</span>
+                            <span class="quick-action-label">Upload a Video</span>
+                            <span class="quick-action-desc">Add a video report or interview</span>
+                        </a>
+
+                        <a href="#" class="quick-action-btn">
+                            <span class="quick-action-icon">C</span>
+                            <span class="quick-action-label">Creative Work</span>
+                            <span class="quick-action-desc">Submit artwork or a story</span>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- RECENT SUBMISSIONS -->
+            <section class="dash-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">My Recent Submissions</h2>
+                    <a href="#" class="panel-action">View All</a>
+                </div>
+                <div class="panel-body panel-body-flush">
+                    <table class="submissions-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <div class="submission-title">International Tea Day!</div>
+                                </td>
+                                <td><span class="submission-category">News</span></td>
+                                <td><span class="submission-date">May 12, 2026</span></td>
+                                <td><span class="status-badge status-published">Published</span></td>
+                                <td><a href="#" class="table-action">View</a></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="submission-title">Grade 5 imagines the future</div>
+                                </td>
+                                <td><span class="submission-category">News</span></td>
+                                <td><span class="submission-date">May 08, 2026</span></td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td><a href="#" class="table-action">Edit</a></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="submission-title">World Education Day report</div>
+                                </td>
+                                <td><span class="submission-category">Events</span></td>
+                                <td><span class="submission-date">Apr 22, 2026</span></td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td><a href="#" class="table-action">Edit</a></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="submission-title">The Day I Learned to Cooperate</div>
+                                </td>
+                                <td><span class="submission-category">Young Writers</span></td>
+                                <td><span class="submission-date">Apr 15, 2026</span></td>
+                                <td><span class="status-badge status-returned">Returned</span></td>
+                                <td><a href="#" class="table-action">Fix</a></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="submission-title">Interview with a Classmate</div>
+                                </td>
+                                <td><span class="submission-category">Interview</span></td>
+                                <td><span class="submission-date">Apr 02, 2026</span></td>
+                                <td><span class="status-badge status-draft">Draft</span></td>
+                                <td><a href="#" class="table-action">Continue</a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- NOTIFICATIONS -->
+            <section class="dash-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Recent Activity</h2>
+                </div>
+                <div class="panel-body-flush">
+                    <div class="notif-list">
+
+                        <div class="notif-item notif-success">
+                            <div class="notif-icon"></div>
+                            <div class="notif-content">
+                                <p class="notif-text">Your article <strong>International Tea Day!</strong> has been published.</p>
+                                <span class="notif-time">2 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item notif-warning">
+                            <div class="notif-icon"></div>
+                            <div class="notif-content">
+                                <p class="notif-text">Teacher feedback on <strong>Grade 5 imagines the future</strong>: "Great work! Please add one more quote from a student."</p>
+                                <span class="notif-time">Yesterday</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item notif-alert">
+                            <div class="notif-icon"></div>
+                            <div class="notif-content">
+                                <p class="notif-text"><strong>The Day I Learned to Cooperate</strong> needs revision before publishing. Please check the notes.</p>
+                                <span class="notif-time">3 days ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item notif-info">
+                            <div class="notif-icon"></div>
+                            <div class="notif-content">
+                                <p class="notif-text">A new monthly challenge has started: <strong>International Tea Day!</strong> Submit your entry.</p>
+                                <span class="notif-time">1 week ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+/* ==========================================
+   BACK TO TOP ARROW BUTTON
+   ========================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    font-size: 22px;
+    font-weight: var(--fw-bold);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--transition-base);
+    z-index: var(--z-sticky);
+    border: none;
+    font-family: var(--font-heading);
+}
+
+/* Pure CSS arrow (up) */
+.back-to-top::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-top: 3px solid currentColor;
+    border-left: 3px solid currentColor;
+    transform: rotate(45deg) translate(2px, 2px);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
