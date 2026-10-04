@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Stars | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/english-stars.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>English Stars</h1>
+            <p class="page-subtitle">Celebrating our brightest English learners — one shining star from every class section, every week.</p>
+        </div>
+    </section>
+
+    <!-- HERO BANNER -->
+    <section class="stars-hero">
+        <span class="hero-star star-1"></span>
+        <span class="hero-star star-2"></span>
+        <span class="hero-star star-3"></span>
+        <span class="hero-star star-4"></span>
+
+        <div class="container">
+            <div class="stars-hero-inner">
+                <span class="stars-hero-label" id="stars-week-label">This Week</span>
+                <h2>Meet This Week's Stars</h2>
+                <p class="stars-hero-theme" id="stars-theme">One outstanding English student from every class. Updated every week.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STARS SECTION -->
+    <section class="stars-section">
+        <div class="container">
+            <div id="stars-container">
+                <!-- Populated by inline script below -->
+                <div class="empty-state">
+                    <h3>Loading stars...</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+
+    <!-- CUSTOM SCRIPT: Render English Stars -->
+    <script>
+    (function () {
+        'use strict';
+
+        const PREFIX = '../';
+
+        /* ==========================================
+           HELPERS
+           ========================================== */
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getInitial(name) {
+            if (!name) return '?';
+            return String(name).trim().charAt(0).toUpperCase();
+        }
+
+        /* ==========================================
+           GROUP STARS BY GRADE
+           ========================================== */
+
+        function groupByGrade(stars) {
+            const groups = { '3': [], '4': [], '5': [], '6': [] };
+            stars.forEach(star => {
+                const grade = String(star.grade || star.class || '').charAt(0);
+                if (groups[grade]) groups[grade].push(star);
+            });
+            return groups;
+        }
+
+        /* ==========================================
+           RENDER
+           ========================================== */
+
+        function renderStarCard(star) {
+            const initial = star.initial || getInitial(star.name);
+            return `
+                <div class="star-card">
+                    <div class="star-avatar">${escapeHtml(initial)}</div>
+                    <h3 class="star-name">${escapeHtml(star.name)}</h3>
+                    <span class="star-class-tag">${escapeHtml(star.class)}</span>
+                    ${star.quote ? `<p class="star-quote">"${escapeHtml(star.quote)}"</p>` : ''}
+                </div>
+            `;
+        }
+
+        function renderStarsSection(data) {
+            const container = document.getElementById('stars-container');
+            if (!container) return;
+
+            const stars = data.items || [];
+            if (stars.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No stars yet</h3>
+                        <p>This week's stars will appear here soon.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const groups = groupByGrade(stars);
+
+            const gradeLabels = {
+                '3': 'Grade 3',
+                '4': 'Grade 4',
+                '5': 'Grade 5',
+                '6': 'Grade 6'
+            };
+
+            const gradeSubtitles = {
+                '3': 'Our youngest stars shine bright',
+                '4': 'Growing confidence in English',
+                '5': 'Reading, writing, and discovering',
+                '6': 'Leading by example every day'
+            };
+
+            let html = '';
+            ['3', '4', '5', '6'].forEach(grade => {
+                const list = groups[grade];
+                if (!list || list.length === 0) return;
+
+                const rowClass = list.length === 4 ? 'stars-row stars-row-4' : 'stars-row';
+
+                html += `
+                    <div class="grade-group">
+                        <div class="grade-group-header">
+                            <div class="grade-badge">${grade}</div>
+                            <div>
+                                <h3 class="grade-group-title">${gradeLabels[grade]}</h3>
+                                <p class="grade-group-subtitle">${gradeSubtitles[grade]}</p>
+                            </div>
+                        </div>
+                        <div class="${rowClass}">
+                            ${list.map(renderStarCard).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function updateHero(data) {
+            const weekLabel = document.getElementById('stars-week-label');
+            const themeEl = document.getElementById('stars-theme');
+
+            if (weekLabel && data.week) {
+                weekLabel.textContent = data.week;
+            }
+
+            if (themeEl) {
+                if (data.theme) {
+                    themeEl.textContent = data.theme;
+                } else {
+                    themeEl.textContent = 'One outstanding English student from every class. Updated every week.';
+                }
+            }
+        }
+
+        /* ==========================================
+           INIT
+           ========================================== */
+
+        async function init() {
+            try {
+                const url = `${PREFIX}data/english-stars.json?v=` + Date.now();
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Failed to load');
+                const data = await res.json();
+
+                updateHero(data);
+                renderStarsSection(data);
+            } catch (err) {
+                console.warn('[Albayan] Could not load english-stars.json:', err);
+                const container = document.getElementById('stars-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <h3>Coming soon</h3>
+                            <p>This week's stars will appear here soon.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+
+</body>
+</html>

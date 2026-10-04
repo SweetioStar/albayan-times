@@ -1,33 +1,135 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - MEET THE REPORTERS
+   ============================================
+   Navy hero with speech bubble pattern
+   + floating microphones + name-tag shapes.
    ============================================ */
 
 /* ==========================================
-   1. PAGE HEADER
+   1. PAGE HERO — NAVY GRADIENT
    ========================================== */
 
-.page-header {
-    background-color: var(--color-cream);
-    padding: 48px 0 32px;
+.page-hero {
+    background: linear-gradient(135deg, #2A3F5A 0%, #1A2C42 100%);
+    padding: 64px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Speech bubble pattern (grid of small speech bubbles) */
+.page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M15 15 h50 a8 8 0 0 1 8 8 v30 a8 8 0 0 1 -8 8 h-30 l-12 10 v-10 h-8 a8 8 0 0 1 -8 -8 v-30 a8 8 0 0 1 8 -8 z' fill='none' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.12'/%3E%3C/svg%3E");
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.18) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Floating microphone icons */
+.page-hero .hero-deco {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    animation: mic-float 6s ease-in-out infinite;
+}
+
+.page-hero .hero-deco.mic {
+    width: 30px;
+    height: 42px;
+    background-color: rgba(245, 166, 35, 0.35);
+    border-radius: 15px 15px 6px 6px;
+    position: relative;
+}
+
+.page-hero .hero-deco.mic::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 12px;
+    background-color: rgba(245, 166, 35, 0.35);
+    border-radius: 2px;
+}
+
+.page-hero .hero-deco.mic::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 4px;
+    background-color: rgba(245, 166, 35, 0.35);
+    border-radius: 2px;
+}
+
+@keyframes mic-float {
+    0%, 100% { transform: translateY(0) rotate(-8deg); opacity: 0.6; }
+    50% { transform: translateY(-14px) rotate(6deg); opacity: 0.9; }
+}
+
+.page-hero .hero-deco.deco-1 { top: 15%; left: 8%; }
+.page-hero .hero-deco.deco-2 { top: 60%; left: 14%; animation-delay: 2s; width: 24px; height: 34px; }
+.page-hero .hero-deco.deco-3 { top: 25%; right: 12%; animation-delay: 4s; width: 28px; height: 40px; }
+.page-hero .hero-deco.deco-4 { bottom: 15%; right: 18%; animation-delay: 1s; }
+
+.page-hero-inner {
     text-align: center;
-    border-bottom: 1px solid var(--color-gray-light);
-}
-
-.page-header h1 {
-    font-family: var(--font-heading);
-    font-size: 52px;
-    color: var(--color-navy);
-    margin-bottom: 12px;
-    line-height: 1.1;
-}
-
-.page-header .page-subtitle {
-    font-size: 16px;
-    color: var(--color-gray);
-    font-weight: 600;
-    max-width: 620px;
+    position: relative;
+    z-index: 3;
+    max-width: 720px;
     margin: 0 auto;
-    line-height: 1.6;
+}
+
+.page-hero-label {
+    display: inline-block;
+    padding: 8px 22px;
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: var(--radius-full);
+    margin-bottom: 18px;
+}
+
+.page-hero-title {
+    font-family: var(--font-heading);
+    font-size: 60px;
+    color: var(--color-white);
+    margin-bottom: 12px;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.page-hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 auto;
+    line-height: 1.55;
+    max-width: 620px;
 }
 
 /* ==========================================
@@ -67,10 +169,12 @@
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     position: relative;
     z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .stat-item {
@@ -97,7 +201,7 @@
 }
 
 /* ==========================================
-   3. REPORT EDITORS SPOTLIGHT
+   3. EDITORIAL TEAM SPOTLIGHT
    ========================================== */
 
 .editors-section {
@@ -144,7 +248,6 @@
     gap: 28px;
 }
 
-/* Editor card (featured style) */
 .editor-card {
     background-color: var(--color-white);
     border: 2px solid var(--color-orange);
@@ -219,8 +322,11 @@
 }
 
 /* ==========================================
-   4. ALL REPORTERS
-   ========================================== */
+   4. ALL REPORTERS GRID — NAME TAG UNDER AVATAR
+   ==========================================
+   Each reporter card has a name-tag shape
+   (notched left/right) under the avatar.
+   ============================================ */
 
 .reporters-section {
     padding: 40px 0 64px;
@@ -260,7 +366,6 @@
     gap: 24px;
 }
 
-/* Reporter card */
 .reporter-card {
     background-color: var(--color-white);
     border: 1px solid var(--color-gray-light);
@@ -271,7 +376,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .reporter-card:hover {
@@ -303,7 +408,7 @@
     transform: scale(1.05);
 }
 
-/* Avatar color variants - rotate through palette */
+/* Avatar color variants */
 .reporter-card:nth-child(4n+1) .reporter-avatar { background-color: var(--color-teal); }
 .reporter-card:nth-child(4n+2) .reporter-avatar { background-color: var(--color-coral); }
 .reporter-card:nth-child(4n+3) .reporter-avatar { background-color: var(--color-orange); color: var(--color-navy); }
@@ -311,136 +416,222 @@
 
 .reporter-name {
     font-family: var(--font-heading);
-    font-size: 19px;
+    font-size: 18px;
     color: var(--color-navy);
     margin: 0;
     line-height: 1.25;
 }
 
-.reporter-grade {
+/* Name-tag shape for the role */
+.reporter-role-tag {
     display: inline-block;
-    padding: 4px 12px;
-    background-color: var(--color-gray-lighter);
+    padding: 6px 18px;
+    background-color: var(--color-cream);
     color: var(--color-navy);
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    border-radius: var(--radius-full);
+    position: relative;
+    border: 1px dashed var(--color-gray-light);
+    border-radius: var(--radius-sm);
 }
 
-.reporter-role-tag {
+/* Notches on the sides to look like a name tag */
+.reporter-role-tag::before,
+.reporter-role-tag::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.reporter-role-tag::before {
+    left: -4px;
+}
+
+.reporter-role-tag::after {
+    right: -4px;
+}
+
+.reporter-bio {
     font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.5;
     color: var(--color-gray);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* ==========================================
-   5. JOIN CTA BANNER
+   5. INTERVIEW STARS SECTION
    ========================================== */
 
-.join-cta {
-    background-color: var(--color-mint);
-    padding: 56px 0;
-    position: relative;
-    overflow: hidden;
+.interviews-section {
+    padding: 64px 0;
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-gray-light);
+}
+
+.interviews-header {
     text-align: center;
+    margin-bottom: 40px;
 }
 
-.join-cta::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    left: -60px;
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.join-cta::after {
-    content: '';
-    position: absolute;
-    bottom: -80px;
-    right: -60px;
-    width: 240px;
-    height: 240px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.join-cta-inner {
-    position: relative;
-    z-index: 2;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.join-cta h2 {
-    font-family: var(--font-heading);
-    font-size: 40px;
-    color: var(--color-navy);
-    margin-bottom: 12px;
-    line-height: 1.15;
-}
-
-.join-cta p {
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--color-navy);
-    opacity: 0.85;
-    margin-bottom: 28px;
-}
-
-.join-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 40px;
-    background-color: var(--color-navy);
+.interviews-header .section-label {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: var(--color-teal);
     color: var(--color-white);
-    border-radius: var(--radius-full);
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: all 0.25s ease;
+    letter-spacing: 1.2px;
+    border-radius: var(--radius-full);
+    margin-bottom: 14px;
 }
 
-.join-cta-btn:hover {
-    background-color: var(--color-orange);
+.interviews-header h2 {
+    font-family: var(--font-heading);
+    font-size: 38px;
     color: var(--color-navy);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(245, 166, 35, 0.35);
+    margin-bottom: 8px;
 }
 
-.join-cta-btn::after {
-    content: '';
-    display: inline-block;
-    width: 14px;
-    height: 2px;
-    background-color: currentColor;
-    transition: transform 0.2s ease;
+.interviews-header p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-gray);
+    margin: 0;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
 }
 
-.join-cta-btn:hover::after {
-    transform: translateX(4px);
+.interviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.interview-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.interview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.1);
+    border-color: var(--color-teal);
+}
+
+.interview-avatar {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 68px;
+    font-weight: 700;
+}
+
+.interview-card:nth-child(2) .interview-avatar { background-color: var(--color-coral); }
+.interview-card:nth-child(3) .interview-avatar { background-color: var(--color-orange); color: var(--color-navy); }
+.interview-card:nth-child(4) .interview-avatar { background-color: var(--color-mint); color: var(--color-navy); }
+
+.interview-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.interview-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-teal);
+}
+
+.interview-title {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    line-height: 1.3;
+    color: var(--color-navy);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.interview-card:hover .interview-title {
+    color: var(--color-teal);
+}
+
+.interview-preview {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-gray);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.interview-meta {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-gray);
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-gray-light);
 }
 
 /* ==========================================
-   6. RESPONSIVE
+   6. COMMENTS
+   ========================================== */
+
+.comments-wrapper {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-cream);
+}
+
+/* ==========================================
+   7. RESPONSIVE
    ========================================== */
 
 @media (max-width: 1024px) {
+    .page-hero-title {
+        font-size: 46px;
+    }
+
+    .page-hero-subtitle {
+        font-size: 16px;
+    }
+
     .reporters-grid {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -449,8 +640,8 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .page-header h1 {
-        font-size: 42px;
+    .interviews-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -464,6 +655,10 @@
         grid-template-columns: 1fr;
     }
 
+    .interviews-grid {
+        grid-template-columns: 1fr;
+    }
+
     .stats-grid {
         gap: 16px;
     }
@@ -471,20 +666,28 @@
     .stat-number {
         font-size: 40px;
     }
+
+    .editors-header h2,
+    .interviews-header h2 {
+        font-size: 28px;
+    }
 }
 
 @media (max-width: 640px) {
-    .page-header {
-        padding: 32px 0 24px;
+    .page-hero {
+        padding: 44px 0;
     }
 
-    .page-header h1 {
-        font-size: 34px;
+    .page-hero-title {
+        font-size: 32px;
     }
 
-    .page-header .page-subtitle {
+    .page-hero-subtitle {
         font-size: 14px;
-        padding: 0 16px;
+    }
+
+    .page-hero .hero-deco {
+        display: none;
     }
 
     .stats-section {
@@ -492,7 +695,7 @@
     }
 
     .stat-number {
-        font-size: 32px;
+        font-size: 36px;
     }
 
     .stat-label {
@@ -501,10 +704,6 @@
 
     .editors-section {
         padding: 40px 0 24px;
-    }
-
-    .editors-header h2 {
-        font-size: 28px;
     }
 
     .editor-card {
@@ -544,16 +743,16 @@
         font-size: 15px;
     }
 
-    .join-cta {
+    .interviews-section {
         padding: 40px 0;
     }
 
-    .join-cta h2 {
-        font-size: 28px;
+    .interviews-header h2 {
+        font-size: 24px;
     }
 
-    .join-cta p {
-        font-size: 14px;
+    .interviews-grid {
+        gap: 20px;
     }
 }
 

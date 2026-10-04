@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contests | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/contest.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contests</h1>
+            <p class="page-subtitle">Where our students shine — photography, storytelling, and more.</p>
+        </div>
+    </section>
+
+    <!-- HERO BANNER -->
+    <section class="contest-hero">
+        <div class="container">
+            <div class="contest-hero-inner">
+                <span class="contest-hero-label">Celebrating Talent</span>
+                <h2 id="contest-hero-title">Contests</h2>
+                <p class="contest-hero-subtitle" id="contest-hero-subtitle">Where our students shine</p>
+                <p class="contest-hero-description" id="contest-hero-description">
+                    From photography to storytelling, our contests celebrate the many talents of Albayan students.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTESTS CONTAINER -->
+    <div id="contests-container">
+        <!-- Filled by inline script -->
+        <div class="container" style="padding: 64px 24px;">
+            <div class="empty-state">
+                <h3>Loading contests...</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+
+    <!-- CUSTOM SCRIPT: Render Contest page -->
+    <script>
+    (function () {
+        'use strict';
+
+        const PREFIX = '../';
+
+        /* ==========================================
+           HELPERS
+           ========================================== */
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getImageUrl(item) {
+            if (!item.image) return '';
+            const folder = item.imageFolder || 'content';
+            return `${PREFIX}assets/images/${folder}/${item.image}`;
+        }
+
+        /* ==========================================
+           CARD RENDERERS
+           ========================================== */
+
+        function renderWinnerCard(winner) {
+            const placeClass = winner.place === 1 ? 'first-place'
+                             : winner.place === 2 ? 'second-place'
+                             : 'third-place';
+
+            return `
+                <div class="winner-card ${placeClass}">
+                    <div class="winner-image">
+                        <span class="winner-rank">${winner.place}</span>
+                        <img src="${PREFIX}assets/images/content/${escapeHtml(winner.image)}" alt="${escapeHtml(winner.name)}">
+                    </div>
+                    <div class="winner-body">
+                        <h4 class="winner-name">${escapeHtml(winner.name)}</h4>
+                        <span class="winner-grade">Grade ${escapeHtml(winner.grade)}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderGalleryItem(entry) {
+            return `
+                <a href="#" class="contest-photo">
+                    <div class="contest-photo-image">
+                        <img src="${PREFIX}assets/images/content/${escapeHtml(entry.image)}" alt="${escapeHtml(entry.name)}">
+                    </div>
+                    <div class="contest-photo-body">
+                        <h4 class="contest-photo-title">${escapeHtml(entry.name)}</h4>
+                        <span class="contest-photo-author">${escapeHtml(entry.author)}</span>
+                    </div>
+                </a>
+            `;
+        }
+
+        /* ==========================================
+           RENDER CONTEST SECTION
+           ========================================== */
+
+        function renderContest(contest) {
+            const heroImage = getImageUrl(contest);
+            const hasWinners = Array.isArray(contest.winners) && contest.winners.length > 0;
+            const hasGallery = Array.isArray(contest.gallery) && contest.gallery.length > 0;
+
+            // Build the intro block (image + content)
+            const introHtml = `
+                <div class="contest-intro">
+                    <div class="contest-intro-image">
+                        ${heroImage ? `<img src="${heroImage}" alt="${escapeHtml(contest.title)}">` : ''}
+                    </div>
+                    <div class="contest-intro-content">
+                        <span class="contest-intro-label">Contest</span>
+                        <h2 class="contest-intro-title">${escapeHtml(contest.title)}</h2>
+                        <div class="contest-intro-meta">
+                            <span>${escapeHtml(contest.date || '')}</span>
+                            ${contest.theme ? `<span class="meta-divider">|</span><span>Theme: ${escapeHtml(contest.theme)}</span>` : ''}
+                        </div>
+                        <p class="contest-intro-excerpt">${escapeHtml(contest.excerpt || '')}</p>
+                    </div>
+                </div>
+            `;
+
+            // Build winners section
+            let winnersHtml = '';
+            if (hasWinners) {
+                winnersHtml = `
+                    <div class="contest-winners">
+                        <div class="winners-header">
+                            <h3>Winners</h3>
+                            <p>Chosen for creativity, composition, and storytelling</p>
+                        </div>
+                        <div class="winners-grid">
+                            ${contest.winners.map(renderWinnerCard).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Build gallery section
+            let galleryHtml = '';
+            if (hasGallery) {
+                const galleryTitle = contest.category === 'albayan-author' ? 'All Stories' : 'All Submissions';
+                const gallerySubtitle = contest.category === 'albayan-author'
+                    ? 'Every story is a treasure'
+                    : 'Every entry tells a story';
+
+                galleryHtml = `
+                    <div class="contest-gallery">
+                        <div class="gallery-header">
+                            <h3>${galleryTitle}</h3>
+                            <p>${gallerySubtitle}</p>
+                        </div>
+                        <div class="contest-gallery-grid">
+                            ${contest.gallery.map(renderGalleryItem).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <section class="contest-section" id="${escapeHtml(contest.id)}">
+                    <div class="container">
+                        ${introHtml}
+                        ${winnersHtml}
+                        ${galleryHtml}
+                    </div>
+                </section>
+            `;
+        }
+
+        /* ==========================================
+           UPDATE HERO
+           ========================================== */
+
+        function updateHero(data) {
+            if (!data.intro) return;
+
+            const titleEl = document.getElementById('contest-hero-title');
+            const subtitleEl = document.getElementById('contest-hero-subtitle');
+            const descEl = document.getElementById('contest-hero-description');
+
+            if (titleEl && data.intro.title) titleEl.textContent = data.intro.title;
+            if (subtitleEl && data.intro.subtitle) subtitleEl.textContent = data.intro.subtitle;
+            if (descEl && data.intro.description) descEl.textContent = data.intro.description;
+        }
+
+        /* ==========================================
+           RENDER ALL CONTESTS
+           ========================================== */
+
+        function renderContests(data) {
+            const container = document.getElementById('contests-container');
+            if (!container) return;
+
+            const items = data.items || [];
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="container" style="padding: 64px 24px;">
+                        <div class="empty-state">
+                            <h3>Coming soon</h3>
+                            <p>Contests will appear here once published.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(renderContest).join('');
+        }
+
+        /* ==========================================
+           INIT
+           ========================================== */
+
+        async function init() {
+            try {
+                const url = `${PREFIX}data/contest.json?v=` + Date.now();
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Failed to load');
+                const data = await res.json();
+
+                updateHero(data);
+                renderContests(data);
+            } catch (err) {
+                console.warn('[Albayan] Could not load contest.json:', err);
+                const container = document.getElementById('contests-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="container" style="padding: 64px 24px;">
+                            <div class="empty-state">
+                                <h3>Coming soon</h3>
+                                <p>Contests will appear here soon.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+
+</body>
+</html>

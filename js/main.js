@@ -1,93 +1,95 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - MAIN JS
    ============================================
-   1. Mobile navigation toggle
-   2. Search bar toggle
-   3. Special Features dropdown (click support)
-   4. Back to top arrow
+   Global interactions that apply to every page.
+   
+   Note: The header and footer handle their own
+   toggles (mobile menu, dropdown, back-to-top)
+   inside js/header.js and js/footer.js.
+   
+   This file is for extra behaviors that might
+   be added over time.
    ============================================ */
 
-/* ==========================================
-   1. MOBILE NAVIGATION TOGGLE
-   ========================================== */
+(function () {
+    'use strict';
 
-const navToggle = document.querySelector('.nav-toggle');
-const navDrawer = document.querySelector('.nav-mobile-drawer');
+    /* ==========================================
+       1. SMOOTH SCROLL FOR ANCHOR LINKS
+       ==========================================
+       Any <a href="#challenge"> click scrolls
+       smoothly instead of jumping.
+       ========================================== */
 
-if (navToggle && navDrawer) {
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navDrawer.classList.toggle('active');
-    });
-}
+    function setupSmoothScroll() {
+        const anchorLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
 
-/* ==========================================
-   2. SEARCH BAR TOGGLE
-   ========================================== */
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                if (!targetEl) return;
 
-const searchToggle = document.querySelector('.btn-search');
-const searchBar = document.querySelector('.search-bar');
-const searchClose = document.querySelector('.search-close');
+                e.preventDefault();
 
-if (searchToggle && searchBar) {
-    searchToggle.addEventListener('click', () => {
-        searchBar.classList.toggle('active');
-    });
-}
+                const headerOffset = 20;
+                const elementPosition = targetEl.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-if (searchClose && searchBar) {
-    searchClose.addEventListener('click', () => {
-        searchBar.classList.remove('active');
-    });
-}
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
 
-/* ==========================================
-   3. SPECIAL FEATURES DROPDOWN
-   ==========================================
-   Hover works via CSS. This adds click support
-   for touch devices and users who prefer clicking.
-   ========================================== */
+    /* ==========================================
+       2. EXTERNAL LINK SAFETY
+       ==========================================
+       Any link pointing to another domain opens
+       in a new tab with proper security attrs.
+       ========================================== */
 
-const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
-const dropdownPanel = document.querySelector('.nav-dropdown-panel');
+    function setupExternalLinks() {
+        const links = document.querySelectorAll('a[href^="http"]');
+        links.forEach(link => {
+            if (link.hostname !== window.location.hostname) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+    }
 
-if (dropdownToggle && dropdownPanel) {
-    dropdownToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdownPanel.classList.toggle('open');
-    });
+    /* ==========================================
+       3. LOGO / TITLE LINKS TO HOME
+       ==========================================
+       If any page has a broken link on the
+       logo, make sure it goes home.
+       ========================================== */
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!dropdownPanel.contains(e.target) && !dropdownToggle.contains(e.target)) {
-            dropdownPanel.classList.remove('open');
+    function fixBrandLink() {
+        const brand = document.querySelector('.header-brand');
+        if (brand && brand.getAttribute('href') === '#') {
+            const isSubfolder = window.location.pathname.includes('/html/');
+            brand.setAttribute('href', isSubfolder ? '../index.html' : 'index.html');
         }
-    });
+    }
 
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            dropdownPanel.classList.remove('open');
-        }
-    });
-}
+    /* ==========================================
+       INIT
+       ========================================== */
 
-/* ==========================================
-   4. BACK TO TOP ARROW
-   ========================================== */
+    function init() {
+        setupSmoothScroll();
+        setupExternalLinks();
+        fixBrandLink();
+    }
 
-const backToTop = document.querySelector('.back-to-top');
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
 
-if (backToTop) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
+})();

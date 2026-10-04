@@ -41,6 +41,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
 }
 
 /* ==========================================
@@ -149,17 +150,14 @@ table {
    10. MISC
    ========================================== */
 
-/* Remove default fieldset styling */
 fieldset {
     border: none;
 }
 
-/* Remove default legend padding */
 legend {
     padding: 0;
 }
 
-/* Remove spinner from number inputs */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -171,23 +169,15 @@ input[type="number"] {
     appearance: textfield;
 }
 
-/* Prevent horizontal scroll from decorations */
-body {
-    overflow-x: hidden;
-}
-
-/* Remove default focus outline (we'll style it ourselves) */
 :focus {
     outline: none;
 }
 
-/* Restore visible focus for accessibility (keyboard users) */
 :focus-visible {
     outline: 2px solid var(--color-teal);
     outline-offset: 2px;
 }
 
-/* Remove tap highlight on mobile */
 * {
     -webkit-tap-highlight-color: transparent;
 }
@@ -196,7 +186,6 @@ body {
    11. ACCESSIBILITY
    ========================================== */
 
-/* Hide content visually but keep for screen readers */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -209,7 +198,6 @@ body {
     border: 0;
 }
 
-/* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

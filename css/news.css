@@ -1,37 +1,133 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - NEWS PAGE
+   ============================================
+   NEW: Orange hero with dotted newspaper grain
+   + floating quill pens + category side bars
    ============================================ */
 
 /* ==========================================
-   1. PAGE HEADER
+   1. PAGE HERO — ORANGE GRADIENT
    ========================================== */
 
-.page-header {
-    background-color: var(--color-cream);
-    padding: 48px 0 32px;
+.page-hero {
+    background: linear-gradient(135deg, #F5A623 0%, #D98200 100%);
+    padding: 64px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dotted newspaper grain pattern */
+.page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Floating quill pens */
+.page-hero .hero-deco {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Quill shape (pure CSS) */
+.page-hero .hero-deco.quill {
+    width: 8px;
+    height: 40px;
+    background: linear-gradient(180deg, #1A2C42 0%, #1A2C42 40%, transparent 40%);
+    border-radius: 4px 4px 0 0;
+    transform: rotate(-20deg);
+    opacity: 0.35;
+}
+
+.page-hero .hero-deco.quill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -6px;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transform: rotate(45deg);
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(-20deg); }
+    50% { transform: translateY(-16px) rotate(-15deg); }
+}
+
+.page-hero .hero-deco.deco-1 { top: 15%; left: 8%; }
+.page-hero .hero-deco.deco-2 { top: 60%; left: 14%; animation-delay: 2s; transform: rotate(15deg); }
+.page-hero .hero-deco.deco-2::after { transform: rotate(-15deg); }
+.page-hero .hero-deco.deco-3 { top: 25%; right: 12%; animation-delay: 4s; }
+.page-hero .hero-deco.deco-4 { bottom: 15%; right: 18%; animation-delay: 1s; }
+
+/* Hero content */
+.page-hero-inner {
     text-align: center;
-    border-bottom: 1px solid var(--color-gray-light);
-}
-
-.page-header h1 {
-    font-family: var(--font-heading);
-    font-size: 52px;
-    color: var(--color-navy);
-    margin-bottom: 12px;
-    line-height: 1.1;
-}
-
-.page-header .page-subtitle {
-    font-size: 16px;
-    color: var(--color-gray);
-    font-weight: 600;
-    max-width: 600px;
+    position: relative;
+    z-index: 3;
+    max-width: 720px;
     margin: 0 auto;
-    line-height: 1.6;
+}
+
+.page-hero-label {
+    display: inline-block;
+    padding: 8px 22px;
+    background-color: var(--color-navy);
+    color: var(--color-orange);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: var(--radius-full);
+    margin-bottom: 18px;
+}
+
+.page-hero-title {
+    font-family: var(--font-heading);
+    font-size: 60px;
+    color: var(--color-white);
+    margin-bottom: 12px;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    text-shadow: 3px 3px 0 rgba(26, 44, 66, 0.15);
+}
+
+.page-hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0 auto;
+    line-height: 1.55;
+    opacity: 0.95;
+    max-width: 620px;
 }
 
 /* ==========================================
-   2. FILTER BAR
+   2. FILTER SECTION
    ========================================== */
 
 .filter-section {
@@ -44,8 +140,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 40px;
     flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gray);
+    flex-shrink: 0;
+    min-width: 70px;
 }
 
 .filter-pills {
@@ -55,7 +169,7 @@
 }
 
 .filter-pill {
-    padding: 8px 18px;
+    padding: 7px 16px;
     background-color: var(--color-white);
     border: 1px solid var(--color-gray-light);
     border-radius: var(--radius-full);
@@ -83,59 +197,16 @@
     color: var(--color-white);
 }
 
-/* Search inline */
-.search-inline {
-    display: flex;
-    align-items: center;
-    background-color: var(--color-cream);
-    border: 1px solid var(--color-gray-light);
-    border-radius: var(--radius-full);
-    padding: 4px 4px 4px 18px;
-    min-width: 240px;
-    transition: border-color 0.2s ease;
-}
-
-.search-inline:focus-within {
-    border-color: var(--color-orange);
-}
-
-.search-inline input {
-    flex: 1;
-    padding: 6px 0;
-    font-family: var(--font-body);
-    font-size: 14px;
-    color: var(--color-navy);
-    background: transparent;
-    border: none;
-    min-width: 0;
-}
-
-.search-inline input::placeholder {
-    color: var(--color-gray);
-}
-
-.search-inline input:focus {
-    outline: none;
-}
-
-.search-inline button {
-    padding: 8px 16px;
-    border-radius: var(--radius-full);
-    background-color: var(--color-orange);
-    color: var(--color-navy);
+.filter-empty {
     font-family: var(--font-body);
     font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-}
-
-.search-inline button:hover {
-    background-color: var(--color-navy);
-    color: var(--color-white);
+    font-style: italic;
+    color: var(--color-gray);
+    padding: 7px 16px;
+    background-color: var(--color-cream);
+    border: 1px dashed var(--color-gray-light);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
 }
 
 /* ==========================================
@@ -154,7 +225,7 @@
 }
 
 /* ==========================================
-   4. ARTICLE CARD
+   4. ARTICLE CARD — WITH CATEGORY SIDE BAR
    ========================================== */
 
 .article-card {
@@ -168,12 +239,41 @@
     height: 100%;
     text-decoration: none;
     color: inherit;
+    position: relative;
+    padding-left: 6px;
 }
+
+/* Colored side bar per category */
+.article-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: var(--color-orange);
+    z-index: 3;
+    transition: width 0.25s ease;
+}
+
+/* Category color variants */
+.article-card[data-category="school-news"]::before { background-color: var(--color-orange); }
+.article-card[data-category="events"]::before { background-color: var(--color-coral); }
+.article-card[data-category="health"]::before { background-color: var(--color-teal); }
+.article-card[data-category="values"]::before { background-color: var(--color-mint); }
+.article-card[data-category="young-writers"]::before { background-color: var(--color-yellow); }
+.article-card[data-category="watch"]::before { background-color: var(--color-coral); }
+.article-card[data-category="ai-creations"]::before { background-color: var(--color-coral); }
+.article-card[data-category="life-experiences"]::before { background-color: var(--color-teal); }
 
 .article-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(26, 44, 66, 0.1);
     border-color: var(--color-orange);
+}
+
+.article-card:hover::before {
+    width: 10px;
 }
 
 .article-card .card-image {
@@ -268,15 +368,14 @@
     color: var(--color-gray-light);
 }
 
-/* Category badge color variants */
+/* Badge color variants */
 .badge-school-news { background-color: var(--color-orange); color: var(--color-navy); }
 .badge-events { background-color: var(--color-coral); color: var(--color-white); }
 .badge-health { background-color: var(--color-teal); color: var(--color-white); }
 .badge-values { background-color: var(--color-mint); color: var(--color-navy); }
-.badge-interviews { background-color: var(--color-yellow); color: var(--color-navy); }
 
 /* ==========================================
-   5. LOAD MORE / PAGINATION
+   5. LOAD MORE
    ========================================== */
 
 .load-more-wrapper {
@@ -285,46 +384,17 @@
     margin-top: 48px;
 }
 
-.btn-load-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 40px;
-    background-color: var(--color-navy);
-    color: var(--color-white);
-    border: none;
-    border-radius: var(--radius-full);
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
+/* ==========================================
+   6. COMMENTS
+   ========================================== */
 
-.btn-load-more:hover {
-    background-color: var(--color-orange);
-    color: var(--color-navy);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(245, 166, 35, 0.3);
-}
-
-.btn-load-more::after {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 2px;
-    background-color: currentColor;
-    transition: transform 0.2s ease;
-}
-
-.btn-load-more:hover::after {
-    transform: translateX(4px);
+.comments-wrapper {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-white);
 }
 
 /* ==========================================
-   6. RESPONSIVE
+   7. RESPONSIVE
    ========================================== */
 
 @media (max-width: 1024px) {
@@ -333,23 +403,46 @@
         gap: 24px;
     }
 
-    .page-header h1 {
-        font-size: 42px;
+    .page-hero-title {
+        font-size: 46px;
+    }
+
+    .page-hero-subtitle {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 900px) {
+    .filter-bar {
+        gap: 20px;
+    }
+
+    .filter-group {
+        gap: 10px;
+    }
+
+    .filter-pill,
+    .filter-empty {
+        padding: 6px 14px;
+        font-size: 11px;
     }
 }
 
 @media (max-width: 640px) {
-    .page-header {
-        padding: 32px 0 24px;
+    .page-hero {
+        padding: 44px 0;
     }
 
-    .page-header h1 {
-        font-size: 34px;
+    .page-hero-title {
+        font-size: 32px;
     }
 
-    .page-header .page-subtitle {
+    .page-hero-subtitle {
         font-size: 14px;
-        padding: 0 16px;
+    }
+
+    .page-hero .hero-deco {
+        display: none;
     }
 
     .filter-section {
@@ -359,14 +452,33 @@
     .filter-bar {
         flex-direction: column;
         align-items: stretch;
+        gap: 14px;
+        background-color: var(--color-cream);
+        padding: 16px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-gray-light);
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .filter-label {
+        min-width: auto;
+        font-size: 10px;
+        color: var(--color-orange);
     }
 
     .filter-pills {
-        justify-content: center;
+        gap: 6px;
     }
 
-    .search-inline {
-        min-width: 100%;
+    .filter-pill,
+    .filter-empty {
+        padding: 7px 13px;
+        font-size: 11px;
     }
 
     .articles-section {

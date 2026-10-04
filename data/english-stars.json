@@ -1,0 +1,159 @@
+{
+    "week": "Week of May 4, 2026",
+    "theme": "This week's theme: Courage in Everyday Life",
+    "items": [
+        {
+            "id": "star-3a",
+            "type": "star",
+            "name": "Student Name 1",
+            "class": "3A",
+            "grade": "3",
+            "initial": "S",
+            "quote": "Reading every night helped me improve my English."
+        },
+        {
+            "id": "star-3b",
+            "type": "star",
+            "name": "Student Name 2",
+            "class": "3B",
+            "grade": "3",
+            "initial": "S",
+            "quote": "I practice English with my sister every day."
+        },
+        {
+            "id": "star-3c",
+            "type": "star",
+            "name": "Student Name 3",
+            "class": "3C",
+            "grade": "3",
+            "initial": "S",
+            "quote": "I love writing short stories in English."
+        },
+        {
+            "id": "star-3d",
+            "type": "star",
+            "name": "Student Name 4",
+            "class": "3D",
+            "grade": "3",
+            "initial": "S",
+            "quote": "My favorite English word is 'imagine'."
+        },
+        {
+            "id": "star-4a",
+            "type": "star",
+            "name": "Student Name 5",
+            "class": "4A",
+            "grade": "4",
+            "initial": "S",
+            "quote": "I speak English at home with my family."
+        },
+        {
+            "id": "star-4b",
+            "type": "star",
+            "name": "Student Name 6",
+            "class": "4B",
+            "grade": "4",
+            "initial": "S",
+            "quote": "Books are my best friends."
+        },
+        {
+            "id": "star-4c",
+            "type": "star",
+            "name": "Student Name 7",
+            "class": "4C",
+            "grade": "4",
+            "initial": "S",
+            "quote": "I never give up on hard words."
+        },
+        {
+            "id": "star-4d",
+            "type": "star",
+            "name": "Student Name 8",
+            "class": "4D",
+            "grade": "4",
+            "initial": "S",
+            "quote": "I practice English with my friends at recess."
+        },
+        {
+            "id": "star-4e",
+            "type": "star",
+            "name": "Student Name 9",
+            "class": "4E",
+            "grade": "4",
+            "initial": "S",
+            "quote": "English helps me make new friends."
+        },
+        {
+            "id": "star-5a",
+            "type": "star",
+            "name": "Student Name 10",
+            "class": "5A",
+            "grade": "5",
+            "initial": "S",
+            "quote": "I read one page of English every day."
+        },
+        {
+            "id": "star-5b",
+            "type": "star",
+            "name": "Student Name 11",
+            "class": "5B",
+            "grade": "5",
+            "initial": "S",
+            "quote": "My teacher inspires me to learn more."
+        },
+        {
+            "id": "star-5c",
+            "type": "star",
+            "name": "Student Name 12",
+            "class": "5C",
+            "grade": "5",
+            "initial": "S",
+            "quote": "I love learning new English words."
+        },
+        {
+            "id": "star-5d",
+            "type": "star",
+            "name": "Student Name 13",
+            "class": "5D",
+            "grade": "5",
+            "initial": "S",
+            "quote": "English opens new doors for me."
+        },
+        {
+            "id": "star-6a",
+            "type": "star",
+            "name": "Student Name 14",
+            "class": "6A",
+            "grade": "6",
+            "initial": "S",
+            "quote": "I write in my English journal every night."
+        },
+        {
+            "id": "star-6b",
+            "type": "star",
+            "name": "Student Name 15",
+            "class": "6B",
+            "grade": "6",
+            "initial": "S",
+            "quote": "I enjoy presenting in front of the class."
+        },
+        {
+            "id": "star-6c",
+            "type": "star",
+            "name": "Student Name 16",
+            "class": "6C",
+            "grade": "6",
+            "initial": "S",
+            "quote": "Being bilingual is a superpower."
+        },
+        {
+            "id": "star-6d",
+            "type": "star",
+            "name": "Student Name 17",
+            "class": "6D",
+            "grade": "6",
+            "initial": "S",
+            "quote": "I'm ready for the Spelling Bee!"
+        }
+    ]
+}

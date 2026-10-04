@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/archive.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <span class="hero-deco calendar deco-1"></span>
+        <span class="hero-deco calendar deco-2"></span>
+        <span class="hero-deco calendar deco-3"></span>
+        <span class="hero-deco calendar deco-4"></span>
+
+        <div class="container">
+            <div class="page-hero-inner">
+                <span class="page-hero-label">Through Time</span>
+                <h2 class="page-hero-title">Archive</h2>
+                <p class="page-hero-subtitle">Every story, video, and creative piece published by The Open Albayan Times.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-years">0</span>
+                    <span class="stat-label">Years of Content</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-stories">0</span>
+                    <span class="stat-label">Published Stories</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-months">0</span>
+                    <span class="stat-label">Months Active</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION — 4 dropdowns -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+
+                <div class="filter-group">
+                    <label class="filter-group-label" for="filter-year">Year</label>
+                    <select id="filter-year" class="filter-select" data-filter-group="year">
+                        <option value="all">All Years</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-group-label" for="filter-month">Month</label>
+                    <select id="filter-month" class="filter-select" data-filter-group="month">
+                        <option value="all">All Months</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-group-label" for="filter-category">Category</label>
+                    <select id="filter-category" class="filter-select" data-filter-group="category">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-group-label" for="filter-author">Author</label>
+                    <select id="filter-author" class="filter-select" data-filter-group="author">
+                        <option value="all">All Authors</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHIVE LIST — filled by js/archive-loader.js -->
+    <section class="archive-section">
+        <div class="container">
+            <div id="archive-list">
+                <!-- Populated by archive-loader.js -->
+                <div class="empty-state">
+                    <h3>Loading archive...</h3>
+                </div>
+            </div>
+
+            <div class="load-more-wrapper">
+                <button class="btn-load-more" type="button">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/archive-loader.js"></script>
+    <script src="../js/filters.js"></script>
+
+</body>
+</html>

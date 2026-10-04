@@ -1,85 +1,108 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - FILTERS
    ============================================
-   Universal filter script that handles:
-   - Filter pills (news, watch, young-writers, book-corner, creative-corner)
-   - Filter dropdowns (archive)
+   Universal filter script handling:
+   - Filter pills (News, Young Writers, Watch,
+     Book/Movie, Creative Corner)
+   - Filter dropdowns (Archive)
    - Multi-group filtering with AND logic
+   - Empty groups (shows placeholder message)
+   - Content loaded dynamically from JSON
+     (re-scans after albayan:contentLoaded event)
+
+   HTML contract:
+   - Each group: <div class="filter-group" data-filter-group="grade">
+   - Each pill:  <button class="filter-pill active" data-filter-value="all">
+   - Each card:  <a data-grade="5" data-category="events">
+   - Empty group: <span class="filter-empty">Coming soon</span>
    ============================================ */
 
 (function () {
     'use strict';
 
     /* ==========================================
-       DETECT PAGE TYPE
+       STATE
        ========================================== */
 
-    // Find the first filter-bar on the page
     const filterBar = document.querySelector('.filter-bar');
     if (!filterBar) return;
 
     /* ==========================================
        HELPERS
+       ==========================================
+       Include every card class used on the site:
+       - .article-card     (News, Young Writers)
+       - .video-card       (Watch, News)
+       - .writing-card     (reserved)
+       - .suggestion-card  (Book/Movie)
+       - .creative-card    (Creative Corner) ★ NEW
+       - .gallery-item     (reserved)
+       - .archive-entry    (Archive)
+       - .interview-card   (Reporters)
+       - .advice-card      (Lexi's Advice)
+       - .resource-card    (Spelling Bee) ★ NEW
+       - .enrichment-resource-card (Enrichment) ★ NEW
        ========================================== */
 
-    // Get all cards depending on page
     function getCards() {
         return document.querySelectorAll(
-            '.article-card, .video-card, .writing-card, .book-card, .gallery-item, .archive-entry'
+            '.article-card, .video-card, .writing-card, .suggestion-card, ' +
+            '.creative-card, .gallery-item, .archive-entry, ' +
+            '.interview-card, .advice-card, ' +
+            '.resource-card, .enrichment-resource-card'
         );
     }
 
-    // Check whether a card matches a given group's filter
     function cardMatchesGroup(card, groupName, filterValue) {
-        // Attribute name in HTML uses data-<groupName>
+        if (filterValue === 'all') return true;
         const attr = 'data-' + groupName;
         const cardValue = card.getAttribute(attr);
-
-        // If filter is "all", always match
-        if (filterValue === 'all') return true;
-
-        // Card doesn't have the attribute — don't match
         if (!cardValue) return false;
-
-        // Direct match
         return cardValue === filterValue;
     }
 
-    // Apply all active filters
-    function applyFilters() {
-        const cards = getCards();
-        const filterBar = document.querySelector('.filter-bar');
+    function getActiveFilters() {
+        const activeFilters = {};
 
-        // If there are filter-bar pill groups, gather each group's active value
+        // Pills
         const pillGroups = filterBar.querySelectorAll('.filter-group');
-
-        const activePills = {};
-        pillGroups.forEach((group, index) => {
+        pillGroups.forEach((group) => {
             const groupName = group.getAttribute('data-filter-group');
+            if (!groupName) return;
             const activePill = group.querySelector('.filter-pill.active');
-            if (groupName && activePill) {
-                activePills[groupName] = activePill.getAttribute('data-filter-value');
+            if (activePill) {
+                activeFilters[groupName] = activePill.getAttribute('data-filter-value');
             }
         });
 
-        // Also check for select dropdowns (archive page)
+        // Dropdowns (Archive)
         const selects = filterBar.querySelectorAll('.filter-select');
         selects.forEach((select) => {
             const groupName = select.getAttribute('data-filter-group');
             if (groupName) {
-                activePills[groupName] = select.value;
+                activeFilters[groupName] = select.value;
             }
         });
 
-        // Apply to each card
+        return activeFilters;
+    }
+
+    /* ==========================================
+       APPLY FILTERS
+       ========================================== */
+
+    function applyFilters() {
+        const cards = getCards();
+        const activeFilters = getActiveFilters();
+
         let visibleCount = 0;
+
         cards.forEach((card) => {
             let isVisible = true;
 
-            // Check every group — AND logic
-            Object.keys(activePills).forEach((groupName) => {
-                const filterValue = activePills[groupName];
-                if (!cardMatchesGroup(card, groupName, filterValue)) {
+            Object.keys(activeFilters).forEach((groupName) => {
+                const value = activeFilters[groupName];
+                if (!cardMatchesGroup(card, groupName, value)) {
                     isVisible = false;
                 }
             });
@@ -92,22 +115,26 @@
             }
         });
 
-        // Show / hide empty state message
         updateEmptyState(visibleCount);
     }
 
-    // Show a friendly message if 0 results
+    /* ==========================================
+       EMPTY STATE
+       ========================================== */
+
     function updateEmptyState(visibleCount) {
         let emptyState = document.getElementById('filter-empty-state');
 
-        if (visibleCount === 0) {
+        if (visibleCount === 0 && getCards().length > 0) {
             if (!emptyState) {
                 const grid =
                     document.querySelector('.articles-grid') ||
                     document.querySelector('.videos-grid') ||
                     document.querySelector('.writings-grid') ||
-                    document.querySelector('.books-grid') ||
+                    document.querySelector('.suggestions-grid') ||
+                    document.querySelector('.creative-grid') ||
                     document.querySelector('.gallery-grid') ||
+                    document.querySelector('.reporters-grid') ||
                     document.querySelector('.archive-section .container');
 
                 if (grid) {
@@ -128,46 +155,78 @@
 
     /* ==========================================
        SET UP PILL GROUPS
-       ==========================================
-       Each .filter-group should have:
-         - data-filter-group="grade"  (or "category", "genre")
-       Each .filter-pill should have:
-         - data-filter-value="all"  (or "5", "essay", etc.)
        ========================================== */
 
-    const pillGroups = filterBar.querySelectorAll('.filter-group');
-    pillGroups.forEach((group) => {
-        const pills = group.querySelectorAll('.filter-pill');
+    function setupPillGroups() {
+        const pillGroups = filterBar.querySelectorAll('.filter-group');
+        pillGroups.forEach((group) => {
+            const pills = group.querySelectorAll('.filter-pill');
+            if (pills.length === 0) return; // Empty group
 
-        pills.forEach((pill) => {
-            pill.addEventListener('click', () => {
-                // Remove active from all pills in this group
-                pills.forEach((p) => p.classList.remove('active'));
-                // Add active to clicked pill
-                pill.classList.add('active');
-                // Re-apply filters
+            pills.forEach((pill) => {
+                // Avoid binding twice
+                if (pill.dataset.bound === 'true') return;
+                pill.dataset.bound = 'true';
+
+                pill.addEventListener('click', () => {
+                    pills.forEach((p) => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    applyFilters();
+                });
+            });
+        });
+    }
+
+    /* ==========================================
+       SET UP SELECT DROPDOWNS (Archive)
+       ========================================== */
+
+    function setupSelects() {
+        const selects = filterBar.querySelectorAll('.filter-select');
+        selects.forEach((select) => {
+            if (select.dataset.bound === 'true') return;
+            select.dataset.bound = 'true';
+
+            select.addEventListener('change', () => {
                 applyFilters();
             });
         });
-    });
+    }
 
     /* ==========================================
-       SET UP SELECT DROPDOWNS (archive)
-       ========================================== */
-
-    const selects = filterBar.querySelectorAll('.filter-select');
-    selects.forEach((select) => {
-        select.addEventListener('change', () => {
-            applyFilters();
-        });
-    });
-
-    /* ==========================================
-       INITIAL RUN
+       LISTEN FOR DYNAMIC CONTENT
        ==========================================
-       In case any filter is pre-active when the page loads.
+       content-loader.js fires this event after
+       it injects cards. We re-scan and re-apply
+       filters.
        ========================================== */
 
-    applyFilters();
+    function watchForContent() {
+        document.addEventListener('albayan:contentLoaded', () => {
+            // Small delay to let DOM settle
+            setTimeout(() => {
+                applyFilters();
+            }, 50);
+        });
+    }
+
+    /* ==========================================
+       INIT
+       ========================================== */
+
+    function init() {
+        setupPillGroups();
+        setupSelects();
+        watchForContent();
+
+        // If content already exists on page load, filter it now
+        applyFilters();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
 
 })();

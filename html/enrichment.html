@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrichment | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/enrichment.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Enrichment</h1>
+            <p class="page-subtitle">Extra learning for curious minds — videos, worksheets, activities, and links.</p>
+        </div>
+    </section>
+
+    <!-- HERO BANNER -->
+    <section class="enrichment-hero">
+        <!-- Floating sparkles -->
+        <span class="sparkle s1"></span>
+        <span class="sparkle s2"></span>
+        <span class="sparkle s3"></span>
+        <span class="sparkle s4"></span>
+        <span class="sparkle s5"></span>
+
+        <!-- Floating bubbles -->
+        <span class="bubble b1"></span>
+        <span class="bubble b2"></span>
+        <span class="bubble b3"></span>
+        <span class="bubble b4"></span>
+
+        <div class="container">
+            <div class="enrichment-hero-inner">
+                <span class="enrichment-hero-label">Explore Zone</span>
+                <h2 id="enrichment-hero-title">Enrichment Zone</h2>
+                <p class="enrichment-hero-subtitle" id="enrichment-hero-subtitle">Extra learning for curious minds!</p>
+                <p class="enrichment-hero-description" id="enrichment-hero-description">
+                    Explore beyond the classroom with fun activities, videos, worksheets, and challenges. From puzzles to science experiments to reading adventures — there's something here for every curious learner.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WAVE DIVIDER -->
+    <div class="enrichment-wave"></div>
+
+    <!-- CATEGORY TABS -->
+    <section class="enrichment-filter-section">
+        <div class="container">
+            <div class="enrichment-filter-bar" id="enrichment-filter-bar">
+                <!-- Tabs injected by inline script -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT SECTIONS -->
+    <section class="enrichment-content-section">
+        <div class="container">
+            <div id="enrichment-content">
+                <!-- Sections injected by inline script -->
+                <div class="empty-state">
+                    <h3>Loading content...</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+
+    <!-- CUSTOM SCRIPT: Render Enrichment page -->
+    <script>
+    (function () {
+        'use strict';
+
+        const PREFIX = '../';
+
+        /* ==========================================
+           SECTIONS CONFIG
+           ========================================== */
+
+        const SECTIONS = [
+            {
+                key: 'videos',
+                label: 'Videos',
+                icon: 'V',
+                title: 'Watch & Learn',
+                subtitle: 'Videos to spark your curiosity'
+            },
+            {
+                key: 'worksheets',
+                label: 'Worksheets',
+                icon: 'W',
+                title: 'Worksheets',
+                subtitle: 'Practice pages by grade and subject'
+            },
+            {
+                key: 'activities',
+                label: 'Activities',
+                icon: 'A',
+                title: 'Hands-On Activities',
+                subtitle: 'Creative challenges and brain teasers'
+            },
+            {
+                key: 'links',
+                label: 'Helpful Links',
+                icon: 'L',
+                title: 'Helpful Links',
+                subtitle: 'Amazing learning sites from around the web'
+            }
+        ];
+
+        const RESOURCE_ICONS = {
+            pdf: 'PDF',
+            quiz: 'Quiz',
+            link: 'Link'
+        };
+
+        const RESOURCE_ACTIONS = {
+            pdf: 'Download',
+            quiz: 'Start',
+            link: 'Open'
+        };
+
+        /* ==========================================
+           HELPERS
+           ========================================== */
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getImageUrl(item) {
+            if (!item.image) return '';
+            const folder = item.imageFolder || 'content';
+            return `${PREFIX}assets/images/${folder}/${item.image}`;
+        }
+
+        function getDetailUrl(item) {
+            if (!item.id) return '#';
+            return `article.html?id=${encodeURIComponent(item.id)}`;
+        }
+
+        function getResourceUrl(item) {
+            if (!item.resourceUrl) return '#';
+            if (item.resourceUrl.startsWith('http')) return item.resourceUrl;
+            return getDetailUrl(item);
+        }
+
+        /* ==========================================
+           CARD RENDERERS
+           ========================================== */
+
+        function renderVideoCard(item) {
+            const imgUrl = getImageUrl(item);
+            const href = getDetailUrl(item);
+
+            return `
+                <a href="${href}" class="video-card">
+                    <div class="video-thumbnail">
+                        ${item.duration ? `<span class="video-duration">${escapeHtml(item.duration)}</span>` : ''}
+                        ${imgUrl ? `<img src="${imgUrl}" alt="${escapeHtml(item.title)}">` : ''}
+                        <span class="mini-play"></span>
+                    </div>
+                    <div class="video-body">
+                        <h3 class="video-title">${escapeHtml(item.title)}</h3>
+                        <p style="font-size: 12px; color: var(--color-gray); margin: 0;">${escapeHtml(item.excerpt || '')}</p>
+                    </div>
+                </a>
+            `;
+        }
+
+        function renderResourceCard(item) {
+            const href = getResourceUrl(item);
+            const typeClass = 'type-' + (item.resourceType || 'pdf');
+            const iconLabel = RESOURCE_ICONS[item.resourceType] || 'File';
+            const actionLabel = RESOURCE_ACTIONS[item.resourceType] || 'Open';
+
+            const isExternal = href.startsWith('http');
+            const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+
+            return `
+                <a href="${href}" class="enrichment-resource-card ${typeClass}"${targetAttr}>
+                    <div class="enrichment-resource-icon">${escapeHtml(iconLabel)}</div>
+                    <h3 class="enrichment-resource-title">${escapeHtml(item.title)}</h3>
+                    <p class="enrichment-resource-excerpt">${escapeHtml(item.excerpt || '')}</p>
+                    <div class="enrichment-resource-footer">
+                        ${item.grade ? `<span class="enrichment-grade-tag">Grade ${escapeHtml(item.grade)}</span>` : '<span></span>'}
+                        <span class="enrichment-resource-action">${escapeHtml(actionLabel)}</span>
+                    </div>
+                </a>
+            `;
+        }
+
+        /* ==========================================
+           RENDER SECTION
+           ========================================== */
+
+        function renderSection(sectionConfig, items) {
+            if (items.length === 0) return '';
+
+            const cardsHtml = items.map(item => {
+                if (item.type === 'video') return renderVideoCard(item);
+                return renderResourceCard(item);
+            }).join('');
+
+            return `
+                <div class="enrichment-section section-${sectionConfig.key}" data-section="${sectionConfig.key}">
+                    <div class="enrichment-section-header">
+                        <div class="enrichment-section-icon">${escapeHtml(sectionConfig.icon)}</div>
+                        <div>
+                            <h3 class="enrichment-section-title">${escapeHtml(sectionConfig.title)}</h3>
+                            <p class="enrichment-section-subtitle">${escapeHtml(sectionConfig.subtitle)}</p>
+                        </div>
+                    </div>
+                    <div class="enrichment-section-grid">
+                        ${cardsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        /* ==========================================
+           RENDER TABS
+           ========================================== */
+
+        function renderTabs(items) {
+            const bar = document.getElementById('enrichment-filter-bar');
+            if (!bar) return;
+
+            const counts = {};
+            SECTIONS.forEach(s => counts[s.key] = 0);
+            items.forEach(item => {
+                if (counts[item.category] !== undefined) counts[item.category]++;
+            });
+
+            let html = `
+                <button class="enrichment-filter-pill active" data-tab="all">
+                    All
+                    <span class="pill-count">${items.length}</span>
+                </button>
+            `;
+
+            SECTIONS.forEach(s => {
+                const count = counts[s.key] || 0;
+                if (count === 0) return;
+
+                html += `
+                    <button class="enrichment-filter-pill" data-tab="${s.key}">
+                        ${escapeHtml(s.label)}
+                        <span class="pill-count">${count}</span>
+                    </button>
+                `;
+            });
+
+            bar.innerHTML = html;
+
+            bar.querySelectorAll('.enrichment-filter-pill').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    bar.querySelectorAll('.enrichment-filter-pill').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const tab = btn.getAttribute('data-tab');
+                    document.querySelectorAll('.enrichment-section').forEach(sec => {
+                        const key = sec.getAttribute('data-section');
+                        sec.style.display = (tab === 'all' || tab === key) ? '' : 'none';
+                    });
+                });
+            });
+        }
+
+        /* ==========================================
+           RENDER CONTENT
+           ========================================== */
+
+        function renderContent(data) {
+            const container = document.getElementById('enrichment-content');
+            if (!container) return;
+
+            const items = data.items || [];
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>Coming soon</h3>
+                        <p>Enrichment content will appear here soon.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const bySection = {};
+            SECTIONS.forEach(s => bySection[s.key] = []);
+            items.forEach(item => {
+                if (bySection[item.category]) bySection[item.category].push(item);
+            });
+
+            let html = '';
+            SECTIONS.forEach(s => {
+                html += renderSection(s, bySection[s.key] || []);
+            });
+
+            container.innerHTML = html || `
+                <div class="empty-state">
+                    <h3>Coming soon</h3>
+                    <p>Content will appear here once added.</p>
+                </div>
+            `;
+        }
+
+        /* ==========================================
+           UPDATE HERO
+           ========================================== */
+
+        function updateHero(data) {
+            if (!data.intro) return;
+
+            const titleEl = document.getElementById('enrichment-hero-title');
+            const subtitleEl = document.getElementById('enrichment-hero-subtitle');
+            const descEl = document.getElementById('enrichment-hero-description');
+
+            if (titleEl && data.intro.title) titleEl.textContent = data.intro.title;
+            if (subtitleEl && data.intro.subtitle) subtitleEl.textContent = data.intro.subtitle;
+            if (descEl && data.intro.description) descEl.textContent = data.intro.description;
+        }
+
+        /* ==========================================
+           INIT
+           ========================================== */
+
+        async function init() {
+            try {
+                const url = `${PREFIX}data/enrichment.json?v=` + Date.now();
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Failed to load');
+                const data = await res.json();
+
+                updateHero(data);
+                renderTabs(data.items || []);
+                renderContent(data);
+            } catch (err) {
+                console.warn('[Albayan] Could not load enrichment.json:', err);
+                const container = document.getElementById('enrichment-content');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <h3>Coming soon</h3>
+                            <p>Enrichment content will appear here soon.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/watch.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <span class="hero-deco play deco-1"></span>
+        <span class="hero-deco play deco-2"></span>
+        <span class="hero-deco play deco-3"></span>
+        <span class="hero-deco play deco-4"></span>
+
+        <div class="container">
+            <div class="page-hero-inner">
+                <span class="page-hero-label">Now Playing</span>
+                <h2 class="page-hero-title">Watch</h2>
+                <p class="page-hero-subtitle">Student videos, reports, interviews, and storytelling from around Albayan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+
+                <!-- Category filter — pills added later -->
+                <div class="filter-group" data-filter-group="category">
+                    <span class="filter-label">Category</span>
+                    <span class="filter-empty">Coming soon</span>
+                </div>
+
+                <!-- Grade filter -->
+                <div class="filter-group" data-filter-group="grade">
+                    <span class="filter-label">Grade</span>
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-filter-value="all">All</button>
+                        <button class="filter-pill" data-filter-value="3">Grade 3</button>
+                        <button class="filter-pill" data-filter-value="4">Grade 4</button>
+                        <button class="filter-pill" data-filter-value="5">Grade 5</button>
+                        <button class="filter-pill" data-filter-value="6">Grade 6</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS GRID — filled by js/content-loader.js -->
+    <section class="videos-section">
+        <div class="container">
+            <div class="videos-grid"
+                 id="videos-grid"
+                 data-json="watch"
+                 data-card="video">
+                <!-- Cards injected by content-loader.js -->
+            </div>
+
+            <div class="load-more-wrapper">
+                <button class="btn-load-more" type="button">Load More Videos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/content-loader.js"></script>
+    <script src="../js/filters.js"></script>
+
+</body>
+</html>

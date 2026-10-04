@@ -1,33 +1,132 @@
 /* ============================================
-   THE OPEN ALBAYAN TIMES - YOUNG WRITERS PAGE
+   THE OPEN ALBAYAN TIMES - YOUNG WRITERS
+   ============================================
+   Yellow→orange hero with paper pages pattern
+   + floating ink drops + wavy card edges.
    ============================================ */
 
 /* ==========================================
-   1. PAGE HEADER
+   1. PAGE HERO — YELLOW → ORANGE GRADIENT
    ========================================== */
 
-.page-header {
-    background-color: var(--color-cream);
-    padding: 48px 0 32px;
-    text-align: center;
-    border-bottom: 1px solid var(--color-gray-light);
+.page-hero {
+    background: linear-gradient(135deg, #FFD166 0%, #F5A623 100%);
+    padding: 64px 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.page-header h1 {
+/* Paper page pattern */
+.page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 32px,
+            rgba(255, 255, 255, 0.15) 32px,
+            rgba(255, 255, 255, 0.15) 33px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Floating ink drops */
+.page-hero .hero-deco {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    animation: ink-float 6s ease-in-out infinite;
+}
+
+.page-hero .hero-deco.ink {
+    width: 20px;
+    height: 26px;
+    background-color: rgba(26, 44, 66, 0.5);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: rotate(-10deg);
+}
+
+.page-hero .hero-deco.ink::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 12px solid rgba(26, 44, 66, 0.5);
+}
+
+@keyframes ink-float {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50% { transform: translateY(-16px) rotate(-4deg); }
+}
+
+.page-hero .hero-deco.deco-1 { top: 15%; left: 8%; }
+.page-hero .hero-deco.deco-2 { top: 60%; left: 14%; animation-delay: 2s; transform: rotate(15deg); }
+.page-hero .hero-deco.deco-2::after { transform: rotate(-15deg); }
+.page-hero .hero-deco.deco-3 { top: 25%; right: 12%; animation-delay: 4s; width: 16px; height: 22px; }
+.page-hero .hero-deco.deco-4 { bottom: 15%; right: 18%; animation-delay: 1s; width: 24px; height: 30px; }
+
+.page-hero-inner {
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.page-hero-label {
+    display: inline-block;
+    padding: 8px 22px;
+    background-color: var(--color-navy);
+    color: var(--color-yellow);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: var(--radius-full);
+    margin-bottom: 18px;
+}
+
+.page-hero-title {
     font-family: var(--font-heading);
-    font-size: 52px;
+    font-size: 60px;
     color: var(--color-navy);
     margin-bottom: 12px;
-    line-height: 1.1;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.4);
 }
 
-.page-header .page-subtitle {
-    font-size: 16px;
-    color: var(--color-gray);
+.page-hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
     font-weight: 600;
-    max-width: 620px;
+    color: var(--color-navy);
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.55;
+    opacity: 0.9;
+    max-width: 620px;
 }
 
 /* ==========================================
@@ -35,34 +134,10 @@
    ========================================== */
 
 .featured-writer-section {
-    background-color: var(--color-yellow);
-    padding: 40px 0;
+    background-color: var(--color-cream);
+    padding: 48px 0;
     position: relative;
     overflow: hidden;
-}
-
-.featured-writer-section::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.featured-writer-section::after {
-    content: '';
-    position: absolute;
-    bottom: -80px;
-    left: -60px;
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
 }
 
 .featured-writer-inner {
@@ -77,8 +152,8 @@
 .featured-writer-label {
     display: inline-block;
     padding: 6px 14px;
-    background-color: var(--color-navy);
-    color: var(--color-white);
+    background-color: var(--color-orange);
+    color: var(--color-navy);
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 800;
@@ -92,8 +167,8 @@
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background-color: var(--color-navy);
-    color: var(--color-yellow);
+    background-color: var(--color-yellow);
+    color: var(--color-navy);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,8 +199,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--color-navy);
-    opacity: 0.7;
+    color: var(--color-orange);
     margin-bottom: 12px;
     display: block;
 }
@@ -187,69 +261,8 @@
     border-bottom: 1px solid var(--color-gray-light);
 }
 
-.filter-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.filter-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.filter-label {
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-gray);
-    flex-shrink: 0;
-    min-width: 50px;
-}
-
-.filter-pills {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.filter-pill {
-    padding: 7px 16px;
-    background-color: var(--color-white);
-    border: 1px solid var(--color-gray-light);
-    border-radius: var(--radius-full);
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--color-navy);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.filter-pill:hover {
-    background-color: var(--color-yellow);
-    border-color: var(--color-yellow);
-    color: var(--color-navy);
-    transform: translateY(-1px);
-}
-
-.filter-pill.active {
-    background-color: var(--color-navy);
-    border-color: var(--color-navy);
-    color: var(--color-white);
-}
-
 /* ==========================================
-   4. WRITING GRID
+   4. WRITINGS SECTION
    ========================================== */
 
 .writings-section {
@@ -257,121 +270,107 @@
     background-color: var(--color-cream);
 }
 
-.writings-grid {
+.writings-section .articles-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 /* ==========================================
-   5. WRITING CARD
+   5. WRITING CARD — WAVY TOP EDGE
+   ==========================================
+   Cards get a wavy top edge like ripped paper.
+   Uses SVG mask via clip-path.
    ========================================== */
 
-.writing-card {
+.writings-section .article-card {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    padding-left: 0;
+    border-top: none;
+    overflow: visible;
+    position: relative;
     background-color: var(--color-white);
     border: 1px solid var(--color-gray-light);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: all 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    text-decoration: none;
-    color: inherit;
-    position: relative;
+    border-top: none;
 }
 
-.writing-card::before {
+/* Remove the category side bar for Young Writers */
+.writings-section .article-card::before {
+    display: none;
+}
+
+/* Wavy top edge — SVG wave path */
+.writings-section .article-card::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: -8px;
     left: 0;
     right: 0;
-    height: 4px;
-    background-color: var(--color-yellow);
+    height: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M0 8 Q 15 0, 30 8 T 60 8 T 90 8 T 120 8 L 120 8 L 0 8 Z' fill='%23FFFFFF' stroke='%23E8E4DD' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 120px 8px;
+    background-repeat: repeat-x;
+    pointer-events: none;
     z-index: 2;
 }
 
-.writing-card:hover {
+.writings-section .article-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.1);
+    box-shadow: 0 12px 28px rgba(26, 44, 66, 0.1);
     border-color: var(--color-yellow);
 }
 
-.writing-card-body {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
+.writings-section .article-card:hover::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M0 8 Q 15 0, 30 8 T 60 8 T 90 8 T 120 8 L 120 8 L 0 8 Z' fill='%23FFFFFF' stroke='%23FFD166' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
-.writing-card-genre {
-    display: inline-flex;
-    align-self: flex-start;
-    padding: 4px 12px;
-    background-color: var(--color-gray-lighter);
-    color: var(--color-navy);
-    font-family: var(--font-body);
-    font-size: 10px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    border-radius: var(--radius-full);
+/* Adjust image top */
+.writings-section .article-card .card-image {
+    border-radius: 0;
 }
 
-.writing-card-genre.genre-essay { background-color: var(--color-yellow); }
-.writing-card-genre.genre-poetry { background-color: var(--color-coral); color: var(--color-white); }
-.writing-card-genre.genre-report { background-color: var(--color-teal); color: var(--color-white); }
-.writing-card-genre.genre-fiction { background-color: var(--color-mint); color: var(--color-navy); }
-.writing-card-genre.genre-opinion { background-color: var(--color-orange); color: var(--color-navy); }
-
-.writing-card-title {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    line-height: 1.25;
-    color: var(--color-navy);
-    margin: 0;
-    transition: color 0.2s ease;
-}
-
-.writing-card:hover .writing-card-title {
+/* Yellow theme overrides */
+.writings-section .article-card:hover .card-title {
     color: var(--color-orange);
 }
 
-.writing-card-preview {
-    font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--color-gray);
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-style: italic;
-}
-
-.writing-card-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-body);
-    font-size: 12px;
-    color: var(--color-gray);
-    margin-top: auto;
-    padding-top: 14px;
-    border-top: 1px solid var(--color-gray-light);
-    flex-wrap: wrap;
-}
-
-.writing-card-meta .meta-author {
-    font-weight: 700;
+.writings-section .article-card .card-image .badge {
+    background-color: var(--color-yellow);
     color: var(--color-navy);
 }
 
-.writing-card-meta .meta-divider {
-    color: var(--color-gray-light);
+/* Reduce card size */
+.writings-section .article-card .card-body {
+    padding: 16px;
+    gap: 8px;
+}
+
+.writings-section .article-card .card-title {
+    font-size: 16px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 42px;
+}
+
+.writings-section .article-card .card-excerpt {
+    font-size: 12px;
+    line-height: 1.5;
+    -webkit-line-clamp: 2;
+    font-style: italic;
+}
+
+.writings-section .article-card .card-meta {
+    font-size: 11px;
+    padding-top: 10px;
+}
+
+.writings-section .article-card .card-image {
+    aspect-ratio: 4 / 3;
 }
 
 /* ==========================================
@@ -384,122 +383,32 @@
     margin-top: 48px;
 }
 
-.btn-load-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 40px;
-    background-color: var(--color-navy);
-    color: var(--color-white);
-    border: none;
-    border-radius: var(--radius-full);
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.btn-load-more:hover {
-    background-color: var(--color-orange);
-    color: var(--color-navy);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(245, 166, 35, 0.3);
-}
-
-.btn-load-more::after {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 2px;
-    background-color: currentColor;
-    transition: transform 0.2s ease;
-}
-
-.btn-load-more:hover::after {
-    transform: translateX(4px);
-}
-
 /* ==========================================
-   7. RELATED PROGRAMS
+   7. COMMENTS
    ========================================== */
 
-.related-programs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 48px;
-}
-
-.related-program-card {
+.comments-wrapper {
+    padding: var(--space-3xl) 0;
     background-color: var(--color-white);
-    border: 1px solid var(--color-gray-light);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.25s ease;
-}
-
-.related-program-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(26, 44, 66, 0.08);
-    border-color: var(--color-orange);
-}
-
-.related-program-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-md);
-    background-color: var(--color-orange);
-    color: var(--color-navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 700;
-    flex-shrink: 0;
-}
-
-.related-program-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.related-program-title {
-    font-family: var(--font-heading);
-    font-size: 20px;
-    color: var(--color-navy);
-    margin: 0 0 4px 0;
-    line-height: 1.2;
-}
-
-.related-program-desc {
-    font-family: var(--font-body);
-    font-size: 13px;
-    color: var(--color-gray);
-    margin: 0;
-    line-height: 1.4;
 }
 
 /* ==========================================
    8. RESPONSIVE
    ========================================== */
 
+@media (max-width: 1200px) {
+    .writings-section .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 1024px) {
-    .writings-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+    .page-hero-title {
+        font-size: 46px;
     }
 
-    .page-header h1 {
-        font-size: 42px;
+    .page-hero-subtitle {
+        font-size: 16px;
     }
 
     .featured-writer-inner {
@@ -511,20 +420,9 @@
         grid-column: 1 / -1;
         justify-self: start;
     }
-}
 
-@media (max-width: 900px) {
-    .filter-bar {
-        gap: 20px;
-    }
-
-    .filter-group {
-        gap: 10px;
-    }
-
-    .filter-pill {
-        padding: 6px 14px;
-        font-size: 11px;
+    .writings-section .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -545,24 +443,23 @@
     .featured-writer-cta {
         justify-self: center;
     }
-
-    .filter-bar {
-        justify-content: flex-start;
-    }
 }
 
 @media (max-width: 640px) {
-    .page-header {
-        padding: 32px 0 24px;
+    .page-hero {
+        padding: 44px 0;
     }
 
-    .page-header h1 {
-        font-size: 34px;
+    .page-hero-title {
+        font-size: 32px;
     }
 
-    .page-header .page-subtitle {
+    .page-hero-subtitle {
         font-size: 14px;
-        padding: 0 16px;
+    }
+
+    .page-hero .hero-deco {
+        display: none;
     }
 
     .featured-writer-section {
@@ -573,69 +470,16 @@
         font-size: 26px;
     }
 
-    .filter-section {
-        padding: 16px 0;
-    }
-
-    .filter-bar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 14px;
-        background-color: var(--color-cream);
-        padding: 16px;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--color-gray-light);
-    }
-
-    .filter-group {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-    }
-
-    .filter-label {
-        min-width: auto;
-        font-size: 10px;
-        color: var(--color-orange);
-    }
-
-    .filter-pills {
-        gap: 6px;
-    }
-
-    .filter-pill {
-        padding: 7px 13px;
-        font-size: 11px;
-    }
-
     .writings-section {
         padding: 32px 0 48px;
     }
 
-    .writings-grid {
+    .writings-section .articles-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
     }
 
-    .writing-card-title {
-        font-size: 19px;
-    }
-
-    .related-programs {
-        grid-template-columns: 1fr;
-    }
-
-    .related-program-card {
-        padding: 20px;
-    }
-
-    .related-program-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 18px;
-    }
-
-    .related-program-title {
+    .writings-section .article-card .card-title {
         font-size: 17px;
     }
 }

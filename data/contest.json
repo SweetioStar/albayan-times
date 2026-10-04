@@ -1,0 +1,58 @@
+{
+    "intro": {
+        "title": "Contests",
+        "subtitle": "Where our students shine",
+        "description": "From photography to storytelling, our contests celebrate the many talents of Albayan students. Explore the winners, the entries, and the creative work that makes our community special."
+    },
+    "items": [
+        {
+            "id": "contest-qnd-2025",
+            "type": "contest",
+            "title": "QND Contest 2025",
+            "excerpt": "Qatar National Day photography contest — celebrating Qatar through our students' eyes.",
+            "body": "The Qatar National Day Photography Contest invited students to capture the spirit of Qatar National Day — its heritage, culture, and beauty — through their own lenses.\n\nWe received over 20 submissions from students across all grades. Our judges evaluated each entry based on creativity, composition, and storytelling.\n\nThe winning photographs and all the submissions are showcased below. Congratulations to everyone who participated!",
+            "category": "qnd",
+            "date": "December 2025",
+            "year": "2025",
+            "image": "contest-qnd.jpg",
+            "theme": "Qatar's Heritage & Beauty",
+            "winners": [
+                { "place": 1, "name": "Aljoud Khaled Alyafei", "grade": "5C", "image": "qnd-1.jpg" },
+                { "place": 2, "name": "Mayassa Khaled Mubarak", "grade": "3B", "image": "qnd-2.jpg" },
+                { "place": 3, "name": "Sara Fahed Alkhalfan", "grade": "3A", "image": "qnd-3.jpg" }
+            ],
+            "gallery": [
+                { "name": "Celebrating Qatar", "author": "مياسة خالد مبارك", "image": "qnd-p1.jpg" },
+                { "name": "Traditional Dhow", "author": "Noora Salem (4D)", "image": "qnd-p2.jpg" },
+                { "name": "Qatari Pride", "author": "Alreem Yousef Almass (4D)", "image": "qnd-p3.jpg" },
+                { "name": "The Flag", "author": "Sara Mashaal (5D)", "image": "qnd-p4.jpg" },
+                { "name": "Heritage", "author": "Shua (5B)", "image": "qnd-p5.jpg" },
+                { "name": "The Souq", "author": "Noura Sultan (5B)", "image": "qnd-p6.jpg" },
+                { "name": "Pearl of Qatar", "author": "Fatima Abdulla (5B)", "image": "qnd-p7.jpg" },
+                { "name": "Skyline", "author": "Maytha Ali (5C)", "image": "qnd-p8.jpg" },
+                { "name": "Unity", "author": "Joud Ali (3D)", "image": "qnd-p9.jpg" },
+                { "name": "Patriotism", "author": "Sara Alkhalfan (3A)", "image": "qnd-p10.jpg" }
+            ]
+        },
+        {
+            "id": "contest-albayan-author-2025",
+            "type": "contest",
+            "title": "Albayan Author 2025",
+            "excerpt": "Original stories written and illustrated by our Grade 3 and Grade 4 students.",
+            "body": "The Albayan Author program gives our youngest writers a chance to become published authors. Each student writes, illustrates, and binds their own original story.\n\nThis year, over 40 students participated. Their stories covered a wide range of themes — from desert adventures to space exploration, from friendship to bravery.\n\nEvery story is a treasure. We are so proud of our young writers!",
+            "category": "albayan-author",
+            "date": "May 2025",
+            "year": "2025",
+            "image": "contest-author.jpg",
+            "theme": "Original Stories by Young Writers",
+            "gallery": [
+                { "name": "The Little Falcon's Big Journey", "author": "Grade 3 Student", "image": "author-1.jpg" },
+                { "name": "The Magic Pearl", "author": "Grade 4 Student", "image": "author-2.jpg" },
+                { "name": "The Desert Garden", "author": "Grade 3 Student", "image": "author-3.jpg" },
+                { "name": "The Talking Camel", "author": "Grade 4 Student", "image": "author-4.jpg" },
+                { "name": "Stars Over Doha", "author": "Grade 3 Student", "image": "author-5.jpg" },
+                { "name": "The Brave Little Dhow", "author": "Grade 4 Student", "image": "author-6.jpg" }
+            ]
+        }
+    ]
+}

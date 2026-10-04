@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexi's Advice | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/lexis-advice.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Lexi's Advice</h1>
+            <p class="page-subtitle">Tips, guidance, and kind words — from a friend who gets it.</p>
+        </div>
+    </section>
+
+    <!-- LEXI HERO -->
+    <section class="lexi-hero">
+        <div class="container">
+            <div class="lexi-hero-inner">
+
+                <div class="lexi-avatar">L</div>
+
+                <div class="lexi-hero-content">
+                    <span class="lexi-hero-label">Hi, I'm Lexi!</span>
+                    <h2 class="lexi-hero-title" id="lexi-hero-title">Lexi's Advice</h2>
+                    <p class="lexi-hero-subtitle" id="lexi-hero-subtitle">Wise words from a friend</p>
+                    <p class="lexi-hero-description" id="lexi-hero-description">
+                        Hi, I'm Lexi! I'm here to share tips and guidance on school, friendships, and growing up. Sometimes the best advice comes from someone who's been there — and I've been there. Let's figure things out together.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-pills" id="advice-filter-pills">
+                    <!-- Pills injected by inline script -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADVICE SECTION -->
+    <section class="advice-section">
+        <div class="container">
+
+            <div class="advice-header">
+                <h2>Advice from Lexi & Friends</h2>
+                <p>Real tips from real students — pick a topic below to explore.</p>
+            </div>
+
+            <div class="advice-grid" id="advice-grid">
+                <!-- Cards injected by inline script -->
+                <div class="empty-state">
+                    <h3>Loading advice...</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+
+    <!-- CUSTOM SCRIPT: Render Lexi's Advice page -->
+    <script>
+    (function () {
+        'use strict';
+
+        const PREFIX = '../';
+
+        let allAdvice = [];
+        let activeTopic = 'all';
+
+        /* ==========================================
+           HELPERS
+           ========================================== */
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getImageUrl(item) {
+            if (!item.image) return '';
+            const folder = item.imageFolder || 'content';
+            return `${PREFIX}assets/images/${folder}/${item.image}`;
+        }
+
+        function getDetailUrl(item) {
+            if (!item.id) return '#';
+            return `article.html?id=${encodeURIComponent(item.id)}`;
+        }
+
+        // Convert a topic string to a slug
+        function slugify(str) {
+            return String(str).toLowerCase().trim().replace(/\s+/g, '-');
+        }
+
+        /* ==========================================
+           RENDER ADVICE CARD
+           ========================================== */
+
+        function renderAdviceCard(item) {
+            const href = getDetailUrl(item);
+
+            return `
+                <a href="${href}" class="advice-card" data-topic="${escapeHtml(slugify(item.topic || ''))}">
+                    <span class="advice-topic">${escapeHtml(item.topic || 'Advice')}</span>
+                    <h3 class="advice-title">${escapeHtml(item.title)}</h3>
+                    <p class="advice-excerpt">${escapeHtml(item.excerpt || '')}</p>
+                    <div class="advice-meta">
+                        <span class="meta-author">${escapeHtml(item.author || 'Lexi')}</span>
+                        <span class="meta-divider">|</span>
+                        <span>${escapeHtml(item.date || '')}</span>
+                    </div>
+                </a>
+            `;
+        }
+
+        /* ==========================================
+           RENDER FILTER PILLS
+           ========================================== */
+
+        function renderFilterPills(items) {
+            const container = document.getElementById('advice-filter-pills');
+            if (!container) return;
+
+            // Collect unique topics
+            const topics = new Map();
+            items.forEach(item => {
+                const topic = item.topic || 'Advice';
+                const slug = slugify(topic);
+                if (!topics.has(slug)) {
+                    topics.set(slug, { label: topic, count: 0 });
+                }
+                topics.get(slug).count++;
+            });
+
+            // "All" pill
+            let html = `
+                <button class="filter-pill active" data-topic="all">
+                    All (${items.length})
+                </button>
+            `;
+
+            // Topic pills
+            topics.forEach((info, slug) => {
+                html += `
+                    <button class="filter-pill" data-topic="${escapeHtml(slug)}">
+                        ${escapeHtml(info.label)} (${info.count})
+                    </button>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // Bind clicks
+            container.querySelectorAll('.filter-pill').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    container.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeTopic = btn.getAttribute('data-topic');
+                    renderAdvice();
+                });
+            });
+        }
+
+        /* ==========================================
+           RENDER ADVICE GRID
+           ========================================== */
+
+        function renderAdvice() {
+            const grid = document.getElementById('advice-grid');
+            if (!grid) return;
+
+            const filtered = activeTopic === 'all'
+                ? allAdvice
+                : allAdvice.filter(item => slugify(item.topic || '') === activeTopic);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <h3>No advice yet</h3>
+                        <p>Try a different topic.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(renderAdviceCard).join('');
+        }
+
+        /* ==========================================
+           UPDATE HERO FROM JSON
+           ========================================== */
+
+        function updateHero(data) {
+            if (!data.intro) return;
+
+            const titleEl = document.getElementById('lexi-hero-title');
+            const subtitleEl = document.getElementById('lexi-hero-subtitle');
+            const descEl = document.getElementById('lexi-hero-description');
+
+            if (titleEl && data.intro.title) titleEl.textContent = data.intro.title;
+            if (subtitleEl && data.intro.subtitle) subtitleEl.textContent = data.intro.subtitle;
+            if (descEl && data.intro.description) descEl.textContent = data.intro.description;
+        }
+
+        /* ==========================================
+           INIT
+           ========================================== */
+
+        async function init() {
+            try {
+                const url = `${PREFIX}data/lexis-advice.json?v=` + Date.now();
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Failed to load');
+                const data = await res.json();
+
+                updateHero(data);
+
+                allAdvice = data.items || [];
+
+                renderFilterPills(allAdvice);
+                renderAdvice();
+            } catch (err) {
+                console.warn('[Albayan] Could not load lexis-advice.json:', err);
+                const grid = document.getElementById('advice-grid');
+                if (grid) {
+                    grid.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1 / -1;">
+                            <h3>Coming soon</h3>
+                            <p>Lexi's advice will appear here soon.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+
+</body>
+</html>

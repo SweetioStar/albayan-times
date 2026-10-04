@@ -1,52 +1,176 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - LAYOUT
+   ============================================
+   Container widths, grid helpers, and page
+   structure utilities.
+   ============================================ */
+
 /* ==========================================
-   BACK TO TOP ARROW BUTTON
+   1. CONTAINER
    ========================================== */
 
-.back-to-top {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 48px;
-    height: 48px;
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.container-narrow {
+    max-width: 900px;
+}
+
+.container-wide {
+    max-width: 1600px;
+    padding: 0 24px;
+}
+
+/* ==========================================
+   2. SECTION SPACING
+   ========================================== */
+
+.section {
+    padding: 48px 0;
+}
+
+.section-sm {
+    padding: 32px 0;
+}
+
+.section-lg {
+    padding: 64px 0;
+}
+
+.section-xl {
+    padding: 80px 0;
+}
+
+/* ==========================================
+   3. GRID HELPERS
+   ========================================== */
+
+.grid {
+    display: grid;
+    gap: var(--space-lg);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-6 { grid-template-columns: repeat(6, 1fr); }
+
+.grid-gap-sm { gap: var(--space-md); }
+.grid-gap-lg { gap: var(--space-xl); }
+.grid-gap-xl { gap: var(--space-2xl); }
+
+/* Auto-fit grid — cards automatically wrap */
+.grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+}
+
+.grid-auto-sm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+}
+
+/* ==========================================
+   4. FLEX HELPERS
+   ========================================== */
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-orange);
-    color: var(--color-navy);
-    font-size: 22px;
-    font-weight: var(--fw-bold);
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-lg);
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all var(--transition-base);
-    z-index: var(--z-sticky);
-    border: none;
-    font-family: var(--font-heading);
 }
 
-/* Pure CSS arrow (up) */
-.back-to-top::before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-top: 3px solid currentColor;
-    border-left: 3px solid currentColor;
-    transform: rotate(45deg) translate(2px, 2px);
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
-.back-to-top:hover {
-    background-color: var(--color-coral);
-    color: var(--color-white);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+.flex-gap-sm { gap: var(--space-sm); }
+.flex-gap-md { gap: var(--space-md); }
+.flex-gap-lg { gap: var(--space-lg); }
+
+/* ==========================================
+   5. ASPECT RATIOS
+   ========================================== */
+
+.aspect-16-9 {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-4-3 {
+    aspect-ratio: 4 / 3;
+}
+
+.aspect-3-4 {
+    aspect-ratio: 3 / 4;
+}
+
+.aspect-1-1 {
+    aspect-ratio: 1 / 1;
+}
+
+/* ==========================================
+   6. RESPONSIVE — TABLET (below 1024px)
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-5 { grid-template-columns: repeat(3, 1fr); }
+    .grid-6 { grid-template-columns: repeat(3, 1fr); }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+
+    .container {
+        padding: 0 24px;
+    }
+}
+
+/* ==========================================
+   7. RESPONSIVE — MOBILE (below 640px)
+   ========================================== */
+
+@media (max-width: 640px) {
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .grid-5,
+    .grid-6 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-auto,
+    .grid-auto-sm {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .section {
+        padding: 32px 0;
+    }
+
+    .section-lg {
+        padding: 48px 0;
+    }
 }

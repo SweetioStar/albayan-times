@@ -1,0 +1,736 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - SPELLING BEE
+   ============================================
+   Honey & Bees theme — playful, buzzing,
+   warm and golden for young spellers.
+   ============================================ */
+
+/* ==========================================
+   1. PAGE HEADER
+   ========================================== */
+
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. HERO BANNER — HONEYCOMB
+   ========================================== */
+
+.bee-hero {
+    background: linear-gradient(135deg, #FFD166 0%, #F5A623 100%);
+    padding: 72px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Honeycomb pattern overlay */
+.bee-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66Z M28 100L0 84L0 50L28 66L56 50L56 84L28 100Z' fill='none' stroke='%23FFFFFF' stroke-width='2' opacity='0.25'/%3E%3C/svg%3E");
+    background-size: 56px 100px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bee-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==========================================
+   3. FLYING BEES (animated)
+   ========================================== */
+
+.bee-hero .bee {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    z-index: 2;
+    pointer-events: none;
+    animation: bee-float 5s ease-in-out infinite;
+}
+
+.bee-hero .bee::before {
+    /* Bee body — yellow with black stripes via gradient */
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 22px;
+    background: repeating-linear-gradient(
+        90deg,
+        #1A2C42 0,
+        #1A2C42 4px,
+        #FFD166 4px,
+        #FFD166 10px,
+        #1A2C42 10px,
+        #1A2C42 14px,
+        #FFD166 14px,
+        #FFD166 20px,
+        #1A2C42 20px,
+        #1A2C42 24px,
+        #FFD166 24px,
+        #FFD166 30px
+    );
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    top: 12px;
+    left: 8px;
+    box-shadow: 0 2px 4px rgba(26, 44, 66, 0.2);
+}
+
+.bee-hero .bee::after {
+    /* Wings */
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    top: 6px;
+    left: 4px;
+    box-shadow: 10px 0 0 0 rgba(255, 255, 255, 0.85);
+    animation: bee-wings 0.15s linear infinite alternate;
+}
+
+@keyframes bee-float {
+    0%, 100% { transform: translate(0, 0) rotate(-8deg); }
+    25% { transform: translate(8px, -10px) rotate(4deg); }
+    50% { transform: translate(-6px, -16px) rotate(-6deg); }
+    75% { transform: translate(-10px, -8px) rotate(8deg); }
+}
+
+@keyframes bee-wings {
+    0% { transform: scaleY(1); }
+    100% { transform: scaleY(0.5); }
+}
+
+/* Bee positions */
+.bee-hero .bee.bee-1 { top: 12%; left: 6%; animation-delay: 0s; }
+.bee-hero .bee.bee-2 { top: 25%; right: 8%; animation-delay: 1.2s; transform: scaleX(-1); }
+.bee-hero .bee.bee-3 { bottom: 20%; left: 12%; animation-delay: 2.4s; }
+.bee-hero .bee.bee-4 { bottom: 30%; right: 14%; animation-delay: 3.6s; transform: scaleX(-1); }
+.bee-hero .bee.bee-5 { top: 45%; left: 4%; animation-delay: 4.8s; width: 38px; height: 38px; }
+
+/* ==========================================
+   4. FLOATING HONEY DROPS
+   ========================================== */
+
+.bee-hero .honey-drop {
+    position: absolute;
+    width: 16px;
+    height: 22px;
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    z-index: 2;
+    pointer-events: none;
+    animation: honey-drop-float 8s ease-in-out infinite;
+}
+
+.bee-hero .honey-drop::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid rgba(255, 255, 255, 0.55);
+}
+
+@keyframes honey-drop-float {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.55; }
+    50% { transform: translateY(-20px) scale(1.15); opacity: 0.9; }
+}
+
+.bee-hero .honey-drop.h1 { top: 20%; left: 45%; animation-delay: 0s; }
+.bee-hero .honey-drop.h2 { top: 70%; left: 55%; animation-delay: 2s; width: 12px; height: 18px; }
+.bee-hero .honey-drop.h3 { top: 15%; right: 30%; animation-delay: 4s; }
+.bee-hero .honey-drop.h4 { bottom: 15%; left: 25%; animation-delay: 6s; width: 14px; height: 20px; }
+
+/* ==========================================
+   5. HERO CONTENT
+   ========================================== */
+
+.bee-hero-inner {
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.bee-hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background-color: var(--color-navy);
+    color: var(--color-yellow);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: var(--radius-full);
+    margin-bottom: 22px;
+    position: relative;
+}
+
+/* Hexagon honeycomb badge behind label */
+.bee-hero-label::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-full);
+    z-index: -1;
+}
+
+.bee-hero h2 {
+    font-family: var(--font-heading);
+    font-size: 60px;
+    color: var(--color-navy);
+    margin-bottom: 14px;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.4);
+}
+
+.bee-hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.bee-hero-description {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--color-navy);
+    margin: 0 auto;
+    opacity: 0.9;
+    max-width: 640px;
+}
+
+/* ==========================================
+   6. BEE-STRIPED DIVIDER
+   ========================================== */
+
+.bee-stripe-divider {
+    height: 12px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--color-navy) 0,
+        var(--color-navy) 20px,
+        var(--color-yellow) 20px,
+        var(--color-yellow) 40px
+    );
+    position: relative;
+}
+
+/* ==========================================
+   7. CATEGORY TABS
+   ========================================== */
+
+.bee-filter-section {
+    background-color: var(--color-white);
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.bee-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.bee-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--color-cream);
+    border: 2px solid transparent;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    position: relative;
+}
+
+.bee-filter-pill:hover {
+    background-color: var(--color-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(245, 166, 35, 0.25);
+}
+
+.bee-filter-pill.active {
+    background-color: var(--color-navy);
+    color: var(--color-yellow);
+    border-color: var(--color-navy);
+    box-shadow: 0 6px 18px rgba(26, 44, 66, 0.2);
+}
+
+.bee-filter-pill .pill-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    background-color: rgba(26, 44, 66, 0.1);
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.bee-filter-pill.active .pill-count {
+    background-color: var(--color-yellow);
+    color: var(--color-navy);
+}
+
+/* ==========================================
+   8. CONTENT SECTIONS
+   ========================================== */
+
+.bee-content-section {
+    padding: 56px 0 64px;
+    background-color: var(--color-cream);
+    position: relative;
+}
+
+.bee-section {
+    margin-bottom: 64px;
+    position: relative;
+}
+
+.bee-section:last-child {
+    margin-bottom: 0;
+}
+
+.bee-section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed var(--color-gray-light);
+}
+
+/* Hexagon icon for sections */
+.bee-section-icon {
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--color-white);
+    transform: rotate(-3deg);
+    transition: transform 0.3s ease;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    position: relative;
+}
+
+.bee-section:hover .bee-section-icon {
+    transform: rotate(0deg) scale(1.08);
+}
+
+/* Honeycomb colors per section */
+.bee-section.section-videos .bee-section-icon { background-color: #E85555; }
+.bee-section.section-word-lists .bee-section-icon { background-color: #06D6A0; color: var(--color-navy); }
+.bee-section.section-quizzes .bee-section-icon { background-color: #2EC4B6; }
+.bee-section.section-links .bee-section-icon { background-color: #F5A623; color: var(--color-navy); }
+
+.bee-section-title {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    color: var(--color-navy);
+    margin: 0;
+    line-height: 1.15;
+}
+
+.bee-section-subtitle {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-gray);
+    margin: 0;
+    font-weight: 600;
+}
+
+.bee-section-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* ==========================================
+   9. VIDEO CARD (reuses standard styles)
+   ========================================== */
+
+.bee-section .video-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+
+.bee-section .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.1);
+    border-color: #E85555;
+}
+
+/* ==========================================
+   10. RESOURCE CARD (with honeycomb)
+   ========================================== */
+
+.resource-card {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 240px;
+}
+
+/* Honeycomb background decoration on hover */
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66Z M28 100L0 84L0 50L28 66L56 50L56 84L28 100Z' fill='none' stroke='%23FFD166' stroke-width='3'/%3E%3C/svg%3E");
+    background-size: 56px 100px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.resource-card:hover::before {
+    opacity: 0.5;
+}
+
+.resource-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(245, 166, 35, 0.15);
+}
+
+/* Resource type icon — hexagon with color */
+.resource-type-icon {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    position: relative;
+}
+
+.resource-card:hover .resource-type-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.resource-card.type-pdf .resource-type-icon {
+    background-color: #06D6A0;
+    color: var(--color-navy);
+}
+
+.resource-card.type-pdf:hover {
+    border-color: #06D6A0;
+}
+
+.resource-card.type-quiz .resource-type-icon {
+    background-color: #2EC4B6;
+    color: var(--color-white);
+}
+
+.resource-card.type-quiz:hover {
+    border-color: #2EC4B6;
+}
+
+.resource-card.type-link .resource-type-icon {
+    background-color: #F5A623;
+    color: var(--color-navy);
+}
+
+.resource-card.type-link:hover {
+    border-color: #F5A623;
+}
+
+.resource-card-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--color-navy);
+    margin: 0;
+    transition: color 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.resource-card:hover .resource-card-title {
+    color: var(--color-orange);
+}
+
+.resource-card-excerpt {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-gray);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.resource-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--color-gray-light);
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.resource-grade-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: var(--color-cream);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--radius-full);
+}
+
+.resource-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-teal);
+    transition: color 0.2s ease;
+}
+
+.resource-card:hover .resource-action {
+    color: var(--color-orange);
+}
+
+.resource-action::after {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 2px;
+    background-color: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.resource-card:hover .resource-action::after {
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   11. COMMENTS
+   ========================================== */
+
+.comments-wrapper {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-white);
+}
+
+/* ==========================================
+   12. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .page-header h1 {
+        font-size: 42px;
+    }
+
+    .bee-hero h2 {
+        font-size: 46px;
+    }
+
+    .bee-hero-subtitle {
+        font-size: 18px;
+    }
+
+    .bee-section-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bee-section-title {
+        font-size: 26px;
+    }
+
+    .bee-section-icon {
+        width: 58px;
+        height: 58px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 32px 0 24px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .bee-hero {
+        padding: 48px 0;
+    }
+
+    .bee-hero h2 {
+        font-size: 34px;
+    }
+
+    .bee-hero-subtitle {
+        font-size: 16px;
+    }
+
+    .bee-hero-description {
+        font-size: 14px;
+    }
+
+    /* Hide decorative bees and honey drops on mobile */
+    .bee-hero .bee,
+    .bee-hero .honey-drop {
+        display: none;
+    }
+
+    .bee-filter-section {
+        padding: 16px 0;
+    }
+
+    .bee-filter-bar {
+        gap: 8px;
+    }
+
+    .bee-filter-pill {
+        padding: 10px 18px;
+        font-size: 12px;
+    }
+
+    .bee-content-section {
+        padding: 40px 0 48px;
+    }
+
+    .bee-section {
+        margin-bottom: 44px;
+    }
+
+    .bee-section-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    .bee-section-title {
+        font-size: 22px;
+    }
+
+    .bee-section-subtitle {
+        font-size: 12px;
+    }
+
+    .bee-section-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .resource-card {
+        padding: 22px;
+        min-height: auto;
+    }
+
+    .resource-card-title {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Reporters | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/reporters.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <span class="hero-deco mic deco-1"></span>
+        <span class="hero-deco mic deco-2"></span>
+        <span class="hero-deco mic deco-3"></span>
+        <span class="hero-deco mic deco-4"></span>
+
+        <div class="container">
+            <div class="page-hero-inner">
+                <span class="page-hero-label">Our Team</span>
+                <h2 class="page-hero-title">Meet the Reporters</h2>
+                <p class="page-hero-subtitle">The talented students behind The Open Albayan Times.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS STRIP — dynamic counts -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-reporters">0</span>
+                    <span class="stat-label">Student Reporters</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-stories">0</span>
+                    <span class="stat-label">Stories Published</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDITORIAL TEAM SPOTLIGHT -->
+    <section class="editors-section">
+        <div class="container">
+
+            <div class="editors-header">
+                <span class="section-label">Editorial Team</span>
+                <h2>Leading the Newsroom</h2>
+                <p>The students who guide and shape every edition of The Open Albayan Times.</p>
+            </div>
+
+            <div class="editors-grid">
+
+                <div class="editor-card">
+                    <div class="editor-avatar">A</div>
+                    <h3 class="editor-name">Aisha Alamri</h3>
+                    <span class="editor-role">Editor-in-Chief</span>
+                    <p class="editor-bio">Leads the editorial team, reviews every submission, and keeps our reporters on track with each edition.</p>
+                </div>
+
+                <div class="editor-card">
+                    <div class="editor-avatar">A</div>
+                    <h3 class="editor-name">Ayan Almarri</h3>
+                    <span class="editor-role">Senior Reporter</span>
+                    <p class="editor-bio">Covers breaking school news and mentors new reporters joining the Albayan team.</p>
+                </div>
+
+                <div class="editor-card">
+                    <div class="editor-avatar">F</div>
+                    <h3 class="editor-name">Fatima Almusaifri</h3>
+                    <span class="editor-role">Features Editor</span>
+                    <p class="editor-bio">Curates long-form stories, interviews, and special features that bring depth to our paper.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ALL REPORTERS GRID — filled by inline script -->
+    <section class="reporters-section">
+        <div class="container">
+
+            <div class="reporters-header">
+                <h2>Our Reporters</h2>
+                <span class="reporters-count" id="reporters-count">Loading...</span>
+            </div>
+
+            <div class="reporters-grid" id="reporters-grid">
+                <!-- Filled by inline script below -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERVIEW STARS SECTION — filled by content-loader -->
+    <section class="interviews-section">
+        <div class="container">
+
+            <div class="interviews-header">
+                <span class="section-label">Interview Stars</span>
+                <h2>Every Student Has a Story</h2>
+                <p>Our reporters sit down with classmates, teachers, and friends to discover the hobbies, dreams, and hidden talents that make our Albayan community so special.</p>
+            </div>
+
+            <div class="interviews-grid"
+                 id="interviews-grid"
+                 data-json="reporters"
+                 data-card="interview">
+                <!-- Filled by content-loader.js — only interview items show -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/content-loader.js"></script>
+
+    <!-- CUSTOM SCRIPT: Render reporters + compute stats -->
+    <script>
+    (function () {
+        'use strict';
+
+        const PREFIX = '../';
+
+        // Files to count "stories published"
+        const COUNT_FILES = [
+            'news',
+            'young-writers',
+            'watch',
+            'book-corner',
+            'creative-corner'
+        ];
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function getInitial(name) {
+            if (!name) return '?';
+            return String(name).trim().charAt(0).toUpperCase();
+        }
+
+        async function fetchJSON(fileName) {
+            try {
+                const url = `${PREFIX}data/${fileName}.json?v=` + Date.now();
+                const response = await fetch(url);
+                if (!response.ok) return null;
+                return await response.json();
+            } catch (err) {
+                return null;
+            }
+        }
+
+        async function renderReporters() {
+            const data = await fetchJSON('reporters');
+            if (!data) return;
+
+            const items = Array.isArray(data) ? data : (data.items || []);
+            const reporters = items.filter(item => item.type === 'reporter');
+
+            // Update stat
+            document.getElementById('stat-reporters').textContent = reporters.length;
+
+            // Update count label
+            const countEl = document.getElementById('reporters-count');
+            if (countEl) {
+                countEl.textContent = reporters.length + ' Members';
+            }
+
+            // Render reporters
+            const grid = document.getElementById('reporters-grid');
+            if (grid) {
+                grid.innerHTML = reporters.map(r => `
+                    <div class="reporter-card">
+                        <div class="reporter-avatar">${escapeHtml(r.initial || getInitial(r.name))}</div>
+                        <h3 class="reporter-name">${escapeHtml(r.name)}</h3>
+                        <span class="reporter-role-tag">${escapeHtml(r.role || 'Reporter')}</span>
+                        ${r.bio ? `<p class="reporter-bio">${escapeHtml(r.bio)}</p>` : ''}
+                    </div>
+                `).join('');
+            }
+
+            // Compute stories count
+            let totalStories = 0;
+            for (const fileName of COUNT_FILES) {
+                const pageData = await fetchJSON(fileName);
+                if (pageData) {
+                    const pageItems = Array.isArray(pageData) ? pageData : (pageData.items || []);
+                    totalStories += pageItems.length;
+                }
+            }
+
+            document.getElementById('stat-stories').textContent = totalStories;
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderReporters);
+        } else {
+            renderReporters();
+        }
+    })();
+    </script>
+
+</body>
+</html>

@@ -1,5 +1,9 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - FOOTER
+   ============================================
+   2-column layout:
+   - Brand (left)
+   - Main Pages + Special Features (right)
    ============================================ */
 
 /* ==========================================
@@ -10,7 +14,6 @@
     background-color: var(--color-navy);
     color: var(--color-white);
     padding: 56px 0 0;
-    margin-top: 0;
     position: relative;
 }
 
@@ -32,18 +35,19 @@
 }
 
 /* ==========================================
-   2. FOOTER GRID (4 columns)
+   2. MAIN GRID (2 columns)
    ========================================== */
 
-.footer-grid {
+.footer-main {
     display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.2fr 2fr;
+    gap: 56px;
     padding-bottom: 40px;
+    align-items: flex-start;
 }
 
 /* ==========================================
-   3. COLUMN 1 - BRAND
+   3. COLUMN 1 — BRAND
    ========================================== */
 
 .footer-brand {
@@ -109,91 +113,57 @@
 }
 
 /* ==========================================
-   4. COLUMN HEADINGS
+   4. COLUMN 2 — LINKS AREA
    ========================================== */
 
-.footer-heading {
-    font-family: var(--font-heading);
-    font-size: 17px;
-    font-weight: var(--fw-regular);
-    color: var(--color-white);
-    margin-bottom: 20px;
-    letter-spacing: 0.3px;
+.footer-links-area {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
-/* ==========================================
-   5. FOOTER LINKS
-   ========================================== */
-
-.footer-links {
+.footer-link-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
-.footer-links a {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 14px;
+.footer-heading {
+    font-family: var(--font-heading);
+    font-size: 18px;
     font-weight: var(--fw-regular);
-    transition: color 0.2s ease, padding-left 0.2s ease;
-    display: inline-block;
+    color: var(--color-white);
+    margin: 0;
+    letter-spacing: 0.3px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     width: fit-content;
-    text-decoration: none;
 }
 
-.footer-links a:hover {
+/* Rows of links */
+.footer-links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+}
+
+.footer-links-row a {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    white-space: nowrap;
+}
+
+.footer-links-row a:hover {
     color: var(--color-orange);
     padding-left: 4px;
 }
 
 /* ==========================================
-   6. SPECIAL FEATURES ROW
-   ========================================== */
-
-.footer-features {
-    padding: 24px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-}
-
-.footer-features-label {
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--color-orange);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    flex-shrink: 0;
-}
-
-.footer-features-links {
-    display: flex;
-    gap: 8px 24px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.footer-features-links a {
-    color: rgba(255, 255, 255, 0.7);
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    transition: color 0.2s ease;
-    text-decoration: none;
-}
-
-.footer-features-links a:hover {
-    color: var(--color-orange);
-}
-
-/* ==========================================
-   7. FOOTER BOTTOM BAR
+   5. FOOTER BOTTOM BAR
    ========================================== */
 
 .footer-bottom {
@@ -231,7 +201,7 @@
 }
 
 /* ==========================================
-   8. BACK TO TOP ARROW BUTTON
+   6. BACK TO TOP BUTTON
    ========================================== */
 
 .back-to-top {
@@ -280,17 +250,17 @@
 }
 
 /* ==========================================
-   9. RESPONSIVE
+   7. RESPONSIVE
    ========================================== */
 
 @media (max-width: 900px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 
     .footer-brand {
-        grid-column: 1 / -1;
+        max-width: 100%;
     }
 }
 
@@ -299,24 +269,25 @@
         padding: 40px 0 0;
     }
 
-    .footer-grid {
-        grid-template-columns: 1fr;
+    .footer-main {
         gap: 32px;
         padding-bottom: 32px;
     }
 
-    .footer-brand {
-        grid-column: auto;
+    .footer-links-area {
+        gap: 24px;
     }
 
-    .footer-features {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+    .footer-links-row {
+        gap: 8px 18px;
     }
 
-    .footer-features-links {
-        gap: 10px 16px;
+    .footer-links-row a {
+        font-size: 13px;
+    }
+
+    .footer-heading {
+        font-size: 16px;
     }
 
     .footer-bottom {

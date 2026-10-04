@@ -93,8 +93,8 @@
        4. LAYOUT
        ========================================== */
 
-    --container-max: 1200px;
-    --container-padding: 24px;
+    --container-max: 1400px;
+    --container-padding: 32px;
     
     --card-padding: 24px;
     --section-spacing: 64px;
@@ -109,7 +109,7 @@
     --radius-xl: 16px;
     --radius-2xl: 24px;
     --radius-full: 9999px;
-    --radius-blob: 60% 40% 55% 45% / 50% 55% 45% 50%; /* Irregular card shape */
+    --radius-blob: 60% 40% 55% 45% / 50% 55% 45% 50%;
 
     /* ==========================================
        6. SHADOWS
@@ -142,7 +142,7 @@
     --z-tooltip: 4000;
 
     /* ==========================================
-       9. CATEGORY COLORS (for badges & tags)
+       9. CATEGORY COLORS
        ========================================== */
 
     --cat-news: var(--color-orange);
@@ -157,7 +157,7 @@
     --cat-featured: var(--color-coral);
 
     /* ==========================================
-       10. BREAKPOINTS (reference - used in media queries)
+       10. BREAKPOINTS (reference only)
        ========================================== */
 
     /* 

@@ -1,0 +1,534 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - LEXI'S ADVICE
+   ============================================
+   Warm, friendly advice page with Lexi's
+   character spotlight and advice cards.
+   ============================================ */
+
+/* ==========================================
+   1. PAGE HEADER
+   ========================================== */
+
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. HERO BANNER — LEXI INTRO
+   ========================================== */
+
+.lexi-hero {
+    background: linear-gradient(135deg, #FFD166 0%, #F5A623 100%);
+    padding: 64px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.lexi-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.lexi-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -60px;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.lexi-hero-inner {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Lexi's avatar */
+.lexi-avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-color: var(--color-navy);
+    color: var(--color-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 96px;
+    font-weight: 700;
+    border: 6px solid var(--color-white);
+    box-shadow: 0 12px 32px rgba(26, 44, 66, 0.25);
+    flex-shrink: 0;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.lexi-avatar:hover {
+    transform: scale(1.03) rotate(-2deg);
+}
+
+/* Small wave badge */
+.lexi-avatar::after {
+    content: 'Hi!';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 6px 14px;
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 800;
+    border-radius: var(--radius-full);
+    border: 3px solid var(--color-white);
+    transform: rotate(-8deg);
+}
+
+.lexi-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.lexi-hero-label {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 6px 16px;
+    background-color: var(--color-navy);
+    color: var(--color-yellow);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-radius: var(--radius-full);
+}
+
+.lexi-hero-title {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin: 0;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+}
+
+.lexi-hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.lexi-hero-description {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-navy);
+    margin: 0;
+    opacity: 0.9;
+    max-width: 640px;
+}
+
+/* ==========================================
+   3. FILTER SECTION
+   ========================================== */
+
+.filter-section {
+    background-color: var(--color-white);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-pill {
+    padding: 9px 20px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    background-color: var(--color-yellow);
+    border-color: var(--color-yellow);
+    color: var(--color-navy);
+    transform: translateY(-1px);
+}
+
+.filter-pill.active {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+/* ==========================================
+   4. ADVICE SECTION
+   ========================================== */
+
+.advice-section {
+    padding: 56px 0 64px;
+    background-color: var(--color-cream);
+    position: relative;
+}
+
+/* Header above the grid */
+.advice-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.advice-header h2 {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    color: var(--color-navy);
+    margin-bottom: 8px;
+    line-height: 1.15;
+}
+
+.advice-header p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-gray);
+    margin: 0 auto;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* Grid */
+.advice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ==========================================
+   5. ADVICE CARD
+   ========================================== */
+
+.advice-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    border-top: 5px solid var(--color-yellow);
+}
+
+.advice-card::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 60px;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h16v12H7l-3 3V4z' fill='none' stroke='%23FFD166' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.4;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.advice-card:hover::before {
+    opacity: 0.9;
+}
+
+.advice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(26, 44, 66, 0.1);
+    border-top-color: var(--color-orange);
+}
+
+/* Topic tag */
+.advice-topic {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 5px 14px;
+    background-color: var(--color-cream);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--radius-full);
+    position: relative;
+    z-index: 1;
+}
+
+/* Title */
+.advice-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--color-navy);
+    margin: 0;
+    transition: color 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.advice-card:hover .advice-title {
+    color: var(--color-orange);
+}
+
+/* Excerpt */
+.advice-excerpt {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-gray);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* Meta */
+.advice-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-gray);
+    padding-top: 14px;
+    border-top: 1px dashed var(--color-gray-light);
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.advice-meta .meta-author {
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.advice-meta .meta-divider {
+    color: var(--color-gray-light);
+}
+
+/* ==========================================
+   6. COMMENTS
+   ========================================== */
+
+.comments-wrapper {
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-white);
+}
+
+/* ==========================================
+   7. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .page-header h1 {
+        font-size: 42px;
+    }
+
+    .lexi-hero-inner {
+        grid-template-columns: 180px 1fr;
+        gap: 32px;
+    }
+
+    .lexi-avatar {
+        width: 180px;
+        height: 180px;
+        font-size: 80px;
+    }
+
+    .lexi-hero-title {
+        font-size: 42px;
+    }
+
+    .lexi-hero-subtitle {
+        font-size: 16px;
+    }
+
+    .advice-card {
+        padding: 26px;
+    }
+
+    .advice-title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .lexi-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .lexi-avatar {
+        width: 160px;
+        height: 160px;
+        font-size: 72px;
+        margin: 0 auto;
+    }
+
+    .lexi-hero-label {
+        align-self: center;
+    }
+
+    .lexi-hero-description {
+        margin: 0 auto;
+    }
+
+    .advice-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        padding: 32px 0 24px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .lexi-hero {
+        padding: 40px 0;
+    }
+
+    .lexi-avatar {
+        width: 140px;
+        height: 140px;
+        font-size: 64px;
+    }
+
+    .lexi-avatar::after {
+        font-size: 10px;
+        padding: 5px 10px;
+        bottom: 4px;
+        right: 4px;
+    }
+
+    .lexi-hero-title {
+        font-size: 32px;
+    }
+
+    .lexi-hero-subtitle {
+        font-size: 15px;
+    }
+
+    .lexi-hero-description {
+        font-size: 14px;
+    }
+
+    .filter-section {
+        padding: 14px 0;
+    }
+
+    .filter-pills {
+        gap: 6px;
+    }
+
+    .filter-pill {
+        padding: 8px 14px;
+        font-size: 11px;
+    }
+
+    .advice-section {
+        padding: 40px 0 48px;
+    }
+
+    .advice-header h2 {
+        font-size: 26px;
+    }
+
+    .advice-header p {
+        font-size: 14px;
+    }
+
+    .advice-card {
+        padding: 22px;
+    }
+
+    .advice-title {
+        font-size: 20px;
+    }
+
+    .advice-excerpt {
+        font-size: 14px;
+    }
+}

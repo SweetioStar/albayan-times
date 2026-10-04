@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Young Writers | The Open Albayan Times</title>
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/ticker.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comments.css">
+    <link rel="stylesheet" href="../css/young-writers.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="site-header"></div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <span class="hero-deco ink deco-1"></span>
+        <span class="hero-deco ink deco-2"></span>
+        <span class="hero-deco ink deco-3"></span>
+        <span class="hero-deco ink deco-4"></span>
+
+        <div class="container">
+            <div class="page-hero-inner">
+                <span class="page-hero-label">Words & Ideas</span>
+                <h2 class="page-hero-title">Young Writers</h2>
+                <p class="page-hero-subtitle">Essays, poems, stories, and reflections written by our talented Albayan students.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED WRITER SPOTLIGHT -->
+    <section class="featured-writer-section">
+        <div class="container">
+            <div class="featured-writer-inner">
+
+                <div class="featured-writer-avatar">A</div>
+
+                <div class="featured-writer-info">
+                    <span class="featured-writer-label">Writer of the Month</span>
+                    <h2 class="featured-writer-name">Aisha Abulrahman Almarwani</h2>
+                    <span class="featured-writer-grade">Grade 5C</span>
+                    <p class="featured-writer-bio">Aisha writes thoughtful essays about the values that shape our daily lives. Her piece on cooperation reflects her belief that small acts of teamwork can move big mountains.</p>
+                </div>
+
+                <a href="article.html?id=cooperation-2025" class="featured-writer-cta">Read Her Work</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER SECTION -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+
+                <!-- Genre filter — pills added later when genres are decided -->
+                <div class="filter-group" data-filter-group="genre">
+                    <span class="filter-label">Genre</span>
+                    <span class="filter-empty">Coming soon</span>
+                </div>
+
+                <!-- Grade filter -->
+                <div class="filter-group" data-filter-group="grade">
+                    <span class="filter-label">Grade</span>
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-filter-value="all">All</button>
+                        <button class="filter-pill" data-filter-value="3">Grade 3</button>
+                        <button class="filter-pill" data-filter-value="4">Grade 4</button>
+                        <button class="filter-pill" data-filter-value="5">Grade 5</button>
+                        <button class="filter-pill" data-filter-value="6">Grade 6</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WRITINGS GRID — filled by js/content-loader.js -->
+    <section class="writings-section">
+        <div class="container">
+            <div class="articles-grid"
+                 id="writings-grid"
+                 data-json="young-writers"
+                 data-card="article">
+                <!-- Cards injected by content-loader.js -->
+            </div>
+
+            <div class="load-more-wrapper">
+                <button class="btn-load-more" type="button">Load More Writing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENTS -->
+    <section class="comments-wrapper">
+        <div class="container">
+            <div class="comments-header">
+                <h2>Comments</h2>
+                <p>Share your thoughts with the Albayan community.</p>
+            </div>
+            <div class="comments-placeholder" id="site-comments">
+                <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
+                <p class="comments-placeholder-text">
+                    We're setting up a space for students and visitors to leave comments. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="site-footer"></div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/content-loader.js"></script>
+    <script src="../js/filters.js"></script>
+
+</body>
+</html>

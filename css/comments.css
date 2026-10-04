@@ -1,0 +1,152 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - COMMENTS
+   ============================================
+   Placeholder styling for the comments section
+   that appears at the bottom of every public
+   page. When you're ready to add a real
+   comments service, drop its script or iframe
+   inside the #site-comments container.
+   ============================================ */
+
+/* ==========================================
+   1. WRAPPER
+   ========================================== */
+
+.comments-wrapper {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-2xl);
+    border-top: 2px solid var(--color-gray-light);
+}
+
+/* ==========================================
+   2. HEADER
+   ========================================== */
+
+.comments-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.comments-header h2 {
+    font-family: var(--font-heading);
+    font-size: var(--fs-h3);
+    color: var(--color-navy);
+    margin-bottom: var(--space-xs);
+    line-height: 1.2;
+}
+
+.comments-header p {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    color: var(--color-gray);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   3. PLACEHOLDER BOX
+   ========================================== */
+
+.comments-placeholder {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--space-lg);
+    background-color: var(--color-white);
+    border: 2px dashed var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative icon (speech bubble made with CSS) */
+.comments-placeholder::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 46px;
+    margin: 0 auto var(--space-lg);
+    background-color: var(--color-orange);
+    border-radius: var(--radius-md);
+    position: relative;
+    opacity: 0.85;
+}
+
+/* Speech bubble tail */
+.comments-placeholder::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--space-3xl) + 38px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid var(--color-orange);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    opacity: 0.85;
+}
+
+.comments-placeholder-title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-h4);
+    color: var(--color-navy);
+    margin-bottom: var(--space-xs);
+    line-height: 1.2;
+}
+
+.comments-placeholder-text {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    color: var(--color-gray);
+    margin: 0 auto;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   4. WHEN REAL COMMENTS ARE ADDED
+   ==========================================
+   When you drop a real comments script inside
+   #site-comments, the placeholder should be
+   removed. This class hides it if needed.
+   ========================================== */
+
+.comments-placeholder.hidden {
+    display: none;
+}
+
+/* ==========================================
+   5. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 640px) {
+    .comments-wrapper {
+        margin-top: var(--space-2xl);
+        padding-top: var(--space-xl);
+    }
+
+    .comments-header h2 {
+        font-size: var(--fs-h4);
+    }
+
+    .comments-placeholder {
+        padding: var(--space-2xl) var(--space-md);
+    }
+
+    .comments-placeholder::before {
+        width: 50px;
+        height: 38px;
+    }
+
+    .comments-placeholder::after {
+        top: calc(var(--space-2xl) + 30px);
+        border-top-width: 8px;
+        border-left-width: 6px;
+        border-right-width: 6px;
+    }
+
+    .comments-placeholder-title {
+        font-size: var(--fs-h5);
+    }
+}
