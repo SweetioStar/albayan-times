@@ -1,9 +1,5 @@
 /* ============================================
-   THE OPEN ALBAYAN TIMES - DYNAMIC FOOTER
-   ============================================
-   2-column layout:
-   - Brand (logo + tagline + social)
-   - Links (Main pages + Special Features)
+   ALBAYAN TIMES - DYNAMIC FOOTER
    ============================================ */
 
 (function () {
@@ -23,10 +19,9 @@
 
                 <div class="footer-main">
 
-                    <!-- Column 1: Brand -->
                     <div class="footer-brand">
                         <div class="footer-logo-text">
-                            The Open Albayan Times
+                            Albayan Times
                             <span>Student Newspaper</span>
                         </div>
                         <p class="footer-tagline">
@@ -40,10 +35,8 @@
                         </div>
                     </div>
 
-                    <!-- Column 2: All links (Main + Special) -->
                     <div class="footer-links-area">
 
-                        <!-- Main pages -->
                         <div class="footer-link-group">
                             <h4 class="footer-heading">Main Pages</h4>
                             <div class="footer-links-row">
@@ -59,7 +52,6 @@
                             </div>
                         </div>
 
-                        <!-- Special Features -->
                         <div class="footer-link-group">
                             <h4 class="footer-heading">Special Features</h4>
                             <div class="footer-links-row">
@@ -74,9 +66,8 @@
 
                 </div>
 
-                <!-- Bottom Bar -->
                 <div class="footer-bottom">
-                    <p>2026 The Open Albayan Times. Created by Durrah Babiker. All rights reserved.</p>
+                    <p>2026 Albayan Times. Created by Durrah Babiker. All rights reserved.</p>
                     <div class="footer-bottom-links">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Use</a>

@@ -1,9 +1,8 @@
 /* ============================================
-   THE OPEN ALBAYAN TIMES - ENGLISH STARS
+   ALBAYAN TIMES - ENGLISH STARS
    ============================================
-   Uses .page-header (same as other pages).
-   Photo above name. No quotes. Optional badge.
-   Fallback letter visible when photo missing.
+   Page header + yellow hero + Lexi's banner
+   + stars grouped by grade with photo fallback.
    ============================================ */
 
 /* ==========================================
@@ -69,7 +68,6 @@
     z-index: 1;
 }
 
-/* Floating stars */
 .stars-hero .hero-star {
     position: absolute;
     width: 32px;
@@ -138,11 +136,114 @@
 }
 
 /* ==========================================
-   3. STARS SECTION
+   3. LEXI BANNER (cheering the stars)
+   ========================================== */
+
+.lexi-banner {
+    background-color: var(--color-cream);
+    padding: 40px 0 24px;
+    position: relative;
+}
+
+.lexi-banner-inner {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 32px;
+    background-color: var(--color-white);
+    border: 2px dashed var(--color-yellow);
+    border-radius: var(--radius-lg);
+    position: relative;
+}
+
+/* Lexi's image */
+.lexi-banner-image {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.lexi-banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+    filter: drop-shadow(0 6px 18px rgba(26, 44, 66, 0.1));
+    animation: lexi-bob 4s ease-in-out infinite;
+}
+
+@keyframes lexi-bob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+/* Fallback: letter L */
+.lexi-banner-image .fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--color-yellow);
+    color: var(--color-navy);
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 88px;
+    font-weight: 700;
+    border: 6px solid var(--color-white);
+    box-shadow: 0 8px 24px rgba(26, 44, 66, 0.15);
+}
+
+/* Speech bubble content */
+.lexi-banner-text {
+    position: relative;
+}
+
+.lexi-banner-label {
+    display: inline-block;
+    padding: 4px 14px;
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+}
+
+.lexi-banner-message {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    line-height: 1.35;
+    color: var(--color-navy);
+    margin: 0 0 12px 0;
+}
+
+.lexi-banner-signature {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-orange);
+    margin: 0;
+    font-style: italic;
+}
+
+/* ==========================================
+   4. STARS SECTION
    ========================================== */
 
 .stars-section {
-    padding: 56px 0 64px;
+    padding: 40px 0 64px;
     background-color: var(--color-cream);
     position: relative;
 }
@@ -251,7 +352,7 @@
 }
 
 /* ==========================================
-   4. STAR CARD
+   5. STAR CARD
    ============================================ */
 
 .star-card {
@@ -315,14 +416,7 @@
     border-color: var(--color-yellow);
 }
 
-/* ==========================================
-   5. STAR PHOTO — with fallback letter
-   ============================================
-   The letter sits BEHIND the image.
-   When the image is missing or fails to
-   load (via onerror), the letter shows.
-   ============================================ */
-
+/* Photo with fallback letter */
 .star-photo {
     width: 100px;
     height: 100px;
@@ -334,15 +428,12 @@
     position: relative;
     background-color: var(--color-yellow);
     transition: transform 0.35s ease;
-    /* Both children are absolutely positioned */
-    display: block;
 }
 
 .star-card:hover .star-photo {
     transform: scale(1.08) rotate(-3deg);
 }
 
-/* Fallback letter (visible when image missing) */
 .star-photo .photo-fallback {
     position: absolute;
     inset: 0;
@@ -358,7 +449,6 @@
     pointer-events: none;
 }
 
-/* Photo on top */
 .star-photo img {
     position: absolute;
     inset: 0;
@@ -373,7 +463,6 @@
     font-size: 0;
 }
 
-/* Rotate fallback colors */
 .star-card:nth-child(5n+1) .star-photo { background-color: var(--color-yellow); }
 .star-card:nth-child(5n+1)::before { background-color: var(--color-yellow); }
 .star-card:nth-child(5n+2) .star-photo { background-color: var(--color-teal); }
@@ -385,16 +474,12 @@
 .star-card:nth-child(5n+5) .star-photo { background-color: var(--color-orange); }
 .star-card:nth-child(5n+5)::before { background-color: var(--color-orange); }
 
-/* Fallback letter color for dark circles */
 .star-card:nth-child(5n+2) .photo-fallback,
 .star-card:nth-child(5n+3) .photo-fallback {
     color: var(--color-white);
 }
 
-/* ==========================================
-   6. STAR NAME + CLASS + BADGE
-   ============================================ */
-
+/* Star name, class, badge */
 .star-name {
     font-family: var(--font-heading);
     font-size: 17px;
@@ -443,7 +528,7 @@
 }
 
 /* ==========================================
-   7. COMMENTS
+   6. COMMENTS
    ========================================== */
 
 .comments-wrapper {
@@ -452,14 +537,8 @@
 }
 
 /* ==========================================
-   8. RESPONSIVE
+   7. RESPONSIVE
    ============================================ */
-
-@media (max-width: 1200px) {
-    .stars-row {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
 
 @media (max-width: 1024px) {
     .page-header h1 {
@@ -472,6 +551,25 @@
 
     .stars-hero-theme {
         font-size: 16px;
+    }
+
+    .lexi-banner-inner {
+        grid-template-columns: 140px 1fr;
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .lexi-banner-image {
+        width: 140px;
+        height: 140px;
+    }
+
+    .lexi-banner-image .fallback {
+        font-size: 66px;
+    }
+
+    .lexi-banner-message {
+        font-size: 20px;
     }
 
     .stars-row,
@@ -505,7 +603,6 @@
     .star-photo {
         width: 68px;
         height: 68px;
-        font-size: 26px;
     }
 
     .star-photo .photo-fallback {
@@ -522,6 +619,22 @@
 
     .stars-hero h2 {
         font-size: 34px;
+    }
+
+    .lexi-banner-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .lexi-banner-image {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto;
+    }
+
+    .lexi-banner-message {
+        font-size: 18px;
     }
 }
 
@@ -551,8 +664,33 @@
         font-size: 14px;
     }
 
+    .lexi-banner {
+        padding: 24px 0 16px;
+    }
+
+    .lexi-banner-inner {
+        padding: 20px;
+    }
+
+    .lexi-banner-image {
+        width: 110px;
+        height: 110px;
+    }
+
+    .lexi-banner-image .fallback {
+        font-size: 52px;
+    }
+
+    .lexi-banner-message {
+        font-size: 16px;
+    }
+
+    .lexi-banner-signature {
+        font-size: 13px;
+    }
+
     .stars-section {
-        padding: 40px 0 48px;
+        padding: 32px 0 48px;
     }
 
     .grade-group {
@@ -587,7 +725,6 @@
     .star-photo {
         width: 60px;
         height: 60px;
-        font-size: 22px;
     }
 
     .star-photo .photo-fallback {

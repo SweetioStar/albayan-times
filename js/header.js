@@ -1,5 +1,5 @@
 /* ============================================
-   THE OPEN ALBAYAN TIMES - DYNAMIC HEADER
+   ALBAYAN TIMES - DYNAMIC HEADER
    ============================================
    Injects ticker + header + nav + mobile drawer.
    Works in TWO locations:
@@ -10,10 +10,6 @@
 (function () {
     'use strict';
 
-    /* ==========================================
-       PATH PREFIX DETECTION
-       ========================================== */
-
     function detectPrefix() {
         const path = window.location.pathname;
         if (path.includes('/html/')) {
@@ -23,10 +19,6 @@
     }
 
     const PREFIX = detectPrefix();
-
-    /* ==========================================
-       CURRENT PAGE DETECTION
-       ========================================== */
 
     function getCurrentPage() {
         const path = window.location.pathname;
@@ -80,7 +72,7 @@
                 <a href="${PREFIX}index.html" class="header-brand">
                     <img src="${PREFIX}assets/images/logo/moehe-logo.png" alt="Ministry of Education and Higher Education" class="header-logo">
                     <div class="header-title">
-                        <span class="header-title-main">The Open Albayan Times</span>
+                        <span class="header-title-main">Albayan Times</span>
                         <span class="header-title-sub">Student Newspaper</span>
                     </div>
                 </a>
@@ -94,7 +86,7 @@
     `;
 
     /* ==========================================
-       DESKTOP NAV HTML (10 main links + Special Features dropdown)
+       DESKTOP NAV HTML
        ========================================== */
 
     const NAV_HTML = `
@@ -153,10 +145,6 @@
         </div>
     `;
 
-    /* ==========================================
-       INJECTION
-       ========================================== */
-
     function injectHeader() {
         const placeholder = document.getElementById('site-header');
         if (!placeholder) {
@@ -165,10 +153,6 @@
         }
         placeholder.innerHTML = TICKER_HTML + HEADER_HTML + NAV_HTML + MOBILE_HTML;
     }
-
-    /* ==========================================
-       MOBILE MENU TOGGLE
-       ========================================== */
 
     function setupMobileToggle() {
         const navToggle = document.querySelector('.nav-toggle');
@@ -180,10 +164,6 @@
             navDrawer.classList.toggle('active');
         });
     }
-
-    /* ==========================================
-       SPECIAL FEATURES DROPDOWN
-       ========================================== */
 
     function setupDropdown() {
         const toggle = document.querySelector('.nav-dropdown-toggle');
@@ -207,10 +187,6 @@
             }
         });
     }
-
-    /* ==========================================
-       INIT
-       ========================================== */
 
     function init() {
         injectHeader();
