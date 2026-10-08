@@ -1,159 +1,146 @@
 {
-    "week": "Week of May 4, 2026",
-    "theme": "This week's theme: Courage in Everyday Life",
+    "week": "Week of May 11, 2026",
+    "theme": "This week's theme: Excellence in English",
     "items": [
         {
             "id": "star-3a",
             "type": "star",
-            "name": "Student Name 1",
+            "name": "Zamzam Almohannadi",
             "class": "3A",
             "grade": "3",
-            "initial": "S",
-            "quote": "Reading every night helped me improve my English."
+            "photo": "3A-zamzam.jpg"
         },
         {
             "id": "star-3b",
             "type": "star",
-            "name": "Student Name 2",
+            "name": "Muneera Jassim",
             "class": "3B",
             "grade": "3",
-            "initial": "S",
-            "quote": "I practice English with my sister every day."
+            "photo": "3B-muneera.jpg"
         },
         {
             "id": "star-3c",
             "type": "star",
-            "name": "Student Name 3",
+            "name": "Noura Abdullah Alnaimi",
             "class": "3C",
             "grade": "3",
-            "initial": "S",
-            "quote": "I love writing short stories in English."
+            "photo": "3C-noura.jpg"
         },
         {
             "id": "star-3d",
             "type": "star",
-            "name": "Student Name 4",
+            "name": "Sara Mahdi",
             "class": "3D",
             "grade": "3",
-            "initial": "S",
-            "quote": "My favorite English word is 'imagine'."
+            "photo": "3D-sara.jpg"
         },
         {
             "id": "star-4a",
             "type": "star",
-            "name": "Student Name 5",
+            "name": "حصه علي الخلف",
             "class": "4A",
             "grade": "4",
-            "initial": "S",
-            "quote": "I speak English at home with my family."
+            "photo": "4A-hessa.jpg"
         },
         {
             "id": "star-4b",
             "type": "star",
-            "name": "Student Name 6",
+            "name": "لولوة الكواري",
             "class": "4B",
             "grade": "4",
-            "initial": "S",
-            "quote": "Books are my best friends."
+            "photo": "4B-lolwa.jpg",
+            "badge": "Star of Achieving Tasks on Time"
         },
         {
             "id": "star-4c",
             "type": "star",
-            "name": "Student Name 7",
+            "name": "منيرة ناصر",
             "class": "4C",
             "grade": "4",
-            "initial": "S",
-            "quote": "I never give up on hard words."
+            "photo": "4C-muneera.jpg",
+            "badge": "Star of Reading"
         },
         {
             "id": "star-4d",
             "type": "star",
-            "name": "Student Name 8",
+            "name": "الدانة على يوسف بوعيسى العبيدلي",
             "class": "4D",
             "grade": "4",
-            "initial": "S",
-            "quote": "I practice English with my friends at recess."
+            "photo": "4D-aldana.jpg",
+            "badge": "Star of Writing"
         },
         {
             "id": "star-4e",
             "type": "star",
-            "name": "Student Name 9",
+            "name": "مريم جاسم عسكر عبدالله العمادي",
             "class": "4E",
             "grade": "4",
-            "initial": "S",
-            "quote": "English helps me make new friends."
+            "photo": "4E-maryam.jpg",
+            "badge": "Star of Reading"
         },
         {
             "id": "star-5a",
             "type": "star",
-            "name": "Student Name 10",
+            "name": "Asmaa Abdulla Alkuwari",
             "class": "5A",
             "grade": "5",
-            "initial": "S",
-            "quote": "I read one page of English every day."
+            "photo": "5A-asmaa.jpg"
         },
         {
             "id": "star-5b",
             "type": "star",
-            "name": "Student Name 11",
+            "name": "Roza Alabbassi",
             "class": "5B",
             "grade": "5",
-            "initial": "S",
-            "quote": "My teacher inspires me to learn more."
+            "photo": "5B-roza.jpg"
         },
         {
             "id": "star-5c",
             "type": "star",
-            "name": "Student Name 12",
+            "name": "Aisha Naser Al-Naser",
             "class": "5C",
             "grade": "5",
-            "initial": "S",
-            "quote": "I love learning new English words."
+            "photo": "5C-aisha.jpg"
         },
         {
             "id": "star-5d",
             "type": "star",
-            "name": "Student Name 13",
+            "name": "Afra Fahad Alsahli",
             "class": "5D",
             "grade": "5",
-            "initial": "S",
-            "quote": "English opens new doors for me."
+            "photo": "5D-afra.jpg"
         },
         {
             "id": "star-6a",
             "type": "star",
-            "name": "Student Name 14",
+            "name": "لولوة عبدالعزيز الكواري",
             "class": "6A",
             "grade": "6",
-            "initial": "S",
-            "quote": "I write in my English journal every night."
+            "photo": "6A-lolwa.jpg"
         },
         {
             "id": "star-6b",
             "type": "star",
-            "name": "Student Name 15",
+            "name": "غلا ناجي العجي",
             "class": "6B",
             "grade": "6",
-            "initial": "S",
-            "quote": "I enjoy presenting in front of the class."
+            "photo": "6B-ghala.jpg"
         },
         {
             "id": "star-6c",
             "type": "star",
-            "name": "Student Name 16",
+            "name": "شيخة الساده",
             "class": "6C",
             "grade": "6",
-            "initial": "S",
-            "quote": "Being bilingual is a superpower."
+            "photo": "6C-sheikha.jpg"
         },
         {
             "id": "star-6d",
             "type": "star",
-            "name": "Student Name 17",
+            "name": "نور عزالدين",
             "class": "6D",
             "grade": "6",
-            "initial": "S",
-            "quote": "I'm ready for the Spelling Bee!"
+            "photo": "6D-noor.jpg"
         }
     ]
 }
