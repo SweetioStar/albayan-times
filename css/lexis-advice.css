@@ -1,83 +1,111 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - LEXI'S ADVICE
    ============================================
-   Lexi's character image in the hero.
-   Warm, friendly advice page.
+   Page header (matches other pages) + Lexi's
+   character hero + advice cards.
    ============================================ */
 
 /* ==========================================
-   1. PAGE HERO — YELLOW GRADIENT
+   1. PAGE HEADER (matches other pages)
    ========================================== */
 
-.page-hero {
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. HERO BANNER — YELLOW (matches others)
+   ========================================== */
+
+.advice-hero {
     background: linear-gradient(135deg, #FFD166 0%, #F5A623 100%);
-    padding: 64px 0;
+    padding: 56px 0;
     position: relative;
     overflow: hidden;
 }
 
-.page-hero::before {
+.advice-hero::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 1.5px, transparent 2px);
-    background-size: 28px 28px;
+    background-size: 32px 32px;
     pointer-events: none;
     z-index: 1;
     opacity: 0.5;
 }
 
-.page-hero::after {
+.advice-hero::after {
     content: '';
     position: absolute;
     bottom: -80px;
     right: -80px;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
 }
 
 /* Floating speech bubbles */
-.page-hero .hero-deco {
+.advice-hero .hero-bubble {
     position: absolute;
     z-index: 2;
     pointer-events: none;
     animation: bubble-float 6s ease-in-out infinite;
 }
 
-.page-hero .hero-deco.bubble {
+.advice-hero .hero-bubble {
     width: 40px;
     height: 30px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 12px 12px 12px 4px;
     position: relative;
 }
 
-.page-hero .hero-deco.bubble::after {
+.advice-hero .hero-bubble::after {
     content: '';
     position: absolute;
     bottom: -6px;
     left: 4px;
     width: 0;
     height: 0;
-    border-top: 8px solid rgba(255, 255, 255, 0.5);
+    border-top: 8px solid rgba(255, 255, 255, 0.6);
     border-right: 10px solid transparent;
 }
 
 @keyframes bubble-float {
-    0%, 100% { transform: translateY(0) rotate(-4deg); opacity: 0.5; }
-    50% { transform: translateY(-14px) rotate(6deg); opacity: 0.9; }
+    0%, 100% { transform: translateY(0) rotate(-4deg); opacity: 0.6; }
+    50% { transform: translateY(-14px) rotate(6deg); opacity: 1; }
 }
 
-.page-hero .hero-deco.deco-1 { top: 15%; left: 6%; }
-.page-hero .hero-deco.deco-2 { top: 60%; left: 12%; animation-delay: 2s; width: 32px; height: 24px; }
-.page-hero .hero-deco.deco-3 { top: 22%; right: 8%; animation-delay: 4s; width: 44px; height: 32px; }
-.page-hero .hero-deco.deco-4 { bottom: 15%; right: 14%; animation-delay: 1s; width: 36px; height: 28px; }
+.advice-hero .hero-bubble.b1 { top: 15%; left: 6%; animation-delay: 0s; }
+.advice-hero .hero-bubble.b2 { top: 60%; left: 12%; animation-delay: 2s; width: 32px; height: 24px; }
+.advice-hero .hero-bubble.b3 { top: 22%; right: 8%; animation-delay: 4s; width: 44px; height: 32px; }
+.advice-hero .hero-bubble.b4 { bottom: 15%; right: 14%; animation-delay: 1s; width: 36px; height: 28px; }
 
-.page-hero-inner {
+.advice-hero-inner {
     text-align: center;
     position: relative;
     z-index: 3;
@@ -85,9 +113,9 @@
     margin: 0 auto;
 }
 
-.page-hero-label {
+.advice-hero-label {
     display: inline-block;
-    padding: 8px 22px;
+    padding: 8px 20px;
     background-color: var(--color-navy);
     color: var(--color-yellow);
     font-family: var(--font-body);
@@ -96,36 +124,31 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     border-radius: var(--radius-full);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-.page-hero-title {
+.advice-hero h2 {
     font-family: var(--font-heading);
-    font-size: 60px;
+    font-size: 52px;
     color: var(--color-navy);
     margin-bottom: 12px;
     line-height: 1.05;
     letter-spacing: -0.5px;
-    text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.4);
 }
 
-.page-hero-subtitle {
+.advice-hero-subtitle {
     font-family: var(--font-body);
     font-size: 18px;
     font-weight: 600;
     color: var(--color-navy);
-    margin: 0 auto;
-    line-height: 1.55;
-    opacity: 0.9;
-    max-width: 620px;
+    opacity: 0.85;
+    margin: 0;
+    line-height: 1.5;
 }
 
 /* ==========================================
-   2. LEXI INTRO BANNER
-   ==========================================
-   Two-column: Lexi's photo on the left,
-   her introduction on the right.
-   ============================================ */
+   3. LEXI INTRO BANNER
+   ========================================== */
 
 .lexi-hero {
     background-color: var(--color-cream);
@@ -210,11 +233,11 @@
     box-shadow: 0 12px 32px rgba(26, 44, 66, 0.2);
 }
 
-/* "Hi!" greeting badge */
+/* "Hi!" badge — on the LEFT */
 .lexi-avatar .greeting-badge {
     position: absolute;
     top: 20px;
-    right: 10px;
+    left: 10px;
     padding: 12px 22px;
     background-color: var(--color-coral);
     color: var(--color-white);
@@ -223,15 +246,15 @@
     font-weight: 700;
     border-radius: var(--radius-full);
     border: 4px solid var(--color-white);
-    transform: rotate(-8deg);
+    transform: rotate(8deg);
     box-shadow: 0 6px 18px rgba(255, 107, 107, 0.3);
-    animation: badge-wiggle 3s ease-in-out infinite;
+    animation: badge-wiggle-left 3s ease-in-out infinite;
     z-index: 3;
 }
 
-@keyframes badge-wiggle {
-    0%, 100% { transform: rotate(-8deg) scale(1); }
-    50% { transform: rotate(-3deg) scale(1.05); }
+@keyframes badge-wiggle-left {
+    0%, 100% { transform: rotate(8deg) scale(1); }
+    50% { transform: rotate(3deg) scale(1.05); }
 }
 
 /* Lexi's intro text */
@@ -284,7 +307,7 @@
 }
 
 /* ==========================================
-   3. FILTER SECTION
+   4. FILTER SECTION
    ========================================== */
 
 .filter-section {
@@ -338,7 +361,7 @@
 }
 
 /* ==========================================
-   4. ADVICE SECTION
+   5. ADVICE SECTION
    ========================================== */
 
 .advice-section {
@@ -369,7 +392,6 @@
     line-height: 1.6;
 }
 
-/* Grid */
 .advice-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -379,7 +401,7 @@
 }
 
 /* ==========================================
-   5. ADVICE CARD
+   6. ADVICE CARD
    ============================================ */
 
 .advice-card {
@@ -492,7 +514,7 @@
 }
 
 /* ==========================================
-   6. COMMENTS
+   7. COMMENTS
    ========================================== */
 
 .comments-wrapper {
@@ -501,15 +523,19 @@
 }
 
 /* ==========================================
-   7. RESPONSIVE
-   ========================================== */
+   8. RESPONSIVE
+   ============================================ */
 
 @media (max-width: 1024px) {
-    .page-hero-title {
-        font-size: 46px;
+    .page-header h1 {
+        font-size: 42px;
     }
 
-    .page-hero-subtitle {
+    .advice-hero h2 {
+        font-size: 40px;
+    }
+
+    .advice-hero-subtitle {
         font-size: 16px;
     }
 
@@ -576,19 +602,32 @@
 }
 
 @media (max-width: 640px) {
-    .page-hero {
-        padding: 44px 0;
+    .page-header {
+        padding: 32px 0 24px;
     }
 
-    .page-hero-title {
-        font-size: 32px;
+    .page-header h1 {
+        font-size: 34px;
     }
 
-    .page-hero-subtitle {
+    .page-header .page-subtitle {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
+    .advice-hero {
+        padding: 36px 0;
+    }
+
+    .advice-hero h2 {
+        font-size: 30px;
+    }
+
+    .advice-hero-subtitle {
         font-size: 14px;
     }
 
-    .page-hero .hero-deco {
+    .advice-hero .hero-bubble {
         display: none;
     }
 
@@ -610,7 +649,7 @@
         font-size: 15px;
         padding: 8px 16px;
         top: 10px;
-        right: 5px;
+        left: 5px;
     }
 
     .lexi-hero-title {

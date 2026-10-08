@@ -34,7 +34,23 @@
         </div>
     </section>
 
-    <!-- LEXI HERO -->
+    <!-- HERO BANNER -->
+    <section class="advice-hero">
+        <span class="hero-bubble b1"></span>
+        <span class="hero-bubble b2"></span>
+        <span class="hero-bubble b3"></span>
+        <span class="hero-bubble b4"></span>
+
+        <div class="container">
+            <div class="advice-hero-inner">
+                <span class="advice-hero-label">Let's Talk</span>
+                <h2>Wise Words from a Friend</h2>
+                <p class="advice-hero-subtitle">Real tips from a student who's been there.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEXI INTRO -->
     <section class="lexi-hero">
         <div class="container">
             <div class="lexi-hero-inner">
@@ -136,18 +152,11 @@
                 .replace(/'/g, '&#39;');
         }
 
-        function getImageUrl(item) {
-            if (!item.image) return '';
-            const folder = item.imageFolder || 'content';
-            return `${PREFIX}assets/images/${folder}/${item.image}`;
-        }
-
         function getDetailUrl(item) {
             if (!item.id) return '#';
             return `article.html?id=${encodeURIComponent(item.id)}`;
         }
 
-        // Convert a topic string to a slug
         function slugify(str) {
             return String(str).toLowerCase().trim().replace(/\s+/g, '-');
         }
@@ -181,7 +190,6 @@
             const container = document.getElementById('advice-filter-pills');
             if (!container) return;
 
-            // Collect unique topics
             const topics = new Map();
             items.forEach(item => {
                 const topic = item.topic || 'Advice';
@@ -192,14 +200,12 @@
                 topics.get(slug).count++;
             });
 
-            // "All" pill
             let html = `
                 <button class="filter-pill active" data-topic="all">
                     All (${items.length})
                 </button>
             `;
 
-            // Topic pills
             topics.forEach((info, slug) => {
                 html += `
                     <button class="filter-pill" data-topic="${escapeHtml(slug)}">
@@ -210,7 +216,6 @@
 
             container.innerHTML = html;
 
-            // Bind clicks
             container.querySelectorAll('.filter-pill').forEach(btn => {
                 btn.addEventListener('click', () => {
                     container.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
