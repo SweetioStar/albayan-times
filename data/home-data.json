@@ -1,27 +1,4 @@
 {
-    "english_stars": {
-        "week": "Week of May 4, 2026",
-        "theme": "This week's theme: Courage in Everyday Life",
-        "stars": [
-            { "name": "Student Name 1", "class": "3A" },
-            { "name": "Student Name 2", "class": "3B" },
-            { "name": "Student Name 3", "class": "3C" },
-            { "name": "Student Name 4", "class": "3D" },
-            { "name": "Student Name 5", "class": "4A" },
-            { "name": "Student Name 6", "class": "4B" },
-            { "name": "Student Name 7", "class": "4C" },
-            { "name": "Student Name 8", "class": "4D" },
-            { "name": "Student Name 9", "class": "4E" },
-            { "name": "Student Name 10", "class": "5A" },
-            { "name": "Student Name 11", "class": "5B" },
-            { "name": "Student Name 12", "class": "5C" },
-            { "name": "Student Name 13", "class": "5D" },
-            { "name": "Student Name 14", "class": "6A" },
-            { "name": "Student Name 15", "class": "6B" },
-            { "name": "Student Name 16", "class": "6C" },
-            { "name": "Student Name 17", "class": "6D" }
-        ]
-    },
     "latest_news": [
         {
             "title": "International Tea Day!",

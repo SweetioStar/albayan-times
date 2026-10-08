@@ -1,21 +1,51 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - ENGLISH STARS
    ============================================
+   Uses .page-header (same as other pages).
    Photo above name. No quotes. Optional badge.
+   Fallback letter visible when photo missing.
    ============================================ */
 
 /* ==========================================
-   1. PAGE HERO — YELLOW GRADIENT
+   1. PAGE HEADER
    ========================================== */
 
-.page-hero {
+.page-header {
+    background-color: var(--color-cream);
+    padding: 48px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    color: var(--color-navy);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.page-header .page-subtitle {
+    font-size: 16px;
+    color: var(--color-gray);
+    font-weight: 600;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   2. HERO BANNER — YELLOW
+   ========================================== */
+
+.stars-hero {
     background: linear-gradient(135deg, #FFD166 0%, #F5A623 100%);
-    padding: 64px 0;
+    padding: 56px 0;
     position: relative;
     overflow: hidden;
 }
 
-.page-hero::before {
+.stars-hero::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -26,7 +56,7 @@
     opacity: 0.5;
 }
 
-.page-hero::after {
+.stars-hero::after {
     content: '';
     position: absolute;
     bottom: -80px;
@@ -39,15 +69,9 @@
     z-index: 1;
 }
 
-/* Floating star decorations */
-.page-hero .hero-deco {
+/* Floating stars */
+.stars-hero .hero-star {
     position: absolute;
-    z-index: 2;
-    pointer-events: none;
-    animation: star-float 6s ease-in-out infinite;
-}
-
-.page-hero .hero-deco.star {
     width: 32px;
     height: 32px;
     background-color: var(--color-navy);
@@ -56,20 +80,23 @@
         79% 91%, 50% 70%, 21% 91%, 32% 57%,
         2% 35%, 39% 35%
     );
-    opacity: 0.25;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 2;
+    animation: float-star 6s ease-in-out infinite;
 }
 
-@keyframes star-float {
+.stars-hero .hero-star.star-1 { top: 15%; left: 8%; animation-delay: 0s; }
+.stars-hero .hero-star.star-2 { top: 25%; right: 10%; animation-delay: 2s; width: 44px; height: 44px; }
+.stars-hero .hero-star.star-3 { bottom: 15%; left: 12%; animation-delay: 4s; width: 40px; height: 40px; }
+.stars-hero .hero-star.star-4 { bottom: 20%; right: 15%; animation-delay: 1s; }
+
+@keyframes float-star {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-16px) rotate(15deg); }
+    50% { transform: translateY(-12px) rotate(15deg); }
 }
 
-.page-hero .hero-deco.deco-1 { top: 15%; left: 8%; }
-.page-hero .hero-deco.deco-2 { top: 60%; left: 14%; animation-delay: 2s; width: 40px; height: 40px; }
-.page-hero .hero-deco.deco-3 { top: 25%; right: 12%; animation-delay: 4s; width: 36px; height: 36px; }
-.page-hero .hero-deco.deco-4 { bottom: 15%; right: 18%; animation-delay: 1s; width: 44px; height: 44px; }
-
-.page-hero-inner {
+.stars-hero-inner {
     text-align: center;
     position: relative;
     z-index: 3;
@@ -77,9 +104,9 @@
     margin: 0 auto;
 }
 
-.page-hero-label {
+.stars-hero-label {
     display: inline-block;
-    padding: 8px 22px;
+    padding: 8px 20px;
     background-color: var(--color-navy);
     color: var(--color-yellow);
     font-family: var(--font-body);
@@ -88,74 +115,26 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     border-radius: var(--radius-full);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-.page-hero-title {
+.stars-hero h2 {
     font-family: var(--font-heading);
-    font-size: 60px;
+    font-size: 52px;
     color: var(--color-navy);
     margin-bottom: 12px;
     line-height: 1.05;
     letter-spacing: -0.5px;
-    text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.4);
 }
 
-.page-hero-subtitle {
+.stars-hero-theme {
     font-family: var(--font-body);
     font-size: 18px;
     font-weight: 600;
     color: var(--color-navy);
-    margin: 0 auto;
-    line-height: 1.55;
-    opacity: 0.9;
-    max-width: 620px;
-}
-
-/* ==========================================
-   2. WEEK INFO STRIP
-   ========================================== */
-
-.week-info-strip {
-    background-color: var(--color-navy);
-    padding: 24px 0;
-    position: relative;
-}
-
-.week-info-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    text-align: center;
-}
-
-.week-info-label {
-    padding: 6px 16px;
-    background-color: var(--color-yellow);
-    color: var(--color-navy);
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    border-radius: var(--radius-full);
-}
-
-.week-info-week {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    color: var(--color-white);
+    opacity: 0.85;
     margin: 0;
-}
-
-.week-info-theme {
-    font-family: var(--font-body);
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-    font-style: italic;
+    line-height: 1.5;
 }
 
 /* ==========================================
@@ -185,7 +164,7 @@
     );
 }
 
-/* Grade group */
+/* Grade groups */
 .grade-group {
     margin-bottom: 56px;
     position: relative;
@@ -272,8 +251,8 @@
 }
 
 /* ==========================================
-   4. STAR CARD — PHOTO ABOVE NAME
-   ========================================== */
+   4. STAR CARD
+   ============================================ */
 
 .star-card {
     background-color: var(--color-white);
@@ -291,7 +270,6 @@
     min-height: 260px;
 }
 
-/* Top ribbon reveal on hover */
 .star-card::before {
     content: '';
     position: absolute;
@@ -308,7 +286,6 @@
     transform: scaleX(1);
 }
 
-/* Sparkle star in the corner */
 .star-card::after {
     content: '';
     position: absolute;
@@ -339,11 +316,11 @@
 }
 
 /* ==========================================
-   5. STUDENT PHOTO
-   ==========================================
-   Square photo. Falls back to a colored
-   circle with the initial letter if the
-   photo file is missing.
+   5. STAR PHOTO — with fallback letter
+   ============================================
+   The letter sits BEHIND the image.
+   When the image is missing or fails to
+   load (via onerror), the letter shows.
    ============================================ */
 
 .star-photo {
@@ -357,28 +334,15 @@
     position: relative;
     background-color: var(--color-yellow);
     transition: transform 0.35s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Both children are absolutely positioned */
+    display: block;
 }
 
 .star-card:hover .star-photo {
     transform: scale(1.08) rotate(-3deg);
 }
 
-.star-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 0;
-    position: relative;
-    z-index: 2;
-    color: transparent;
-    font-size: 0;
-}
-
-/* Fallback: colored circle with initial */
+/* Fallback letter (visible when image missing) */
 .star-photo .photo-fallback {
     position: absolute;
     inset: 0;
@@ -386,10 +350,27 @@
     align-items: center;
     justify-content: center;
     font-family: var(--font-heading);
-    font-size: 42px;
+    font-size: 44px;
     font-weight: 700;
     color: var(--color-navy);
+    line-height: 1;
     z-index: 1;
+    pointer-events: none;
+}
+
+/* Photo on top */
+.star-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+    z-index: 2;
+    background-color: var(--color-white);
+    color: transparent;
+    font-size: 0;
 }
 
 /* Rotate fallback colors */
@@ -404,14 +385,14 @@
 .star-card:nth-child(5n+5) .star-photo { background-color: var(--color-orange); }
 .star-card:nth-child(5n+5)::before { background-color: var(--color-orange); }
 
-/* Adjust fallback text color when circle is dark */
+/* Fallback letter color for dark circles */
 .star-card:nth-child(5n+2) .photo-fallback,
 .star-card:nth-child(5n+3) .photo-fallback {
     color: var(--color-white);
 }
 
 /* ==========================================
-   6. STAR NAME + CLASS
+   6. STAR NAME + CLASS + BADGE
    ============================================ */
 
 .star-name {
@@ -443,14 +424,9 @@
     border-radius: var(--radius-full);
 }
 
-/* ==========================================
-   7. ACHIEVEMENT BADGE (optional)
-   ========================================== */
-
 .star-achievement {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
     padding: 4px 12px;
     background-color: var(--color-yellow);
     color: var(--color-navy);
@@ -467,7 +443,7 @@
 }
 
 /* ==========================================
-   8. COMMENTS
+   7. COMMENTS
    ========================================== */
 
 .comments-wrapper {
@@ -476,8 +452,8 @@
 }
 
 /* ==========================================
-   9. RESPONSIVE
-   ========================================== */
+   8. RESPONSIVE
+   ============================================ */
 
 @media (max-width: 1200px) {
     .stars-row {
@@ -486,11 +462,15 @@
 }
 
 @media (max-width: 1024px) {
-    .page-hero-title {
-        font-size: 46px;
+    .page-header h1 {
+        font-size: 42px;
     }
 
-    .page-hero-subtitle {
+    .stars-hero h2 {
+        font-size: 40px;
+    }
+
+    .stars-hero-theme {
         font-size: 16px;
     }
 
@@ -518,49 +498,57 @@
     }
 
     .star-card {
-        padding: 18px 12px;
-        min-height: 230px;
+        padding: 20px 14px;
+        min-height: 220px;
     }
 
     .star-photo {
-        width: 84px;
-        height: 84px;
-        font-size: 34px;
+        width: 68px;
+        height: 68px;
+        font-size: 26px;
     }
 
     .star-photo .photo-fallback {
-        font-size: 34px;
+        font-size: 26px;
     }
 
     .star-name {
         font-size: 15px;
-        min-height: 38px;
     }
 
-    .page-hero {
-        padding: 44px 0;
+    .stars-hero {
+        padding: 40px 0;
     }
 
-    .page-hero-title {
+    .stars-hero h2 {
         font-size: 34px;
     }
 }
 
 @media (max-width: 640px) {
-    .page-hero {
-        padding: 36px 0;
+    .page-header {
+        padding: 32px 0 24px;
     }
 
-    .page-hero-title {
-        font-size: 30px;
+    .page-header h1 {
+        font-size: 34px;
     }
 
-    .page-hero-subtitle {
+    .page-header .page-subtitle {
         font-size: 14px;
+        padding: 0 16px;
     }
 
-    .page-hero .hero-deco {
-        display: none;
+    .stars-hero {
+        padding: 32px 0;
+    }
+
+    .stars-hero h2 {
+        font-size: 28px;
+    }
+
+    .stars-hero-theme {
+        font-size: 14px;
     }
 
     .stars-section {
@@ -578,8 +566,8 @@
     }
 
     .grade-badge {
-        width: 46px;
-        height: 46px;
+        width: 44px;
+        height: 44px;
         font-size: 20px;
     }
 
@@ -592,28 +580,23 @@
     }
 
     .star-card {
-        padding: 16px 10px;
-        min-height: 210px;
+        padding: 18px 12px;
+        min-height: 200px;
     }
 
     .star-photo {
-        width: 72px;
-        height: 72px;
-        border-width: 3px;
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
     }
 
     .star-photo .photo-fallback {
-        font-size: 28px;
+        font-size: 22px;
     }
 
     .star-name {
         font-size: 14px;
         min-height: 36px;
-    }
-
-    .star-class-tag {
-        font-size: 10px;
-        padding: 3px 10px;
     }
 }
 

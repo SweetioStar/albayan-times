@@ -76,7 +76,7 @@
 
                 <!-- Bottom Bar -->
                 <div class="footer-bottom">
-                    <p>2026 The Open Albayan Times. All rights reserved.</p>
+                    <p>2026 The Open Albayan Times. Created by Durrah Babiker. All rights reserved.</p>
                     <div class="footer-bottom-links">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Use</a>

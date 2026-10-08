@@ -45,7 +45,7 @@
             <div class="stars-hero-inner">
                 <span class="stars-hero-label" id="stars-week-label">This Week</span>
                 <h2>Meet This Week's Stars</h2>
-                <p class="stars-hero-theme" id="stars-theme">One outstanding English student from every class. Updated every week.</p>
+                <p class="stars-hero-theme" id="stars-theme">One outstanding English student from every class.</p>
             </div>
         </div>
     </section>
@@ -54,7 +54,6 @@
     <section class="stars-section">
         <div class="container">
             <div id="stars-container">
-                <!-- Populated by inline script below -->
                 <div class="empty-state">
                     <h3>Loading stars...</h3>
                 </div>
@@ -86,16 +85,11 @@
     <script src="../js/footer.js"></script>
     <script src="../js/main.js"></script>
 
-    <!-- CUSTOM SCRIPT: Render English Stars -->
     <script>
     (function () {
         'use strict';
 
         const PREFIX = '../';
-
-        /* ==========================================
-           HELPERS
-           ========================================== */
 
         function escapeHtml(str) {
             if (str === null || str === undefined) return '';
@@ -112,10 +106,6 @@
             return String(name).trim().charAt(0).toUpperCase();
         }
 
-        /* ==========================================
-           GROUP STARS BY GRADE
-           ========================================== */
-
         function groupByGrade(stars) {
             const groups = { '3': [], '4': [], '5': [], '6': [] };
             stars.forEach(star => {
@@ -125,18 +115,21 @@
             return groups;
         }
 
-        /* ==========================================
-           RENDER
-           ========================================== */
-
         function renderStarCard(star) {
-            const initial = star.initial || getInitial(star.name);
+            const initial = getInitial(star.name);
+            const photoUrl = star.photo
+                ? `${PREFIX}assets/images/stars/${escapeHtml(star.photo)}`
+                : '';
+
             return `
                 <div class="star-card">
-                    <div class="star-avatar">${escapeHtml(initial)}</div>
+                    <div class="star-photo">
+                        <span class="photo-fallback">${escapeHtml(initial)}</span>
+                        ${photoUrl ? `<img src="${photoUrl}" alt="${escapeHtml(star.name)}" onerror="this.style.display='none'">` : ''}
+                    </div>
                     <h3 class="star-name">${escapeHtml(star.name)}</h3>
                     <span class="star-class-tag">${escapeHtml(star.class)}</span>
-                    ${star.quote ? `<p class="star-quote">"${escapeHtml(star.quote)}"</p>` : ''}
+                    ${star.badge ? `<span class="star-achievement">${escapeHtml(star.badge)}</span>` : ''}
                 </div>
             `;
         }
@@ -202,22 +195,9 @@
             const weekLabel = document.getElementById('stars-week-label');
             const themeEl = document.getElementById('stars-theme');
 
-            if (weekLabel && data.week) {
-                weekLabel.textContent = data.week;
-            }
-
-            if (themeEl) {
-                if (data.theme) {
-                    themeEl.textContent = data.theme;
-                } else {
-                    themeEl.textContent = 'One outstanding English student from every class. Updated every week.';
-                }
-            }
+            if (weekLabel && data.week) weekLabel.textContent = data.week;
+            if (themeEl && data.theme) themeEl.textContent = data.theme;
         }
-
-        /* ==========================================
-           INIT
-           ========================================== */
 
         async function init() {
             try {

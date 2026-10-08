@@ -1,77 +1,152 @@
 /* ============================================
    THE OPEN ALBAYAN TIMES - HOME LOADER
    ============================================
-   Reads data/home-data.json and injects:
-   - English Stars week label
-   - Stars grouped by grade (3, 4, 5, 6)
+   Reads data/home-data.json AND
+   data/english-stars.json to fill:
+   - Featured hero (week + count)
+   - Star cluster (right side of hero)
+   - Stars stage (grouped by grade)
    - Latest News list
    ============================================ */
 
 (function () {
     'use strict';
 
-    /* ==========================================
-       LOAD DATA
-       ========================================== */
-
-    async function loadHomeData() {
+    async function fetchJSON(fileName) {
         try {
-            const response = await fetch('data/home-data.json?v=' + Date.now());
-            if (!response.ok) throw new Error('Failed to load home data');
+            const url = `data/${fileName}.json?v=` + Date.now();
+            const response = await fetch(url);
+            if (!response.ok) return null;
             return await response.json();
         } catch (err) {
-            console.warn('[Albayan] Could not load home-data.json:', err);
+            console.warn('[Albayan] Could not load ' + fileName + '.json:', err);
             return null;
         }
+    }
+
+    function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function getInitial(name) {
+        if (!name) return '?';
+        return String(name).trim().charAt(0).toUpperCase();
     }
 
     /* ==========================================
        HERO META
        ========================================== */
 
-    function renderHeroMeta(data) {
-        if (!data.english_stars) return;
+    function renderHeroMeta(starsData) {
+        if (!starsData) return;
 
-        const count = Array.isArray(data.english_stars.stars)
-            ? data.english_stars.stars.length
-            : 0;
+        const stars = starsData.items || [];
+        const count = stars.length;
 
         const heroCount = document.getElementById('hero-star-count');
         if (heroCount) heroCount.textContent = count + ' Classes';
 
+        const heroWeekLabel = document.getElementById('hero-week-label');
+        if (heroWeekLabel && starsData.week) {
+            heroWeekLabel.textContent = starsData.week;
+        }
+
         const weekLabel = document.getElementById('stars-week-label');
-        if (weekLabel) weekLabel.textContent = data.english_stars.week || 'This Week';
+        if (weekLabel && starsData.week) {
+            weekLabel.textContent = starsData.week;
+        }
     }
 
     /* ==========================================
-       GROUP STARS BY GRADE
-       ==========================================
-       Class codes like "3A", "4B", "5C", "6D"
-       are grouped by their first character.
+       HERO STAR CLUSTER
+       ========================================== */
+
+    function renderHeroCluster(starsData) {
+        if (!starsData || !starsData.items) return;
+
+        const stars = starsData.items;
+
+        // Main star
+        const mainStar = document.querySelector('.hero-star-main');
+        if (mainStar && stars[0]) {
+            const initial = getInitial(stars[0].name);
+            const photoUrl = stars[0].photo
+                ? `assets/images/stars/${escapeHtml(stars[0].photo)}`
+                : '';
+            mainStar.innerHTML = `
+                <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1;">${escapeHtml(initial)}</span>
+                ${photoUrl ? `<img src="${photoUrl}" alt="${escapeHtml(stars[0].name)}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 2;" onerror="this.style.display='none'">` : ''}
+            `;
+        }
+
+        // Orbit stars
+        const orbits = document.querySelectorAll('.hero-star-orbit');
+        orbits.forEach((orbit, index) => {
+            const star = stars[index + 1];
+            if (!star) return;
+            const initial = getInitial(star.name);
+            const photoUrl = star.photo
+                ? `assets/images/stars/${escapeHtml(star.photo)}`
+                : '';
+            orbit.innerHTML = `
+                <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1;">${escapeHtml(initial)}</span>
+                ${photoUrl ? `<img src="${photoUrl}" alt="${escapeHtml(star.name)}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 2;" onerror="this.style.display='none'">` : ''}
+            `;
+        });
+
+        // "and X more stars"
+        const moreText = document.querySelector('.hero-star-more span:last-child');
+        if (moreText) {
+            const remaining = Math.max(0, stars.length - 7);
+            moreText.textContent = `and ${remaining} more stars this week`;
+        }
+    }
+
+    /* ==========================================
+       STARS STAGE
        ========================================== */
 
     function groupByGrade(stars) {
         const groups = { '3': [], '4': [], '5': [], '6': [] };
-
-        stars.forEach((star) => {
-            const grade = String(star.class || '').charAt(0);
-            if (groups[grade]) {
-                groups[grade].push(star);
-            }
+        stars.forEach(star => {
+            const grade = String(star.grade || star.class || '').charAt(0);
+            if (groups[grade]) groups[grade].push(star);
         });
-
         return groups;
     }
 
-    /* ==========================================
-       RENDER STARS STAGE
-       ========================================== */
+    function renderStarCard(star) {
+        const initial = getInitial(star.name);
+        const photoUrl = star.photo
+            ? `assets/images/stars/${escapeHtml(star.photo)}`
+            : '';
 
-    function renderStarsStage(data) {
+        return `
+            <div class="star-card">
+                <div class="star-photo">
+                    <span class="photo-fallback">${escapeHtml(initial)}</span>
+                    ${photoUrl ? `<img src="${photoUrl}" alt="${escapeHtml(star.name)}" onerror="this.style.display='none'">` : ''}
+                </div>
+                <h3 class="star-name">${escapeHtml(star.name)}</h3>
+                <span class="star-class-tag">${escapeHtml(star.class)}</span>
+                ${star.badge ? `<span class="star-achievement">${escapeHtml(star.badge)}</span>` : ''}
+            </div>
+        `;
+    }
+
+    function renderStarsStage(starsData) {
         const container = document.getElementById('stars-stage-container');
-        if (!container || !data.english_stars) return;
+        if (!container || !starsData || !starsData.items) return;
 
-        const stars = data.english_stars.stars || [];
+        const stars = starsData.items;
+        if (stars.length === 0) return;
+
         const groups = groupByGrade(stars);
 
         const gradeLabels = {
@@ -88,9 +163,8 @@
             '6': 'Leading by example every day'
         };
 
-        // Build each grade section
         let html = '';
-        ['3', '4', '5', '6'].forEach((grade) => {
+        ['3', '4', '5', '6'].forEach(grade => {
             const list = groups[grade];
             if (!list || list.length === 0) return;
 
@@ -106,7 +180,7 @@
                         </div>
                     </div>
                     <div class="${rowClass}">
-                        ${list.map(star => renderStarCard(star)).join('')}
+                        ${list.map(renderStarCard).join('')}
                     </div>
                 </div>
             `;
@@ -115,26 +189,15 @@
         container.innerHTML = html;
     }
 
-    function renderStarCard(star) {
-        const initial = getInitial(star.name);
-        return `
-            <div class="star-card">
-                <div class="star-avatar">${escapeHtml(initial)}</div>
-                <h4 class="star-name">${escapeHtml(star.name)}</h4>
-                <span class="star-class">${escapeHtml(star.class)}</span>
-            </div>
-        `;
-    }
-
     /* ==========================================
-       RENDER NEWS LIST
+       LATEST NEWS
        ========================================== */
 
-    function renderLatestNews(data) {
+    function renderLatestNews(homeData) {
         const container = document.getElementById('latest-news-list');
-        if (!container || !data.latest_news) return;
+        if (!container || !homeData || !homeData.latest_news) return;
 
-        const news = data.latest_news.slice(0, 5);
+        const news = homeData.latest_news.slice(0, 5);
 
         container.innerHTML = news.map((item, index) => `
             <a href="${item.url}" class="home-news-item">
@@ -149,35 +212,17 @@
     }
 
     /* ==========================================
-       HELPERS
-       ========================================== */
-
-    function getInitial(name) {
-        if (!name) return '?';
-        return String(name).trim().charAt(0).toUpperCase();
-    }
-
-    function escapeHtml(str) {
-        if (str === null || str === undefined) return '';
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-    }
-
-    /* ==========================================
        INIT
        ========================================== */
 
     async function init() {
-        const data = await loadHomeData();
-        if (!data) return;
+        const homeData = await fetchJSON('home-data');
+        const starsData = await fetchJSON('english-stars');
 
-        renderHeroMeta(data);
-        renderStarsStage(data);
-        renderLatestNews(data);
+        renderHeroMeta(starsData);
+        renderHeroCluster(starsData);
+        renderStarsStage(starsData);
+        renderLatestNews(homeData);
     }
 
     if (document.readyState === 'loading') {
