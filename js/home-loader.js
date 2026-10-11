@@ -17,25 +17,29 @@
        ========================================== */
 
     function getWeekLabel() {
-        const today = new Date();
-        const monthNames = [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ];
+    const today = new Date();
+    const dayNames = [
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday',
+        'Thursday', 'Friday', 'Saturday'
+    ];
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
 
-        // Get Monday of the current week
-        const day = today.getDay();
-        const diff = (day === 0 ? -6 : 1) - day; // If Sunday (0), go back 6 days
-        const monday = new Date(today);
-        monday.setDate(today.getDate() + diff);
+    // Get the Sunday of the current week
+    // If today is Sunday (0), diff is 0. Otherwise, go back that many days.
+    const day = today.getDay();
+    const sunday = new Date(today);
+    sunday.setDate(today.getDate() - day);
 
-        const month = monthNames[monday.getMonth()];
-        const date = monday.getDate();
-        const year = monday.getFullYear();
+    const dayName = dayNames[sunday.getDay()];       // Always "Sunday"
+    const monthName = monthNames[sunday.getMonth()];
+    const date = sunday.getDate();
+    const year = sunday.getFullYear();
 
-        return `Week of ${month} ${date}, ${year}`;
-    }
-
+    return `${dayName}, ${monthName} ${date}, ${year}`;
+}
     /* ==========================================
        HELPERS
        ========================================== */
