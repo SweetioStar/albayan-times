@@ -1,16 +1,44 @@
 /* ============================================
-   THE OPEN ALBAYAN TIMES - HOME LOADER
+   ALBAYAN TIMES - HOME LOADER
    ============================================
    Reads data/home-data.json AND
    data/english-stars.json to fill:
-   - Featured hero (week + count)
-   - Star cluster (right side of hero)
+   - Hero week (auto-computed from today)
+   - Lexi hero image
    - Stars stage (grouped by grade)
    - Latest News list
    ============================================ */
 
 (function () {
     'use strict';
+
+    /* ==========================================
+       AUTO WEEK LABEL
+       ========================================== */
+
+    function getWeekLabel() {
+        const today = new Date();
+        const monthNames = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+
+        // Get Monday of the current week
+        const day = today.getDay();
+        const diff = (day === 0 ? -6 : 1) - day; // If Sunday (0), go back 6 days
+        const monday = new Date(today);
+        monday.setDate(today.getDate() + diff);
+
+        const month = monthNames[monday.getMonth()];
+        const date = monday.getDate();
+        const year = monday.getFullYear();
+
+        return `Week of ${month} ${date}, ${year}`;
+    }
+
+    /* ==========================================
+       HELPERS
+       ========================================== */
 
     async function fetchJSON(fileName) {
         try {
@@ -48,64 +76,19 @@
 
         const stars = starsData.items || [];
         const count = stars.length;
+        const weekLabel = getWeekLabel();
 
         const heroCount = document.getElementById('hero-star-count');
         if (heroCount) heroCount.textContent = count + ' Classes';
 
         const heroWeekLabel = document.getElementById('hero-week-label');
-        if (heroWeekLabel && starsData.week) {
-            heroWeekLabel.textContent = starsData.week;
-        }
+        if (heroWeekLabel) heroWeekLabel.textContent = weekLabel;
 
-        const weekLabel = document.getElementById('stars-week-label');
-        if (weekLabel && starsData.week) {
-            weekLabel.textContent = starsData.week;
-        }
-    }
+        const starsWeekLabel = document.getElementById('stars-week-label');
+        if (starsWeekLabel) starsWeekLabel.textContent = weekLabel;
 
-    /* ==========================================
-       HERO STAR CLUSTER
-       ========================================== */
-
-    function renderHeroCluster(starsData) {
-        if (!starsData || !starsData.items) return;
-
-        const stars = starsData.items;
-
-        // Main star
-        const mainStar = document.querySelector('.hero-star-main');
-        if (mainStar && stars[0]) {
-            const initial = getInitial(stars[0].name);
-            const photoUrl = stars[0].photo
-                ? `assets/images/stars/${escapeHtml(stars[0].photo)}`
-                : '';
-            mainStar.innerHTML = `
-                <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1;">${escapeHtml(initial)}</span>
-                ${photoUrl ? `<img src="${photoUrl}" alt="${escapeHtml(stars[0].name)}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 2;" onerror="this.style.display='none'">` : ''}
-            `;
-        }
-
-        // Orbit stars
-        const orbits = document.querySelectorAll('.hero-star-orbit');
-        orbits.forEach((orbit, index) => {
-            const star = stars[index + 1];
-            if (!star) return;
-            const initial = getInitial(star.name);
-            const photoUrl = star.photo
-                ? `assets/images/stars/${escapeHtml(star.photo)}`
-                : '';
-            orbit.innerHTML = `
-                <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1;">${escapeHtml(initial)}</span>
-                ${photoUrl ? `<img src="${photoUrl}" alt="${escapeHtml(star.name)}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 2;" onerror="this.style.display='none'">` : ''}
-            `;
-        });
-
-        // "and X more stars"
-        const moreText = document.querySelector('.hero-star-more span:last-child');
-        if (moreText) {
-            const remaining = Math.max(0, stars.length - 7);
-            moreText.textContent = `and ${remaining} more stars this week`;
-        }
+        const themeEl = document.getElementById('hero-theme');
+        if (themeEl && starsData.theme) themeEl.textContent = starsData.theme;
     }
 
     /* ==========================================
@@ -220,7 +203,6 @@
         const starsData = await fetchJSON('english-stars');
 
         renderHeroMeta(starsData);
-        renderHeroCluster(starsData);
         renderStarsStage(starsData);
         renderLatestNews(homeData);
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | The Open Albayan Times</title>
+    <title>Home | Albayan Times</title>
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
@@ -25,7 +25,7 @@
     <!-- DYNAMIC HEADER -->
     <div id="site-header"></div>
 
-     <!-- FEATURED HERO — ENGLISH STARS -->
+    <!-- FEATURED HERO — ENGLISH STARS -->
     <section class="featured-hero">
         <!-- Decorative sparkle stars -->
         <span class="hero-sparkle s1"></span>
@@ -50,7 +50,7 @@
                     <div class="featured-hero-meta">
                         <span class="hero-meta-chip">
                             <span class="chip-icon"></span>
-                            <span id="hero-week-label">Selected Weekly</span>
+                            <span id="hero-week-label">Loading...</span>
                         </span>
                         <span class="hero-meta-chip">
                             <span class="chip-icon"></span>
@@ -65,20 +65,16 @@
                     <a href="html/english-stars.html" class="featured-hero-cta">Meet the Stars</a>
                 </div>
 
-                <!-- RIGHT: Floating star cluster -->
-                <div class="hero-star-cluster">
-                    <div class="hero-star-main" id="hero-main-star">S</div>
-                    <div class="hero-star-orbit o1">A</div>
-                    <div class="hero-star-orbit o2">M</div>
-                    <div class="hero-star-orbit o3">R</div>
-                    <div class="hero-star-orbit o4">K</div>
-                    <div class="hero-star-orbit o5">H</div>
-                    <div class="hero-star-orbit o6">L</div>
+                <!-- RIGHT: Lexi hero image -->
+                <div class="hero-lexi">
+                    <img src="assets/images/lexi/english-stars-hero.png" alt="English Stars" class="hero-lexi-img" onerror="this.src='assets/images/lexi/lexi-hero.png'">
+                </div>
 
             </div>
         </div>
     </section>
-        <!-- STARS ON STAGE — grouped by grade -->
+
+    <!-- STARS ON STAGE — grouped by grade -->
     <section class="stars-stage-section">
         <div class="container">
 
@@ -89,7 +85,7 @@
             </div>
 
             <div id="stars-stage-container">
-                <!-- Populated by js/home-loader.js from data/home-data.json -->
+                <!-- Populated by js/home-loader.js -->
             </div>
 
         </div>
@@ -105,7 +101,7 @@
             </div>
 
             <div class="home-news-list" id="latest-news-list">
-                <!-- Populated by js/home-loader.js from data/home-data.json -->
+                <!-- Populated by js/home-loader.js -->
             </div>
 
         </div>
