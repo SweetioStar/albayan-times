@@ -1,26 +1,9 @@
 /* ============================================
-   THE OPEN ALBAYAN TIMES - ARTICLE LOADER
-   ============================================
-   Reads ?id=xyz from the URL, searches every
-   data/*.json file for the matching item,
-   and fills the detail page.
-
-   Detail page layout adapts based on item.type:
-   - article  → featured image + body text
-   - video    → embedded player (local/YouTube/URL)
-   - book     → cover + description
-   - movie    → cover + description
-   - image    → full image + caption
-   - interview → Q&A layout
-   - advice   → advice layout
+   ALBAYAN TIMES - ARTICLE LOADER
    ============================================ */
 
 (function () {
     'use strict';
-
-    /* ==========================================
-       PATH PREFIX DETECTION
-       ========================================== */
 
     function detectPrefix() {
         const path = window.location.pathname;
@@ -30,37 +13,16 @@
 
     const PREFIX = detectPrefix();
 
-    /* ==========================================
-       LIST OF DATA FILES TO SEARCH
-       ========================================== */
-
     const DATA_FILES = [
-        'news',
-        'young-writers',
-        'watch',
-        'book-corner',
-        'creative-corner',
-        'reporters',
-        'archive',
-        'english-stars',
-        'spelling-bee',
-        'enrichment',
-        'contest',
-        'lexis-advice'
+        'news', 'young-writers', 'watch', 'book-corner',
+        'creative-corner', 'reporters', 'archive', 'english-stars',
+        'spelling-bee', 'enrichment', 'contest', 'lexis-advice'
     ];
 
-    /* ==========================================
-       HELPERS
-       ========================================== */
-
+    /* HELPERS */
     function escapeHtml(str) {
         if (str === null || str === undefined) return '';
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
     function getIdFromUrl() {
@@ -74,65 +36,32 @@
         return `${PREFIX}assets/images/${folder}/${item.image}`;
     }
 
-    // Convert body text with \n\n to paragraphs
     function buildBodyHtml(body) {
         if (!body) return '';
-        return String(body)
-            .split('\n\n')
-            .map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
-            .join('');
+        return String(body).split('\n\n').map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('');
     }
 
-    // Detect category badge class
     function getCategoryBadgeClass(category) {
-        const map = {
-            'school-news': 'badge-school-news',
-            'events': 'badge-events',
-            'health': 'badge-health',
-            'values': 'badge-values',
-            'young-writers': 'badge-young-writers',
-            'watch': 'badge-watch',
-            'book-corner': 'badge-book-corner',
-            'creative': 'badge-creative-corner',
-            'ai-creations': 'badge-mint',
-            'life-experiences': 'badge-teal',
-            'interview': 'badge-teal',
-            'advice': 'badge-yellow',
-            'contest': 'badge-coral'
-        };
+        const map = { 'school-news': 'badge-school-news', 'events': 'badge-events', 'health': 'badge-health', 'values': 'badge-values', 'young-writers': 'badge-young-writers', 'watch': 'badge-watch', 'book-corner': 'badge-book-corner', 'creative': 'badge-creative-corner', 'ai-creations': 'badge-coral', 'life-experiences': 'badge-teal', 'interview': 'badge-teal', 'advice': 'badge-yellow', 'contest': 'badge-coral' };
         return map[category] || 'badge-news';
     }
 
     function getCategoryLabel(category) {
-        const map = {
-            'school-news': 'School News',
-            'young-writers': 'Young Writers',
-            'ai-creations': 'AI Creations',
-            'life-experiences': 'Life Experiences',
-            'book-corner': 'Book/Movie',
-            'creative': 'Creative'
-        };
+        const map = { 'school-news': 'School News', 'young-writers': 'Young Writers', 'ai-creations': 'AI Creations', 'life-experiences': 'Life Experiences', 'book-corner': 'Book/Movie', 'creative': 'Creative', 'contest': 'Contest' };
         return map[category] || (category ? category.charAt(0).toUpperCase() + category.slice(1) : '');
     }
 
-    // Parse YouTube URL into embed URL
     function getYouTubeEmbed(url) {
         if (!url) return '';
-        // Already an embed URL
         if (url.includes('youtube.com/embed/')) return url;
-        // Watch URL
         const watchMatch = url.match(/[?&]v=([^&]+)/);
         if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
-        // youtu.be short URL
         const shortMatch = url.match(/youtu\.be\/([^?]+)/);
         if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
         return url;
     }
 
-    /* ==========================================
-       FETCH DATA
-       ========================================== */
-
+    /* FETCH */
     async function loadAllData() {
         const results = await Promise.all(
             DATA_FILES.map(async (fileName) => {
@@ -143,18 +72,12 @@
                     const data = await response.json();
                     const items = Array.isArray(data) ? data : (data.items || []);
                     return { fileName, items };
-                } catch (err) {
-                    return { fileName, items: [] };
-                }
+                } catch (err) { return { fileName, items: [] }; }
             })
         );
-
-        // Flatten into one array
         const all = [];
         results.forEach(({ fileName, items }) => {
-            items.forEach(item => {
-                all.push({ ...item, _source: fileName });
-            });
+            items.forEach(item => { all.push({ ...item, _source: fileName }); });
         });
         return all;
     }
@@ -163,24 +86,13 @@
         return items.find(item => item.id === id);
     }
 
-    /* ==========================================
-       RENDERERS BY TYPE
-       ========================================== */
-
+    /* LAYOUTS */
     function renderArticleLayout(item) {
         const imgUrl = getImageUrl(item, 'content');
-
         return `
             <article class="detail-article">
-                ${imgUrl ? `
-                    <div class="detail-hero-image">
-                        <img src="${imgUrl}" alt="${escapeHtml(item.title)}">
-                    </div>
-                ` : ''}
-
-                <div class="detail-body">
-                    ${buildBodyHtml(item.body || item.excerpt || 'Full content coming soon.')}
-                </div>
+                ${imgUrl ? `<div class="detail-hero-image"><img src="${imgUrl}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'"></div>` : ''}
+                <div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Full content coming soon.')}</div>
             </article>
         `;
     }
@@ -191,55 +103,23 @@
         let embedHtml = '';
 
         if (source === 'youtube') {
-            embedHtml = `
-                <div class="detail-video-wrapper">
-                    <iframe src="${getYouTubeEmbed(videoUrl)}"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-            `;
+            embedHtml = `<div class="detail-video-wrapper"><iframe src="${getYouTubeEmbed(videoUrl)}" frameborder="0" allowfullscreen></iframe></div>`;
         } else if (source === 'local') {
-            embedHtml = `
-                <div class="detail-video-wrapper">
-                    <video controls>
-                        <source src="${PREFIX}assets/videos/${escapeHtml(videoUrl)}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            `;
+            embedHtml = `<div class="detail-video-wrapper"><video controls><source src="${PREFIX}assets/videos/${escapeHtml(videoUrl)}" type="video/mp4"></video></div>`;
         } else if (source === 'url') {
-            embedHtml = `
-                <div class="detail-video-wrapper">
-                    <iframe src="${escapeHtml(videoUrl)}"
-                            frameborder="0"
-                            allow="autoplay; encrypted-media"
-                            allowfullscreen></iframe>
-                </div>
-            `;
+            embedHtml = `<div class="detail-video-wrapper"><iframe src="${escapeHtml(videoUrl)}" frameborder="0" allowfullscreen></iframe></div>`;
         }
 
-        return `
-            <article class="detail-video">
-                ${embedHtml}
-
-                <div class="detail-body">
-                    ${buildBodyHtml(item.body || item.excerpt || '')}
-                </div>
-            </article>
-        `;
+        return `<article class="detail-video">${embedHtml}<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div></article>`;
     }
 
     function renderBookLayout(item, typeLabel) {
         const folder = item.type === 'movie' ? 'movies' : 'books';
         const imgUrl = getImageUrl(item, folder);
-
         return `
             <article class="detail-book">
                 <div class="detail-book-inner">
-                    <div class="detail-book-cover">
-                        ${imgUrl ? `<img src="${imgUrl}" alt="${escapeHtml(item.title)}">` : ''}
-                    </div>
+                    <div class="detail-book-cover">${imgUrl ? `<img src="${imgUrl}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'">` : ''}</div>
                     <div class="detail-book-info">
                         <span class="detail-type-badge">${escapeHtml(typeLabel)}</span>
                         <h2 class="detail-book-title">${escapeHtml(item.title)}</h2>
@@ -251,170 +131,164 @@
                         </div>
                     </div>
                 </div>
-                <div class="detail-body">
-                    ${buildBodyHtml(item.body || item.excerpt || 'Review coming soon.')}
-                </div>
+                <div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Review coming soon.')}</div>
             </article>
         `;
     }
 
-    function renderImageLayout(item) {
-        const imgUrl = getImageUrl(item, 'creative');
-        const caption = item.caption || item.excerpt || '';
+    function renderContestLayout(item) {
+        const heroImage = getImageUrl(item, 'content');
+        const hasWinners = Array.isArray(item.winners) && item.winners.length > 0;
+        const hasGallery = Array.isArray(item.gallery) && item.gallery.length > 0;
 
-        return `
-            <article class="detail-image">
-                ${imgUrl ? `
-                    <div class="detail-full-image">
-                        <img src="${imgUrl}" alt="${escapeHtml(item.title)}">
-                    </div>
-                ` : ''}
-                ${caption ? `<p class="detail-image-caption">${escapeHtml(caption)}</p>` : ''}
-                <div class="detail-body">
-                    ${buildBodyHtml(item.body || '')}
+        const introHtml = `
+            <div class="contest-intro">
+                <div class="contest-intro-image">
+                    ${heroImage ? `<img src="${heroImage}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'">` : ''}
                 </div>
-            </article>
+                <div class="contest-intro-content">
+                    <span class="contest-intro-label">Contest</span>
+                    <h2 class="contest-intro-title">${escapeHtml(item.title)}</h2>
+                    <div class="contest-intro-meta">
+                        <span>${escapeHtml(item.date || '')}</span>
+                        ${item.theme ? `<span class="meta-divider">|</span><span>Theme: ${escapeHtml(item.theme)}</span>` : ''}
+                    </div>
+                    <p class="contest-intro-excerpt">${escapeHtml(item.body || item.excerpt || '')}</p>
+                </div>
+            </div>
         `;
-    }
 
-    function renderInterviewLayout(item) {
-        const imgUrl = getImageUrl(item, 'content');
+        let winnersHtml = '';
+        if (hasWinners) {
+            winnersHtml = `
+                <div class="contest-winners">
+                    <div class="winners-header">
+                        <h3>Winners</h3>
+                        <p>Chosen for creativity, composition, and storytelling</p>
+                    </div>
+                    <div class="winners-grid">
+                        ${item.winners.map(winner => {
+                            const placeClass = winner.place === 1 ? 'first-place' : winner.place === 2 ? 'second-place' : 'third-place';
+                            return `
+                                <div class="winner-card ${placeClass}">
+                                    <div class="winner-image">
+                                        <span class="winner-rank">${winner.place}</span>
+                                        <img src="${getImageUrl(winner, 'content')}" alt="${escapeHtml(winner.name)}" onerror="this.style.display='none'">
+                                    </div>
+                                    <div class="winner-body">
+                                        <h4 class="winner-name">${escapeHtml(winner.name)}</h4>
+                                        <span class="winner-grade">Grade ${escapeHtml(winner.grade)}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        let galleryHtml = '';
+        if (hasGallery) {
+            const galleryTitle = item.category === 'albayan-author' ? 'All Stories' : 'All Submissions';
+            galleryHtml = `
+                <div class="contest-gallery">
+                    <div class="gallery-header">
+                        <h3>${galleryTitle}</h3>
+                    </div>
+                    <div class="contest-gallery-grid">
+                        ${item.gallery.map(entry => `
+                            <div class="contest-photo">
+                                <div class="contest-photo-image">
+                                    <img src="${getImageUrl(entry, 'content')}" alt="${escapeHtml(entry.name)}" onerror="this.style.display='none'">
+                                </div>
+                                <div class="contest-photo-body">
+                                    <h4 class="contest-photo-title">${escapeHtml(entry.name)}</h4>
+                                    <span class="contest-photo-author">${escapeHtml(entry.author)}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
 
         return `
-            <article class="detail-interview">
-                ${imgUrl ? `
-                    <div class="detail-hero-image">
-                        <img src="${imgUrl}" alt="${escapeHtml(item.title)}">
-                    </div>
-                ` : ''}
-
-                <div class="detail-body">
-                    ${buildBodyHtml(item.body || item.excerpt || 'Interview coming soon.')}
-                </div>
-            </article>
-        `;
-    }
-
-    function renderAdviceLayout(item) {
-        const imgUrl = getImageUrl(item, 'content');
-
-        return `
-            <article class="detail-advice">
-                ${imgUrl ? `
-                    <div class="detail-hero-image">
-                        <img src="${imgUrl}" alt="${escapeHtml(item.title)}">
-                    </div>
-                ` : ''}
-
-                <div class="detail-body">
-                    ${buildBodyHtml(item.body || item.excerpt || 'Advice coming soon.')}
-                </div>
+            <article class="detail-contest">
+                ${introHtml}
+                ${winnersHtml}
+                ${galleryHtml}
             </article>
         `;
     }
 
     function renderByType(item) {
         const type = item.type || 'article';
-
         switch (type) {
             case 'article':   return renderArticleLayout(item);
             case 'video':     return renderVideoLayout(item);
             case 'book':      return renderBookLayout(item, 'Book');
             case 'movie':     return renderBookLayout(item, 'Movie');
-            case 'image':     return renderImageLayout(item);
-            case 'interview': return renderInterviewLayout(item);
-            case 'advice':    return renderAdviceLayout(item);
+            case 'contest':   return renderContestLayout(item);
+            case 'interview': return renderArticleLayout(item); // Fallback for simple text
+            case 'advice':    return renderArticleLayout(item); // Fallback
             default:          return renderArticleLayout(item);
         }
     }
 
-    /* ==========================================
-       FILL THE PAGE
-       ========================================== */
-
+    /* FILL PAGE */
     function fillPage(item) {
-        // Title
-        document.title = `${item.title} | The Open Albayan Times`;
-
-        // Category badge
+        document.title = `${item.title} | Albayan Times`;
+        
+        // Hide category badge for contests since they have their own label
         const badgeEl = document.getElementById('detail-badge');
-        if (badgeEl && item.category) {
-            badgeEl.textContent = getCategoryLabel(item.category) || item.category;
-            badgeEl.className = 'detail-badge ' + getCategoryBadgeClass(item.category);
+        if (badgeEl) {
+            if (item.type === 'contest') {
+                badgeEl.style.display = 'none';
+            } else if (item.category) {
+                badgeEl.textContent = getCategoryLabel(item.category) || item.category;
+                badgeEl.className = 'detail-badge ' + getCategoryBadgeClass(item.category);
+            }
         }
 
-        // Main title
         const titleEl = document.getElementById('detail-title');
         if (titleEl) titleEl.textContent = item.title || 'Untitled';
 
-        // Meta row
+        // Hide the meta row for contests since the layout handles it
         const metaEl = document.getElementById('detail-meta');
         if (metaEl) {
-            const author = item.author || item.recommendedBy || item.creator || '';
-            const date = item.date || '';
-            const grade = item.grade ? `Grade ${item.grade}` : '';
-            metaEl.innerHTML = [
-                author ? `<span class="meta-author">${escapeHtml(author)}</span>` : '',
-                date ? `<span>${escapeHtml(date)}</span>` : '',
-                grade ? `<span class="meta-category">${escapeHtml(grade)}</span>` : ''
-            ].filter(Boolean).join('<span class="meta-divider">|</span>');
+            if (item.type === 'contest') {
+                metaEl.style.display = 'none';
+            } else {
+                const author = item.author || item.recommendedBy || item.creator || '';
+                const date = item.date || '';
+                const grade = item.grade ? `Grade ${item.grade}` : '';
+                metaEl.innerHTML = [
+                    author ? `<span class="meta-author">${escapeHtml(author)}</span>` : '',
+                    date ? `<span>${escapeHtml(date)}</span>` : '',
+                    grade ? `<span class="meta-category">${escapeHtml(grade)}</span>` : ''
+                ].filter(Boolean).join('<span class="meta-divider">|</span>');
+            }
         }
 
-        // Body content
         const contentEl = document.getElementById('detail-content');
         if (contentEl) contentEl.innerHTML = renderByType(item);
 
-        // Breadcrumbs
         const crumbEl = document.getElementById('detail-crumb-current');
         if (crumbEl) crumbEl.textContent = item.title || '';
 
         const crumbSectionEl = document.getElementById('detail-crumb-section');
         if (crumbSectionEl && item._source) {
-            const sectionNames = {
-                'news': 'News',
-                'young-writers': 'Young Writers',
-                'watch': 'Watch',
-                'book-corner': 'Book/Movie Suggestions',
-                'creative-corner': 'Creative Corner',
-                'reporters': 'Meet the Reporters',
-                'archive': 'Archive',
-                'english-stars': 'English Stars',
-                'spelling-bee': 'Spelling Bee',
-                'enrichment': 'Enrichment',
-                'contest': 'Contest',
-                'lexis-advice': "Lexi's Advice"
-            };
+            const sectionNames = { 'news': 'News', 'young-writers': 'Young Writers', 'watch': 'Watch', 'book-corner': 'Book/Movie Suggestions', 'creative-corner': 'Creative Corner', 'reporters': 'Meet the Reporters', 'archive': 'Archive', 'english-stars': 'English Stars', 'spelling-bee': 'Spelling Bee', 'enrichment': 'Enrichment', 'contest': 'Contest', 'lexis-advice': "Lexi's Advice" };
             crumbSectionEl.textContent = sectionNames[item._source] || 'Content';
-            // Build a link to the section page
-            const sectionUrls = {
-                'news': 'news.html',
-                'young-writers': 'young-writers.html',
-                'watch': 'watch.html',
-                'book-corner': 'book-corner.html',
-                'creative-corner': 'creative-corner.html',
-                'reporters': 'meet-the-reporters.html',
-                'archive': 'archive.html',
-                'english-stars': 'english-stars.html',
-                'spelling-bee': 'spelling-bee.html',
-                'enrichment': 'enrichment.html',
-                'contest': 'contest.html',
-                'lexis-advice': 'lexis-advice.html'
-            };
+            
+            const sectionUrls = { 'news': 'news.html', 'young-writers': 'young-writers.html', 'watch': 'watch.html', 'book-corner': 'book-corner.html', 'creative-corner': 'creative-corner.html', 'reporters': 'meet-the-reporters.html', 'archive': 'archive.html', 'english-stars': 'english-stars.html', 'spelling-bee': 'spelling-bee.html', 'enrichment': 'enrichment.html', 'contest': 'contest.html', 'lexis-advice': 'lexis-advice.html' };
             crumbSectionEl.href = sectionUrls[item._source] || '#';
         }
     }
 
     function showNotFound() {
         const contentEl = document.getElementById('detail-content');
-        if (contentEl) {
-            contentEl.innerHTML = `
-                <div class="empty-state">
-                    <h3>Content not found</h3>
-                    <p>The article you're looking for might have been moved or doesn't exist yet.</p>
-                    <a href="${PREFIX}index.html" class="btn btn-primary">Back to Home</a>
-                </div>
-            `;
-        }
+        if (contentEl) contentEl.innerHTML = `<div class="empty-state"><h3>Content not found</h3><p>The article you're looking for might have been moved or doesn't exist yet.</p><a href="${PREFIX}index.html" class="btn btn-primary">Back to Home</a></div>`;
         const titleEl = document.getElementById('detail-title');
         if (titleEl) titleEl.textContent = 'Not Found';
         const metaEl = document.getElementById('detail-meta');
@@ -423,26 +297,13 @@
         if (badgeEl) badgeEl.style.display = 'none';
     }
 
-    /* ==========================================
-       INIT
-       ========================================== */
-
+    /* INIT */
     async function init() {
         const id = getIdFromUrl();
-
-        if (!id) {
-            showNotFound();
-            return;
-        }
-
+        if (!id) { showNotFound(); return; }
         const allItems = await loadAllData();
         const item = findItemById(allItems, id);
-
-        if (!item) {
-            showNotFound();
-            return;
-        }
-
+        if (!item) { showNotFound(); return; }
         fillPage(item);
     }
 

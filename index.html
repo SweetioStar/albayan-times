@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/navigation.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,52 +26,17 @@
     <!-- DYNAMIC HEADER -->
     <div id="site-header"></div>
 
-    <!-- FEATURED HERO — ENGLISH STARS -->
-    <section class="featured-hero">
-        <!-- Decorative sparkle stars -->
-        <span class="hero-sparkle s1"></span>
-        <span class="hero-sparkle s2"></span>
-        <span class="hero-sparkle s3"></span>
-        <span class="hero-sparkle s4"></span>
-
-        <div class="container">
-            <div class="featured-hero-inner">
-
-                <!-- LEFT: Text content -->
-                <div class="featured-hero-content">
-                    <span class="featured-hero-badge">Featured This Week</span>
-                    <h1 class="featured-hero-title">
-                        English
-                        <span class="title-accent">Stars</span>
-                    </h1>
-                    <p class="featured-hero-excerpt">
-                        Celebrating our brightest English learners — one shining star from every class section, every week.
-                    </p>
-
-                    <div class="featured-hero-meta">
-                        <span class="hero-meta-chip">
-                            <span class="chip-icon"></span>
-                            <span id="hero-week-label">Loading...</span>
-                        </span>
-                        <span class="hero-meta-chip">
-                            <span class="chip-icon"></span>
-                            <span id="hero-star-count">17 Classes</span>
-                        </span>
-                        <span class="hero-meta-chip">
-                            <span class="chip-icon"></span>
-                            English Department
-                        </span>
-                    </div>
-
-                    <a href="html/english-stars.html" class="featured-hero-cta">Meet the Stars</a>
-                </div>
-
-                <!-- RIGHT: Lexi hero image -->
-                <div class="hero-lexi">
-                    <img src="assets/images/lexi/english-stars-hero.png" alt="English Stars" class="hero-lexi-img" onerror="this.src='assets/images/lexi/lexi-hero.png'">
-                </div>
-
+    <!-- FEATURED SWIPER HERO -->
+    <section class="featured-hero-section">
+        <div class="swiper featuredSwiper">
+            <div class="swiper-wrapper" id="hero-swiper-wrapper">
+                <!-- Slides injected by js/home-loader.js -->
             </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </section>
 
@@ -115,6 +81,7 @@
     <script src="js/footer.js"></script>
     <script src="js/main.js"></script>
     <script src="js/home-loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </body>
 </html>

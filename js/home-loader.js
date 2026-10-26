@@ -1,48 +1,19 @@
 /* ============================================
    ALBAYAN TIMES - HOME LOADER
-   ============================================
-   Reads data/home-data.json AND
-   data/english-stars.json to fill:
-   - Hero week (auto-computed from today)
-   - Lexi hero image
-   - Stars stage (grouped by grade)
-   - Latest News list
    ============================================ */
 
 (function () {
     'use strict';
 
-    /* ==========================================
-       AUTO WEEK LABEL
-       ========================================== */
-
     function getWeekLabel() {
-    const today = new Date();
-    const dayNames = [
-        'Sunday', 'Monday', 'Tuesday', 'Wednesday',
-        'Thursday', 'Friday', 'Saturday'
-    ];
-    const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
-    // Get the Sunday of the current week
-    // If today is Sunday (0), diff is 0. Otherwise, go back that many days.
-    const day = today.getDay();
-    const sunday = new Date(today);
-    sunday.setDate(today.getDate() - day);
-
-    const dayName = dayNames[sunday.getDay()];       // Always "Sunday"
-    const monthName = monthNames[sunday.getMonth()];
-    const date = sunday.getDate();
-    const year = sunday.getFullYear();
-
-    return `${dayName}, ${monthName} ${date}, ${year}`;
-}
-    /* ==========================================
-       HELPERS
-       ========================================== */
+        const today = new Date();
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const day = today.getDay();
+        const sunday = new Date(today);
+        sunday.setDate(today.getDate() - day);
+        return `${dayNames[sunday.getDay()]}, ${monthNames[sunday.getMonth()]} ${sunday.getDate()}, ${sunday.getFullYear()}`;
+    }
 
     async function fetchJSON(fileName) {
         try {
@@ -51,52 +22,105 @@
             if (!response.ok) return null;
             return await response.json();
         } catch (err) {
-            console.warn('[Albayan] Could not load ' + fileName + '.json:', err);
             return null;
         }
     }
 
     function escapeHtml(str) {
         if (str === null || str === undefined) return '';
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
-    function getInitial(name) {
-        if (!name) return '?';
-        return String(name).trim().charAt(0).toUpperCase();
+    function getYouTubeEmbed(url) {
+        if (!url) return '';
+        if (url.includes('youtube.com/embed/')) return url;
+        const watchMatch = url.match(/[?&]v=([^&]+)/);
+        if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+        const shortMatch = url.match(/youtu\.be\/([^?]+)/);
+        if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+        return url;
     }
 
     /* ==========================================
-       HERO META
+       BUILD SLIDES
        ========================================== */
 
-    function renderHeroMeta(starsData) {
-        if (!starsData) return;
-
-        const stars = starsData.items || [];
-        const count = stars.length;
+    function buildEnglishStarsSlide(starsData) {
         const weekLabel = getWeekLabel();
+        const count = starsData ? (starsData.items || []).length : 17;
 
-        const heroCount = document.getElementById('hero-star-count');
-        if (heroCount) heroCount.textContent = count + ' Classes';
+        return `
+            <div class="swiper-slide">
+                <div class="featured-hero">
+                    <span class="hero-sparkle s1"></span>
+                    <span class="hero-sparkle s2"></span>
+                    <span class="hero-sparkle s3"></span>
+                    <span class="hero-sparkle s4"></span>
+                    <div class="container">
+                        <div class="featured-hero-inner">
+                            <div class="featured-hero-content">
+                                <span class="featured-hero-badge">Featured This Week</span>
+                                <h1 class="featured-hero-title">English <span class="title-accent">Stars</span></h1>
+                                <p class="featured-hero-excerpt">Celebrating our brightest English learners — one shining star from every class section, every week.</p>
+                                <div class="featured-hero-meta">
+                                    <span class="hero-meta-chip"><span class="chip-icon"></span><span>${weekLabel}</span></span>
+                                    <span class="hero-meta-chip"><span class="chip-icon"></span><span>${count} Classes</span></span>
+                                    <span class="hero-meta-chip"><span class="chip-icon"></span>English Department</span>
+                                </div>
+                                <a href="html/english-stars.html" class="featured-hero-cta">Meet the Stars</a>
+                            </div>
+                            <div class="hero-lexi">
+                                <img src="assets/images/lexi/english-stars-hero.png" alt="English Stars" class="hero-lexi-img" onerror="this.src='assets/images/lexi/lexi-hero.png'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
 
-        const heroWeekLabel = document.getElementById('hero-week-label');
-        if (heroWeekLabel) heroWeekLabel.textContent = weekLabel;
+    function buildAnnouncementSlide(data) {
+        const a = data.announcement;
+        let videoHtml = '';
 
-        const starsWeekLabel = document.getElementById('stars-week-label');
-        if (starsWeekLabel) starsWeekLabel.textContent = weekLabel;
+        if (a.videoUrl) {
+            if (a.videoType === 'youtube') {
+                videoHtml = `<iframe src="${getYouTubeEmbed(a.videoUrl)}" frameborder="0" allowfullscreen></iframe>`;
+            } else if (a.videoType === 'local') {
+                videoHtml = `<video controls><source src="${escapeHtml(a.videoUrl)}" type="video/mp4"></video>`;
+            } else if (a.videoType === 'url') {
+                videoHtml = `<iframe src="${escapeHtml(a.videoUrl)}" frameborder="0" allowfullscreen></iframe>`;
+            }
+        } else if (a.image) {
+            videoHtml = `<img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.title)}">`;
+        }
 
-        const themeEl = document.getElementById('hero-theme');
-        if (themeEl && starsData.theme) themeEl.textContent = starsData.theme;
+        return `
+            <div class="swiper-slide">
+                <div class="featured-hero announcement-hero">
+                    <div class="container">
+                        <div class="featured-hero-inner featured-hero-inner-announcement">
+                            <div class="featured-hero-content">
+                                <span class="featured-hero-badge featured-hero-badge-red">Announcement</span>
+                                <h1 class="featured-hero-title">${escapeHtml(a.title)}</h1>
+                                ${a.subtitle ? `<p class="featured-hero-subtitle-large">${escapeHtml(a.subtitle)}</p>` : ''}
+                                ${a.description ? `<p class="featured-hero-excerpt">${escapeHtml(a.description)}</p>` : ''}
+                                ${a.ctaText && a.ctaLink ? `<a href="${escapeHtml(a.ctaLink)}" class="featured-hero-cta">${escapeHtml(a.ctaText)}</a>` : ''}
+                            </div>
+                            <div class="announcement-media">
+                                <div class="announcement-video-wrapper">
+                                    ${videoHtml}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     /* ==========================================
-       STARS STAGE
+       STARS STAGE (Below Hero)
        ========================================== */
 
     function groupByGrade(stars) {
@@ -109,10 +133,8 @@
     }
 
     function renderStarCard(star) {
-        const initial = getInitial(star.name);
-        const photoUrl = star.photo
-            ? `assets/images/stars/${escapeHtml(star.photo)}`
-            : '';
+        const initial = star.name ? String(star.name).trim().charAt(0).toUpperCase() : '?';
+        const photoUrl = star.photo ? `assets/images/stars/${escapeHtml(star.photo)}` : '';
 
         return `
             <div class="star-card">
@@ -135,28 +157,14 @@
         if (stars.length === 0) return;
 
         const groups = groupByGrade(stars);
-
-        const gradeLabels = {
-            '3': 'Grade 3',
-            '4': 'Grade 4',
-            '5': 'Grade 5',
-            '6': 'Grade 6'
-        };
-
-        const gradeSubtitles = {
-            '3': 'Our youngest stars shine bright',
-            '4': 'Growing confidence in English',
-            '5': 'Reading, writing, and discovering',
-            '6': 'Leading by example every day'
-        };
+        const gradeLabels = { '3': 'Grade 3', '4': 'Grade 4', '5': 'Grade 5', '6': 'Grade 6' };
+        const gradeSubtitles = { '3': 'Our youngest stars shine bright', '4': 'Growing confidence in English', '5': 'Reading, writing, and discovering', '6': 'Leading by example every day' };
 
         let html = '';
         ['3', '4', '5', '6'].forEach(grade => {
             const list = groups[grade];
             if (!list || list.length === 0) return;
-
             const rowClass = list.length === 4 ? 'stars-row stars-row-4' : 'stars-row';
-
             html += `
                 <div class="grade-group">
                     <div class="grade-group-header">
@@ -166,9 +174,7 @@
                             <p class="grade-group-subtitle">${gradeSubtitles[grade]}</p>
                         </div>
                     </div>
-                    <div class="${rowClass}">
-                        ${list.map(renderStarCard).join('')}
-                    </div>
+                    <div class="${rowClass}">${list.map(renderStarCard).join('')}</div>
                 </div>
             `;
         });
@@ -176,16 +182,11 @@
         container.innerHTML = html;
     }
 
-    /* ==========================================
-       LATEST NEWS
-       ========================================== */
-
     function renderLatestNews(homeData) {
         const container = document.getElementById('latest-news-list');
         if (!container || !homeData || !homeData.latest_news) return;
 
         const news = homeData.latest_news.slice(0, 5);
-
         container.innerHTML = news.map((item, index) => `
             <a href="${item.url}" class="home-news-item">
                 <span class="home-news-number">${index + 1}</span>
@@ -203,10 +204,40 @@
        ========================================== */
 
     async function init() {
-        const homeData = await fetchJSON('home-data');
+        const featuredData = await fetchJSON('featured');
         const starsData = await fetchJSON('english-stars');
+        const homeData = await fetchJSON('home-data');
 
-        renderHeroMeta(starsData);
+        const wrapper = document.getElementById('hero-swiper-wrapper');
+        if (wrapper) {
+            let slidesHtml = '';
+
+            // 1. If announcement is active, add it first
+            if (featuredData && featuredData.type === 'announcement') {
+                slidesHtml += buildAnnouncementSlide(featuredData);
+            }
+
+            // 2. Always add English Stars
+            slidesHtml += buildEnglishStarsSlide(starsData);
+
+            wrapper.innerHTML = slidesHtml;
+
+            // Initialize Swiper
+            new Swiper('.featuredSwiper', {
+                loop: false, // We only want to loop if there are multiple slides
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'slide',
+                speed: 600,
+            });
+        }
+
         renderStarsStage(starsData);
         renderLatestNews(homeData);
     }

@@ -1,10 +1,5 @@
 /* ============================================
    ALBAYAN TIMES - DYNAMIC HEADER
-   ============================================
-   Injects ticker + header + nav + mobile drawer.
-   Works in TWO locations:
-   - Root:   /index.html        → prefix = ''
-   - html/:  /html/news.html    → prefix = '../'
    ============================================ */
 
 (function () {
@@ -12,9 +7,7 @@
 
     function detectPrefix() {
         const path = window.location.pathname;
-        if (path.includes('/html/')) {
-            return '../';
-        }
+        if (path.includes('/html/')) return '../';
         return '';
     }
 
@@ -31,7 +24,43 @@
     }
 
     /* ==========================================
-       TICKER HTML
+       BREAKING STRIP
+       ========================================== */
+
+    async function renderBreakingStrip() {
+        const placeholder = document.getElementById('breaking-strip');
+        if (!placeholder) return;
+
+        try {
+            const url = `${PREFIX}data/breaking.json?v=` + Date.now();
+            const res = await fetch(url);
+            if (!res.ok) return;
+            const data = await res.json();
+            if (!data.enabled || !data.message) {
+                placeholder.style.display = 'none';
+                return;
+            }
+
+            const linkHtml = data.link
+                ? `<a href="${PREFIX}${data.link}" class="breaking-link">${data.linkText || 'Learn More'} →</a>`
+                : '';
+
+            placeholder.innerHTML = `
+                <div class="breaking-strip-inner">
+                    <span class="breaking-dot"></span>
+                    <span class="breaking-label">Breaking</span>
+                    <span class="breaking-message">${data.message}</span>
+                    ${linkHtml}
+                </div>
+            `;
+        } catch (err) {
+            console.warn('[Albayan] Could not load breaking.json:', err);
+            placeholder.style.display = 'none';
+        }
+    }
+
+    /* ==========================================
+       TICKER
        ========================================== */
 
     const TICKER_HTML = `
@@ -63,7 +92,7 @@
     `;
 
     /* ==========================================
-       HEADER HTML
+       HEADER
        ========================================== */
 
     const HEADER_HTML = `
@@ -86,7 +115,7 @@
     `;
 
     /* ==========================================
-       DESKTOP NAV HTML
+       NAV
        ========================================== */
 
     const NAV_HTML = `
@@ -118,7 +147,7 @@
     `;
 
     /* ==========================================
-       MOBILE DRAWER HTML
+       MOBILE DRAWER
        ========================================== */
 
     const MOBILE_HTML = `
@@ -145,13 +174,29 @@
         </div>
     `;
 
+    /* ==========================================
+       INJECTION
+       ========================================== */
+
     function injectHeader() {
         const placeholder = document.getElementById('site-header');
         if (!placeholder) {
             console.warn('[Albayan] No #site-header placeholder on this page.');
             return;
         }
-        placeholder.innerHTML = TICKER_HTML + HEADER_HTML + NAV_HTML + MOBILE_HTML;
+
+        // Build the site-header with three parts:
+        // 1. Breaking strip placeholder (top)
+        // 2. Ticker + Header + Nav + Mobile drawer (existing)
+        placeholder.innerHTML = `
+            <div id="breaking-strip"></div>
+            ${TICKER_HTML}
+            ${HEADER_HTML}
+            ${NAV_HTML}
+            ${MOBILE_HTML}
+        `;
+
+        renderBreakingStrip();
     }
 
     function setupMobileToggle() {
@@ -182,9 +227,7 @@
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                panel.classList.remove('open');
-            }
+            if (e.key === 'Escape') panel.classList.remove('open');
         });
     }
 

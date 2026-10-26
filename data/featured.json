@@ -1,0 +1,13 @@
+{
+    "type": "announcement",
+    "announcement": {
+        "title": "Spelling Bee Winners Announced!",
+        "subtitle": "Congratulations to our brilliant spellers",
+        "description": "Watch the video to see who took home the top prizes at this year's Spelling Bee championship.",
+        "videoUrl": "spelling-bee-winners.mp4",
+        "videoType": "local",
+        "ctaText": "See All Winners",
+        "ctaLink": "html/contest.html",
+        "image": ""
+    }
+}
