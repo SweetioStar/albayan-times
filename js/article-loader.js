@@ -145,6 +145,171 @@
         `;
     }
 
+    /* Picture slider: one picture, or several with arrows, counter and thumbnails */
+    function pictureSlider(pictures, showThumbs = true) {
+        if (!pictures.length) return '';
+        const many = pictures.length > 1;
+        return `
+            <div class="detail-slider" data-index="0">
+                <div class="detail-slider-stage">
+                    ${pictures.map((pic, i) => `
+                        <figure class="detail-slide${i === 0 ? ' is-active' : ''}">
+                            <a href="${pic.url}" target="_blank" rel="noopener" title="Open full size">
+                                <img src="${pic.url}" alt="${escapeHtml(pic.caption || '')}" ${i > 0 ? 'loading="lazy"' : ''}>
+                            </a>
+                            ${pic.caption ? `<figcaption>${escapeHtml(pic.caption)}</figcaption>` : ''}
+                        </figure>
+                    `).join('')}
+                    ${many ? `
+                        <button type="button" class="detail-slider-arrow prev" aria-label="Previous picture">&#8249;</button>
+                        <button type="button" class="detail-slider-arrow next" aria-label="Next picture">&#8250;</button>
+                        <span class="detail-slider-count">1 / ${pictures.length}</span>
+                    ` : ''}
+                </div>
+                ${many && showThumbs ? `
+                    <div class="detail-slider-thumbs">
+                        ${pictures.map((pic, i) => `<button type="button" class="detail-slider-thumb${i === 0 ? ' is-active' : ''}" data-go="${i}" aria-label="Picture ${i + 1}"><img src="${pic.url}" alt="" loading="lazy"></button>`).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    function itemPictures(item, folder) {
+        const pics = [];
+        const main = getImageUrl(item, folder);
+        if (main && item.image !== item.authorPhoto) pics.push({ url: main, caption: '' });
+        (item.images || []).forEach(img => {
+            const url = contentImg(img.image);
+            const dup = pics.find(p => p.url === url);
+            if (dup) { dup.caption = img.caption || dup.caption; return; }
+            pics.push({ url, caption: img.caption || '' });
+        });
+        return pics;
+    }
+
+    function picturePicker(pictures, label) {
+        return `
+            <div class="detail-picker">
+                <h3 class="detail-picker-title">${escapeHtml(label)} <span>${pictures.length}</span></h3>
+                <div class="detail-picker-grid">
+                    ${pictures.map((pic, i) => `
+                        <button type="button" class="detail-picker-item${i === 0 ? ' is-active' : ''}" data-go="${i}">
+                            <img src="${pic.url}" alt="${escapeHtml(pic.caption || '')}" loading="lazy">
+                            ${pic.caption ? `<span>${escapeHtml(pic.caption)}</span>` : ''}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    /* "More from …": fills the space under a short description with other pieces from the same section */
+    const SECTION_LABELS = {
+        'news': 'News', 'young-writers': 'Young Writers', 'watch': 'Watch', 'book-corner': 'Book Corner',
+        'creative-corner': 'Creative Corner', 'reporters': 'Reporters', 'contest': 'Contests',
+        'competitions': 'Competitions', 'lexis-advice': "Lexi's Advice"
+    };
+
+    async function addMoreFrom(item, root) {
+        const main = root.querySelector('.detail-layout .detail-main');
+        if (!main || main.querySelector('.detail-picker')) return;
+        const text = String(item.body || '').length;
+        if (text > 600) return;
+
+        const items = (await loadFile(item._source)).filter(x => x.id !== item.id && x.type !== 'reporter' && x.image);
+        if (!items.length) return;
+        // same category first, then the rest; start after the current item so each page shows different ones
+        const all = (await loadFile(item._source));
+        const start = all.findIndex(x => x.id === item.id);
+        const ordered = items.slice().sort((a, b) => {
+            const sameA = a.category && a.category === item.category ? 0 : 1;
+            const sameB = b.category && b.category === item.category ? 0 : 1;
+            if (sameA !== sameB) return sameA - sameB;
+            const ia = (all.indexOf(all.find(x => x.id === a.id)) - start + all.length) % all.length;
+            const ib = (all.indexOf(all.find(x => x.id === b.id)) - start + all.length) % all.length;
+            return ia - ib;
+        }).slice(0, 3);
+
+        const folderFor = x => x.imageFolder || (x.type === 'book' ? 'books' : x.type === 'movie' ? 'movies' : 'content');
+        const label = SECTION_LABELS[item._source] || 'Albayan Times';
+        main.querySelector('.detail-body').classList.add('detail-body-short');
+        main.insertAdjacentHTML('beforeend', `
+            <div class="detail-more">
+                <h3 class="detail-picker-title">More from ${escapeHtml(label)}</h3>
+                <div class="detail-more-list">
+                    ${ordered.map(x => `
+                        <a class="detail-more-item" href="article.html?id=${encodeURIComponent(x.id)}">
+                            <span class="detail-more-thumb"><img src="${getImageUrl(x, folderFor(x))}" alt="" loading="lazy"></span>
+                            <span class="detail-more-text">
+                                <strong>${escapeHtml(x.title)}</strong>
+                                <small>${escapeHtml(x.recommendedBy ? 'Recommended by ' + x.recommendedBy : (x.author || x.date || ''))}</small>
+                            </span>
+                            <span class="detail-more-arrow">&rarr;</span>
+                        </a>
+                    `).join('')}
+                </div>
+            </div>
+        `);
+        fitColumns(root);
+    }
+
+    /* Keep both columns the same height: show only as many "More from" items as fit beside the picture */
+    function fitColumns(root) {
+        const layout = root.querySelector('.detail-layout');
+        const side = layout && layout.querySelector('.detail-side');
+        const main = layout && layout.querySelector('.detail-main');
+        if (!side || !main) return;
+
+        const fit = () => {
+            const more = main.querySelector('.detail-more');
+            const items = [...main.querySelectorAll('.detail-more-item')];
+            layout.classList.remove('is-even');
+            if (more) more.hidden = false;
+            items.forEach(i => { i.hidden = false; });
+            if (window.innerWidth <= 960) { layout.classList.add('is-even'); return; }
+            const sideH = side.getBoundingClientRect().height;
+            for (let k = items.length - 1; k >= 0 && main.getBoundingClientRect().height > sideH + 24; k--) {
+                items[k].hidden = true;
+                if (k === 0 && more) more.hidden = true;
+            }
+            layout.classList.add('is-even');
+        };
+
+        const imgs = [...side.querySelectorAll('img, video')];
+        imgs.forEach(m => {
+            if (m.tagName === 'IMG' && !m.complete) m.addEventListener('load', fit, { once: true });
+            if (m.tagName === 'VIDEO') m.addEventListener('loadedmetadata', fit, { once: true });
+        });
+        fit();
+        let t;
+        window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fit, 150); });
+    }
+
+    function bindSliders(root) {
+        root.querySelectorAll('.detail-slider').forEach(slider => {
+            const slides = slider.querySelectorAll('.detail-slide');
+            const thumbs = [...slider.querySelectorAll('.detail-slider-thumb'), ...root.querySelectorAll('.detail-picker-item')];
+            const count = slider.querySelector('.detail-slider-count');
+            if (slides.length < 2) return;
+            let index = 0;
+            const go = i => {
+                index = (i + slides.length) % slides.length;
+                slides.forEach((s, k) => s.classList.toggle('is-active', k === index));
+                thumbs.forEach(t => t.classList.toggle('is-active', Number(t.dataset.go) === index));
+                if (count) count.textContent = `${index + 1} / ${slides.length}`;
+            };
+            slider.querySelector('.prev').addEventListener('click', () => go(index - 1));
+            slider.querySelector('.next').addEventListener('click', () => go(index + 1));
+            thumbs.forEach(t => t.addEventListener('click', () => go(Number(t.dataset.go))));
+            slider.tabIndex = 0;
+            slider.addEventListener('keydown', e => {
+                if (e.key === 'ArrowLeft') go(index - 1);
+                if (e.key === 'ArrowRight') go(index + 1);
+            });
+        });
+    }
+
     /* Two columns on wide screens: picture + author on the left, text on the right */
     function twoColumns(sideHtml, mainHtml) {
         if (!sideHtml.trim()) {
@@ -191,15 +356,20 @@
     }
 
     function renderArticleLayout(item) {
-        const imgUrl = getImageUrl(item, 'content');
-        // When the main image is just the author's portrait or repeated in the gallery, don't show it twice
-        const showHero = imgUrl && !item.videos && !(item.images && item.images.length) && item.image !== item.authorPhoto;
-        const side = (showHero ? fullImage(imgUrl, item.title) : '') + renderAuthorCard(item);
+        const pictures = item.videos ? [] : itemPictures(item, 'content');
+        // Several pictures + a short description: show all pictures as a grid on the right
+        const shortText = String(item.body || '').length < 600;
+        const usePicker = pictures.length >= 3 && shortText;
+        const label = item.pickerLabel || (item.category === 'life-experiences' ? 'All posters' : 'All pictures');
+        const main = `
+            ${renderAuthorCard(item)}
+            <div class="detail-body${usePicker ? ' detail-body-short' : ''}">${buildBodyHtml(item.body || item.excerpt || 'Full content coming soon.')}</div>
+            ${usePicker ? picturePicker(pictures, label) : ''}
+        `;
         return `
             <article class="detail-article">
-                ${twoColumns(side, `<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Full content coming soon.')}</div>`)}
+                ${twoColumns(pictureSlider(pictures, !usePicker), main)}
                 ${renderVideoList(item)}
-                ${renderImageGallery(item)}
             </article>
         `;
     }
@@ -233,8 +403,7 @@
     function renderBookLayout(item, typeLabel) {
         const folder = item.type === 'movie' ? 'movies' : 'books';
         const imgUrl = getImageUrl(item, folder);
-        const side = `
-            ${imgUrl ? fullImage(imgUrl, item.title) : ''}
+        const person = `
             <div class="detail-recommender-card">
                 <span class="detail-type-badge">${escapeHtml(typeLabel)}</span>
                 ${item.creator ? `<p class="detail-book-creator">${escapeHtml(item.creator)}</p>` : ''}
@@ -245,7 +414,7 @@
         `;
         return `
             <article class="detail-book">
-                ${twoColumns(side, `<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Review coming soon.')}</div>`)}
+                ${twoColumns(pictureSlider(imgUrl ? [{ url: imgUrl, caption: '' }] : []), person + `<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Review coming soon.')}</div>`)}
             </article>
         `;
     }
@@ -437,7 +606,7 @@
         }
 
         const contentEl = document.getElementById('detail-content');
-        if (contentEl) contentEl.innerHTML = renderByType(item);
+        if (contentEl) { contentEl.innerHTML = renderByType(item); bindSliders(contentEl); addMoreFrom(item, contentEl); }
 
         const crumbEl = document.getElementById('detail-crumb-current');
         if (crumbEl) crumbEl.textContent = item.title || '';
