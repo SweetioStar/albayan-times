@@ -27,6 +27,7 @@
     const MODE = 'show';
 
     const MAX_LENGTH = 500;
+    const NAME_SEPARATOR = ' — ';
 
     /* ---------------- helpers ---------------- */
     function esc(str) {
@@ -43,7 +44,7 @@
             url.searchParams.forEach((value, key) => {
                 if (!key.startsWith('entry.')) return;
                 const v = value.trim().toUpperCase();
-                if (['PAGE', 'NAME', 'CLASS', 'COMMENT'].includes(v)) ids[v] = key;
+                if (['PAGE', 'NAME', 'COMMENT'].includes(v)) ids[v] = key;
             });
             if (!ids.PAGE || !ids.COMMENT) return null;
             return { action, ids };
@@ -98,10 +99,20 @@
             const show = col.show >= 0 ? (r[col.show] || '').trim().toLowerCase() : '';
             if (MODE === 'approve') return show === 'yes';
             return show !== 'no';
-        }).map(r => ({
-            text: (r[col.text] || '').trim(),
+        }).map(r => {
+            let text = (r[col.text] || '').trim();
+            let name = col.name >= 0 ? (r[col.name] || '').trim() : '';
+            // When the form has no Name question, the name is saved as "Name — comment"
+            if (!name) {
+                const cut = text.indexOf(NAME_SEPARATOR);
+                if (cut > 0 && cut <= 40) { name = text.slice(0, cut).trim(); text = text.slice(cut + NAME_SEPARATOR.length).trim(); }
+            }
+            return {
+            name,
+            text,
             time: col.time >= 0 ? (r[col.time] || '').trim() : ''
-        }));
+            };
+        });
     }
 
     function formatDate(raw) {
@@ -112,11 +123,15 @@
     }
 
     function commentHtml(c, isNew) {
+        const initial = (c.name || '?').trim().charAt(0).toUpperCase();
         return `
             <li class="comment-item${isNew ? ' comment-new' : ''}">
-                <span class="comment-avatar" aria-hidden="true">💬</span>
+                <span class="comment-avatar comment-avatar-letter" aria-hidden="true">${esc(initial)}</span>
                 <div class="comment-content">
-                    ${c.time ? `<div class="comment-head"><span class="comment-date">${esc(formatDate(c.time))}</span></div>` : ''}
+                    <div class="comment-head">
+                        <strong>${esc(c.name || 'Albayan reader')}</strong>
+                        ${c.time ? `<span class="comment-date">${esc(formatDate(c.time))}</span>` : ''}
+                    </div>
                     <p>${esc(c.text)}</p>
                 </div>
             </li>
@@ -152,8 +167,12 @@
         container.className = 'comments-live';
         container.innerHTML = `
             <form class="comment-form" novalidate>
-                <label for="comment-text-${pageId.replace(/[^a-z0-9]/gi, '')}">Leave a comment</label>
-                <textarea id="comment-text-${pageId.replace(/[^a-z0-9]/gi, '')}" name="text" rows="6" maxlength="${MAX_LENGTH}" required placeholder="Write something kind…"></textarea>
+                <h4 class="comment-form-title">Leave a comment</h4>
+                <label class="comment-name-row">
+                    <span class="comment-name-label">Name:</span>
+                    <input type="text" name="author" maxlength="40" required autocomplete="off" placeholder="Write your name">
+                </label>
+                <textarea name="text" rows="6" maxlength="${MAX_LENGTH}" required placeholder="Write something kind…" aria-label="Your comment"></textarea>
                 <div class="comment-form-actions">
                     <span class="comment-status" aria-live="polite"></span>
                     <button type="submit" class="comment-submit">Post comment</button>
@@ -178,7 +197,14 @@
 
         formEl.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const name = formEl.author.value.trim();
             const text = formEl.text.value.trim();
+            if (!name) {
+                status.textContent = 'Please write your name.';
+                status.className = 'comment-status is-error';
+                formEl.author.focus();
+                return;
+            }
             if (!text) {
                 status.textContent = 'Please write a comment first.';
                 status.className = 'comment-status is-error';
@@ -191,7 +217,12 @@
 
             const body = new URLSearchParams();
             body.append(form.ids.PAGE, pageId);
-            body.append(form.ids.COMMENT, text);
+            if (form.ids.NAME) {
+                body.append(form.ids.NAME, name);
+                body.append(form.ids.COMMENT, text);
+            } else {
+                body.append(form.ids.COMMENT, name + NAME_SEPARATOR + text);
+            }
 
             try {
                 // Google Forms does not send a readable reply to other websites, so "no-cors" is expected here
@@ -199,9 +230,9 @@
                 if (MODE !== 'approve') {
                     const empty = list.querySelector('.comment-empty');
                     if (empty) empty.remove();
-                    list.insertAdjacentHTML('beforeend', commentHtml({ text, time: '' }, true));
+                    list.insertAdjacentHTML('beforeend', commentHtml({ name, text, time: '' }, true));
                 }
-                formEl.reset();
+                formEl.text.value = '';
                 status.textContent = MODE === 'approve'
                     ? 'Thank you! Your comment will appear after a teacher approves it.'
                     : 'Thank you! Your comment was posted.';

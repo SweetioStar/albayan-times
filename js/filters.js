@@ -201,10 +201,26 @@
        filters.
        ========================================== */
 
+    /* Hide filter buttons that would show nothing (e.g. a grade with no work yet) */
+    function hideEmptyPills() {
+        const cards = document.querySelectorAll('[data-json] > a');
+        if (!cards.length) return;
+        filterBar.querySelectorAll('.filter-group[data-filter-group]').forEach(group => {
+            const key = group.getAttribute('data-filter-group');
+            group.querySelectorAll('.filter-pill').forEach(pill => {
+                const v = pill.getAttribute('data-filter-value');
+                if (v === 'all') return;
+                const has = [...cards].some(c => (c.getAttribute('data-' + key) || '') === v);
+                pill.hidden = !has;
+            });
+        });
+    }
+
     function watchForContent() {
         document.addEventListener('albayan:contentLoaded', () => {
             // Small delay to let DOM settle
             setTimeout(() => {
+                hideEmptyPills();
                 applyFilters();
             }, 50);
         });

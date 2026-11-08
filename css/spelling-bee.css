@@ -1160,3 +1160,4 @@
     .bee-block-head h2 { font-size: 28px; }
     .bee-block-icon { width: 46px; height: 46px; font-size: 16px; }
 }
+.bee-word-count{font-weight:800;color:var(--color-gray);margin:-6px 0 12px;font-size:14px}

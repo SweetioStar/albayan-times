@@ -863,3 +863,4 @@
     object-fit: contain !important;
     background: #F3EEE4;
 }
+.filter-pill[hidden]{display:none!important}

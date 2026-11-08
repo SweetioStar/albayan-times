@@ -26,9 +26,49 @@
         return a;
     }
 
+    /* Make believable wrong spellings for the "Pick the correct spelling" quiz */
+    const VOWELS = 'aeiou';
+    function misspellings(word) {
+        const w = word;
+        const lower = w.toLowerCase();
+        const out = new Set();
+        const add = v => { if (v && v.toLowerCase() !== lower && /^[A-Za-z'\-]+$/.test(v)) out.add(v); };
+        // ie <-> ei
+        if (lower.includes('ie')) add(w.replace(/ie/i, 'ei'));
+        if (lower.includes('ei')) add(w.replace(/ei/i, 'ie'));
+        // double letters: undouble, or double a single consonant
+        const dbl = w.match(/([b-df-hj-np-tv-z])\1/i);
+        if (dbl) add(w.replace(dbl[0], dbl[1]));
+        for (let i = 1; i < w.length - 1; i++) {
+            const c = w[i].toLowerCase();
+            if (!VOWELS.includes(c) && /[a-z]/.test(c) && VOWELS.includes(w[i - 1].toLowerCase()) && w[i + 1] !== w[i]) {
+                add(w.slice(0, i + 1) + w[i] + w.slice(i + 1));
+                break;
+            }
+        }
+        // common sound swaps
+        [['ph', 'f'], ['ck', 'k'], ['c', 'k'], ['k', 'c'], ['tion', 'shun'], ['ous', 'us'], ['ture', 'cher'],
+         ['ough', 'uff'], ['ght', 't'], ['wh', 'w'], ['kn', 'n'], ['mb', 'm'], ['y', 'ey'], ['er', 'ar'],
+         ['our', 'or'], ['ea', 'ee'], ['ee', 'ea'], ['ai', 'ay'], ['s', 'z'], ['able', 'ible'], ['ence', 'ance'], ['ance', 'ence']]
+            .forEach(([a, b]) => { const i = lower.indexOf(a, 1); if (i > 0) add(w.slice(0, i) + b + w.slice(i + a.length)); });
+        // silent e at the end
+        if (lower.endsWith('e') && w.length > 4) add(w.slice(0, -1));
+        else if (!lower.endsWith('e') && /[^aeiouy]$/.test(lower)) add(w + 'e');
+        // change one vowel
+        const swaps = { a: 'e', e: 'i', i: 'e', o: 'u', u: 'o' };
+        for (let i = 1; i < w.length; i++) {
+            const c = w[i].toLowerCase();
+            if (swaps[c]) { add(w.slice(0, i) + swaps[c] + w.slice(i + 1)); if (out.size > 6) break; }
+        }
+        // swap two neighbouring letters in the middle
+        if (w.length > 4) { const i = Math.floor(w.length / 2); add(w.slice(0, i - 1) + w[i] + w[i - 1] + w.slice(i + 1)); }
+        if (out.size < 2) { add(w.replace(/y$/i, 'ie')); add(w.replace(/y$/i, 'i')); add(w + w.slice(-1)); }
+        return shuffle([...out]);
+    }
+
     function parseWord(entry) {
         const parts = String(entry).split('|').map(s => s.trim()).filter(Boolean);
-        return { word: parts[0], wrong: parts.slice(1) };
+        return { word: parts[0], wrong: parts.length > 1 ? parts.slice(1) : misspellings(parts[0]) };
     }
 
     let DATA = null;
@@ -91,11 +131,13 @@
     /* ---------------- WORD LISTS ---------------- */
     function renderWordList(key) {
         const g = getGrade(key);
+        const countEl = document.getElementById('bee-word-count');
+        if (countEl) countEl.textContent = `${g.words.length} words`;
         return g.words.map((w, i) => `<li><span class="bee-word-num">${i + 1}</span>${esc(parseWord(w).word)}</li>`).join('');
     }
 
     function renderWordListsBlock() {
-        const first = DATA.grades[1] ? DATA.grades[1].key : DATA.grades[0].key;
+        const first = DATA.grades[0].key;
         return `
             <section class="bee-block" id="bee-words">
                 <div class="bee-block-head">
@@ -103,6 +145,7 @@
                     <div><h2>Word Lists</h2><p>Learn the words for your grade. Say each word, spell it out loud, then write it.</p></div>
                 </div>
                 <div class="bee-grade-row">${gradeButtons('words', first)}</div>
+                <p class="bee-word-count" id="bee-word-count">${getGrade(first).words.length} words</p>
                 <ol class="bee-word-list" id="bee-word-list">${renderWordList(first)}</ol>
                 <p class="bee-tip">Tip: Press <strong>Listen</strong> in the quiz below to hear any word read out loud.</p>
             </section>
@@ -262,7 +305,7 @@
     }
 
     function renderQuizBlock() {
-        const first = DATA.grades[1] ? DATA.grades[1].key : DATA.grades[0].key;
+        const first = DATA.grades[0].key;
         return `
             <section class="bee-block" id="bee-quizzes">
                 <div class="bee-block-head">
@@ -355,7 +398,7 @@
         container.innerHTML = renderVideos(DATA.videos) + renderWordListsBlock() + renderQuizBlock() + renderLinks(DATA.links);
         bindVideos(container);
         bindGradeButtons(container);
-        const first = DATA.grades[1] ? DATA.grades[1].key : DATA.grades[0].key;
+        const first = DATA.grades[0].key;
         startChoiceQuiz(first);
         startListenQuiz(first);
         if (canSpeak) window.speechSynthesis.getVoices();

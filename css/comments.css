@@ -411,3 +411,96 @@
 .comment-content p {
     font-size: 17px;
 }
+
+/* Name (required) */
+.comment-form-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--color-navy);
+    margin: 0;
+}
+
+.comment-form label { font-family: var(--font-body); font-size: 15px; font-weight: 700; }
+
+.comment-required {
+    font-weight: 600;
+    color: var(--color-coral);
+    font-size: 13px;
+}
+
+.comment-form input[name="author"] {
+    max-width: 420px;
+    font-size: 17px;
+    padding: 12px 14px;
+}
+
+.comment-avatar-letter {
+    font-size: 17px;
+    font-weight: 800;
+    background: var(--color-yellow);
+}
+
+/* "Name: [box]" on one line */
+.comment-form label.comment-name-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.comment-name-label {
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+.comment-name-row input[name="author"] {
+    flex: 1;
+    max-width: 380px;
+}
+
+/* ==========================================
+   9. LEFT & RIGHT: form on the left, comments on the right
+   ========================================== */
+
+#site-comments.comments-live {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 32px;
+    align-items: start;
+    max-width: 1200px;
+}
+
+#site-comments .comment-form {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    position: sticky;
+    top: 24px;
+}
+
+#site-comments .comment-list-title {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0 0 12px;
+}
+
+#site-comments .comment-list {
+    grid-column: 2;
+    grid-row: 2;
+    max-height: 560px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+@media (max-width: 860px) {
+    #site-comments.comments-live { grid-template-columns: minmax(0, 1fr); }
+    #site-comments .comment-form,
+    #site-comments .comment-list-title,
+    #site-comments .comment-list { grid-column: 1; grid-row: auto; position: static; }
+    #site-comments .comment-list-title { margin-top: 28px; }
+    #site-comments .comment-list { max-height: none; }
+}
+
+#site-comments.comments-live { grid-template-rows: auto 1fr; }
+#site-comments .comment-list { align-self: start; }
+.comment-name-row input[name="author"] { min-width: 0; width: 100%; }
+@media (max-width: 860px) { #site-comments.comments-live { grid-template-rows: none; } }
