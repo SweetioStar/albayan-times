@@ -153,7 +153,7 @@
         container.innerHTML = `
             <form class="comment-form" novalidate>
                 <label for="comment-text-${pageId.replace(/[^a-z0-9]/gi, '')}">Leave a comment</label>
-                <textarea id="comment-text-${pageId.replace(/[^a-z0-9]/gi, '')}" name="text" rows="3" maxlength="${MAX_LENGTH}" required placeholder="Write something kind…"></textarea>
+                <textarea id="comment-text-${pageId.replace(/[^a-z0-9]/gi, '')}" name="text" rows="6" maxlength="${MAX_LENGTH}" required placeholder="Write something kind…"></textarea>
                 <div class="comment-form-actions">
                     <span class="comment-status" aria-live="polite"></span>
                     <button type="submit" class="comment-submit">Post comment</button>

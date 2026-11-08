@@ -1,12 +1,12 @@
 {
-    "_howTo": "Home page announcement for a school competition. Between showFrom and pinToTopUntil it is a strip at the TOP of the home page, above English Stars. After that, until removeAfter, it moves BELOW English Stars. After removeAfter it disappears. English Stars always shows. Dates are YYYY-MM-DD and include that whole day.",
-    "spotlight": {
+    "_howTo": "Home page announcement. Between showFrom and showUntil (YYYY-MM-DD, both days included) the announcement takes English Stars' place at the top of the home page, and English Stars becomes a thin line above it. Outside those dates, English Stars shows as normal. To turn it off early, set showUntil to yesterday.",
+    "announcement": {
         "competitionId": "idiom-day-2026",
         "showFrom": "2026-11-08",
-        "pinToTopUntil": "2026-11-28",
-        "removeAfter": "2026-12-31",
+        "showUntil": "2026-11-28",
         "badge": "Competition Winners",
         "title": "Idiom Day Winners Announced!",
-        "ctaText": "Watch & see the winners"
+        "subtitle": "Congratulations to our brilliant idiom stars",
+        "ctaText": "See All Winners"
     }
 }

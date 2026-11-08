@@ -363,3 +363,51 @@
 .comment-content p {
     margin-top: 0;
 }
+
+/* ==========================================
+   8. BIGGER COMMENT AREA
+   ========================================== */
+
+.comments-wrapper .container,
+.comments-live {
+    max-width: 1100px;
+}
+
+.comments-live {
+    width: 100%;
+}
+
+.comment-form {
+    padding: 32px;
+    gap: 16px;
+}
+
+.comment-form label {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.comment-form textarea {
+    min-height: 170px;
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 16px 18px;
+}
+
+.comment-submit {
+    font-size: 17px;
+    padding: 14px 30px;
+}
+
+.comment-list-title {
+    font-size: 30px;
+}
+
+.comment-item {
+    padding: 18px 22px;
+}
+
+.comment-content p {
+    font-size: 17px;
+}

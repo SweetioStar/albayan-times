@@ -99,14 +99,13 @@
         <header class="site-header">
             <div class="container">
                 <a href="${PREFIX}index.html" class="header-brand">
-                    <img src="${PREFIX}assets/images/logo/albayan-logo.png" alt="Albayan Times" class="header-logo">
+                    <img src="${PREFIX}assets/images/logo/moehe-logo.png" alt="Ministry of Education and Higher Education" class="header-logo">
                     <div class="header-title">
                         <span class="header-title-main">Albayan Times</span>
                         <span class="header-title-sub">Student Newspaper &middot; Albayan Primary 1</span>
                     </div>
                 </a>
                 <div class="header-actions">
-                    <img src="${PREFIX}assets/images/logo/moehe-logo.png" alt="Ministry of Education and Higher Education" class="header-ministry-logo">
                     <button class="nav-toggle" aria-label="Toggle navigation">
                         <span></span><span></span><span></span>
                     </button>

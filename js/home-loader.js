@@ -80,8 +80,9 @@
     }
 
     /* ==========================================
-       ANNOUNCEMENT (school competition)
-       Top strip while new -> section below English Stars -> gone
+       ANNOUNCEMENT
+       While active it takes English Stars' place (banner + section below);
+       English Stars becomes a thin line at the top.
        ========================================== */
 
     function parseDay(str, endOfDay) {
@@ -93,73 +94,90 @@
             : new Date(parts[0], parts[1] - 1, parts[2], 0, 0, 0);
     }
 
-    function getSpotlight(featuredData, competitionsData) {
-        if (!featuredData || !featuredData.spotlight || !competitionsData) return null;
-        const s = featuredData.spotlight;
+    function getAnnouncement(featuredData, competitionsData) {
+        const s = featuredData && (featuredData.announcement || featuredData.spotlight);
+        if (!s || !competitionsData) return null;
         const now = new Date();
         const from = parseDay(s.showFrom, false);
-        const top = parseDay(s.pinToTopUntil || s.showUntil, true);
-        const end = parseDay(s.removeAfter, true);
+        const until = parseDay(s.showUntil || s.pinToTopUntil, true);
         if (from && now < from) return null;
-        if (end && now > end) return null;
+        if (until && now > until) return null;
         const comp = (competitionsData.items || []).find(c => c.id === s.competitionId);
-        if (!comp) return null;
-        const place = (!top || now <= top) ? 'top' : (end ? 'below' : null);
-        if (!place) return null;
-        return { settings: s, competition: comp, place };
+        return comp ? { settings: s, competition: comp } : null;
     }
 
     function competitionUrl(c) {
         return `html/article.html?id=${encodeURIComponent(c.id)}`;
     }
 
-    function renderSpotlightTop(spot) {
-        const el = document.getElementById('spotlight-top');
-        if (!el) return;
-        const s = spot.settings;
-        const c = spot.competition;
-        const thumb = c.image ? `assets/images/content/${escapeHtml(c.image)}` : '';
-        el.innerHTML = `
-            <a class="spotlight-strip" href="${competitionUrl(c)}">
-                <div class="container spotlight-strip-inner">
-                    ${thumb ? `<span class="spotlight-strip-thumb"><img src="${thumb}" alt=""><span class="spotlight-play"></span></span>` : ''}
-                    <span class="spotlight-strip-text">
-                        <span class="spotlight-strip-badge">${escapeHtml(s.badge || 'Announcement')}</span>
-                        <span class="spotlight-strip-title">${escapeHtml(s.title || c.title)}</span>
-                    </span>
-                    <span class="spotlight-strip-cta">${escapeHtml(s.ctaText || 'Watch & see the winners')} &rarr;</span>
-                </div>
-            </a>
-        `;
-        el.classList.add('is-visible');
-    }
-
-    function renderSpotlightBelow(spot) {
-        const el = document.getElementById('spotlight-below');
-        if (!el) return;
-        const c = spot.competition;
+    function buildAnnouncementSlide(ann) {
+        const s = ann.settings;
+        const c = ann.competition;
         const poster = c.image ? `assets/images/content/${escapeHtml(c.image)}` : '';
         const media = c.video
-            ? `<video controls preload="none" playsinline ${poster ? `poster="${poster}"` : ''}><source src="assets/videos/${escapeHtml(c.video)}" type="video/mp4"></video>`
+            ? `<video controls preload="metadata" playsinline ${poster ? `poster="${poster}"` : ''}><source src="assets/videos/${escapeHtml(c.video)}" type="video/mp4"></video>`
             : (poster ? `<img src="${poster}" alt="${escapeHtml(c.title)}">` : '');
-        const winners = (c.winners || []).map(w =>
-            `<li><span>${escapeHtml(w.name)}</span><em>${escapeHtml(w.class || '')}</em></li>`).join('');
-
-        el.innerHTML = `
-            <div class="container">
-                <div class="spotlight-below">
-                    <div class="spotlight-below-media">${media}</div>
-                    <div class="spotlight-below-content">
-                        <span class="spotlight-strip-badge">Latest Competition</span>
-                        <h2>${escapeHtml(c.title)}</h2>
-                        <p>${escapeHtml(c.excerpt || '')}</p>
-                        ${winners ? `<ul class="spotlight-winner-list">${winners}</ul>` : ''}
-                        <a href="${competitionUrl(c)}" class="featured-hero-cta">See all winners</a>
+        return `
+            <div class="swiper-slide">
+                <div class="featured-hero announcement-hero">
+                    <div class="container">
+                        <div class="featured-hero-inner featured-hero-inner-announcement">
+                            <div class="featured-hero-content">
+                                <span class="featured-hero-badge featured-hero-badge-red">${escapeHtml(s.badge || 'Announcement')}</span>
+                                <h1 class="featured-hero-title">${escapeHtml(s.title || c.title)}</h1>
+                                ${s.subtitle ? `<p class="featured-hero-subtitle-large">${escapeHtml(s.subtitle)}</p>` : ''}
+                                <p class="featured-hero-excerpt">${escapeHtml(c.excerpt || '')}</p>
+                                <a href="${competitionUrl(c)}" class="featured-hero-cta">${escapeHtml(s.ctaText || 'See All Winners')}</a>
+                            </div>
+                            <div class="announcement-media">
+                                <div class="announcement-video-wrapper">${media}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
-        el.hidden = false;
+    }
+
+    /* The section under the banner shows the announcement's winners in the English Stars card style */
+    function renderAnnouncementSection(ann) {
+        const c = ann.competition;
+        const container = document.getElementById('stars-stage-container');
+        if (!container) return;
+        const label = document.getElementById('stars-week-label');
+        const title = document.getElementById('stars-stage-title');
+        const subtitle = document.getElementById('stars-stage-subtitle');
+        if (label) label.textContent = c.title;
+        if (title) title.textContent = `Meet Our ${c.title} Winners`;
+        if (subtitle) subtitle.textContent = c.winnersTitle ? `${c.winnersTitle} from every grade. Congratulations!` : 'Congratulations to our winners!';
+
+        const cards = (c.winners || []).map(w => renderStarCard({
+            name: w.name,
+            class: w.class,
+            photo: w.photo,
+            badge: `Grade ${w.grade || String(w.class || '').charAt(0)}`
+        })).join('');
+        container.innerHTML = `
+            <div class="stars-row">${cards}</div>
+            <div class="spotlight-more"><a href="${competitionUrl(c)}" class="featured-hero-cta">Watch the video &amp; leave a comment</a></div>
+        `;
+    }
+
+    /* English Stars as a thin line while an announcement is on */
+    function renderStarsLine(starsData) {
+        const el = document.getElementById('spotlight-top');
+        if (!el) return;
+        const count = starsData ? (starsData.items || []).length : 0;
+        el.innerHTML = `
+            <a class="stars-line" href="html/english-stars.html">
+                <div class="container stars-line-inner">
+                    <span class="stars-line-icon">⭐</span>
+                    <span class="stars-line-text"><strong>English Stars</strong> ${escapeHtml(getWeekLabel())}${count ? ` · ${count} classes` : ''}</span>
+                    <span class="stars-line-cta">See this week's stars &rarr;</span>
+                </div>
+            </a>
+        `;
+        el.classList.add('is-visible');
     }
 
     /* ==========================================
@@ -247,35 +265,44 @@
        ========================================== */
 
     async function init() {
-        // English Stars first, so the page is ready as soon as possible
-        const starsPromise = fetchJSON('english-stars');
-        const spotPromise = Promise.all([fetchJSON('featured'), fetchJSON('competitions')]);
         const newsPromise = fetchJSON('home-data');
+        // Decide first (announcement or English Stars), then draw once, so nothing switches on screen
+        const [featuredData, competitionsData, starsData] = await Promise.all([
+            fetchJSON('featured'), fetchJSON('competitions'), fetchJSON('english-stars')
+        ]);
+        const ann = getAnnouncement(featuredData, competitionsData);
 
-        const starsData = await starsPromise;
         const wrapper = document.getElementById('hero-swiper-wrapper');
         if (wrapper) {
-            wrapper.innerHTML = buildEnglishStarsSlide(starsData);
+            wrapper.innerHTML = ann ? buildAnnouncementSlide(ann) : buildEnglishStarsSlide(starsData);
             const section = document.querySelector('.featured-hero-section');
             if (section) section.classList.add('single-slide');
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.featuredSwiper', { loop: false, allowTouchMove: false, speed: 600 });
             }
         }
-        renderStarsStage(starsData);
 
-        const [featuredData, competitionsData] = await spotPromise;
-        const spot = getSpotlight(featuredData, competitionsData);
-        if (spot && spot.place === 'top') renderSpotlightTop(spot);
-        if (spot && spot.place === 'below') renderSpotlightBelow(spot);
+        if (ann) {
+            renderStarsLine(starsData);
+            renderAnnouncementSection(ann);
+        } else {
+            renderStarsStage(starsData);
+        }
+        document.body.classList.add('home-ready');
 
         renderLatestNews(await newsPromise);
     }
 
+    // Never leave the page hidden, even if something fails to load
+    function safeInit() {
+        setTimeout(() => document.body.classList.add('home-ready'), 3000);
+        init().catch(err => { console.warn('[Albayan] home:', err); document.body.classList.add('home-ready'); });
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', safeInit);
     } else {
-        init();
+        safeInit();
     }
 
 })();

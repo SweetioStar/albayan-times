@@ -1254,3 +1254,61 @@
     .spotlight-below { grid-template-columns: 1fr; gap: 24px; }
     .spotlight-below-content h2 { font-size: 32px; }
 }
+
+/* ==========================================
+   ENGLISH STARS LINE (while an announcement is on)
+   ========================================== */
+
+.stars-line {
+    display: block;
+    background: var(--color-navy);
+    color: #fff;
+    text-decoration: none;
+}
+
+.stars-line-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.stars-line-icon { font-size: 18px; }
+
+.stars-line-text {
+    flex: 1;
+    min-width: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.stars-line-text strong {
+    color: var(--color-yellow);
+    margin-right: 6px;
+}
+
+.stars-line-cta {
+    flex-shrink: 0;
+    font-weight: 800;
+    color: var(--color-yellow);
+    transition: transform 0.2s ease;
+}
+
+.stars-line:hover .stars-line-cta { transform: translateX(4px); }
+
+/* Nothing in the banner or the stars section shows until the page has decided what to show */
+.featured-hero-section,
+.stars-stage-section {
+    transition: opacity 0.25s ease;
+}
+
+body:not(.home-ready) .featured-hero-section,
+body:not(.home-ready) .stars-stage-section {
+    opacity: 0;
+}
+
+@media (max-width: 640px) {
+    .stars-line-inner { flex-wrap: wrap; gap: 4px 10px; font-size: 14px; }
+    .stars-line-cta { width: 100%; padding-left: 28px; }
+}
