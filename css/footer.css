@@ -307,3 +307,21 @@
         right: 16px;
     }
 }
+/* Credits: directed by / created by */
+.footer-credits strong {
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+}
+
+.footer-credits-dot {
+    margin: 0 10px;
+    color: var(--color-orange);
+}
+.footer-credit { white-space: nowrap; }
+.footer-credits {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
+}

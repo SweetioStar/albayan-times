@@ -60,9 +60,8 @@
                 </div>
 
                 <div class="footer-bottom">
-                    <p>2026 Albayan Times. Created by Durrah Babiker. All rights reserved.</p>
-                    <div class="footer-bottom-links">
-                    </div>
+                    <p>© 2026 Albayan Times. All rights reserved.</p>
+                    <p class="footer-credits"><span class="footer-credit">Directed by <strong>Kauthar Odwan</strong></span><span class="footer-credits-dot" aria-hidden="true">·</span><span class="footer-credit">Created by <strong>Durrah Babiker</strong></span></p>
                 </div>
 
             </div>
