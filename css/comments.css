@@ -628,3 +628,75 @@
     #site-comments .comment-panel .comment-list,
     #site-comments .comment-panel .comment-list > li { width: 100%; box-sizing: border-box; align-self: stretch; }
 }
+
+/* ==========================================
+   12. EDIT / DELETE MY OWN COMMENTS, SHORT STATUS
+   ========================================== */
+
+.comment-form-actions { flex-wrap: nowrap; }
+.comment-submit { flex-shrink: 0; white-space: nowrap; }
+.comment-status { white-space: nowrap; }
+
+.comment-content { flex: 1; min-width: 0; }
+
+.comment-edited {
+    font-size: 12px;
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+.comment-actions {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.comment-action {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--color-gray-light);
+    background: #fff;
+    color: var(--color-navy);
+    cursor: pointer;
+}
+
+.comment-action:hover { border-color: var(--color-navy); }
+
+.comment-action-delete { color: #C2410C; }
+.comment-action-delete:hover { border-color: #C2410C; background: #FDECEC; }
+
+.comment-action-save {
+    background: var(--color-navy);
+    border-color: var(--color-navy);
+    color: #fff;
+}
+
+.comment-confirm {
+    font-size: 13px;
+    font-weight: 700;
+    color: #C2410C;
+}
+
+.comment-edit textarea {
+    width: 100%;
+    margin-top: 8px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 2px solid var(--color-teal);
+    border-radius: 10px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.comment-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+}
+.comment-actions[hidden] { display: none; }
