@@ -483,3 +483,13 @@
         font-size: 17px;
     }
 }
+.featured-writer-avatar {
+    overflow: hidden;
+}
+
+.featured-writer-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}

@@ -90,6 +90,7 @@
             'young-writers': 'Young Writers',
             'ai-creations': 'AI Creations',
             'life-experiences': 'Life Experiences',
+            'creative-studio': 'Creative Studio',
             'book-corner': 'Book/Movie',
             'creative': 'Creative'
         };
@@ -138,6 +139,7 @@
                 </div>
                 <div class="video-body">
                     <h3 class="video-title">${escapeHtml(item.title)}</h3>
+                    ${item.excerpt ? `<p class="video-excerpt">${escapeHtml(item.excerpt)}</p>` : ''}
                     <div class="video-meta">
                         <span class="meta-author">${escapeHtml(item.author || 'Albayan Reporters')}</span>
                         <span class="meta-divider">|</span>
@@ -178,8 +180,9 @@
     function renderCreativeCard(item) {
         const imgUrl = getImageUrl(item, 'content');
         const isLife = item.category === 'life-experiences';
-        const categoryClass = isLife ? 'category-life-experiences' : 'category-ai-creations';
-        const tagLabel = isLife ? 'Life Experiences' : 'AI Creations';
+        const isStudio = item.category === 'creative-studio';
+        const categoryClass = isLife || isStudio ? 'category-life-experiences' : 'category-ai-creations';
+        const tagLabel = isStudio ? 'Creative Studio' : (isLife ? 'Life Experiences' : 'AI Creations');
         const href = getDetailUrl(item);
 
         return `
@@ -228,7 +231,7 @@
 
         return `
             <a href="${href}" class="interview-card" data-category="interview" data-grade="${escapeHtml(item.grade || '')}">
-                <div class="interview-avatar">${escapeHtml(getInitial(item.interviewee || item.title))}</div>
+                <div class="interview-avatar">${item.image ? `<img src="${getImageUrl(item, 'content')}" alt="${escapeHtml(item.interviewee || item.title)}">` : escapeHtml(getInitial(item.interviewee || item.title))}</div>
                 <div class="interview-body">
                     <span class="interview-label">${escapeHtml(item.label || 'Student Interview')}</span>
                     <h3 class="interview-title">${escapeHtml(item.title)}</h3>

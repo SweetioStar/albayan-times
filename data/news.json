@@ -104,12 +104,26 @@
             "type": "article",
             "title": "QND Competition Winners",
             "excerpt": "Congratulations to our talented students who won the Qatar National Day photography competition!",
-            "body": "We are delighted to announce the winners of our Qatar National Day photography competition!\n\n1st Place: Aljoud Khaled Alyafei (5C)\n2nd Place: Mayassa Khaled Mubarak (3B)\n3rd Place: Sara Fahed Alkhalfan (3A)\n\nAll participants submitted beautiful photos celebrating Qatar's heritage, culture, and beauty. You can see the winning photos and all submissions in our Contest page.\n\nCongratulations to everyone who participated!",
+            "body": "Congratulations to our students who participated in the Qatar National Day Competition!\n\n1st Place: Aljoud Khaled Alyafei (5C)\n2nd Place: Mayassa Khaled Mubarak (3B)\n3rd Place: Sara Fahed Alkhalfan (3A)\n\nSee the winning photos and all the entries on the Contests page.",
             "author": "Albayan Reporters",
             "date": "December 2025",
             "category": "events",
             "grade": "5",
-            "image": "qnd-winners.jpg"
+            "image": "qnd-2.jpg",
+            "images": [
+                {
+                    "image": "qnd-1.jpg",
+                    "caption": "1st Place — Aljoud Khaled Alyafei (5C)"
+                },
+                {
+                    "image": "qnd-2.jpg",
+                    "caption": "2nd Place — Mayassa Khaled Mubarak (3B)"
+                },
+                {
+                    "image": "qnd-3.jpg",
+                    "caption": "3rd Place — Sara Fahed Alkhalfan (3A)"
+                }
+            ]
         },
         {
             "id": "haya-diabetes-2025",
@@ -121,7 +135,8 @@
             "date": "November 2025",
             "category": "health",
             "grade": "6",
-            "image": "diabetes-day.jpg"
+            "image": "diabetes-day.jpg",
+            "authorPhoto": "haya-alhamar.jpg"
         },
         {
             "id": "kindness-2025",
@@ -170,8 +185,8 @@
             "id": "welcome-back-2025",
             "type": "article",
             "title": "Welcome back to School!!",
-            "excerpt": "A warm welcome to all our returning and new students as a fresh academic year begins at Albayan.",
-            "body": "Welcome back, Albayan family! We're so excited to start another amazing year of learning, friendship, and discovery.\n\nTo our returning students: we missed you! To our new students: welcome — you're now part of our wonderful community.\n\nLet's make this year unforgettable together.",
+            "excerpt": "Welcome back to school! A new school year begins at Albayan.",
+            "body": "Welcome back to School!! We are so happy to see all our students again for the new school year. Let's make it a great year of learning together!",
             "author": "Albayan Reporters",
             "date": "September 2025",
             "category": "school-news",
@@ -182,13 +197,27 @@
             "id": "albayan-author-2025",
             "type": "article",
             "title": "Albayan Author - Grade 3 & 4 original stories",
-            "excerpt": "Young authors from Grade 3 and 4 showcased their wonderful original stories in our Albayan Author program.",
-            "body": "Our Grade 3 and Grade 4 students became published authors this term through the Albayan Author program!\n\nEach student wrote, illustrated, and bound their own original story. The stories covered a wide range of themes — from desert adventures to space exploration, and from friendship to bravery.\n\nYou can read all the stories in our Contest page. We are so proud of our young writers!",
+            "excerpt": "Our Grade 3 and Grade 4 students have participated in ALBAYAN AUTHOR, creating wonderful original stories!",
+            "body": "Our Grade 3 and Grade 4 students have participated in ALBAYAN AUTHOR, creating wonderful original stories! Take a look at some of them below.",
             "author": "Albayan Reporters",
             "date": "April - May 2025",
             "category": "school-news",
             "grade": "3",
-            "image": "albayan-author.jpg"
+            "image": "author-1.jpg",
+            "images": [
+                {
+                    "image": "author-1.jpg",
+                    "caption": "The Lost Wallet"
+                },
+                {
+                    "image": "author-2.jpg",
+                    "caption": "A picture story"
+                },
+                {
+                    "image": "author-3.jpg",
+                    "caption": "Layla Keeps the Park Clean"
+                }
+            ]
         }
     ]
 }

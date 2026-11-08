@@ -88,21 +88,26 @@
             "type": "contest",
             "title": "Albayan Author 2025",
             "excerpt": "Original stories written and illustrated by our Grade 3 and Grade 4 students.",
-            "body": "The Albayan Author program gives our youngest writers a chance to become published authors. Each student writes, illustrates, and binds their own original story.\n\nEvery story is a treasure. We are so proud of our young writers!",
+            "body": "Our Grade 3 and Grade 4 students have participated in ALBAYAN AUTHOR, creating wonderful original stories!",
             "category": "albayan-author",
             "date": "May 2025",
-            "image": "contest-author.jpg",
+            "image": "author-1.jpg",
             "theme": "Original Stories by Young Writers",
             "gallery": [
                 {
-                    "name": "The Little Falcon's Big Journey",
-                    "author": "Grade 3 Student",
+                    "name": "The Lost Wallet",
+                    "author": "Grade 3 & 4 Student",
                     "image": "author-1.jpg"
                 },
                 {
-                    "name": "The Magic Pearl",
-                    "author": "Grade 4 Student",
+                    "name": "A Picture Story",
+                    "author": "Grade 3 & 4 Student",
                     "image": "author-2.jpg"
+                },
+                {
+                    "name": "Layla Keeps the Park Clean",
+                    "author": "Grade 3 & 4 Student",
+                    "image": "author-3.jpg"
                 }
             ]
         }

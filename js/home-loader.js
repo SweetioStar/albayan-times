@@ -79,7 +79,11 @@
         `;
     }
 
-    /* Spotlight: a school competition shown on the home page between two dates */
+    /* ==========================================
+       ANNOUNCEMENT (school competition)
+       Top strip while new -> section below English Stars -> gone
+       ========================================== */
+
     function parseDay(str, endOfDay) {
         if (!str) return null;
         const parts = String(str).split('-').map(Number);
@@ -89,75 +93,73 @@
             : new Date(parts[0], parts[1] - 1, parts[2], 0, 0, 0);
     }
 
-    function getActiveSpotlight(featuredData, competitionsData) {
+    function getSpotlight(featuredData, competitionsData) {
         if (!featuredData || !featuredData.spotlight || !competitionsData) return null;
         const s = featuredData.spotlight;
         const now = new Date();
         const from = parseDay(s.showFrom, false);
-        const until = parseDay(s.showUntil, true);
+        const top = parseDay(s.pinToTopUntil || s.showUntil, true);
+        const end = parseDay(s.removeAfter, true);
         if (from && now < from) return null;
-        if (until && now > until) return null;
+        if (end && now > end) return null;
         const comp = (competitionsData.items || []).find(c => c.id === s.competitionId);
         if (!comp) return null;
-        return { settings: s, competition: comp };
+        const place = (!top || now <= top) ? 'top' : (end ? 'below' : null);
+        if (!place) return null;
+        return { settings: s, competition: comp, place };
     }
 
-    function buildSpotlightSlide(spot) {
+    function competitionUrl(c) {
+        return `html/article.html?id=${encodeURIComponent(c.id)}`;
+    }
+
+    function renderSpotlightTop(spot) {
+        const el = document.getElementById('spotlight-top');
+        if (!el) return;
         const s = spot.settings;
+        const c = spot.competition;
+        const thumb = c.image ? `assets/images/content/${escapeHtml(c.image)}` : '';
+        el.innerHTML = `
+            <a class="spotlight-strip" href="${competitionUrl(c)}">
+                <div class="container spotlight-strip-inner">
+                    ${thumb ? `<span class="spotlight-strip-thumb"><img src="${thumb}" alt=""><span class="spotlight-play"></span></span>` : ''}
+                    <span class="spotlight-strip-text">
+                        <span class="spotlight-strip-badge">${escapeHtml(s.badge || 'Announcement')}</span>
+                        <span class="spotlight-strip-title">${escapeHtml(s.title || c.title)}</span>
+                    </span>
+                    <span class="spotlight-strip-cta">${escapeHtml(s.ctaText || 'Watch & see the winners')} &rarr;</span>
+                </div>
+            </a>
+        `;
+        el.classList.add('is-visible');
+    }
+
+    function renderSpotlightBelow(spot) {
+        const el = document.getElementById('spotlight-below');
+        if (!el) return;
         const c = spot.competition;
         const poster = c.image ? `assets/images/content/${escapeHtml(c.image)}` : '';
         const media = c.video
-            ? `<video controls preload="metadata" playsinline ${poster ? `poster="${poster}"` : ''}><source src="assets/videos/${escapeHtml(c.video)}" type="video/mp4"></video>`
+            ? `<video controls preload="none" playsinline ${poster ? `poster="${poster}"` : ''}><source src="assets/videos/${escapeHtml(c.video)}" type="video/mp4"></video>`
             : (poster ? `<img src="${poster}" alt="${escapeHtml(c.title)}">` : '');
+        const winners = (c.winners || []).map(w =>
+            `<li><span>${escapeHtml(w.name)}</span><em>${escapeHtml(w.class || '')}</em></li>`).join('');
 
-        return `
-            <div class="swiper-slide">
-                <div class="featured-hero announcement-hero">
-                    <div class="container">
-                        <div class="featured-hero-inner featured-hero-inner-announcement">
-                            <div class="featured-hero-content">
-                                <span class="featured-hero-badge featured-hero-badge-red">${escapeHtml(s.badge || 'Announcement')}</span>
-                                <h1 class="featured-hero-title">${escapeHtml(s.title || c.title)}</h1>
-                                ${s.subtitle ? `<p class="featured-hero-subtitle-large">${escapeHtml(s.subtitle)}</p>` : ''}
-                                <p class="featured-hero-excerpt">${escapeHtml(c.excerpt || '')}</p>
-                                <a href="html/article.html?id=${encodeURIComponent(c.id)}" class="featured-hero-cta">${escapeHtml(s.ctaText || 'See All Winners')}</a>
-                            </div>
-                            <div class="announcement-media">
-                                <div class="announcement-video-wrapper">${media}</div>
-                            </div>
-                        </div>
+        el.innerHTML = `
+            <div class="container">
+                <div class="spotlight-below">
+                    <div class="spotlight-below-media">${media}</div>
+                    <div class="spotlight-below-content">
+                        <span class="spotlight-strip-badge">Latest Competition</span>
+                        <h2>${escapeHtml(c.title)}</h2>
+                        <p>${escapeHtml(c.excerpt || '')}</p>
+                        ${winners ? `<ul class="spotlight-winner-list">${winners}</ul>` : ''}
+                        <a href="${competitionUrl(c)}" class="featured-hero-cta">See all winners</a>
                     </div>
                 </div>
             </div>
         `;
-    }
-
-    /* Winners shown in place of the English Stars grid while a spotlight is on */
-    function renderSpotlightWinners(spot) {
-        const c = spot.competition;
-        const container = document.getElementById('stars-stage-container');
-        if (!container) return;
-
-        const label = document.getElementById('stars-week-label');
-        const title = document.getElementById('stars-stage-title');
-        const subtitle = document.getElementById('stars-stage-subtitle');
-        if (label) label.textContent = c.title;
-        if (title) title.textContent = `Meet Our ${c.title} Winners`;
-        if (subtitle) subtitle.textContent = c.winnersTitle
-            ? `${c.winnersTitle} from every grade. English Stars will be back after the break!`
-            : 'Congratulations to our winners! English Stars will be back after the break.';
-
-        const cards = (c.winners || []).map(w => renderStarCard({
-            name: w.name,
-            class: w.class,
-            photo: w.photo,
-            badge: `Grade ${w.grade || String(w.class || '').charAt(0)}`
-        })).join('');
-
-        container.innerHTML = `
-            <div class="stars-row">${cards}</div>
-            <div class="spotlight-more"><a href="html/article.html?id=${encodeURIComponent(c.id)}" class="featured-hero-cta">Watch the video &amp; leave a congratulations</a></div>
-        `;
+        el.hidden = false;
     }
 
     /* ==========================================
@@ -245,31 +247,29 @@
        ========================================== */
 
     async function init() {
-        const [featuredData, competitionsData, starsData, homeData] = await Promise.all([
-            fetchJSON('featured'), fetchJSON('competitions'), fetchJSON('english-stars'), fetchJSON('home-data')
-        ]);
+        // English Stars first, so the page is ready as soon as possible
+        const starsPromise = fetchJSON('english-stars');
+        const spotPromise = Promise.all([fetchJSON('featured'), fetchJSON('competitions')]);
+        const newsPromise = fetchJSON('home-data');
 
-        const spot = getActiveSpotlight(featuredData, competitionsData);
-
+        const starsData = await starsPromise;
         const wrapper = document.getElementById('hero-swiper-wrapper');
         if (wrapper) {
-            // While a spotlight is on, it replaces English Stars; afterwards English Stars returns by itself
-            wrapper.innerHTML = spot ? buildSpotlightSlide(spot) : buildEnglishStarsSlide(starsData);
-
+            wrapper.innerHTML = buildEnglishStarsSlide(starsData);
             const section = document.querySelector('.featured-hero-section');
             if (section) section.classList.add('single-slide');
-
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.featuredSwiper', { loop: false, allowTouchMove: false, speed: 600 });
             }
         }
+        renderStarsStage(starsData);
 
-        if (spot) {
-            renderSpotlightWinners(spot);
-        } else {
-            renderStarsStage(starsData);
-        }
-        renderLatestNews(homeData);
+        const [featuredData, competitionsData] = await spotPromise;
+        const spot = getSpotlight(featuredData, competitionsData);
+        if (spot && spot.place === 'top') renderSpotlightTop(spot);
+        if (spot && spot.place === 'below') renderSpotlightBelow(spot);
+
+        renderLatestNews(await newsPromise);
     }
 
     if (document.readyState === 'loading') {

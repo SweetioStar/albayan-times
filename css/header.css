@@ -368,3 +368,46 @@
         font-size: 11px;
     }
 }
+/* ==========================================
+   WIDE HEADER: Albayan logo first, ministry logo on the right
+   ========================================== */
+
+.site-header .container,
+.main-navigation .nav-links-desktop {
+    max-width: 1440px;
+}
+
+.site-header .container {
+    flex-wrap: nowrap;
+}
+
+.header-logo {
+    height: 72px;
+}
+
+.header-title-main {
+    font-size: 38px;
+}
+
+.header-title-sub {
+    font-size: 11px;
+}
+
+.header-ministry-logo {
+    height: 54px;
+    width: auto;
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .header-logo { height: 56px; }
+    .header-title-main { font-size: 30px; }
+    .header-ministry-logo { height: 44px; }
+}
+
+@media (max-width: 640px) {
+    .header-ministry-logo { display: none; }
+    .header-logo { height: 48px; }
+    .header-title-main { font-size: 24px; }
+    .header-title-sub { font-size: 8px; letter-spacing: 1.5px; }
+}

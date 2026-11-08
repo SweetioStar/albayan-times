@@ -824,3 +824,26 @@
         padding: var(--space-lg) var(--space-md);
     }
 }
+/* Video cards get a short description, like article cards */
+.video-card .video-excerpt {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-gray);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Keep every card's description the same height so rows line up */
+.card-excerpt,
+.creative-card-excerpt,
+.contest-card-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(2 * 1.5em);
+}

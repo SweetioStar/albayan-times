@@ -371,3 +371,9 @@
         font-size: 9px;
     }
 }
+/* Spread the menu across the full width */
+.nav-links-desktop {
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 24px;
+}

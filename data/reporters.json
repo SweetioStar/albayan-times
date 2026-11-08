@@ -4,28 +4,28 @@
             "id": "reporter-aisha-alamri",
             "type": "reporter",
             "name": "Aisha Alamri",
-            "role": "Editor-in-Chief",
+            "role": "Reporter",
             "grade": "6",
             "initial": "A",
-            "bio": "Leads the editorial team, reviews every submission, and keeps our reporters on track with each edition."
+            "photo": "aisha-alamri.jpg"
         },
         {
             "id": "reporter-ayan-almarri",
             "type": "reporter",
             "name": "Ayan Almarri",
-            "role": "Senior Reporter",
+            "role": "Reporter",
             "grade": "6",
             "initial": "A",
-            "bio": "Covers breaking school news and mentors new reporters joining the Albayan team."
+            "photo": "ayan-almarri.jpg"
         },
         {
             "id": "reporter-fatima-almusaifri",
             "type": "reporter",
             "name": "Fatima Almusaifri",
-            "role": "Features Editor",
+            "role": "Reporter",
             "grade": "5",
             "initial": "F",
-            "bio": "Curates long-form stories, interviews, and special features that bring depth to our paper."
+            "photo": "fatima-almusaifri.jpg"
         },
         {
             "id": "reporter-fatima-alkuwari",
@@ -34,7 +34,7 @@
             "role": "Reporter",
             "grade": "5",
             "initial": "F",
-            "bio": "Covers school events and student achievements across all grades."
+            "photo": "fatima-alkuwari.jpg"
         },
         {
             "id": "reporter-dhabiya-almulla",
@@ -43,7 +43,7 @@
             "role": "Reporter",
             "grade": "6",
             "initial": "D",
-            "bio": "Specializes in event coverage and interviewing teachers about their work."
+            "photo": "dhabiya-almulla.jpg"
         },
         {
             "id": "reporter-badriya-alkubaisi",
@@ -52,7 +52,7 @@
             "role": "Reporter",
             "grade": "6",
             "initial": "B",
-            "bio": "Passionate about sharing student stories and celebrating achievements."
+            "photo": "badriya-alkubaisi.jpg"
         },
         {
             "id": "reporter-shahd-alsada",
@@ -61,7 +61,7 @@
             "role": "Reporter",
             "grade": "6",
             "initial": "S",
-            "bio": "Focuses on health and values stories that matter to our school community."
+            "photo": "shahd-alsada.jpg"
         },
         {
             "id": "reporter-salama-alkuwari",
@@ -70,7 +70,7 @@
             "role": "Reporter",
             "grade": "4",
             "initial": "S",
-            "bio": "Contributes creative artwork and reports on student art projects."
+            "photo": "salama-alkuwari.jpg"
         },
         {
             "id": "reporter-aisha-almarwani",
@@ -79,7 +79,7 @@
             "role": "Reporter",
             "grade": "5",
             "initial": "A",
-            "bio": "Writes thoughtful essays about values and student life. Writer of the Month."
+            "photo": "aisha-almarwani.jpg"
         },
         {
             "id": "reporter-maria-abdulaziz",
@@ -88,7 +88,7 @@
             "role": "Reporter",
             "grade": "4",
             "initial": "M",
-            "bio": "Covers school trips and out-of-class learning experiences."
+            "photo": "maria-abdulaziz.jpg"
         },
         {
             "id": "reporter-haya-alhamar",
@@ -97,7 +97,7 @@
             "role": "Reporter",
             "grade": "5",
             "initial": "H",
-            "bio": "Reports on cultural celebrations and student voices across the school."
+            "photo": "haya-alhamar.jpg"
         },
         {
             "id": "reporter-maryam-almohannadi",
@@ -106,47 +106,26 @@
             "role": "Reporter",
             "grade": "6",
             "initial": "M",
-            "bio": "Writes poetry and reports on Qatari heritage and national events."
+            "photo": "maryam-almohannadi.jpg"
         },
-
         {
             "id": "interview-danya-mubarak",
             "type": "interview",
-            "title": "Interview with a Classmate: Danya Mubarak",
+            "title": "Interview with a Classmate",
             "interviewee": "Danya Mubarak",
             "label": "Featured Interview",
-            "excerpt": "An 11-year-old horse-riding enthusiast shares her dreams of becoming a coach and her love for swimming.",
-            "body": "This week, our reporter Fatima Almusaifri sat down with Danya Mubarak from Grade 5C to learn more about her hobbies, dreams, and daily life.\n\nDanya is 11 years old and lives in Duhail with her parents and two younger sisters. As the oldest of three, she says she loves being a big sister — though she admits she'd like another little sister too.\n\nHer biggest passion is horse-riding. She started riding in January 2024, and she now goes to practice every week. \"Horse-riding makes me feel strong and free,\" she says. \"When I'm on a horse, I forget about everything else.\"\n\nDanya also loves swimming. She's good at both sports, but horse-riding is her true love. When she grows up, she wants to become a horse-riding coach — to teach other kids the sport she loves.\n\nHer favorite colors are purple and pink. Her favorite subjects are PE and history. And her best friends at Albayan are Fatima, Reem, and Joud.\n\nWhen asked to describe herself in three words, Danya didn't hesitate: \"Confident. Strong. Smart.\"\n\nWe couldn't agree more.",
-            "author": "Fatima Almusaifri",
+            "excerpt": "For this month's interview, we met Danya Mubarak (5C). She's new at our school!",
+            "body": "For this month's interview, we wanted to get to know some of our new classmates. I met Danya Mubarak (5C). She's new at our school. I wanted to learn more about her and her hobbies. Read to find out more about her. Welcome Danya!\n\n1. How old are you?\nEleven.\n\n2. What are your favourite things to do?\nCrochet. I like to make robes and hats.\n\n3. Who do you live with? Tell me about them.\nWith my brothers and sisters and mom and dad. My little sister is five, my other sister is eight. I'm the oldest.\n\n4. What three words describe you best?\nConfident, strong, smart.\n\n5. What do you want to be when you grow up?\nA horse-riding coach.\n\n6. Where is your favourite place to go?\nHorse-riding practice.\n\n7. What are you really good at?\nSwimming and horse-riding.\n\n8. If you could have one wish, what would it be?\nAnother sister. I like having sisters a lot!\n\nFive facts about my new friend:\n1. I live in Duhail.\n2. I started horse-riding in January of this year.\n3. My favourite colors are purple and pink.\n4. My favourite subject is PE. Also history, because I like learning about the past.\n5. I had a best friend in Aldaayen School (my old school). Her name is Muna. My friends at Albayan are Fatima, Reem, and Joud.",
+            "author": "Fatima Almusaifri (3D)",
             "grade": "3",
             "date": "September 2024",
-            "image": "interview-danya.jpg"
-        },
-        {
-            "id": "interview-grade6-day",
-            "type": "interview",
-            "title": "A Day in the Life of a Grade 6 Student",
-            "interviewee": "Grade 6 Student",
-            "label": "Student Voice",
-            "excerpt": "What does it take to balance studies, hobbies, and friendships in your final year at Albayan?",
-            "body": "We spoke with a Grade 6 student about what life looks like in the final year at Albayan.\n\n\"Grade 6 is busy — but it's also the best year,\" she told us. \"You know everyone, you know the teachers, and you feel ready for what's next.\"\n\nA typical day starts with waking up at 6 AM, breakfast, and arriving at school by 7. Mornings are for math and English. After lunch, there are science and Arabic classes. After school, there's homework, then a break, then more homework.\n\n\"I try to keep my weekends free for friends and family,\" she says. \"Balance is important.\"\n\nWhen we asked what she'd tell younger students, she said: \"Enjoy every year. It goes faster than you think. And be kind to your teachers — they work so hard for us.\"\n\nHer advice is simple and true.",
-            "author": "Albayan Reporters",
-            "grade": "6",
-            "date": "October 2024",
-            "image": "interview-grade6.jpg"
-        },
-        {
-            "id": "interview-teachers-spotlight",
-            "type": "interview",
-            "title": "Behind the Scenes with Our Teachers",
-            "interviewee": "Our Teachers",
-            "label": "Teacher Spotlight",
-            "excerpt": "An inside look at what inspires our teachers to shape the next generation every single day.",
-            "body": "We sat down with several of our teachers to ask them a simple question: why do you teach?\n\n\"Because of the students,\" one teacher said immediately. \"Every day is different. Every student has something new to teach me.\"\n\nAnother teacher told us about a student who struggled with reading in Grade 3 and now, in Grade 6, writes her own stories. \"That's why I teach,\" she said. \"To see that growth.\"\n\nWe asked what advice they'd give students. The answers were consistent:\n\n\"Read. Read everything. Books open worlds.\"\n\n\"Ask questions. Curiosity is the best skill you can have.\"\n\n\"Be kind. To your classmates, to your teachers, to yourself.\"\n\nWe're grateful for the teachers who make Albayan such a special place.",
-            "author": "Albayan Reporters",
-            "grade": "6",
-            "date": "November 2024",
-            "image": "interview-teachers.jpg"
+            "image": "interview-danya.jpg",
+            "images": [
+                {
+                    "image": "interview-danya-horse.jpg",
+                    "caption": "Not a real image of Danya"
+                }
+            ]
         }
     ]
 }

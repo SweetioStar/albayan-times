@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meet the Reporters | The Open Albayan Times</title>
-    <link rel="icon" href="../assets/images/logo/albayan-logo.jpg">
+    <link rel="icon" href="../assets/images/logo/albayan-logo.png">
 
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/variables.css">
@@ -59,43 +59,6 @@
         </div>
     </section>
 
-    <!-- EDITORIAL TEAM SPOTLIGHT -->
-    <section class="editors-section">
-        <div class="container">
-
-            <div class="editors-header">
-                <span class="section-label">Editorial Team</span>
-                <h2>Leading the Newsroom</h2>
-                <p>The students who guide and shape every edition of The Open Albayan Times.</p>
-            </div>
-
-            <div class="editors-grid">
-
-                <div class="editor-card">
-                    <div class="editor-avatar">A</div>
-                    <h3 class="editor-name">Aisha Alamri</h3>
-                    <span class="editor-role">Editor-in-Chief</span>
-                    <p class="editor-bio">Leads the editorial team, reviews every submission, and keeps our reporters on track with each edition.</p>
-                </div>
-
-                <div class="editor-card">
-                    <div class="editor-avatar">A</div>
-                    <h3 class="editor-name">Ayan Almarri</h3>
-                    <span class="editor-role">Senior Reporter</span>
-                    <p class="editor-bio">Covers breaking school news and mentors new reporters joining the Albayan team.</p>
-                </div>
-
-                <div class="editor-card">
-                    <div class="editor-avatar">F</div>
-                    <h3 class="editor-name">Fatima Almusaifri</h3>
-                    <span class="editor-role">Features Editor</span>
-                    <p class="editor-bio">Curates long-form stories, interviews, and special features that bring depth to our paper.</p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
 
     <!-- ALL REPORTERS GRID — filled by inline script -->
     <section class="reporters-section">
@@ -206,10 +169,9 @@
             if (grid) {
                 grid.innerHTML = reporters.map(r => `
                     <div class="reporter-card">
-                        <div class="reporter-avatar">${escapeHtml(r.initial || getInitial(r.name))}</div>
+                        <div class="reporter-avatar">${r.photo ? `<img src="${PREFIX}assets/images/reporters/${escapeHtml(r.photo)}" alt="${escapeHtml(r.name)}">` : escapeHtml(r.initial || getInitial(r.name))}</div>
                         <h3 class="reporter-name">${escapeHtml(r.name)}</h3>
                         <span class="reporter-role-tag">${escapeHtml(r.role || 'Reporter')}</span>
-                        ${r.bio ? `<p class="reporter-bio">${escapeHtml(r.bio)}</p>` : ''}
                     </div>
                 `).join('');
             }

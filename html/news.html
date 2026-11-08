@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News | The Open Albayan Times</title>
-    <link rel="icon" href="../assets/images/logo/albayan-logo.jpg">
+    <link rel="icon" href="../assets/images/logo/albayan-logo.png">
 
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/variables.css">
@@ -48,10 +48,16 @@
         <div class="container">
             <div class="filter-bar">
 
-                <!-- Category filter — pills added later when categories are decided -->
+                <!-- Category filter -->
                 <div class="filter-group" data-filter-group="category">
                     <span class="filter-label">Category</span>
-                    <span class="filter-empty">Coming soon</span>
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-filter-value="all">All</button>
+                        <button class="filter-pill" data-filter-value="school-news">School News</button>
+                        <button class="filter-pill" data-filter-value="events">Events</button>
+                        <button class="filter-pill" data-filter-value="health">Health</button>
+                        <button class="filter-pill" data-filter-value="values">Values</button>
+                    </div>
                 </div>
 
                 <!-- Grade filter -->

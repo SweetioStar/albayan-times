@@ -99,13 +99,14 @@
         <header class="site-header">
             <div class="container">
                 <a href="${PREFIX}index.html" class="header-brand">
-                    <img src="${PREFIX}assets/images/logo/moehe-logo.png" alt="Ministry of Education and Higher Education" class="header-logo">
+                    <img src="${PREFIX}assets/images/logo/albayan-logo.png" alt="Albayan Times" class="header-logo">
                     <div class="header-title">
                         <span class="header-title-main">Albayan Times</span>
-                        <span class="header-title-sub">Student Newspaper</span>
+                        <span class="header-title-sub">Student Newspaper &middot; Albayan Primary 1</span>
                     </div>
                 </a>
                 <div class="header-actions">
+                    <img src="${PREFIX}assets/images/logo/moehe-logo.png" alt="Ministry of Education and Higher Education" class="header-ministry-logo">
                     <button class="nav-toggle" aria-label="Toggle navigation">
                         <span></span><span></span><span></span>
                     </button>
@@ -138,7 +139,6 @@
                             <a href="${PREFIX}html/contest.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Contests &amp; Competitions</a>
                             <a href="${PREFIX}html/lexis-advice.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Lexi's Advice</a>
                             <a href="${PREFIX}html/spelling-bee.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Spelling Bee</a>
-                            <a href="${PREFIX}html/enrichment.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Enrichment</a>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,6 @@
                     <a href="${PREFIX}html/contest.html" class="nav-mobile-feature-link">Contests<span class="nav-mobile-feature-label">&amp; competitions</span></a>
                     <a href="${PREFIX}html/lexis-advice.html" class="nav-mobile-feature-link">Lexi's Advice<span class="nav-mobile-feature-label">Tips & guidance</span></a>
                     <a href="${PREFIX}html/spelling-bee.html" class="nav-mobile-feature-link">Spelling Bee<span class="nav-mobile-feature-label">Practice & quizzes</span></a>
-                    <a href="${PREFIX}html/enrichment.html" class="nav-mobile-feature-link">Enrichment<span class="nav-mobile-feature-label">Extra learning</span></a>
                 </div>
             </div>
         </div>

@@ -1076,7 +1076,7 @@
     }
 }
 /* ==========================================
-   SPOTLIGHT (single hero slide + winners)
+   ANNOUNCEMENT: top strip + "Latest Competition" section
    ========================================== */
 
 .featured-hero-section.single-slide .swiper-pagination,
@@ -1085,7 +1085,172 @@
     display: none;
 }
 
-.spotlight-more {
-    text-align: center;
-    margin-top: var(--space-xl, 2rem);
+#spotlight-top.is-visible {
+    animation: spotlight-drop 0.45s ease-out;
+}
+
+@keyframes spotlight-drop {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.spotlight-strip {
+    display: block;
+    background: linear-gradient(90deg, #FF6B6B 0%, #F5A623 100%);
+    color: #fff;
+    text-decoration: none;
+}
+
+.spotlight-strip-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.spotlight-strip-thumb {
+    position: relative;
+    flex-shrink: 0;
+    width: 96px;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.spotlight-strip-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.spotlight-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    border-left: 14px solid #fff;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+}
+
+.spotlight-strip-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.spotlight-strip-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: rgba(26, 44, 66, 0.85);
+    color: #FFD166;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.spotlight-strip-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    line-height: 1.15;
+}
+
+.spotlight-strip-cta {
+    flex-shrink: 0;
+    background: #fff;
+    color: var(--color-navy);
+    font-weight: 800;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    transition: transform 0.2s ease;
+}
+
+.spotlight-strip:hover .spotlight-strip-cta {
+    transform: translateX(4px);
+}
+
+.spotlight-below-section {
+    padding: 56px 0;
+    background: #FFF6DD;
+}
+
+.spotlight-below {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.spotlight-below-media {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-navy);
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 12px 32px rgba(26, 44, 66, 0.2);
+}
+
+.spotlight-below-media video,
+.spotlight-below-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.spotlight-below-content h2 {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    color: var(--color-navy);
+    margin: 10px 0 8px;
+}
+
+.spotlight-below-content p {
+    color: var(--color-navy-light);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.spotlight-winner-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.spotlight-winner-list li {
+    background: #fff;
+    border: 1px solid var(--color-gray-light);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.spotlight-winner-list em {
+    font-style: normal;
+    color: var(--color-coral);
+    margin-left: 6px;
+}
+
+@media (max-width: 768px) {
+    .spotlight-strip-inner { flex-wrap: wrap; gap: 12px; }
+    .spotlight-strip-thumb { width: 72px; }
+    .spotlight-strip-title { font-size: 20px; }
+    .spotlight-strip-cta { width: 100%; text-align: center; }
+    .spotlight-below { grid-template-columns: 1fr; gap: 24px; }
+    .spotlight-below-content h2 { font-size: 32px; }
 }

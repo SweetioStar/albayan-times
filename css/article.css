@@ -839,3 +839,106 @@
     color: var(--color-navy-light);
     font-style: italic;
 }
+
+/* ==========================================
+   ORGANIZED ARTICLE TEXT
+   ========================================== */
+
+.detail-body {
+    max-width: 780px;
+    background: #fff;
+    border: 1px solid var(--color-gray-light);
+    border-radius: 16px;
+    padding: 36px 44px;
+    box-shadow: 0 6px 24px rgba(26, 44, 66, 0.06);
+    line-height: 1.8;
+}
+
+.detail-body p {
+    margin-bottom: 18px;
+}
+
+.detail-body .body-lead {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.65;
+    padding-bottom: 18px;
+    border-bottom: 2px dashed var(--color-gray-light);
+    margin-bottom: 22px;
+}
+
+.detail-body .body-subhead {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--color-coral);
+    margin: 26px 0 8px;
+}
+
+.detail-body .body-list {
+    margin: 0 0 20px;
+    padding-left: 1.4em;
+}
+
+.detail-body .body-list li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
+.detail-body ol.body-list li::marker {
+    font-weight: 800;
+    color: var(--color-teal);
+}
+
+.detail-body ul.body-list li::marker {
+    color: var(--color-coral);
+}
+
+.detail-body .body-qa {
+    border-left: 4px solid var(--color-yellow);
+    background: #FFFBF0;
+    border-radius: 0 10px 10px 0;
+    padding: 12px 18px;
+    margin-bottom: 14px;
+}
+
+.detail-body .body-q {
+    font-weight: 800;
+    color: var(--color-teal-dark);
+    margin: 0 0 4px;
+}
+
+.detail-body .body-a {
+    margin: 0;
+}
+
+.detail-author-card {
+    max-width: 780px;
+}
+
+.detail-gallery {
+    max-width: 780px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.detail-gallery-item {
+    flex: 1 1 220px;
+    max-width: 360px;
+}
+
+.detail-gallery:has(.detail-gallery-item:only-child) .detail-gallery-item {
+    max-width: 520px;
+}
+
+@media (max-width: 640px) {
+    .detail-body {
+        padding: 22px 20px;
+        font-size: 16px;
+    }
+    .detail-body .body-lead { font-size: 17px; }
+}
+
+.detail-body ol.body-list { list-style: decimal; }
+.detail-body ul.body-list { list-style: disc; }
+.detail-body .body-list { padding-left: 1.6em; }

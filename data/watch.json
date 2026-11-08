@@ -71,32 +71,30 @@
         {
             "id": "ramadan-activities-2025",
             "type": "video",
-            "title": "Ramadan 2025 Activities",
-            "excerpt": "Students discover supplications, kindness, and Garangao traditions during Ramadan at Albayan.",
-            "body": "A look back at our Ramadan 2025 activities — students explored the beauty of supplications, shared acts of kindness, and celebrated Garangao with traditional songs and sweets.",
+            "title": "Ramadan 2025",
+            "excerpt": "During the holy month of Ramadan, our students discovered and recited new supplications and embraced the values of the month.",
+            "body": "Albayan Primary 1 English Department presents Ramadan 2025 — Garangao.",
             "author": "Albayan Reporters",
             "date": "March 2025",
             "category": "events",
             "grade": "4",
             "image": "ramadan-2025.jpg",
             "source": "youtube",
-            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "duration": "04:20"
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         },
         {
             "id": "talented-students-2025",
             "type": "video",
-            "title": "February 2025 Highlights",
-            "excerpt": "A showcase of our talented students across art, music, sports, and academics.",
-            "body": "February was a month of celebration at Albayan. This highlight reel captures the amazing talents of our students — from art and music to sports and academics.",
+            "title": "Celebrating Our Talented Students",
+            "excerpt": "In February, we celebrated our talented students by showcasing their work throughout the year!",
+            "body": "In February, we celebrated our talented students by showcasing their work throughout the year!",
             "author": "Albayan Reporters",
             "date": "February 2025",
             "category": "events",
             "grade": "5",
             "image": "talented-students.jpg",
             "source": "youtube",
-            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "duration": "06:15"
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         },
         {
             "id": "world-education-day-video-2026",
@@ -116,46 +114,43 @@
             "id": "threads-appreciation-2025",
             "type": "video",
             "title": "Threads of Appreciation",
-            "excerpt": "Grade 4 students participate in a special project celebrating the teachers who inspire them.",
-            "body": "Grade 4 students participated in the Threads of Appreciation project — weaving together words, art, and gratitude to celebrate the teachers who inspire them every day.",
+            "excerpt": "For World Education Day, our Grade 4 students participated in Threads of Appreciation.",
+            "body": "On the occasion of World Education Week 2025, our Grade 4 students (4A–4C) participated in Threads of Appreciation.",
             "author": "Grade 4 Students",
             "date": "January 2025",
             "category": "events",
             "grade": "4",
             "image": "threads.jpg",
             "source": "youtube",
-            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "duration": "03:45"
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         },
         {
             "id": "midterm-congrats-2024",
             "type": "video",
             "title": "Midterm Congratulations",
-            "excerpt": "A special video message from teachers congratulating all students for their hard work.",
-            "body": "A special message from our teachers congratulating all students for their hard work during midterm exams. Keep it up, Albayan!",
+            "excerpt": "Badriya, Dhabia, and Shahd congratulate you for a job well done in your midterm exams!",
+            "body": "Badriya, Dhabia, and Shahd congratulate you for a job well done in your midterm exams and hope you enjoy the break!",
             "author": "Badriya, Dhabia, Shahd",
             "date": "October 2024",
             "category": "school-news",
             "grade": "6",
             "image": "midterm.jpg",
             "source": "youtube",
-            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "duration": "02:18"
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         },
         {
             "id": "ayan-reporting-2024",
             "type": "video",
-            "title": "Ayan Rashed reporting the latest Albayan News",
-            "excerpt": "Our young reporter Ayan Rashed brings you the latest news from around the Albayan campus.",
-            "body": "Our young reporter Ayan Rashed brings you the latest news from around the Albayan campus — interviews, events, and stories from our student community.",
+            "title": "Ayan Rashed Reports the Latest Albayan News",
+            "excerpt": "Ayan Rashed reporting the latest Albayan News.",
+            "body": "Ayan Rashed reporting the latest Albayan News, September 2024.",
             "author": "Ayan Rashed",
             "date": "September 2024",
             "category": "school-news",
             "grade": "5",
             "image": "ayan-reporting.jpg",
             "source": "youtube",
-            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "duration": "04:02"
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }
     ]
 }

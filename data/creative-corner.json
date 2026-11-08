@@ -79,76 +79,101 @@
             "imageFolder": "content"
         },
         {
-            "id": "life-first-day",
+            "id": "life-experiences-g6",
             "type": "article",
-            "title": "My First Day at Albayan",
-            "excerpt": "Looking back at the nervous excitement of walking through the school gates for the very first time.",
-            "body": "I still remember my first day at Albayan like it was yesterday.\n\nI was so nervous. My hands were sweaty, my heart was racing, and I didn't know anyone. I remember standing at the gate, holding my mother's hand, watching all the other students walk in.\n\nBut then something wonderful happened. A girl in my class came up to me and said, \"Hi! I'm new too. Want to sit together?\"\n\nThat simple moment changed everything. We sat together at lunch, played at recess, and by the end of the day, I wasn't nervous anymore. I was excited to come back.\n\nSix years later, that girl is still one of my best friends. Albayan has been my second home ever since.",
-            "author": "Grade 6 Student",
+            "title": "My Life Experiences Posters",
+            "excerpt": "Grade 6 students made posters about the things they have done so far, and the things they haven't done yet.",
+            "body": "Our Grade 6 students made posters about their life experiences: the things they have done so far, and the things they haven't done yet. Take a look at their posters below!",
+            "author": "Grade 6 Students",
             "grade": "6",
-            "date": "May 2025",
+            "date": "2024",
             "category": "life-experiences",
-            "image": "life-1.jpg"
+            "image": "life-2.jpg",
+            "imageFolder": "content",
+            "images": [
+                {
+                    "image": "life-1.jpg"
+                },
+                {
+                    "image": "life-2.jpg"
+                },
+                {
+                    "image": "life-3.jpg"
+                },
+                {
+                    "image": "life-4.jpg"
+                },
+                {
+                    "image": "life-5.jpg"
+                },
+                {
+                    "image": "life-6.jpg"
+                },
+                {
+                    "image": "life-7.jpg"
+                },
+                {
+                    "image": "life-8.jpg"
+                }
+            ]
         },
         {
-            "id": "life-friend-changed",
+            "id": "the-environment-2024",
             "type": "article",
-            "title": "The Friend Who Changed Everything",
-            "excerpt": "A story about the power of friendship and how one person can make a difficult year so much brighter.",
-            "body": "Last year was a hard year for me. I was struggling with my studies, and I felt like I didn't fit in.\n\nThen I met Reem. She sat next to me in class one day and started talking to me like we'd known each other forever. She didn't care that I was quiet or that I wasn't the best at sports. She just liked me for me.\n\nReem helped me with my homework. She invited me to her birthday party. She stood up for me when other kids teased me. And slowly, things started to get better.\n\nI learned that one true friend can change everything. Friendship isn't about being popular — it's about finding someone who sees the real you.\n\nThank you, Reem.",
-            "author": "Grade 6 Student",
-            "grade": "6",
-            "date": "May 2025",
-            "category": "life-experiences",
-            "image": "life-2.jpg"
+            "title": "The Environment",
+            "excerpt": "Sometimes, we express ourselves through Art. A beautiful drawing by Salama Alkuwari, 4C.",
+            "body": "Sometimes, we express ourselves through Art. Take a look at this beautiful drawing by Salama Alkuwari, 4C.\n\n\"I love to clean the environment.\"",
+            "author": "Salama Alkuwari (4C)",
+            "grade": "4",
+            "date": "November 2024",
+            "category": "creative-studio",
+            "image": "environment-drawing.jpg",
+            "imageFolder": "content",
+            "authorPhoto": "salama-alkuwari.jpg"
         },
         {
-            "id": "life-never-give-up",
+            "id": "respect-short-story-2024",
             "type": "article",
-            "title": "When I Learned to Never Give Up",
-            "excerpt": "A personal account of failing at something important — and finding the courage to try again.",
-            "body": "In Grade 4, I failed my first big math test. I had studied so hard, but I still didn't do well. I felt like a failure.\n\nI wanted to give up. I told my mom I wasn't good at math and never would be. But she told me something I'll never forget: \"Failing one test doesn't mean you're a failure. It means you have more to learn.\"\n\nSo I tried again. And again. I asked my teacher for help. I practiced every day. Slowly, my grades improved — and by the end of the year, I got the highest mark in the class.\n\nI learned that failing isn't the end of the story. It's just a chapter. The next chapter is up to you.",
-            "author": "Grade 6 Student",
-            "grade": "6",
-            "date": "April 2025",
-            "category": "life-experiences",
-            "image": "life-3.jpg"
+            "title": "Respect: A Short Story",
+            "excerpt": "Reema learns that Islam asks us to respect all the things around us.",
+            "body": "Once upon a time, there was a girl named Reema. She learned that Islam asked us to respect all the things around us.\n\nRead Aisha's illustrated story below.",
+            "author": "Aisha Alfakhro (3A)",
+            "grade": "3",
+            "date": "November 2024",
+            "category": "creative-studio",
+            "image": "respect-pages.jpg",
+            "imageFolder": "content",
+            "authorPhoto": "aisha-alfakhro.jpg",
+            "images": [
+                {
+                    "image": "respect-pages.jpg",
+                    "caption": "Respect — written and illustrated by Aisha Alfakhro"
+                }
+            ]
         },
         {
-            "id": "life-teacher-forget",
+            "id": "homework-responsibility-2024",
             "type": "article",
-            "title": "The Teacher I'll Never Forget",
-            "excerpt": "A tribute to a teacher whose kindness and belief changed the way one student saw themselves.",
-            "body": "Some teachers teach subjects. But Mrs. Almansoori taught me something more important — she taught me to believe in myself.\n\nWhen I started Grade 5, I was shy and scared to speak up in class. I thought my ideas weren't good enough. But Mrs. Almansoori saw something in me that I didn't see in myself.\n\nShe encouraged me to share my thoughts. She praised my writing. She told me, \"Your voice matters.\"\n\nBy the end of the year, I was speaking in front of the whole class. I even joined the school newspaper. Mrs. Almansoori's belief in me changed my life.\n\nI'll never forget her. And I hope one day I can be that person for someone else.",
-            "author": "Grade 6 Student",
-            "grade": "6",
-            "date": "April 2025",
-            "category": "life-experiences",
-            "image": "life-4.jpg"
-        },
-        {
-            "id": "life-what-i-want",
-            "type": "article",
-            "title": "What I Want to Be When I Grow Up",
-            "excerpt": "A reflection on dreams for the future and the people, places, and moments that inspired them.",
-            "body": "When I grow up, I want to be a doctor. But not just any doctor — a children's doctor, so I can help kids feel better when they're scared.\n\nI got this idea when I was in the hospital for a week in Grade 3. The nurses and doctors were so kind to me. They made a scary situation feel safe. I want to be that person for someone else one day.\n\nI know it won't be easy. Becoming a doctor takes years of hard work and study. But I'm ready for the challenge. I already read books about the human body, and I love science class.\n\nWhatever I become, I hope I'll always remember what it feels like to be a kid — and to be kind to everyone I meet.",
-            "author": "Grade 6 Student",
-            "grade": "6",
-            "date": "March 2025",
-            "category": "life-experiences",
-            "image": "life-5.jpg"
-        },
-        {
-            "id": "life-goodbye",
-            "type": "article",
-            "title": "Goodbye, Albayan",
-            "excerpt": "A heartfelt farewell letter from a Grade 6 student reflecting on six unforgettable years.",
-            "body": "Dear Albayan,\n\nI can't believe it's time to say goodbye. Six years ago, I walked through your gates for the very first time — small, scared, and excited.\n\nYou taught me so much. Not just math and science and English — but how to be a friend, how to be brave, how to be kind. You gave me teachers who believed in me, friends who laughed with me, and memories I'll carry forever.\n\nI'm ready for the next chapter — for middle school, for new challenges, for the big world out there. But I'll never forget where I came from.\n\nThank you, Albayan. For everything.\n\nWith love,\nA Grade 6 Graduate",
-            "author": "Grade 6 Student",
-            "grade": "6",
-            "date": "May 2025",
-            "category": "life-experiences",
-            "image": "life-6.jpg"
+            "title": "The Homework: A Story about Responsibility",
+            "excerpt": "We must do our important work before we have fun.",
+            "body": "One day, my best friend Shaikha told me let's play Roblox after school straight away. I told her that I can't because we have a very important homework assignment. It was due the next day. My friend didn't listen and kept asking me to play with her. I told her to do her homework first and then we can play. She didn't listen and she went to play with her sister.\n\nI worked on my homework until I finished it all. The next day in school, the teacher asked about the homework. I gave it to her but Shaikha didn't. She looked worried and sad.\n\nThe teacher gave me and all the girls that finished their homework TEN EXTRA POINTS on ClassDojo! But for Shaikha and all the girls that didn't finish their homework, she removed a WHOLE TEN POINTS! Because of the extra points I got, the teacher said I was one of the winners for the field trip she planned for the best students. The girls that lost the points had to copy the lesson five times!\n\nThis story helps us learn that we have to be RESPONSIBLE. We must do our important work BEFORE we have fun. Working hard first means we'll be rewarded in the end.",
+            "author": "Fatima Alkuwari (4C)",
+            "grade": "4",
+            "date": "September 2024",
+            "category": "creative-studio",
+            "image": "homework-drawing.jpg",
+            "imageFolder": "content",
+            "authorPhoto": "fatima-alkuwari.jpg",
+            "images": [
+                {
+                    "image": "homework-page.jpg",
+                    "caption": "Fatima's handwritten story"
+                },
+                {
+                    "image": "homework-drawing.jpg",
+                    "caption": "To be responsible"
+                }
+            ]
         }
     ]
 }

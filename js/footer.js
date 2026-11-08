@@ -27,12 +27,6 @@
                         <p class="footer-tagline">
                             A student-powered digital newspaper celebrating creativity, journalism, and young voices from the Albayan community.
                         </p>
-                        <div class="footer-social">
-                            <a href="#" aria-label="Facebook">Fb</a>
-                            <a href="#" aria-label="Instagram">Ig</a>
-                            <a href="#" aria-label="Twitter">Tw</a>
-                            <a href="#" aria-label="YouTube">Yt</a>
-                        </div>
                     </div>
 
                     <div class="footer-links-area">
@@ -58,7 +52,6 @@
                                 <a href="${PREFIX}html/contest.html">Contests &amp; Competitions</a>
                                 <a href="${PREFIX}html/lexis-advice.html">Lexi's Advice</a>
                                 <a href="${PREFIX}html/spelling-bee.html">Spelling Bee</a>
-                                <a href="${PREFIX}html/enrichment.html">Enrichment</a>
                             </div>
                         </div>
 
@@ -69,9 +62,6 @@
                 <div class="footer-bottom">
                     <p>2026 Albayan Times. Created by Durrah Babiker. All rights reserved.</p>
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Help / FAQ</a>
                     </div>
                 </div>
 

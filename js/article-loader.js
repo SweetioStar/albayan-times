@@ -16,7 +16,7 @@
     const DATA_FILES = [
         'news', 'young-writers', 'watch', 'book-corner',
         'creative-corner', 'reporters', 'archive', 'english-stars',
-        'spelling-bee', 'enrichment', 'contest', 'competitions', 'lexis-advice'
+        'spelling-bee', 'contest', 'competitions', 'lexis-advice'
     ];
 
     // Placeholder links that were never replaced with a real video
@@ -41,7 +41,36 @@
 
     function buildBodyHtml(body) {
         if (!body) return '';
-        return String(body).split('\n\n').map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('');
+        const blocks = String(body).split('\n\n').map(b => b.trim()).filter(Boolean);
+        const isNumbered = l => /^\d+[.)]\s/.test(l);
+        const isBullet = l => /^[-•]\s/.test(l);
+
+        return blocks.map((block, index) => {
+            const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+
+            // Q&A: "1. Question?" followed by its answer
+            if (lines.length >= 2 && isNumbered(lines[0]) && lines[0].includes('?') && !lines.slice(1).some(isNumbered)) {
+                return `<div class="body-qa"><p class="body-q">${escapeHtml(lines[0])}</p><p class="body-a">${escapeHtml(lines.slice(1).join(' '))}</p></div>`;
+            }
+
+            // Heading line followed by a list ("Why is bullying bad?" + "- ...")
+            let heading = '';
+            let listLines = lines;
+            if (lines.length > 1 && !isNumbered(lines[0]) && !isBullet(lines[0]) &&
+                lines.slice(1).every(l => isNumbered(l) || isBullet(l))) {
+                heading = lines[0];
+                listLines = lines.slice(1);
+            }
+            if (listLines.length > 1 && listLines.every(isNumbered)) {
+                return `${heading ? `<h3 class="body-subhead">${escapeHtml(heading)}</h3>` : ''}<ol class="body-list">${listLines.map(l => `<li>${escapeHtml(l.replace(/^\d+[.)]\s*/, ''))}</li>`).join('')}</ol>`;
+            }
+            if (listLines.length >= 1 && listLines.every(isBullet) && (heading || listLines.length > 1)) {
+                return `${heading ? `<h3 class="body-subhead">${escapeHtml(heading)}</h3>` : ''}<ul class="body-list">${listLines.map(l => `<li>${escapeHtml(l.replace(/^[-•]\s*/, ''))}</li>`).join('')}</ul>`;
+            }
+
+            const cls = index === 0 && blocks.length > 1 ? ' class="body-lead"' : '';
+            return `<p${cls}>${lines.map(escapeHtml).join('<br>')}</p>`;
+        }).join('');
     }
 
     function getCategoryBadgeClass(category) {
@@ -50,7 +79,7 @@
     }
 
     function getCategoryLabel(category) {
-        const map = { 'school-news': 'School News', 'young-writers': 'Young Writers', 'ai-creations': 'AI Creations', 'life-experiences': 'Life Experiences', 'book-corner': 'Book/Movie', 'creative': 'Creative', 'contest': 'Contest' };
+        const map = { 'school-news': 'School News', 'young-writers': 'Young Writers', 'ai-creations': 'AI Creations', 'life-experiences': 'Life Experiences', 'creative-studio': 'Creative Studio', 'book-corner': 'Book/Movie', 'creative': 'Creative', 'contest': 'Contest' };
         return map[category] || (category ? category.charAt(0).toUpperCase() + category.slice(1) : '');
     }
 
@@ -351,6 +380,11 @@
             } else if (item.category) {
                 badgeEl.textContent = getCategoryLabel(item.category) || item.category;
                 badgeEl.className = 'detail-badge ' + getCategoryBadgeClass(item.category);
+            } else {
+                const typeLabels = { book: 'Book', movie: 'Movie', video: 'Video', interview: 'Interview', advice: "Lexi's Advice" };
+                const sourceLabels = { 'book-corner': 'Book/Movie', 'reporters': 'Reporters', 'lexis-advice': "Lexi's Advice", 'watch': 'Watch' };
+                badgeEl.textContent = typeLabels[item.type] || sourceLabels[item._source] || 'Albayan Times';
+                badgeEl.className = 'detail-badge ' + getCategoryBadgeClass(item._source === 'book-corner' ? 'book-corner' : item.type);
             }
         }
 

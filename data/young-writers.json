@@ -23,7 +23,8 @@
             "grade": "6",
             "date": "November 2025",
             "category": "essay",
-            "image": "diabetes-day.jpg"
+            "image": "diabetes-day.jpg",
+            "authorPhoto": "haya-alhamar.jpg"
         },
         {
             "id": "kindness-essays-2025",
@@ -89,39 +90,42 @@
                 {
                     "image": "qatar-day-4.jpg"
                 }
-            ]
+            ],
+            "authorPhoto": "maryam-almohannadi.jpg"
         },
         {
             "id": "childrens-day-2024",
             "type": "article",
-            "title": "World Children's Day Celebration",
-            "excerpt": "A report on how Albayan students celebrated World Children's Day with joy, activities, and reflection on children's rights around the world.",
-            "body": "World Children's Day is celebrated every year on November 20th. It's a day to celebrate children — their rights, their voices, and their dreams.\n\nAt Albayan, we celebrated with a full day of activities. Students created posters about children's rights, wore colorful clothes, and participated in games and performances.\n\nIn the morning assembly, we learned about children around the world who face difficult challenges. We discussed what we can do to help — even in small ways.\n\nThe day reminded us that every child deserves love, safety, education, and a chance to dream. And that we are lucky to have all of these — and to be able to share them with others.",
-            "author": "Haya Alhamar",
+            "title": "World Children's Day",
+            "excerpt": "Al Bayan Primary School for Girls celebrated International Children's Day with activities from every department.",
+            "body": "Today is November 21st, which is International Children's Day. Al Bayan Primary School for Girls celebrated today by having all the departments organize activities for the students.\n\nThe English Department organized a booth where the students built houses and colored them. The theme of the booth was the Child's Right to Safety. Students also had to write cards about what a child's right to safety means.\n\nThe Mathematics Department organized a booth with educational games. The Social Studies Department organized a booth to showcase Qatar's beloved customs and traditions. This included applying henna and playing traditional games.\n\nOverall, the students enjoyed the celebration and the main purpose was achieved: to bring awareness of Children's rights.",
+            "author": "Haya Alhamar (5C)",
             "grade": "5",
             "date": "November 2024",
             "category": "report",
-            "image": "childrens-day.jpg"
+            "image": "haya-alhamar.jpg",
+            "authorPhoto": "haya-alhamar.jpg"
         },
         {
             "id": "scouts-trip-2024",
             "type": "article",
             "title": "School Trip to Qatar Scouts and Guides",
-            "excerpt": "An account of our memorable visit to the Qatar Scouts and Guides, where students learned outdoor skills, teamwork, and the spirit of scouting.",
-            "body": "Last month, our class went on an exciting trip to the Qatar Scouts and Guides center. It was a day full of learning, teamwork, and fun.\n\nWhen we arrived, our guide showed us around the camp. We learned how to pitch a tent, tie different types of knots, and read a compass. We even learned how to make a small fire safely (with teacher supervision, of course).\n\nThe best part was the teamwork activities. We had to cross an imaginary river using only a few planks of wood — and we had to work together. It showed us that success comes from cooperation.\n\nBy the end of the day, we were tired but happy. The trip reminded us that learning doesn't only happen in classrooms.",
-            "author": "Maria Abdulaziz",
+            "excerpt": "All of Grade 4 went to Qatar Scouts and Guides to see a play about sea animals.",
+            "body": "On a bright Sunday in October 2024, at 9:00 am, all of grade 4 went to Qatar Scouts and Guides to see a play about sea animals. Miss Aisha went with them. The characters in the play were fish, shark, and an octopus's mom.\n\nFrom the play, the students learned that they must shower every single day. But deeper than that, they learned that we must be inclusive to each other and it doesn't matter what we look like, we all deserve respect.\n\nMy favourite character was the shark. For me, the dancing was the best part of the play.",
+            "author": "Maria Abdulaziz (4A)",
             "grade": "4",
             "date": "October 2024",
             "category": "report",
-            "image": "scouts.jpg"
+            "image": "maria-abdulaziz.jpg",
+            "authorPhoto": "maria-abdulaziz.jpg"
         },
         {
             "id": "teachers-day-2024",
             "type": "article",
             "title": "Teacher's Day Report",
-            "excerpt": "A tribute to our wonderful teachers at Albayan, capturing the celebrations, thank-yous, and heartfelt moments of World Teacher's Day.",
-            "body": "World Teacher's Day is a special day to thank our teachers for everything they do. At Albayan, we celebrated with a full day of surprises.\n\nIn the morning, students greeted teachers with flowers and cards. Some classes prepared songs and poems. Others wrote heartfelt thank-you letters.\n\nOur teachers work so hard to help us learn and grow. They wake up early, prepare lessons, grade homework, and most importantly, they believe in us.\n\nSo on World Teacher's Day — and every day — we say thank you. Thank you for teaching us, guiding us, and making our school a happy place.",
-            "author": "Badriya, Shahd, Dhabia",
+            "excerpt": "How Albayan celebrated Teacher's Day — and why it matters.",
+            "body": "Teacher's Day happens every year on the 5th of October. At our school, we celebrated it on 7th October 2024. In the morning assembly, there were many shows. The school was decorated beautifully. There was lots of gift-giving. Students gave their teachers flowers and presents and notes.\n\nTeacher's Day is important because students have the chance to show appreciation to their teachers for all the effort and hard work.\n\nMy favourite teachers are Miss Aisha and Miss Balkees. I like Miss Aisha because she did a movie night once. I like Miss Balkees because she is funny. I learned a lot from them because they teach well and care for their students.\n\nWhat about you? What did you do on Teacher's Day? Who is your favourite teacher? Who did you show appreciation to?",
+            "author": "Badriya, Shahd, and Dhabiya (6B)",
             "grade": "6",
             "date": "October 2024",
             "category": "report",

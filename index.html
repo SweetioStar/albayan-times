@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Albayan Times</title>
-    <link rel="icon" href="assets/images/logo/albayan-logo.jpg">
+    <link rel="icon" href="assets/images/logo/albayan-logo.png">
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
@@ -26,6 +26,9 @@
 
     <!-- DYNAMIC HEADER -->
     <div id="site-header"></div>
+
+    <!-- ANNOUNCEMENT STRIP (shown above English Stars while new; filled by js/home-loader.js) -->
+    <div id="spotlight-top"></div>
 
     <!-- FEATURED SWIPER HERO -->
     <section class="featured-hero-section">
@@ -57,6 +60,9 @@
 
         </div>
     </section>
+
+    <!-- LATEST COMPETITION (announcement moves here after its time at the top) -->
+    <section class="spotlight-below-section" id="spotlight-below" hidden></section>
 
     <!-- LATEST NEWS -->
     <section class="home-news-section">
