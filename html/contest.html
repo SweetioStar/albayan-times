@@ -113,7 +113,7 @@
 
         async function loadItems(file) {
             if (cache[file]) return cache[file];
-            const res = await fetch(`${PREFIX}data/${file}.json?v=` + Date.now());
+            const res = await fetch(`${PREFIX}data/${file}.json`, { cache: 'no-cache' });
             if (!res.ok) throw new Error('Failed');
             const data = await res.json();
             cache[file] = data.items || [];

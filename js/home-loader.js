@@ -17,8 +17,8 @@
 
     async function fetchJSON(fileName) {
         try {
-            const url = `data/${fileName}.json?v=` + Date.now();
-            const response = await fetch(url);
+            const url = `data/${fileName}.json`;
+            const response = await fetch(url, { cache: 'no-cache' });
             if (!response.ok) return null;
             return await response.json();
         } catch (err) {

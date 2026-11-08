@@ -32,8 +32,8 @@
         if (!placeholder) return;
 
         try {
-            const url = `${PREFIX}data/breaking.json?v=` + Date.now();
-            const res = await fetch(url);
+            const url = `${PREFIX}data/breaking.json`;
+            const res = await fetch(url, { cache: 'no-cache' });
             if (!res.ok) return;
             const data = await res.json();
             if (!data.enabled || !data.message) {

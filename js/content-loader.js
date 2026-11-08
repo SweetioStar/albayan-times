@@ -304,8 +304,8 @@
         let items = [];
 
         try {
-            const url = `${PREFIX}data/${jsonName}.json?v=` + Date.now();
-            const response = await fetch(url);
+            const url = `${PREFIX}data/${jsonName}.json`;
+            const response = await fetch(url, { cache: 'no-cache' });
             if (!response.ok) throw new Error('Failed to load ' + jsonName);
             const data = await response.json();
             items = Array.isArray(data) ? data : (data.items || []);

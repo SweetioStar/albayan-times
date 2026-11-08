@@ -118,8 +118,8 @@
         const results = await Promise.all(
             SOURCE_FILES.map(async ({ file, sourceName }) => {
                 try {
-                    const url = `${PREFIX}data/${file}.json?v=` + Date.now();
-                    const res = await fetch(url);
+                    const url = `${PREFIX}data/${file}.json`;
+                    const res = await fetch(url, { cache: 'no-cache' });
                     if (!res.ok) return [];
                     const data = await res.json();
                     const items = Array.isArray(data) ? data : (data.items || []);

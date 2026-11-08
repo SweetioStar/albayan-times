@@ -847,3 +847,19 @@
     overflow: hidden;
     min-height: calc(2 * 1.5em);
 }
+
+/* ==========================================
+   WHOLE PICTURES ON CARDS (no cropping)
+   ========================================== */
+
+.card-image img,
+.article-card .card-image img,
+.creative-card .creative-card-image img,
+.contest-card-image img,
+.video-card .video-thumbnail img,
+.detail-contest .contest-intro-image img,
+.detail-contest .winner-image img,
+.detail-contest .contest-photo-image img {
+    object-fit: contain !important;
+    background: #F3EEE4;
+}

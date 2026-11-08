@@ -15,8 +15,8 @@
 
     const DATA_FILES = [
         'news', 'young-writers', 'watch', 'book-corner',
-        'creative-corner', 'reporters', 'archive', 'english-stars',
-        'spelling-bee', 'contest', 'competitions', 'lexis-advice'
+        'creative-corner', 'reporters',
+        'contest', 'competitions', 'lexis-advice'
     ];
 
     // Placeholder links that were never replaced with a real video
@@ -93,29 +93,28 @@
         return url;
     }
 
-    /* FETCH */
-    async function loadAllData() {
-        const results = await Promise.all(
-            DATA_FILES.map(async (fileName) => {
-                try {
-                    const url = `${PREFIX}data/${fileName}.json?v=` + Date.now();
-                    const response = await fetch(url);
-                    if (!response.ok) return { fileName, items: [] };
-                    const data = await response.json();
-                    const items = Array.isArray(data) ? data : (data.items || []);
-                    return { fileName, items };
-                } catch (err) { return { fileName, items: [] }; }
-            })
-        );
-        const all = [];
-        results.forEach(({ fileName, items }) => {
-            items.forEach(item => { all.push({ ...item, _source: fileName }); });
-        });
-        return all;
+    /* FETCH
+       All data files are requested at the same time, and the page is shown
+       as soon as the file that holds this id arrives (no waiting for the rest).
+       "no-cache" lets the browser reuse files it already has when they haven't changed. */
+    function loadFile(fileName) {
+        return fetch(`${PREFIX}data/${fileName}.json`, { cache: 'no-cache' })
+            .then(r => (r.ok ? r.json() : { items: [] }))
+            .then(data => (Array.isArray(data) ? data : (data.items || [])).map(item => ({ ...item, _source: fileName })))
+            .catch(() => []);
     }
 
-    function findItemById(items, id) {
-        return items.find(item => item.id === id);
+    function findItem(id) {
+        return new Promise(resolve => {
+            let pending = DATA_FILES.length;
+            DATA_FILES.forEach(fileName => {
+                loadFile(fileName).then(items => {
+                    const found = items.find(item => item.id === id);
+                    if (found) resolve(found);
+                    if (--pending === 0) resolve(null);
+                });
+            });
+        });
     }
 
     /* LAYOUTS */
@@ -132,6 +131,29 @@
                     <span class="detail-author-label">Written by</span>
                     <span class="detail-author-name">${escapeHtml(item.author || '')}</span>
                 </div>
+            </div>
+        `;
+    }
+
+    function fullImage(url, alt) {
+        return `
+            <figure class="detail-figure">
+                <a href="${url}" target="_blank" rel="noopener" title="Open full size">
+                    <img src="${url}" alt="${escapeHtml(alt)}" onerror="this.closest('figure').style.display='none'">
+                </a>
+            </figure>
+        `;
+    }
+
+    /* Two columns on wide screens: picture + author on the left, text on the right */
+    function twoColumns(sideHtml, mainHtml) {
+        if (!sideHtml.trim()) {
+            return `<div class="detail-layout detail-layout-single"><div class="detail-main">${mainHtml}</div></div>`;
+        }
+        return `
+            <div class="detail-layout">
+                <aside class="detail-side">${sideHtml}</aside>
+                <div class="detail-main">${mainHtml}</div>
             </div>
         `;
     }
@@ -170,13 +192,12 @@
 
     function renderArticleLayout(item) {
         const imgUrl = getImageUrl(item, 'content');
-        // When the main image is just the author's portrait, show it in the author card instead
+        // When the main image is just the author's portrait or repeated in the gallery, don't show it twice
         const showHero = imgUrl && !item.videos && !(item.images && item.images.length) && item.image !== item.authorPhoto;
+        const side = (showHero ? fullImage(imgUrl, item.title) : '') + renderAuthorCard(item);
         return `
             <article class="detail-article">
-                ${showHero ? `<div class="detail-hero-image"><img src="${imgUrl}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'"></div>` : ''}
-                ${renderAuthorCard(item)}
-                <div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Full content coming soon.')}</div>
+                ${twoColumns(side, `<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Full content coming soon.')}</div>`)}
                 ${renderVideoList(item)}
                 ${renderImageGallery(item)}
             </article>
@@ -189,7 +210,8 @@
         let embedHtml = '';
 
         if (!videoUrl || PLACEHOLDER_VIDEO.test(videoUrl)) {
-            embedHtml = `<div class="detail-video-soon"><strong>Video coming soon</strong><span>We're still uploading this one. Check back later!</span></div>`;
+            const poster = item.image ? getImageUrl(item, 'content') : '';
+            embedHtml = `<div class="detail-video-soon" ${poster ? `style="background-image:linear-gradient(rgba(26,44,66,.72),rgba(26,44,66,.72)),url('${poster}')"` : ''}><strong>Video coming soon</strong><span>We're still uploading this one. Check back later!</span></div>`;
         } else if (source === 'youtube') {
             embedHtml = `<div class="detail-video-wrapper"><iframe src="${getYouTubeEmbed(videoUrl)}" frameborder="0" allowfullscreen></iframe></div>`;
         } else if (source === 'local') {
@@ -198,28 +220,32 @@
             embedHtml = `<div class="detail-video-wrapper"><iframe src="${escapeHtml(videoUrl)}" frameborder="0" allowfullscreen></iframe></div>`;
         }
 
-        return `<article class="detail-video">${embedHtml}<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div>${renderImageGallery(item)}</article>`;
+        return `
+            <article class="detail-video">
+                <div class="detail-layout detail-layout-video">
+                    <div class="detail-side">${embedHtml}</div>
+                    <div class="detail-main"><div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div></div>
+                </div>
+                ${renderImageGallery(item)}
+            </article>`;
     }
 
     function renderBookLayout(item, typeLabel) {
         const folder = item.type === 'movie' ? 'movies' : 'books';
         const imgUrl = getImageUrl(item, folder);
+        const side = `
+            ${imgUrl ? fullImage(imgUrl, item.title) : ''}
+            <div class="detail-recommender-card">
+                <span class="detail-type-badge">${escapeHtml(typeLabel)}</span>
+                ${item.creator ? `<p class="detail-book-creator">${escapeHtml(item.creator)}</p>` : ''}
+                <span class="detail-author-label">Recommended by</span>
+                <span class="detail-author-name">${escapeHtml(item.recommendedBy || 'Albayan Student')}</span>
+                ${item.grade ? `<span class="detail-recommender-grade">Grade ${escapeHtml(item.grade)}</span>` : ''}
+            </div>
+        `;
         return `
             <article class="detail-book">
-                <div class="detail-book-inner">
-                    <div class="detail-book-cover">${imgUrl ? `<img src="${imgUrl}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'">` : ''}</div>
-                    <div class="detail-book-info">
-                        <span class="detail-type-badge">${escapeHtml(typeLabel)}</span>
-                        <h2 class="detail-book-title">${escapeHtml(item.title)}</h2>
-                        <p class="detail-book-creator">${escapeHtml(item.creator || '')}</p>
-                        <div class="detail-recommender">
-                            <span class="detail-recommender-label">Recommended by</span>
-                            <span class="detail-recommender-name">${escapeHtml(item.recommendedBy || 'Albayan Student')}</span>
-                            ${item.grade ? `<span class="detail-recommender-grade">Grade ${escapeHtml(item.grade)}</span>` : ''}
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Review coming soon.')}</div>
+                ${twoColumns(side, `<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Review coming soon.')}</div>`)}
             </article>
         `;
     }
@@ -341,8 +367,10 @@
 
         return `
             <article class="detail-competition">
-                ${media}
-                <div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div>
+                <div class="detail-layout detail-layout-video">
+                    <div class="detail-side">${media}</div>
+                    <div class="detail-main"><div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div></div>
+                </div>
                 ${winnersHtml}
                 ${renderImageGallery(item)}
                 ${item.organizers ? `<p class="competition-organizers">Organized by ${escapeHtml(item.organizers)}</p>` : ''}
@@ -439,8 +467,7 @@
     async function init() {
         const id = getIdFromUrl();
         if (!id) { showNotFound(); return; }
-        const allItems = await loadAllData();
-        const item = findItemById(allItems, id);
+        const item = await findItem(id);
         if (!item) { showNotFound(); return; }
         fillPage(item);
 

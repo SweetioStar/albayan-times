@@ -328,7 +328,7 @@
         const container = document.getElementById('bee-content');
         if (!container) return;
         try {
-            const res = await fetch(`${PREFIX}data/spelling-bee.json?v=` + Date.now());
+            const res = await fetch(`${PREFIX}data/spelling-bee.json`, { cache: 'no-cache' });
             if (!res.ok) throw new Error('load failed');
             DATA = await res.json();
         } catch (err) {

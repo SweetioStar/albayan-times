@@ -259,8 +259,8 @@
 
         async function init() {
             try {
-                const url = `${PREFIX}data/lexis-advice.json?v=` + Date.now();
-                const res = await fetch(url);
+                const url = `${PREFIX}data/lexis-advice.json`;
+                const res = await fetch(url, { cache: 'no-cache' });
                 if (!res.ok) throw new Error('Failed to load');
                 const data = await res.json();
 
