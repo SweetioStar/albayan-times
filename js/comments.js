@@ -178,19 +178,35 @@
                     <button type="submit" class="comment-submit">Post comment</button>
                 </div>
             </form>
-            <h3 class="comment-list-title">What readers said</h3>
-            <ul class="comment-list"><li class="comment-empty">Loading comments…</li></ul>
+            <div class="comment-panel">
+                <h3 class="comment-list-title">What readers said <span class="comment-count"></span></h3>
+                <ul class="comment-list"><li class="comment-empty">Loading comments…</li></ul>
+            </div>
         `;
 
         const list = container.querySelector('.comment-list');
         const formEl = container.querySelector('.comment-form');
         const status = container.querySelector('.comment-status');
         const button = container.querySelector('.comment-submit');
+        const countEl = container.querySelector('.comment-count');
+        const panel = container.querySelector('.comment-panel');
+        // On wide screens the comments panel matches the form's height, so neither side has empty space
+        const matchHeights = () => {
+            if (!panel) return;
+            panel.style.height = window.innerWidth > 860 ? formEl.offsetHeight + 'px' : '';
+        };
+        matchHeights();
+        window.addEventListener('resize', matchHeights);
+        const updateCount = () => {
+            const n = list.querySelectorAll('.comment-item').length;
+            countEl.textContent = n ? n : '';
+        };
 
         loadComments(pageId).then(comments => {
             list.innerHTML = comments.length
                 ? comments.map(c => commentHtml(c, false)).join('')
-                : '<li class="comment-empty">No comments yet. Be the first!</li>';
+                : '<li class="comment-empty"><span class="comment-empty-icon">💬</span><strong>No comments yet</strong><span>Be the first to say something kind!</span></li>';
+            updateCount();
         }).catch(() => {
             list.innerHTML = '<li class="comment-empty">Comments could not be loaded right now.</li>';
         });
@@ -231,6 +247,9 @@
                     const empty = list.querySelector('.comment-empty');
                     if (empty) empty.remove();
                     list.insertAdjacentHTML('beforeend', commentHtml({ name, text, time: '' }, true));
+                    updateCount();
+                    const last = list.lastElementChild;
+                    if (last) list.scrollTop = list.scrollHeight;
                 }
                 formEl.text.value = '';
                 status.textContent = MODE === 'approve'

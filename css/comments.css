@@ -504,3 +504,127 @@
 #site-comments .comment-list { align-self: start; }
 .comment-name-row input[name="author"] { min-width: 0; width: 100%; }
 @media (max-width: 860px) { #site-comments.comments-live { grid-template-rows: none; } }
+
+/* ==========================================
+   10. RIGHT PANEL: same height as the form, no empty space
+   ========================================== */
+
+#site-comments.comments-live {
+    grid-template-rows: none;
+    align-items: stretch;
+}
+
+#site-comments .comment-form {
+    grid-row: 1;
+    position: static;
+}
+
+.comment-panel {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--color-gray-light);
+    border-radius: 16px;
+    padding: 24px 24px 18px;
+    box-shadow: 0 6px 24px rgba(26, 44, 66, 0.06);
+    min-height: 0;
+}
+
+#site-comments .comment-panel .comment-list-title {
+    margin: 0 0 14px;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comment-count:not(:empty) {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    background: var(--color-yellow);
+    color: var(--color-navy);
+    border-radius: 999px;
+    padding: 2px 10px;
+}
+
+/* the list fills the box and scrolls; it never makes the box taller than the form */
+#site-comments .comment-panel .comment-list {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    contain: size;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.comment-panel .comment-item {
+    background: #FFFDF8;
+}
+
+.comment-panel .comment-empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 2px dashed var(--color-gray-light);
+    background: #FFFDF8;
+}
+
+.comment-empty-icon { font-size: 40px; }
+.comment-empty strong { font-family: var(--font-heading); font-size: 22px; color: var(--color-navy); font-weight: 400; }
+
+@media (max-width: 860px) {
+    .comment-panel { grid-column: 1; grid-row: auto; margin-top: 24px; }
+    #site-comments .comment-panel .comment-list { contain: none; max-height: 480px; }
+    .comment-panel .comment-empty { height: auto; padding: 28px 16px; }
+}
+
+/* ==========================================
+   11. USE THE FULL PAGE WIDTH
+   ========================================== */
+
+.comments-wrapper .container {
+    max-width: 1320px;
+}
+
+#site-comments.comments-live {
+    max-width: none;
+    width: 100%;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 40px;
+}
+
+#site-comments .comment-name-row input[name="author"] {
+    max-width: none;
+}
+
+@media (max-width: 860px) {
+    #site-comments.comments-live { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Desktop: the panel is exactly as tall as the form (set by comments.js); the list scrolls inside */
+@media (min-width: 861px) {
+    #site-comments.comments-live { align-items: start; }
+    .comment-panel { overflow: hidden; }
+    #site-comments .comment-panel .comment-list {
+        contain: none;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    #site-comments .comment-panel .comment-list .comment-empty { flex: 1 0 auto; height: auto; }
+    #site-comments .comment-panel .comment-item { flex-shrink: 0; }
+}
+
+@media (min-width: 861px) {
+    #site-comments .comment-panel .comment-list,
+    #site-comments .comment-panel .comment-list > li { width: 100%; box-sizing: border-box; align-self: stretch; }
+}
