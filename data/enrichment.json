@@ -1,0 +1,171 @@
+{
+    "intro": {
+        "title": "Enrichment Zone",
+        "subtitle": "Extra learning for curious minds!",
+        "description": "Explore beyond the classroom with fun activities, videos, worksheets, and challenges. From puzzles to science experiments to reading adventures — there's something here for every curious learner."
+    },
+    "items": [
+        {
+            "id": "en-video-welcome",
+            "type": "video",
+            "title": "Welcome to Enrichment",
+            "excerpt": "A short introduction to what enrichment is all about — learning for the love of it.",
+            "body": "Enrichment is all about learning new things just because they're interesting. In this video, we explore what makes enrichment special and how it can help you discover new passions.",
+            "source": "youtube",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "duration": "03:22",
+            "category": "videos",
+            "image": "enrichment-welcome.jpg"
+        },
+        {
+            "id": "en-video-math-tricks",
+            "type": "video",
+            "title": "5 Fun Math Tricks",
+            "excerpt": "Amaze your friends with these quick mental math tricks.",
+            "body": "Learn 5 fun math tricks that will make you look like a math wizard. Perfect for showing off at family dinners!",
+            "source": "youtube",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "duration": "06:15",
+            "category": "videos",
+            "image": "math-tricks.jpg"
+        },
+        {
+            "id": "en-video-science-home",
+            "type": "video",
+            "title": "Science Experiments You Can Do at Home",
+            "excerpt": "Safe, simple science experiments using things you have at home.",
+            "body": "Turn your kitchen into a science lab! These 3 experiments are safe, easy, and use ingredients you already have at home. Always ask a grown-up first!",
+            "source": "youtube",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "duration": "08:42",
+            "category": "videos",
+            "image": "science-home.jpg"
+        },
+        {
+            "id": "en-video-reading",
+            "type": "video",
+            "title": "How to Fall in Love with Reading",
+            "excerpt": "Tips to make reading a daily habit you actually enjoy.",
+            "body": "Not everyone loves reading at first — and that's okay! This video shares simple tips to help you find books you'll genuinely enjoy.",
+            "source": "youtube",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "duration": "04:55",
+            "category": "videos",
+            "image": "reading-love.jpg"
+        },
+        {
+            "id": "en-work-math-grade3",
+            "type": "resource",
+            "title": "Grade 3 Math Enrichment",
+            "excerpt": "Fun math puzzles and challenges for Grade 3.",
+            "body": "A collection of math enrichment worksheets for Grade 3 — including number puzzles, pattern challenges, and shape games.",
+            "category": "worksheets",
+            "grade": "3",
+            "resourceType": "pdf",
+            "resourceUrl": "enrichment-math-grade3.pdf",
+            "image": "worksheet-math.jpg"
+        },
+        {
+            "id": "en-work-math-grade4",
+            "type": "resource",
+            "title": "Grade 4 Math Enrichment",
+            "excerpt": "Advanced math challenges for Grade 4.",
+            "body": "Take your math skills further with these Grade 4 enrichment worksheets — including logic puzzles, word problems, and geometry.",
+            "category": "worksheets",
+            "grade": "4",
+            "resourceType": "pdf",
+            "resourceUrl": "enrichment-math-grade4.pdf",
+            "image": "worksheet-math.jpg"
+        },
+        {
+            "id": "en-work-science-grade5",
+            "type": "resource",
+            "title": "Grade 5 Science Discovery",
+            "excerpt": "Explore science with hands-on activities.",
+            "body": "Hands-on science activities for Grade 5 — from observing plants to testing simple machines. Perfect for curious minds.",
+            "category": "worksheets",
+            "grade": "5",
+            "resourceType": "pdf",
+            "resourceUrl": "enrichment-science-grade5.pdf",
+            "image": "worksheet-science.jpg"
+        },
+        {
+            "id": "en-work-reading-grade6",
+            "type": "resource",
+            "title": "Grade 6 Reading Challenge",
+            "excerpt": "A reading challenge to expand your world.",
+            "body": "A 10-book reading challenge with discussion questions and creative response prompts. Complete the challenge and earn a certificate!",
+            "category": "worksheets",
+            "grade": "6",
+            "resourceType": "pdf",
+            "resourceUrl": "enrichment-reading-grade6.pdf",
+            "image": "worksheet-reading.jpg"
+        },
+        {
+            "id": "en-activity-critical",
+            "type": "resource",
+            "title": "Critical Thinking Puzzle Pack",
+            "excerpt": "Brain teasers that make you think differently.",
+            "body": "A pack of 20 brain teasers designed to sharpen your critical thinking. Includes riddles, logic puzzles, and pattern challenges.",
+            "category": "activities",
+            "resourceType": "pdf",
+            "resourceUrl": "critical-thinking.pdf",
+            "image": "puzzle.jpg"
+        },
+        {
+            "id": "en-activity-creative",
+            "type": "resource",
+            "title": "Creative Writing Prompts",
+            "excerpt": "50 story starters to spark your imagination.",
+            "body": "Never run out of ideas again! This pack has 50 creative writing prompts — from time travel to talking animals to unexpected adventures.",
+            "category": "activities",
+            "resourceType": "pdf",
+            "resourceUrl": "writing-prompts.pdf",
+            "image": "writing.jpg"
+        },
+        {
+            "id": "en-activity-drawing",
+            "type": "resource",
+            "title": "Drawing Challenge Cards",
+            "excerpt": "30 drawing challenges to unlock your creativity.",
+            "body": "Draw a robot, a dream house, a monster with a friendly face — 30 challenges to keep you creating.",
+            "category": "activities",
+            "resourceType": "pdf",
+            "resourceUrl": "drawing-challenges.pdf",
+            "image": "drawing.jpg"
+        },
+        {
+            "id": "en-link-khan",
+            "type": "resource",
+            "title": "Khan Academy Kids",
+            "excerpt": "Free learning games and lessons for kids.",
+            "body": "Khan Academy Kids offers free, world-class learning in math, reading, and more — designed for young learners.",
+            "category": "links",
+            "resourceType": "link",
+            "resourceUrl": "https://learn.khanacademy.org/khan-academy-kids/",
+            "image": "link-khan.jpg"
+        },
+        {
+            "id": "en-link-natgeo",
+            "type": "resource",
+            "title": "National Geographic Kids",
+            "excerpt": "Explore the world through science and discovery.",
+            "body": "Discover animals, science, and geography with National Geographic Kids — full of amazing facts, games, and videos.",
+            "category": "links",
+            "resourceType": "link",
+            "resourceUrl": "https://kids.nationalgeographic.com/",
+            "image": "link-natgeo.jpg"
+        },
+        {
+            "id": "en-link-nasa",
+            "type": "resource",
+            "title": "NASA Kids' Club",
+            "excerpt": "Learn about space, planets, and rockets.",
+            "body": "Blast off with NASA's Kids' Club — interactive games, videos, and stories about space exploration.",
+            "category": "links",
+            "resourceType": "link",
+            "resourceUrl": "https://www.nasa.gov/kidsclub/",
+            "image": "link-nasa.jpg"
+        }
+    ]
+}

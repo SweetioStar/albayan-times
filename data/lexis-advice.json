@@ -1,0 +1,57 @@
+{
+    "intro": {
+        "title": "Lexi's Advice",
+        "subtitle": "Wise words from a friend",
+        "description": "Hi, I'm Lexi! I'm here to share tips and guidance on school, friendships, and growing up. Sometimes the best advice comes from someone who's been there — and I've been there. Let's figure things out together."
+    },
+    "items": [
+        {
+            "id": "advice-exam-prep",
+            "type": "advice",
+            "title": "Exam Preparation Tips",
+            "topic": "Study Tips",
+            "excerpt": "Simple strategies to help you prepare for exams without stress.",
+            "body": "Exams can feel scary — but with the right plan, they don't have to be. Here are my top tips:\n\nStart early. Don't wait until the night before. Study a little every day for a week before the exam.\n\nStudy well and revise before coming to school. Morning review is powerful.\n\nEat healthy food. Your brain needs fuel — fruits, vegetables, and water. Skip the sugary snacks.\n\nDon't use electronics (iPad, phone) for long hours before the exam. Take real breaks.\n\nSleep enough hours. This is the most important one. Your brain stores what you learned while you sleep. Aim for 9–10 hours.\n\nYou've got this. One exam at a time.",
+            "author": "Fatima Aladsani",
+            "grade": "5",
+            "date": "November 2024",
+            "image": "advice-exam.jpg"
+        },
+        {
+            "id": "advice-anti-bullying",
+            "type": "advice",
+            "title": "Stand Up Against Bullying",
+            "topic": "Anti-Bullying",
+            "excerpt": "What bullying looks like, why it's wrong, and how we can help stop it.",
+            "body": "Bullying isn't just hitting or pushing. It comes in many forms:\n\nPhysical — hitting, kicking, or pushing someone.\n\nSocial — leaving someone out, spreading rumors, or turning friends against them.\n\nCyber — mean messages, embarrassing photos, or hurtful comments online.\n\nNone of these are okay. Ever.\n\nWhy is respect important? When we respect each other, we build trust. We become good listeners. We make the world kinder.\n\nBullying hurts everyone. It leads to violence, it makes people lose friends, and honestly — it's just not cool.\n\nHow can we stop it?\n\nHelp kids understand that bullying is wrong. Speak up when you see it. Tell a teacher or a trusted adult. And never, ever join in.\n\nIf you're being bullied — please know it's not your fault. You deserve to feel safe. Tell someone.",
+            "author": "Aisha Alamri",
+            "grade": "6",
+            "date": "September 2024",
+            "image": "advice-bullying.jpg"
+        },
+        {
+            "id": "advice-balanced-life",
+            "type": "advice",
+            "title": "How to Stay Balanced at School",
+            "topic": "Wellbeing",
+            "excerpt": "Simple daily habits that help you stay focused, calm, and happy.",
+            "body": "School can feel like a lot — homework, exams, activities, friendships. Here's how I stay balanced:\n\nTake real breaks. After 45 minutes of studying, stand up, stretch, drink water, and come back.\n\nMove your body. Even 10 minutes of playing outside helps your brain reset.\n\nTalk to someone. If something's bothering you, tell a friend, a family member, or a teacher.\n\nSay no sometimes. It's okay to skip one thing so you can rest.\n\nCelebrate small wins. Finished a chapter? High-five yourself.\n\nBalance isn't about doing everything. It's about doing the right things — and resting well.",
+            "author": "Lexi",
+            "grade": "6",
+            "date": "Coming Soon",
+            "image": "advice-balanced.jpg"
+        },
+        {
+            "id": "advice-friendship",
+            "type": "advice",
+            "title": "Being a Good Friend",
+            "topic": "Friendship",
+            "excerpt": "Friendship is one of the best parts of school. Here's how to make it even better.",
+            "body": "Some of my best memories are with my friends. Here's what I've learned about being a good one:\n\nListen more than you talk. When a friend tells you something, really listen. Put down your phone. Look at them.\n\nShow up. Not just for the fun stuff — but when they're having a hard day too.\n\nBe honest. Real friends tell the truth, even when it's hard. Kindly.\n\nSay sorry when you mess up. Everyone makes mistakes. Owning them is what makes you a good friend.\n\nCelebrate their wins. Don't compare. When your friend succeeds, be happy for them.\n\nFriendship isn't about how many friends you have. It's about how well you treat them.",
+            "author": "Lexi",
+            "grade": "6",
+            "date": "Coming Soon",
+            "image": "advice-friendship.jpg"
+        }
+    ]
+}

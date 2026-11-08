@@ -1,0 +1,309 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - FOOTER
+   ============================================
+   2-column layout:
+   - Brand (left)
+   - Main Pages + Special Features (right)
+   ============================================ */
+
+/* ==========================================
+   1. FOOTER WRAPPER
+   ========================================== */
+
+.site-footer {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    padding: 56px 0 0;
+    position: relative;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        var(--color-orange) 0%,
+        var(--color-yellow) 25%,
+        var(--color-teal) 50%,
+        var(--color-mint) 75%,
+        var(--color-coral) 100%
+    );
+}
+
+/* ==========================================
+   2. MAIN GRID (2 columns)
+   ========================================== */
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    gap: 56px;
+    padding-bottom: 40px;
+    align-items: flex-start;
+}
+
+/* ==========================================
+   3. COLUMN 1 — BRAND
+   ========================================== */
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-logo-text {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--color-white);
+    line-height: 1.1;
+}
+
+.footer-logo-text span {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: var(--fw-bold);
+    color: var(--color-orange);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+    max-width: 320px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
+    font-size: 12px;
+    font-weight: var(--fw-bold);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.footer-social a:hover {
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    border-color: var(--color-orange);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   4. COLUMN 2 — LINKS AREA
+   ========================================== */
+
+.footer-links-area {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.footer-link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-heading {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: var(--fw-regular);
+    color: var(--color-white);
+    margin: 0;
+    letter-spacing: 0.3px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+}
+
+/* Rows of links */
+.footer-links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+}
+
+.footer-links-row a {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    white-space: nowrap;
+}
+
+.footer-links-row a:hover {
+    color: var(--color-orange);
+    padding-left: 4px;
+}
+
+/* ==========================================
+   5. FOOTER BOTTOM BAR
+   ========================================== */
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+}
+
+.footer-bottom p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom-links a {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: var(--fw-regular);
+    transition: color 0.2s ease;
+    text-decoration: none;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--color-orange);
+}
+
+/* ==========================================
+   6. BACK TO TOP BUTTON
+   ========================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(26, 44, 66, 0.2);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 500;
+    border: none;
+}
+
+.back-to-top::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-top: 3px solid currentColor;
+    border-left: 3px solid currentColor;
+    transform: rotate(45deg) translate(2px, 2px);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* ==========================================
+   7. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 900px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .site-footer {
+        padding: 40px 0 0;
+    }
+
+    .footer-main {
+        gap: 32px;
+        padding-bottom: 32px;
+    }
+
+    .footer-links-area {
+        gap: 24px;
+    }
+
+    .footer-links-row {
+        gap: 8px 18px;
+    }
+
+    .footer-links-row a {
+        font-size: 13px;
+    }
+
+    .footer-heading {
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .footer-bottom-links {
+        gap: 16px;
+    }
+
+    .back-to-top {
+        width: 42px;
+        height: 42px;
+        bottom: 16px;
+        right: 16px;
+    }
+}

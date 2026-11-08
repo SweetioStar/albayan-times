@@ -1,0 +1,151 @@
+{
+    "intro": {
+        "title": "Spelling Bee Practice Zone",
+        "subtitle": "Everything you need to become a spelling champion!",
+        "description": "Practice your spelling skills with fun videos, word lists, and quizzes. Whether you're preparing for the school Spelling Bee or just want to improve, you'll find everything here."
+    },
+    "items": [
+        {
+            "id": "sb-video-intro",
+            "type": "video",
+            "title": "Welcome to the Spelling Bee!",
+            "excerpt": "A friendly introduction to how the Spelling Bee works and what to expect.",
+            "body": "In this video, we explain how the Spelling Bee works — the rules, the rounds, and how to prepare. Perfect for first-timers!",
+            "source": "youtube",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "duration": "03:45",
+            "category": "videos",
+            "image": "spelling-bee-intro.jpg"
+        },
+        {
+            "id": "sb-video-tips",
+            "type": "video",
+            "title": "5 Tips to Spell Better",
+            "excerpt": "Simple tips that will make you a better speller in no time.",
+            "body": "Learn 5 easy tips to improve your spelling — from breaking words into syllables to using memory tricks.",
+            "source": "youtube",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "duration": "05:12",
+            "category": "videos",
+            "image": "spelling-tips.jpg"
+        },
+        {
+            "id": "sb-video-syllables",
+            "type": "video",
+            "title": "Break Words into Syllables",
+            "excerpt": "The secret to spelling long words — one syllable at a time.",
+            "body": "Long words are easier than they look. This video teaches you to break any word into syllables, making it simple to spell.",
+            "source": "youtube",
+            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "duration": "04:28",
+            "category": "videos",
+            "image": "syllables.jpg"
+        },
+        {
+            "id": "sb-list-grade3",
+            "type": "resource",
+            "title": "Grade 3 Word List",
+            "excerpt": "100 practice words selected for Grade 3 spellers.",
+            "body": "This word list contains 100 carefully chosen words for Grade 3 students. Practice one list per week to build your confidence.\n\nIncludes: common words, tricky silent letters, and compound words.",
+            "category": "word-lists",
+            "grade": "3",
+            "resourceType": "pdf",
+            "resourceUrl": "spelling-grade3.pdf",
+            "image": "word-list.jpg"
+        },
+        {
+            "id": "sb-list-grade4",
+            "type": "resource",
+            "title": "Grade 4 Word List",
+            "excerpt": "150 practice words for Grade 4 students.",
+            "body": "Level up with 150 words for Grade 4 spellers. Includes homophones, tricky plurals, and words borrowed from other languages.",
+            "category": "word-lists",
+            "grade": "4",
+            "resourceType": "pdf",
+            "resourceUrl": "spelling-grade4.pdf",
+            "image": "word-list.jpg"
+        },
+        {
+            "id": "sb-list-grade5",
+            "type": "resource",
+            "title": "Grade 5 Word List",
+            "excerpt": "200 advanced words for Grade 5 spellers.",
+            "body": "Ready for a bigger challenge? This 200-word list includes advanced vocabulary, silent letters, and words from science and history.",
+            "category": "word-lists",
+            "grade": "5",
+            "resourceType": "pdf",
+            "resourceUrl": "spelling-grade5.pdf",
+            "image": "word-list.jpg"
+        },
+        {
+            "id": "sb-list-grade6",
+            "type": "resource",
+            "title": "Grade 6 Word List",
+            "excerpt": "250 championship-level words for Grade 6 spellers.",
+            "body": "The toughest list — 250 words that will test even the best spellers. Prepare for the championship with these advanced words.",
+            "category": "word-lists",
+            "grade": "6",
+            "resourceType": "pdf",
+            "resourceUrl": "spelling-grade6.pdf",
+            "image": "word-list.jpg"
+        },
+        {
+            "id": "sb-quiz-easy",
+            "type": "resource",
+            "title": "Easy Practice Quiz",
+            "excerpt": "A quick 10-question quiz to warm up.",
+            "body": "Warm up with this easy 10-question quiz. Perfect for Grade 3-4 spellers or anyone just starting.",
+            "category": "quizzes",
+            "grade": "3",
+            "resourceType": "quiz",
+            "resourceUrl": "quiz-easy.html",
+            "image": "quiz.jpg"
+        },
+        {
+            "id": "sb-quiz-medium",
+            "type": "resource",
+            "title": "Medium Practice Quiz",
+            "excerpt": "A 15-question quiz for intermediate spellers.",
+            "body": "Ready for a challenge? This 15-question quiz is designed for Grade 5 spellers.",
+            "category": "quizzes",
+            "grade": "5",
+            "resourceType": "quiz",
+            "resourceUrl": "quiz-medium.html",
+            "image": "quiz.jpg"
+        },
+        {
+            "id": "sb-quiz-hard",
+            "type": "resource",
+            "title": "Championship Quiz",
+            "excerpt": "A 20-question quiz for championship-level spellers.",
+            "body": "Think you're ready for the Spelling Bee championship? Try this 20-question quiz with the hardest words.",
+            "category": "quizzes",
+            "grade": "6",
+            "resourceType": "quiz",
+            "resourceUrl": "quiz-hard.html",
+            "image": "quiz.jpg"
+        },
+        {
+            "id": "sb-link-scripps",
+            "type": "resource",
+            "title": "Scripps National Spelling Bee",
+            "excerpt": "The official site of the world-famous Spelling Bee.",
+            "body": "Visit the official Scripps National Spelling Bee website for more resources, word lists, and inspiration.",
+            "category": "links",
+            "resourceType": "link",
+            "resourceUrl": "https://spellingbee.com",
+            "image": "link.jpg"
+        },
+        {
+            "id": "sb-link-merriam",
+            "type": "resource",
+            "title": "Merriam-Webster Word Games",
+            "excerpt": "Fun word games to practice spelling.",
+            "body": "Play fun word games on Merriam-Webster's website. Learn while you play!",
+            "category": "links",
+            "resourceType": "link",
+            "resourceUrl": "https://www.merriam-webster.com/games",
+            "image": "link.jpg"
+        }
+    ]
+}

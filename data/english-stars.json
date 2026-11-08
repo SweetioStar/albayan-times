@@ -1,0 +1,145 @@
+{
+    "theme": "This week's theme: Excellence in English",
+    "items": [
+        {
+            "id": "star-3a",
+            "type": "star",
+            "name": "Zamzam Almohannadi",
+            "class": "3A",
+            "grade": "3",
+            "photo": "3A-zamzam.jpg"
+        },
+        {
+            "id": "star-3b",
+            "type": "star",
+            "name": "Muneera Jassim",
+            "class": "3B",
+            "grade": "3",
+            "photo": "3B-muneera.jpg"
+        },
+        {
+            "id": "star-3c",
+            "type": "star",
+            "name": "Noura Abdullah Alnaimi",
+            "class": "3C",
+            "grade": "3",
+            "photo": "3C-noura.jpg"
+        },
+        {
+            "id": "star-3d",
+            "type": "star",
+            "name": "Sara Mahdi",
+            "class": "3D",
+            "grade": "3",
+            "photo": "3D-sara.jpg"
+        },
+        {
+            "id": "star-4a",
+            "type": "star",
+            "name": "حصه علي الخلف",
+            "class": "4A",
+            "grade": "4",
+            "photo": "4A-hessa.jpg"
+        },
+        {
+            "id": "star-4b",
+            "type": "star",
+            "name": "لولوة الكواري",
+            "class": "4B",
+            "grade": "4",
+            "photo": "4B-lolwa.jpg",
+            "badge": "Star of Achieving Tasks on Time"
+        },
+        {
+            "id": "star-4c",
+            "type": "star",
+            "name": "منيرة ناصر",
+            "class": "4C",
+            "grade": "4",
+            "photo": "4C-muneera.jpg",
+            "badge": "Star of Reading"
+        },
+        {
+            "id": "star-4d",
+            "type": "star",
+            "name": "الدانة على يوسف بوعيسى العبيدلي",
+            "class": "4D",
+            "grade": "4",
+            "photo": "4D-aldana.jpg",
+            "badge": "Star of Writing"
+        },
+        {
+            "id": "star-4e",
+            "type": "star",
+            "name": "مريم جاسم عسكر عبدالله العمادي",
+            "class": "4E",
+            "grade": "4",
+            "photo": "4E-maryam.jpg",
+            "badge": "Star of Reading"
+        },
+        {
+            "id": "star-5a",
+            "type": "star",
+            "name": "Asmaa Abdulla Alkuwari",
+            "class": "5A",
+            "grade": "5",
+            "photo": "5A-asmaa.jpg"
+        },
+        {
+            "id": "star-5b",
+            "type": "star",
+            "name": "Roza Alabbassi",
+            "class": "5B",
+            "grade": "5",
+            "photo": "5B-roza.jpg"
+        },
+        {
+            "id": "star-5c",
+            "type": "star",
+            "name": "Aisha Naser Al-Naser",
+            "class": "5C",
+            "grade": "5",
+            "photo": "5C-aisha.jpg"
+        },
+        {
+            "id": "star-5d",
+            "type": "star",
+            "name": "Afra Fahad Alsahli",
+            "class": "5D",
+            "grade": "5",
+            "photo": "5D-afra.jpg"
+        },
+        {
+            "id": "star-6a",
+            "type": "star",
+            "name": "لولوة عبدالعزيز الكواري",
+            "class": "6A",
+            "grade": "6",
+            "photo": "6A-lolwa.jpg"
+        },
+        {
+            "id": "star-6b",
+            "type": "star",
+            "name": "غلا ناجي العجي",
+            "class": "6B",
+            "grade": "6",
+            "photo": "6B-ghala.jpg"
+        },
+        {
+            "id": "star-6c",
+            "type": "star",
+            "name": "شيخة الساده",
+            "class": "6C",
+            "grade": "6",
+            "photo": "6C-sheikha.jpg"
+        },
+        {
+            "id": "star-6d",
+            "type": "star",
+            "name": "نور عزالدين",
+            "class": "6D",
+            "grade": "6",
+            "photo": "6D-noor.jpg"
+        }
+    ]
+}

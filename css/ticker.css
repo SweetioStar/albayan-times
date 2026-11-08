@@ -1,0 +1,188 @@
+/* ============================================
+   THE OPEN ALBAYAN TIMES - TICKER
+   ============================================
+   A scrolling belt (marquee) showing the
+   Ministry's Vision and Mission on every page.
+   ============================================ */
+
+/* ==========================================
+   1. TICKER WRAPPER
+   ========================================== */
+
+.ministry-ticker {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    overflow: hidden;
+    position: relative;
+    padding: 14px 0;
+    border-bottom: 2px solid var(--color-orange);
+}
+
+/* Decorative gradient glows on the ends */
+.ministry-ticker::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(90deg, var(--color-navy) 0%, transparent 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.ministry-ticker::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(270deg, var(--color-navy) 0%, transparent 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* ==========================================
+   2. SCROLLING TRACK
+   ========================================== */
+
+.ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    white-space: nowrap;
+    animation: ticker-scroll 60s linear infinite;
+    will-change: transform;
+}
+
+/* Pause on hover so people can read it */
+.ministry-ticker:hover .ticker-track {
+    animation-play-state: paused;
+}
+
+/* ==========================================
+   3. TICKER ITEMS
+   ========================================== */
+
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.ticker-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.ticker-item.ticker-vision .ticker-label {
+    background-color: var(--color-orange);
+    color: var(--color-navy);
+}
+
+.ticker-item.ticker-mission .ticker-label {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+}
+
+.ticker-text {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.2px;
+}
+
+/* Divider dot between items */
+.ticker-divider {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-orange);
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+/* ==========================================
+   4. ANIMATION
+   ========================================== */
+
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+        animation-duration: 120s;
+    }
+}
+
+/* ==========================================
+   5. RESPONSIVE
+   ========================================== */
+
+@media (max-width: 900px) {
+    .ministry-ticker {
+        padding: 12px 0;
+    }
+
+    .ticker-text {
+        font-size: 13px;
+    }
+
+    .ticker-label {
+        font-size: 10px;
+        padding: 4px 12px;
+    }
+
+    .ticker-track {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 640px) {
+    .ministry-ticker {
+        padding: 10px 0;
+    }
+
+    .ministry-ticker::before,
+    .ministry-ticker::after {
+        width: 40px;
+    }
+
+    .ticker-track {
+        gap: 30px;
+    }
+
+    .ticker-text {
+        font-size: 12px;
+    }
+
+    .ticker-label {
+        font-size: 9px;
+        padding: 3px 10px;
+        letter-spacing: 1px;
+    }
+
+    .ticker-item {
+        gap: 10px;
+    }
+}
