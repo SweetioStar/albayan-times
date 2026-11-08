@@ -214,6 +214,8 @@
     async function addMoreFrom(item, root) {
         const main = root.querySelector('.detail-layout .detail-main');
         if (!main || main.querySelector('.detail-picker')) return;
+        // pages with their own videos or galleries under the text are not short
+        if ((item.videos && item.videos.length) || root.querySelector('.detail-video-list, .competition-winners, .detail-contest')) return;
         const text = String(item.body || '').length;
         if (text > 600) return;
 

@@ -1498,3 +1498,12 @@
 .detail-more-item { padding: 6px 8px; }
 .detail-more-thumb { width: 56px; height: 56px; }
 .detail-more-text strong { font-size: 16px; }
+
+/* Text and video row share the same width on pages without a picture */
+.detail-layout-single,
+.detail-layout-single + .detail-video-list {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.detail-layout-single + .detail-video-list { margin-top: 28px; }

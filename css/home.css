@@ -1312,3 +1312,15 @@ body:not(.home-ready) .stars-stage-section {
     .stars-line-inner { flex-wrap: wrap; gap: 4px 10px; font-size: 14px; }
     .stars-line-cta { width: 100%; padding-left: 28px; }
 }
+
+/* "Watch the video" button under the winners: spaced out, centered, normal size */
+.spotlight-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.spotlight-more .featured-hero-cta {
+    font-size: 15px;
+    padding: 14px 28px;
+}
