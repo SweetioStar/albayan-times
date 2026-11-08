@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Stars | Albayan Times</title>
+    <link rel="icon" href="../assets/images/logo/albayan-logo.jpg">
 
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/variables.css">
@@ -87,8 +88,8 @@
     <section class="comments-wrapper">
         <div class="container">
             <div class="comments-header">
-                <h2>Comments</h2>
-                <p>Share your thoughts with the Albayan community.</p>
+                <h2>Congratulate Our Stars</h2>
+                <p>Leave a kind message for this week's English Stars.</p>
             </div>
             <div class="comments-placeholder" id="site-comments">
                 <h3 class="comments-placeholder-title">Comments Coming Soon</h3>
@@ -106,6 +107,7 @@
     <script src="../js/header.js"></script>
     <script src="../js/footer.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/comments.js"></script>
 
     <script>
     (function () {
@@ -230,6 +232,17 @@
 
                 updateHero(data);
                 renderStarsSection(data);
+
+                // One comment thread per set of stars: a new list of stars starts a fresh thread
+                if (window.AlbayanComments) {
+                    const names = (data.items || []).map(s => s.name).join('|');
+                    let h = 5381;
+                    for (let i = 0; i < names.length; i++) h = ((h << 5) + h + names.charCodeAt(i)) >>> 0;
+                    window.AlbayanComments.mount({
+                        pageId: 'english-stars/' + h.toString(36),
+                        pageTitle: 'English Stars' + (data.week ? ' — ' + data.week : '')
+                    });
+                }
             } catch (err) {
                 console.warn('[Albayan] Could not load english-stars.json:', err);
                 const container = document.getElementById('stars-container');

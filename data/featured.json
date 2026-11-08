@@ -1,13 +1,12 @@
 {
-    "type": "announcement",
-    "announcement": {
-        "title": "Spelling Bee Winners Announced!",
-        "subtitle": "Congratulations to our brilliant spellers",
-        "description": "Watch the video to see who took home the top prizes at this year's Spelling Bee championship.",
-        "videoUrl": "spelling-bee-winners.mp4",
-        "videoType": "local",
-        "ctaText": "See All Winners",
-        "ctaLink": "html/contest.html",
-        "image": ""
+    "_howTo": "Home page spotlight. While today is between showFrom and showUntil, the spotlight competition replaces English Stars at the top of the home page. After showUntil, English Stars comes back by itself. Dates are YYYY-MM-DD and both days are included.",
+    "spotlight": {
+        "competitionId": "idiom-day-2026",
+        "showFrom": "2026-11-08",
+        "showUntil": "2026-11-28",
+        "badge": "Competition Winners",
+        "title": "Idiom Day Winners Announced!",
+        "subtitle": "Congratulations to our brilliant idiom stars",
+        "ctaText": "See All Winners"
     }
 }

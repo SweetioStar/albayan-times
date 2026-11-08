@@ -10,7 +10,8 @@
             "excerpt": "An 11-year-old orphan discovers he is a famous wizard and goes to Hogwarts to learn magic, make friends, and protect a magical stone.",
             "body": "Harry Potter is an 11-year-old orphan who lives with his mean aunt, uncle, and cousin. On his birthday, he discovers a big secret: he is a famous wizard!\n\nHarry goes to Hogwarts School of Witchcraft and Wizardry to learn magic. There, he makes two best friends, Ron and Hermione, and learns how to fly on a broomstick. He also discovers a magical sport called Quidditch.\n\nThe story gets exciting when Harry and his friends find out that someone is trying to steal the Sorcerer's Stone — a magical object that can give eternal life. Harry must use his courage and his friends' help to protect the stone from the dark wizard Voldemort.\n\nI love this book because it's full of adventure and friendship. Harry teaches us that even when things seem impossible, courage and friends can help us through.",
             "date": "May 2026",
-            "image": "book-placeholder.jpg"
+            "image": "harry-potter.jpg",
+            "imageFolder": "books"
         },
         {
             "id": "the-little-prince",
@@ -22,19 +23,21 @@
             "excerpt": "A little boy travels from one planet to another and learns about life, love, and friendship.",
             "body": "The Little Prince is a beautiful story about a young boy who travels from one planet to another, meeting interesting characters along the way.\n\nWhat makes this book so special is its simple but deep message: the most important things in life cannot be seen with the eyes. You have to feel them with your heart.\n\nThis book taught me the value of friendship and understanding others. Even though it looks like a children's book, it has lessons for everyone — no matter their age.\n\nI recommend it to anyone who wants a gentle, thoughtful, and touching story.",
             "date": "May 2026",
-            "image": "book-placeholder.jpg"
+            "image": "little-prince.jpg",
+            "imageFolder": "books"
         },
         {
             "id": "moana",
             "type": "movie",
             "title": "Moana",
             "creator": "Walt Disney Animation",
-            "recommendedBy": "Sara Mashal Alnuaimi",
-            "grade": "6",
+            "recommendedBy": "Sara Meshal Alnuaimi",
+            "grade": "5",
             "excerpt": "A brave girl sails across the ocean to save her island. Along the way, she meets new friends and faces many challenges.",
             "body": "Do you like adventure and exciting journeys? Then you should watch Moana!\n\nIt is a story about a brave girl who sails across the ocean to save her island. Along the way, she meets new friends and faces many challenges.\n\nYou will learn about courage, friendship, and believing in yourself. Will Moana succeed in her mission? Watch the story and find out!",
             "date": "April 2026",
-            "image": "movie-placeholder.jpg"
+            "image": "moana.jpg",
+            "imageFolder": "movies"
         },
         {
             "id": "neil-armstrong-bio",
@@ -46,7 +49,8 @@
             "excerpt": "The inspiring story of the first man on the moon. From his childhood dreams to leading the Gemini 8 mission.",
             "body": "Neil Armstrong was born on August 5, 1930. His family lived in 20 towns when he was a boy!\n\nWhen Neil turned six, his dad took him for his first plane ride in a Tin Goose. It was a plane that had three motors. Neil knew that he would one day be a pilot.\n\nAt 15, Neil took part-time jobs in three stores. A flying lesson cost $9 an hour. He had to work 21 hours to earn just one lesson. He spent a year learning to fly and earned his pilot's license at the age of 16.\n\nNeil joined the U.S. Navy and flew planes in the Korean War. He was known for being brave. The U.S. Navy sent him to college, where he took classes to learn about flying in space. After college, Neil went to work at NASA.\n\nIn 1966, Neil led the Gemini 8 mission. He and David Scott blasted off to dock their craft with an unmanned rocket in space. But something went wrong — they started to spin out of control. Neil stayed calm and fixed the problem, and Gemini 8 landed safely in the Pacific Ocean.\n\nNeil's story teaches us that hard work, courage, and staying calm under pressure can take us anywhere — even to the moon.",
             "date": "May 2026",
-            "image": "book-placeholder.jpg"
+            "image": "neil-armstrong.jpg",
+            "imageFolder": "books"
         },
         {
             "id": "rapunzel-tangled",
@@ -58,7 +62,8 @@
             "excerpt": "A curious girl locked in a tower with 70 feet of golden hair escapes to discover the world and her true identity.",
             "body": "Rapunzel may have lived her entire life locked inside a hidden tower, but Rapunzel is no damsel in distress!\n\nThe girl with 70 feet of golden hair is an energetic, inquisitive teenager who fills her days with art, books, and imagination. Rapunzel is full of curiosity about the outside world, and she can't help but feel that her true destiny lies outside of the lonely tower walls.\n\nWhen her 18th birthday draws near, she is finally old enough to leave the tower and discovers the world she's only read about in books. Along with a charming thief named Flynn Rider, Rapunzel sets out on a journey full of humor, heart, and hair-raising adventures.\n\nI love this movie because Rapunzel is brave, funny, and never gives up. It's a beautiful story about following your dreams.",
             "date": "April 2026",
-            "image": "movie-placeholder.jpg"
+            "image": "rapunzel.jpg",
+            "imageFolder": "movies"
         },
         {
             "id": "home-alone",
@@ -70,79 +75,73 @@
             "excerpt": "A clever boy is left home alone during the holidays and must defend his house from two clumsy burglars.",
             "body": "Home Alone is a funny, action-packed movie that the whole family can enjoy.\n\nKevin McCallister is a clever 8-year-old boy who gets left behind when his family goes on a Christmas trip. At first, he loves having the house to himself — but then two burglars try to break in.\n\nKevin uses his imagination and clever tricks to defend his house from the burglars. The traps he sets are hilarious and brilliant.\n\nBut underneath the funny moments, Home Alone is also a story about family, love, and how much we miss the people we care about. I recommend it for a fun family movie night!",
             "date": "March 2026",
-            "image": "movie-placeholder.jpg"
+            "image": "home-alone.jpg",
+            "imageFolder": "movies"
         },
         {
-            "id": "wonder-book",
-            "type": "book",
-            "title": "Wonder",
-            "creator": "R.J. Palacio",
-            "recommendedBy": "Grade 5 Student",
-            "grade": "5",
-            "excerpt": "A beautiful story about kindness, acceptance, and seeing beyond appearances.",
-            "body": "Wonder is one of the most beautiful books I've ever read.\n\nAuggie Pullman was born with a facial difference, and he's been homeschooled his whole life. Now he's starting 5th grade at a real school for the first time, and he just wants to be treated like an ordinary kid.\n\nThis book taught me so much about kindness, acceptance, and looking beyond appearances. It shows us that everyone has a story and deserves to be treated with respect.\n\nBy the end of the book, I felt like I really knew Auggie and his friends. I highly recommend this book to anyone — kids and adults alike.",
-            "date": "February 2026",
-            "image": "book-placeholder.jpg"
-        },
-        {
-            "id": "charlottes-web",
-            "type": "book",
-            "title": "Charlotte's Web",
-            "creator": "E.B. White",
-            "recommendedBy": "Grade 4 Student",
-            "grade": "4",
-            "excerpt": "A heartwarming tale of friendship between a pig named Wilbur and a clever spider named Charlotte.",
-            "body": "Charlotte's Web is a classic story about friendship that I absolutely love.\n\nWilbur is a small pig who is afraid of being sent away. Charlotte is a clever spider who lives in the barn and promises to save him.\n\nCharlotte writes messages in her web that convince the farmer to keep Wilbur safe. But Charlotte's biggest gift isn't her cleverness — it's her friendship.\n\nThis book taught me what it really means to be a friend. It's a beautiful, gentle story that I think every young reader should experience.",
-            "date": "January 2026",
-            "image": "book-placeholder.jpg"
-        },
-        {
-            "id": "matilda-book",
-            "type": "book",
-            "title": "Matilda",
-            "creator": "Roald Dahl",
-            "recommendedBy": "Grade 4 Student",
-            "grade": "4",
-            "excerpt": "A brilliant young girl with extraordinary powers takes on the terrible Miss Trunchbull.",
-            "body": "Matilda is one of the funniest and smartest books ever written for kids.\n\nMatilda is a brilliant young girl who loves reading. Unfortunately, her parents don't appreciate her and the headmistress of her school, Miss Trunchbull, is horrible.\n\nBut Matilda discovers she has special powers — and she uses them to stand up against Miss Trunchbull and help her kind teacher, Miss Honey.\n\nI love this book because Matilda shows us that even if you're small, you can do big things. And that being smart and kind is the best kind of magic.",
-            "date": "December 2025",
-            "image": "book-placeholder.jpg"
-        },
-        {
-            "id": "the-gruffalo",
-            "type": "book",
-            "title": "The Gruffalo",
-            "creator": "by Julia Donaldson",
-            "recommendedBy": "Grade 3 Student",
-            "grade": "3",
-            "excerpt": "A clever mouse uses its wits to outsmart the creatures of the deep dark wood.",
-            "body": "The Gruffalo is a rhyming story about a clever little mouse who takes a walk through the deep dark wood.\n\nWhen predators approach, the mouse warns them about a scary creature called the Gruffalo. But when the mouse actually meets a Gruffalo, he has to use his wits to save himself!\n\nThis book is funny and clever, with beautiful pictures. Even though I'm older now, I still love reading it — and it's perfect for younger readers.\n\nI recommend this for anyone who loves funny animal stories.",
-            "date": "November 2025",
-            "image": "book-placeholder.jpg"
-        },
-        {
-            "id": "finding-nemo",
+            "id": "zootopia",
             "type": "movie",
-            "title": "Finding Nemo",
-            "creator": "Pixar Animation",
-            "recommendedBy": "Grade 3 Student",
-            "grade": "3",
-            "excerpt": "A father fish crosses the ocean to find his lost son. A beautiful story about family and courage.",
-            "body": "Finding Nemo is a beautiful movie about family, courage, and never giving up.\n\nWhen a little clownfish named Nemo gets captured by a diver, his father Marlin goes on an incredible journey across the ocean to find him. Along the way, Marlin meets new friends and learns to trust others.\n\nMeanwhile, Nemo makes friends of his own in a fish tank in a dentist's office — including a fish named Dory who can't remember anything but has a huge heart.\n\nI love this movie because it shows how much parents love their children, and how even the smallest fish can be brave. It's heartwarming and funny for the whole family.",
-            "date": "October 2025",
-            "image": "movie-placeholder.jpg"
+            "title": "Zootopia",
+            "creator": "Walt Disney Animation",
+            "recommendedBy": "Salama Ali Alkuwari",
+            "grade": "5",
+            "excerpt": "In a city of animals, a rabbit police officer teams up with a clever fox to solve a mystery.",
+            "body": "Salama recommends Zootopia — a film set in a city of animals, where a determined rabbit police officer teams up with a clever fox to solve a big mystery.\n\nTake a look at Salama's poster above!",
+            "date": "May 2026",
+            "image": "zootopia.jpg",
+            "imageFolder": "movies"
         },
         {
-            "id": "the-lion-witch-wardrobe",
+            "id": "secret-garden",
             "type": "book",
-            "title": "The Lion, the Witch and the Wardrobe",
-            "creator": "C.S. Lewis",
+            "title": "The Secret Garden",
+            "creator": "Frances Hodgson Burnett",
+            "recommendedBy": "Salama Alkuwari",
+            "grade": "5",
+            "excerpt": "The emotional and physical healing of a spoiled, orphaned girl named Mary Lennox.",
+            "body": "This book is about the emotional and physical healing of a spoiled, orphaned girl named Mary Lennox. Read this book and find out more about it.\n\nThe Secret Garden teaches that positive thinking, nature, and nurturing relationships can transform physical and emotional health, shifting one from despair to joy.",
+            "date": "May 2026",
+            "image": "secret-garden.jpg",
+            "imageFolder": "books"
+        },
+        {
+            "id": "stranger-things",
+            "type": "movie",
+            "title": "Stranger Things",
+            "creator": "TV series",
+            "recommendedBy": "Haya Rashid Al-Mannai",
+            "grade": "5",
+            "excerpt": "A group of friends search for their missing friend Will and discover the Upside Down.",
+            "body": "Stranger Things is a story about four friends named Mike, Will, Lucas, and Dustin. One day, their friend Will goes missing. They team up with a special girl named Eleven and discover a scary monster from a dark world called the Upside Down.\n\nThings get stranger in their town as they search for Will and try to defeat the dangers of the Upside Down.",
+            "date": "May 2026",
+            "image": "stranger-things.jpg",
+            "imageFolder": "movies"
+        },
+        {
+            "id": "thomas-edison-bio",
+            "type": "book",
+            "title": "Thomas Edison",
+            "creator": "A biography",
             "recommendedBy": "Grade 5 Student",
             "grade": "5",
-            "excerpt": "Four siblings step through a wardrobe into the magical land of Narnia.",
-            "body": "The Lion, the Witch and the Wardrobe is a magical adventure story that I couldn't put down.\n\nFour children — Peter, Susan, Edmund, and Lucy — discover a magical land called Narnia hidden inside a wardrobe. Narnia is frozen in eternal winter by the evil White Witch.\n\nWith the help of a wise lion named Aslan, the children must fight to free Narnia from the Witch's spell.\n\nThis book taught me about courage, forgiveness, and standing up for what's right. The world of Narnia is so vivid and magical that you feel like you're really there. I highly recommend it!",
-            "date": "September 2025",
-            "image": "book-placeholder.jpg"
+            "excerpt": "The inventor of the electric light bulb, the phonograph and the motion picture camera.",
+            "body": "Thomas Edison (1847–1931) was an American inventor and businessman who developed many key inventions of modern life, including the electric light bulb, the phonograph and the motion picture camera. He filed over 1,000 patents!\n\nHe attended only three months of formal school, but he never stopped asking questions. As he said, genius is one per cent inspiration and ninety-nine per cent perspiration.",
+            "date": "May 2026",
+            "image": "thomas-edison.jpg",
+            "imageFolder": "books"
+        },
+        {
+            "id": "tinker-bell",
+            "type": "movie",
+            "title": "Tinker Bell",
+            "creator": "Walt Disney Animation",
+            "recommendedBy": "Al Anood Al Muraikhi",
+            "grade": "5",
+            "excerpt": "A tiny fairy discovers her special talent for fixing and inventing things.",
+            "body": "Tinker Bell is a tiny fairy who lives in the magical world of Never Land. She discovers her special talent: fixing and inventing things, which makes her a \"tinker\" fairy.\n\nAt first, Tink feels jealous of the fairies with flashier powers and tries to change who she is. Her experiments go wrong, but her friends remind her that every talent matters. When a big problem threatens the fairies, Tink uses her clever inventions to help save the day.\n\nMoral: Everyone has a unique talent to help others.",
+            "date": "May 2026",
+            "image": "tinker-bell.jpg",
+            "imageFolder": "movies"
         }
     ]
 }

@@ -79,21 +79,36 @@
         `;
     }
 
-    function buildAnnouncementSlide(data) {
-        const a = data.announcement;
-        let videoHtml = '';
+    /* Spotlight: a school competition shown on the home page between two dates */
+    function parseDay(str, endOfDay) {
+        if (!str) return null;
+        const parts = String(str).split('-').map(Number);
+        if (parts.length !== 3 || parts.some(isNaN)) return null;
+        return endOfDay
+            ? new Date(parts[0], parts[1] - 1, parts[2], 23, 59, 59)
+            : new Date(parts[0], parts[1] - 1, parts[2], 0, 0, 0);
+    }
 
-        if (a.videoUrl) {
-            if (a.videoType === 'youtube') {
-                videoHtml = `<iframe src="${getYouTubeEmbed(a.videoUrl)}" frameborder="0" allowfullscreen></iframe>`;
-            } else if (a.videoType === 'local') {
-                videoHtml = `<video controls><source src="${escapeHtml(a.videoUrl)}" type="video/mp4"></video>`;
-            } else if (a.videoType === 'url') {
-                videoHtml = `<iframe src="${escapeHtml(a.videoUrl)}" frameborder="0" allowfullscreen></iframe>`;
-            }
-        } else if (a.image) {
-            videoHtml = `<img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.title)}">`;
-        }
+    function getActiveSpotlight(featuredData, competitionsData) {
+        if (!featuredData || !featuredData.spotlight || !competitionsData) return null;
+        const s = featuredData.spotlight;
+        const now = new Date();
+        const from = parseDay(s.showFrom, false);
+        const until = parseDay(s.showUntil, true);
+        if (from && now < from) return null;
+        if (until && now > until) return null;
+        const comp = (competitionsData.items || []).find(c => c.id === s.competitionId);
+        if (!comp) return null;
+        return { settings: s, competition: comp };
+    }
+
+    function buildSpotlightSlide(spot) {
+        const s = spot.settings;
+        const c = spot.competition;
+        const poster = c.image ? `assets/images/content/${escapeHtml(c.image)}` : '';
+        const media = c.video
+            ? `<video controls preload="metadata" playsinline ${poster ? `poster="${poster}"` : ''}><source src="assets/videos/${escapeHtml(c.video)}" type="video/mp4"></video>`
+            : (poster ? `<img src="${poster}" alt="${escapeHtml(c.title)}">` : '');
 
         return `
             <div class="swiper-slide">
@@ -101,21 +116,47 @@
                     <div class="container">
                         <div class="featured-hero-inner featured-hero-inner-announcement">
                             <div class="featured-hero-content">
-                                <span class="featured-hero-badge featured-hero-badge-red">Announcement</span>
-                                <h1 class="featured-hero-title">${escapeHtml(a.title)}</h1>
-                                ${a.subtitle ? `<p class="featured-hero-subtitle-large">${escapeHtml(a.subtitle)}</p>` : ''}
-                                ${a.description ? `<p class="featured-hero-excerpt">${escapeHtml(a.description)}</p>` : ''}
-                                ${a.ctaText && a.ctaLink ? `<a href="${escapeHtml(a.ctaLink)}" class="featured-hero-cta">${escapeHtml(a.ctaText)}</a>` : ''}
+                                <span class="featured-hero-badge featured-hero-badge-red">${escapeHtml(s.badge || 'Announcement')}</span>
+                                <h1 class="featured-hero-title">${escapeHtml(s.title || c.title)}</h1>
+                                ${s.subtitle ? `<p class="featured-hero-subtitle-large">${escapeHtml(s.subtitle)}</p>` : ''}
+                                <p class="featured-hero-excerpt">${escapeHtml(c.excerpt || '')}</p>
+                                <a href="html/article.html?id=${encodeURIComponent(c.id)}" class="featured-hero-cta">${escapeHtml(s.ctaText || 'See All Winners')}</a>
                             </div>
                             <div class="announcement-media">
-                                <div class="announcement-video-wrapper">
-                                    ${videoHtml}
-                                </div>
+                                <div class="announcement-video-wrapper">${media}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        `;
+    }
+
+    /* Winners shown in place of the English Stars grid while a spotlight is on */
+    function renderSpotlightWinners(spot) {
+        const c = spot.competition;
+        const container = document.getElementById('stars-stage-container');
+        if (!container) return;
+
+        const label = document.getElementById('stars-week-label');
+        const title = document.getElementById('stars-stage-title');
+        const subtitle = document.getElementById('stars-stage-subtitle');
+        if (label) label.textContent = c.title;
+        if (title) title.textContent = `Meet Our ${c.title} Winners`;
+        if (subtitle) subtitle.textContent = c.winnersTitle
+            ? `${c.winnersTitle} from every grade. English Stars will be back after the break!`
+            : 'Congratulations to our winners! English Stars will be back after the break.';
+
+        const cards = (c.winners || []).map(w => renderStarCard({
+            name: w.name,
+            class: w.class,
+            photo: w.photo,
+            badge: `Grade ${w.grade || String(w.class || '').charAt(0)}`
+        })).join('');
+
+        container.innerHTML = `
+            <div class="stars-row">${cards}</div>
+            <div class="spotlight-more"><a href="html/article.html?id=${encodeURIComponent(c.id)}" class="featured-hero-cta">Watch the video &amp; leave a congratulations</a></div>
         `;
     }
 
@@ -204,41 +245,30 @@
        ========================================== */
 
     async function init() {
-        const featuredData = await fetchJSON('featured');
-        const starsData = await fetchJSON('english-stars');
-        const homeData = await fetchJSON('home-data');
+        const [featuredData, competitionsData, starsData, homeData] = await Promise.all([
+            fetchJSON('featured'), fetchJSON('competitions'), fetchJSON('english-stars'), fetchJSON('home-data')
+        ]);
+
+        const spot = getActiveSpotlight(featuredData, competitionsData);
 
         const wrapper = document.getElementById('hero-swiper-wrapper');
         if (wrapper) {
-            let slidesHtml = '';
+            // While a spotlight is on, it replaces English Stars; afterwards English Stars returns by itself
+            wrapper.innerHTML = spot ? buildSpotlightSlide(spot) : buildEnglishStarsSlide(starsData);
 
-            // 1. If announcement is active, add it first
-            if (featuredData && featuredData.type === 'announcement') {
-                slidesHtml += buildAnnouncementSlide(featuredData);
+            const section = document.querySelector('.featured-hero-section');
+            if (section) section.classList.add('single-slide');
+
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.featuredSwiper', { loop: false, allowTouchMove: false, speed: 600 });
             }
-
-            // 2. Always add English Stars
-            slidesHtml += buildEnglishStarsSlide(starsData);
-
-            wrapper.innerHTML = slidesHtml;
-
-            // Initialize Swiper
-            new Swiper('.featuredSwiper', {
-                loop: false, // We only want to loop if there are multiple slides
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                effect: 'slide',
-                speed: 600,
-            });
         }
 
-        renderStarsStage(starsData);
+        if (spot) {
+            renderSpotlightWinners(spot);
+        } else {
+            renderStarsStage(starsData);
+        }
         renderLatestNews(homeData);
     }
 

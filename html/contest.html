@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contests | Albayan Times</title>
+    <title>Contests &amp; Competitions | Albayan Times</title>
+    <link rel="icon" href="../assets/images/logo/albayan-logo.jpg">
 
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/variables.css">
@@ -31,8 +32,8 @@
         <div class="container">
             <div class="page-hero-inner">
                 <span class="page-hero-label">Celebrating Talent</span>
-                <h2 id="contest-hero-title">Our Competitions</h2>
-                <p class="page-hero-subtitle" id="contest-hero-subtitle">Explore past winners and submissions.</p>
+                <h2 id="contest-hero-title">Contests &amp; Competitions</h2>
+                <p class="page-hero-subtitle" id="contest-hero-subtitle">School competitions held at Albayan, and contests where students send in their work.</p>
             </div>
         </div>
     </section>
@@ -40,6 +41,11 @@
     <!-- CONTESTS GRID -->
     <section class="contests-section">
         <div class="container">
+            <div class="contest-tabs" role="tablist">
+                <button type="button" class="contest-tab" role="tab" data-tab="competitions">School Competitions</button>
+                <button type="button" class="contest-tab" role="tab" data-tab="contests">Online Contests</button>
+            </div>
+            <p class="contest-tab-intro" id="contest-tab-intro"></p>
             <div class="contests-grid" id="contests-grid">
                 <!-- Cards injected by script -->
                 <div class="empty-state">
@@ -68,51 +74,82 @@
             return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
-        function renderContestCard(contest) {
-            const href = `article.html?id=${encodeURIComponent(contest.id)}`;
-            const imageUrl = contest.image ? `${PREFIX}assets/images/content/${contest.image}` : '';
+        const TABS = {
+            competitions: {
+                file: 'competitions',
+                badge: 'Competition',
+                intro: 'Competitions held at school. Watch the announcements and meet the winners.',
+                empty: 'No school competitions yet'
+            },
+            contests: {
+                file: 'contest',
+                badge: 'Contest',
+                intro: 'Contests where students send in photos, stories and other work.',
+                empty: 'No contests yet'
+            }
+        };
+        const cache = {};
+
+        function renderCard(item, badge) {
+            const href = `article.html?id=${encodeURIComponent(item.id)}`;
+            const imageUrl = item.image ? `${PREFIX}assets/images/content/${item.image}` : '';
 
             return `
                 <a href="${href}" class="contest-card">
                     <div class="contest-card-image">
-                        ${imageUrl ? `<img src="${imageUrl}" alt="${escapeHtml(contest.title)}" onerror="this.style.display='none'">` : ''}
-                        <span class="contest-card-badge">Contest</span>
+                        ${imageUrl ? `<img src="${imageUrl}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'">` : ''}
+                        <span class="contest-card-badge">${escapeHtml(badge)}</span>
                     </div>
                     <div class="contest-card-body">
-                        <h3 class="contest-card-title">${escapeHtml(contest.title)}</h3>
-                        <p class="contest-card-excerpt">${escapeHtml(contest.excerpt)}</p>
+                        <h3 class="contest-card-title">${escapeHtml(item.title)}</h3>
+                        <p class="contest-card-excerpt">${escapeHtml(item.excerpt)}</p>
                         <div class="contest-card-meta">
-                            <span>${escapeHtml(contest.date)}</span>
+                            <span>${escapeHtml(item.date)}</span>
                         </div>
                     </div>
                 </a>
             `;
         }
 
-        async function init() {
+        async function loadItems(file) {
+            if (cache[file]) return cache[file];
+            const res = await fetch(`${PREFIX}data/${file}.json?v=` + Date.now());
+            if (!res.ok) throw new Error('Failed');
+            const data = await res.json();
+            cache[file] = data.items || [];
+            return cache[file];
+        }
+
+        async function showTab(name) {
+            const tab = TABS[name] ? name : 'competitions';
+            const cfg = TABS[tab];
             const grid = document.getElementById('contests-grid');
-            if (!grid) return;
+            document.querySelectorAll('.contest-tab').forEach(btn => {
+                const on = btn.dataset.tab === tab;
+                btn.classList.toggle('active', on);
+                btn.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            document.getElementById('contest-tab-intro').textContent = cfg.intro;
 
             try {
-                const res = await fetch(`${PREFIX}data/contest.json?v=` + Date.now());
-                if (!res.ok) throw new Error('Failed');
-                const data = await res.json();
-
-                if (data.intro) {
-                    document.getElementById('contest-hero-title').textContent = data.intro.title || 'Contests';
-                    document.getElementById('contest-hero-subtitle').textContent = data.intro.subtitle || '';
-                }
-
-                const items = data.items || [];
-                if (items.length === 0) {
-                    grid.innerHTML = '<div class="empty-state"><h3>No contests yet</h3></div>';
-                    return;
-                }
-
-                grid.innerHTML = items.map(renderContestCard).join('');
+                const items = await loadItems(cfg.file);
+                grid.innerHTML = items.length
+                    ? items.map(item => renderCard(item, cfg.badge)).join('')
+                    : `<div class="empty-state"><h3>${cfg.empty}</h3></div>`;
             } catch (err) {
-                grid.innerHTML = '<div class="empty-state"><h3>Error loading contests</h3></div>';
+                grid.innerHTML = '<div class="empty-state"><h3>Error loading this list</h3></div>';
             }
+        }
+
+        function init() {
+            document.querySelectorAll('.contest-tab').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    history.replaceState(null, '', '#' + btn.dataset.tab);
+                    showTab(btn.dataset.tab);
+                });
+            });
+            window.addEventListener('hashchange', () => showTab(location.hash.slice(1)));
+            showTab(location.hash.slice(1));
         }
 
         if (document.readyState === 'loading') {

@@ -1075,3 +1075,17 @@
         padding: 0 var(--container-padding); /* Revert to normal padding on phones */
     }
 }
+/* ==========================================
+   SPOTLIGHT (single hero slide + winners)
+   ========================================== */
+
+.featured-hero-section.single-slide .swiper-pagination,
+.featured-hero-section.single-slide .swiper-button-next,
+.featured-hero-section.single-slide .swiper-button-prev {
+    display: none;
+}
+
+.spotlight-more {
+    text-align: center;
+    margin-top: var(--space-xl, 2rem);
+}

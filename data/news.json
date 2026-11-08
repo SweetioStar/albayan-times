@@ -2,81 +2,102 @@
     "items": [
         {
             "id": "tea-day-2026",
-            "type": "article",
+            "type": "video",
             "title": "International Tea Day!",
-            "excerpt": "Students explored tea traditions from around the world, learning about culture and history through this beloved beverage.",
-            "body": "Students at Albayan came together to celebrate International Tea Day with a journey through tea traditions from around the world.\n\nFrom the green tea ceremonies of Japan to the mint tea of Morocco, and from the spiced karak of Qatar to the afternoon teas of England, our students discovered how a simple cup of tea connects cultures across the globe.\n\nThe day included tasting sessions, art projects, and storytelling. Grade 5 students created posters showing where different teas come from, while younger students learned about the history of the tea trade.\n\nA huge thank you to all the teachers and students who made this day so special.",
+            "excerpt": "Lexi and her friend discover the magic of tea in a short animated story for International Tea Day.",
+            "body": "Let's learn about the importance of tea around the world! For International Tea Day, our reporters made a short animated story in which Lexi and her friend discover the magic of tea.\n\nWatch the video to find out what happens when the teapot begins to glow.",
             "author": "Albayan Reporters",
             "date": "May 2026",
             "category": "school-news",
             "grade": "5",
-            "image": "tea-day.jpg"
+            "image": "tea-day.jpg",
+            "source": "local",
+            "video": "tea-day.mp4"
         },
         {
             "id": "grade5-future-2026",
             "type": "article",
             "title": "Grade 5 imagines the future!",
-            "excerpt": "Our Grade 5 students shared their creative visions of what the future might look like in this inspiring project.",
-            "body": "What will the world look like in 50 years? Our Grade 5 students put their imagination to work and shared their predictions.\n\nFrom flying cars to underwater cities, and from robots helping with homework to gardens on Mars, the students' visions of the future were full of creativity and hope.\n\nEach student presented their ideas to the class, and many created detailed drawings and models. The best projects will be displayed in the school hall for everyone to enjoy.\n\nWe are so proud of our young thinkers!",
+            "excerpt": "Grade 5 classes imagined life in the future and turned their ideas into short animated films.",
+            "body": "What will life look like in the future? Our Grade 5 classes used their imagination — and a little help from AI — to create short animated films about the future.\n\nWatch the films from 5B, 5C and 5D below.",
             "author": "Albayan Reporters",
             "date": "May 2026",
             "category": "school-news",
             "grade": "5",
-            "image": "grade5-future.jpg"
+            "image": "grade5-future.jpg",
+            "videos": [
+                {
+                    "file": "grade5-future-5b.mp4",
+                    "poster": "grade5-future-5b.jpg",
+                    "label": "5B — Vacation on the Moon"
+                },
+                {
+                    "file": "grade5-future-5c.mp4",
+                    "poster": "grade5-future-5c.jpg",
+                    "label": "5C — Gravity for Breakfast"
+                },
+                {
+                    "file": "grade5-future-5d.mp4",
+                    "poster": "grade5-future-5d.jpg",
+                    "label": "5D — Holiday on the Moon"
+                }
+            ]
         },
         {
             "id": "lexi-reem-honesty-2026",
-            "type": "article",
+            "type": "video",
             "title": "Lexi and Reem learn about honesty and hard work",
-            "excerpt": "Through storytelling, students discovered why honesty and hard work are essential values in everyday life.",
-            "body": "This month, our students joined Lexi and Reem on a new adventure — learning about the importance of honesty and hard work.\n\nThrough stories, role-play, and class discussions, students explored why telling the truth and giving our best effort make us better people. They shared personal examples of times when honesty was hard but rewarding.\n\nThe lesson ended with a class promise: to always try our best and to be honest with ourselves and others.",
+            "excerpt": "Lexi and Reem learn about the importance of being honest and working hard.",
+            "body": "Lexi and Reem learn about the importance of being honest and working hard. In this short animated story, Reem is stuck on her work, and Lexi shows her that doing your own best work is what really counts.\n\nWatch the video to see what their teacher says.",
             "author": "Albayan Reporters",
             "date": "April 2026",
             "category": "school-news",
             "grade": "4",
-            "image": "honesty.jpg"
+            "image": "honesty.jpg",
+            "source": "local",
+            "video": "honesty.mp4"
         },
         {
             "id": "lexi-ramadan-2026",
             "type": "video",
             "title": "Lexi learns about fasting in Ramadan",
             "excerpt": "A special video feature exploring the meaning and traditions of fasting during the holy month of Ramadan.",
-            "body": "In this special video, Lexi learns about the meaning and traditions of fasting during Ramadan. From the pre-dawn meal (suhoor) to the evening meal (iftar), Lexi discovers what makes this month so special for millions of people around the world.",
+            "body": "In this short animated story, Lexi learns about fasting in Ramadan from her family, and what makes this holy month so special.",
             "author": "Albayan Reporters",
             "date": "March 2026",
             "category": "school-news",
             "grade": "5",
             "image": "ramadan.jpg",
-            "source": "youtube",
-            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "duration": "03:12"
+            "source": "local",
+            "video": "ramadan-lexi.mp4"
         },
         {
             "id": "sports-day-2026",
             "type": "video",
             "title": "Lolwa Al Ali reports live about Sports Day",
             "excerpt": "A live report from Sports Day, capturing the energy, competition, and school spirit of our students.",
-            "body": "Our reporter Lolwa Al Ali brings you a live report from Sports Day 2026, capturing the energy, competition, and school spirit that filled the field.",
+            "body": "Our reporter Lolwa Al Ali reports live about the activities of Sports Day at Albayan Primary 1.",
             "author": "Lolwa Al Ali",
             "date": "February 2026",
             "category": "events",
             "grade": "5",
             "image": "sports-day.jpg",
-            "source": "youtube",
-            "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "duration": "05:48"
+            "source": "local",
+            "video": "sports-day.mp4"
         },
         {
             "id": "world-education-day-2026",
-            "type": "article",
+            "type": "video",
             "title": "Albayan celebrated World Education Day",
-            "excerpt": "A week full of activities honoring the importance of education and celebrating our learning community.",
-            "body": "Albayan celebrated World Education Day with a full week of activities honoring the importance of education.\n\nStudents wrote letters to their favorite teachers, decorated classrooms with education-themed artwork, and shared what learning means to them. The week ended with a school-wide assembly featuring performances and speeches from students across all grades.\n\nThis celebration reminds us all why education matters — and how lucky we are to learn together.",
+            "excerpt": "Model lessons, workshops, a Scientific Research Competition and an Educational Resources Fair.",
+            "body": "On January 24, 2026, Al Bayan Primary 1 School celebrated World Education Day with many exciting activities. The day started with model lessons where teachers showed new ways of learning. Some lessons were even visited by parents and teachers from other schools!\n\nStudents also took part in fun workshops. In Class 5C, Aysha Abdulrahman and her mother taught everyone about recycling. It was a great way to learn how to protect our planet.\n\nLater, we had a Scientific Research Competition. Many students presented amazing projects, and four talented winners were chosen!\n\nFinally, the school held an Educational Resources Fair. Every department showed the books, tools, and games they use to help us learn. It was a wonderful day that showed how much we love education!",
             "author": "Albayan Reporters",
             "date": "January 2026",
             "category": "events",
             "grade": "4",
-            "image": "education-day.jpg"
+            "image": "education-day.jpg",
+            "source": "local",
+            "video": "world-education-day.mp4"
         },
         {
             "id": "qnd-winners-2025",
@@ -94,8 +115,8 @@
             "id": "haya-diabetes-2025",
             "type": "article",
             "title": "Haya Al-hamr writes about World Diabetes Day",
-            "excerpt": "An informative piece raising awareness about diabetes and healthy lifestyle choices for young people.",
-            "body": "Diabetes affects millions of people worldwide, and understanding the disease can help us support those around us.\n\nIn this article, Haya Hamad Al-hamar explains what diabetes is, the difference between Type 1 and Type 2, and why healthy eating and exercise matter so much for young people.\n\nHer advice: stay active, eat balanced meals, drink water, and never be afraid to ask questions about your health.",
+            "excerpt": "Haya Hamad Al-hamar writes a news report bringing awareness to World Diabetes Day.",
+            "body": "World Diabetes Day falls on November 14th and has several objectives, including raising awareness about the seriousness of diabetes and its global prevalence; encouraging early screening; sharing information about prevention methods; and supporting patients and explaining the importance of regular treatment.\n\nThe official symbol of World Diabetes Day is the blue circle, representing global solidarity against diabetes and hope for improving the lives of those living with the disease. We can show our solidarity by wearing blue, getting tested for diabetes, and encouraging others to exercise and eat healthily.",
             "author": "Haya Hamad Al-hamar (6A)",
             "date": "November 2025",
             "category": "health",
@@ -106,25 +127,44 @@
             "id": "kindness-2025",
             "type": "article",
             "title": "Our students explored the value of kindness",
-            "excerpt": "A school-wide exploration of what kindness means and how small acts can make a big difference.",
-            "body": "Kindness is more than just a word — it's a way of living. This month, our students explored what kindness means and how small acts can make a big difference.\n\nClasses discussed examples of everyday kindness: helping a friend, saying thank you, listening, and including others. Students then created a 'Kindness Wall' filled with examples and thank-you notes.\n\nLet's keep the kindness going every day.",
-            "author": "Albayan Reporters",
+            "excerpt": "Our Grade 6 students explored the value of kindness. Take a look at their work!",
+            "body": "Our students explored the value of kindness. Grade 6 students wrote about what kindness means and how we can show it every day — from using good manners and including everyone, to helping a hurt kitten.\n\nTake a look at their work below.",
+            "author": "Grade 6 Students",
             "date": "October 2025",
             "category": "values",
-            "grade": "4",
-            "image": "kindness.jpg"
+            "grade": "6",
+            "image": "kindness.jpg",
+            "images": [
+                {
+                    "image": "kindness-1.jpg",
+                    "caption": "Shaikha Saad Alkubaisi, 6D"
+                },
+                {
+                    "image": "kindness-2.jpg",
+                    "caption": "Dana Mubarak, 6D"
+                },
+                {
+                    "image": "kindness-3.jpg",
+                    "caption": "Sara Mohammed, 6B"
+                },
+                {
+                    "image": "kindness-4.jpg",
+                    "caption": "Talia Ahmed, 6D"
+                }
+            ]
         },
         {
             "id": "cooperation-2025",
             "type": "article",
             "title": "Our students explored the value of cooperation",
-            "excerpt": "Teamwork and cooperation took center stage as students discovered what it means to work together.",
-            "body": "Working together makes us stronger. This month, our students discovered the value of cooperation through games, projects, and teamwork activities.\n\nStudents practiced listening to each other, sharing ideas, and supporting teammates. They learned that cooperation isn't just about being polite — it's about combining our strengths to achieve something great.",
+            "excerpt": "Aisha Abulrahman Almarwani (5C) writes about the value of cooperation.",
+            "body": "Cooperation is a beautiful value that helps us succeed in life. It means working together and helping one another to reach a common goal. When we cooperate, we learn teamwork, kindness, and respect.\n\nAt school, cooperation makes learning more fun and easier. Students can help each other in class, share ideas, and work together on projects. When we cooperate with our teachers and classmates, our school becomes a happy and organized place.\n\nCooperation also teaches us to care for others and to be responsible. By working together at home, in school, and in our community, we can make the world a better place.\n\nWith cooperation, we grow stronger and achieve more!",
             "author": "Aisha Abulrahman Almarwani (5C)",
             "date": "September 2025",
             "category": "values",
             "grade": "5",
-            "image": "cooperation.jpg"
+            "image": "aisha-almarwani.jpg",
+            "authorPhoto": "aisha-almarwani.jpg"
         },
         {
             "id": "welcome-back-2025",

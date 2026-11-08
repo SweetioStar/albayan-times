@@ -55,7 +55,7 @@
                         <div class="footer-link-group">
                             <h4 class="footer-heading">Special Features</h4>
                             <div class="footer-links-row">
-                                <a href="${PREFIX}html/contest.html">Contest</a>
+                                <a href="${PREFIX}html/contest.html">Contests &amp; Competitions</a>
                                 <a href="${PREFIX}html/lexis-advice.html">Lexi's Advice</a>
                                 <a href="${PREFIX}html/spelling-bee.html">Spelling Bee</a>
                                 <a href="${PREFIX}html/enrichment.html">Enrichment</a>

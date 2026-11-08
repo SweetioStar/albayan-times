@@ -135,7 +135,7 @@
                     <button class="nav-dropdown-toggle" type="button">Special Features</button>
                     <div class="nav-dropdown-panel">
                         <div class="nav-dropdown-grid">
-                            <a href="${PREFIX}html/contest.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Contest</a>
+                            <a href="${PREFIX}html/contest.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Contests &amp; Competitions</a>
                             <a href="${PREFIX}html/lexis-advice.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Lexi's Advice</a>
                             <a href="${PREFIX}html/spelling-bee.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Spelling Bee</a>
                             <a href="${PREFIX}html/enrichment.html" class="nav-dropdown-link"><span class="nav-dropdown-dot"></span>Enrichment</a>
@@ -165,7 +165,7 @@
 
                 <div class="nav-mobile-heading">Special Features</div>
                 <div class="nav-mobile-features-grid">
-                    <a href="${PREFIX}html/contest.html" class="nav-mobile-feature-link">Contest<span class="nav-mobile-feature-label">QND & more</span></a>
+                    <a href="${PREFIX}html/contest.html" class="nav-mobile-feature-link">Contests<span class="nav-mobile-feature-label">&amp; competitions</span></a>
                     <a href="${PREFIX}html/lexis-advice.html" class="nav-mobile-feature-link">Lexi's Advice<span class="nav-mobile-feature-label">Tips & guidance</span></a>
                     <a href="${PREFIX}html/spelling-bee.html" class="nav-mobile-feature-link">Spelling Bee<span class="nav-mobile-feature-label">Practice & quizzes</span></a>
                     <a href="${PREFIX}html/enrichment.html" class="nav-mobile-feature-link">Enrichment<span class="nav-mobile-feature-label">Extra learning</span></a>

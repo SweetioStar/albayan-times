@@ -1,8 +1,8 @@
 {
     "intro": {
-        "title": "Contests",
+        "title": "Contests & Competitions",
         "subtitle": "Where our students shine",
-        "description": "From photography to storytelling, our contests celebrate the many talents of Albayan students."
+        "description": "School competitions held at Albayan, and contests where students send in their work."
     },
     "items": [
         {
@@ -10,19 +10,77 @@
             "type": "contest",
             "title": "QND Contest 2025",
             "excerpt": "Qatar National Day photography contest — celebrating Qatar through our students' eyes.",
-            "body": "The Qatar National Day Photography Contest invited students to capture the spirit of Qatar National Day.\n\nWe received over 20 submissions from students across all grades. Congratulations to everyone who participated!",
+            "body": "Congratulations to our students who participated in the Qatar National Day Competition! Students captured the beauty of Qatar through their photos.\n\nCongratulations to everyone who participated!",
             "category": "qnd",
             "date": "December 2025",
             "image": "contest-qnd.jpg",
             "theme": "Qatar's Heritage & Beauty",
             "winners": [
-                { "place": 1, "name": "Aljoud Khaled Alyafei", "grade": "5C", "image": "qnd-1.jpg" },
-                { "place": 2, "name": "Mayassa Khaled Mubarak", "grade": "3B", "image": "qnd-2.jpg" },
-                { "place": 3, "name": "Sara Fahed Alkhalfan", "grade": "3A", "image": "qnd-3.jpg" }
+                {
+                    "place": 1,
+                    "name": "Aljoud Khaled Alyafei",
+                    "grade": "5C",
+                    "image": "qnd-1.jpg"
+                },
+                {
+                    "place": 2,
+                    "name": "Mayassa Khaled Mubarak",
+                    "grade": "3B",
+                    "image": "qnd-2.jpg"
+                },
+                {
+                    "place": 3,
+                    "name": "Sara Fahed Alkhalfan",
+                    "grade": "3A",
+                    "image": "qnd-3.jpg"
+                }
             ],
             "gallery": [
-                { "name": "Celebrating Qatar", "author": "مياسة خالد مبارك", "image": "qnd-p1.jpg" },
-                { "name": "Traditional Dhow", "author": "Noora Salem (4D)", "image": "qnd-p2.jpg" }
+                {
+                    "name": "Celebrating Qatar",
+                    "author": "مياسة خالد مبارك",
+                    "image": "qnd-p1.jpg"
+                },
+                {
+                    "name": "Traditional Dhow",
+                    "author": "Noora Salem (4D)",
+                    "image": "qnd-p2.jpg"
+                },
+                {
+                    "name": "Qatar",
+                    "author": "Albayan Student",
+                    "image": "qnd-p3.jpg"
+                },
+                {
+                    "name": "Qatar",
+                    "author": "Albayan Student",
+                    "image": "qnd-p4.jpg"
+                },
+                {
+                    "name": "Qatar",
+                    "author": "Albayan Student",
+                    "image": "qnd-p5.jpg"
+                },
+                {
+                    "name": "Qatar",
+                    "author": "Albayan Student",
+                    "image": "qnd-p6.jpg"
+                },
+                {
+                    "name": "Qatar",
+                    "author": "Albayan Student",
+                    "image": "qnd-p7.jpg"
+                },
+                {
+                    "name": "Qatar",
+                    "author": "Albayan Student",
+                    "image": "qnd-p8.jpg"
+                },
+                {
+                    "name": "Qatar",
+                    "author": "Albayan Student",
+                    "image": "qnd-p9.jpg"
+                }
             ]
         },
         {
@@ -36,8 +94,16 @@
             "image": "contest-author.jpg",
             "theme": "Original Stories by Young Writers",
             "gallery": [
-                { "name": "The Little Falcon's Big Journey", "author": "Grade 3 Student", "image": "author-1.jpg" },
-                { "name": "The Magic Pearl", "author": "Grade 4 Student", "image": "author-2.jpg" }
+                {
+                    "name": "The Little Falcon's Big Journey",
+                    "author": "Grade 3 Student",
+                    "image": "author-1.jpg"
+                },
+                {
+                    "name": "The Magic Pearl",
+                    "author": "Grade 4 Student",
+                    "image": "author-2.jpg"
+                }
             ]
         }
     ]

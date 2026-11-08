@@ -1,0 +1,28 @@
+{
+    "_howTo": "School competitions held at Albayan. To add a new one, copy the Idiom Day block, change the id, text, video and winners, then point data/featured.json at the new id.",
+    "items": [
+        {
+            "id": "idiom-day-2026",
+            "type": "competition",
+            "title": "Idiom Day 2026",
+            "excerpt": "Students dressed up as their favorite idioms. Meet the best-costume winners from every grade!",
+            "body": "Dress it. Show it. Be the idiom! On Idiom Day, our students came to school dressed as their favorite English and Arabic idioms — from a piece of cake to a smart cookie.\n\nCongratulations to our winners from every grade, and thank you to everyone who took part!",
+            "date": "October 2026",
+            "image": "idiom-day.jpg",
+            "video": "idiom-day-winners.mp4",
+            "organizers": "Miss Najla Al-Thani & Miss Salma Jaber, English Department",
+            "winnersTitle": "Best Costume Winners",
+            "winners": [
+                { "grade": "1", "name": "Nawal Alkaabi", "class": "1C" },
+                { "grade": "1", "name": "Noor Alkuwari", "class": "1B" },
+                { "grade": "2", "name": "Aljoud Hassan", "class": "2A" },
+                { "grade": "2", "name": "AlJouri Khalifa", "class": "2C" },
+                { "grade": "3", "name": "Aljazi Alsulaiti", "class": "3A" },
+                { "grade": "3", "name": "Nayla Farouk & Muna Albahar", "class": "3C" },
+                { "grade": "4", "name": "Hessa Alkhalf & Wadha Alharmi", "class": "4A" },
+                { "grade": "5", "name": "Hamda Alnaimi", "class": "5B" },
+                { "grade": "6", "name": "Aisha Almarwani & Almayassa Abdulmajed", "class": "6D" }
+            ]
+        }
+    ]
+}

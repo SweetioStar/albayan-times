@@ -16,8 +16,11 @@
     const DATA_FILES = [
         'news', 'young-writers', 'watch', 'book-corner',
         'creative-corner', 'reporters', 'archive', 'english-stars',
-        'spelling-bee', 'enrichment', 'contest', 'lexis-advice'
+        'spelling-bee', 'enrichment', 'contest', 'competitions', 'lexis-advice'
     ];
+
+    // Placeholder links that were never replaced with a real video
+    const PLACEHOLDER_VIDEO = /dQw4w9WgXcQ/;
 
     /* HELPERS */
     function escapeHtml(str) {
@@ -87,12 +90,66 @@
     }
 
     /* LAYOUTS */
+    function contentImg(file) {
+        return `${PREFIX}assets/images/content/${escapeHtml(file)}`;
+    }
+
+    function renderAuthorCard(item) {
+        if (!item.authorPhoto) return '';
+        return `
+            <div class="detail-author-card">
+                <img src="${contentImg(item.authorPhoto)}" alt="${escapeHtml(item.author || '')}" onerror="this.style.display='none'">
+                <div>
+                    <span class="detail-author-label">Written by</span>
+                    <span class="detail-author-name">${escapeHtml(item.author || '')}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderImageGallery(item) {
+        if (!Array.isArray(item.images) || item.images.length === 0) return '';
+        return `
+            <div class="detail-gallery">
+                ${item.images.map(img => `
+                    <figure class="detail-gallery-item">
+                        <a href="${contentImg(img.image)}" target="_blank" rel="noopener">
+                            <img src="${contentImg(img.image)}" alt="${escapeHtml(img.caption || item.title)}" loading="lazy" onerror="this.closest('figure').style.display='none'">
+                        </a>
+                        ${img.caption ? `<figcaption>${escapeHtml(img.caption)}</figcaption>` : ''}
+                    </figure>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function renderVideoList(item) {
+        if (!Array.isArray(item.videos) || item.videos.length === 0) return '';
+        return `
+            <div class="detail-video-list">
+                ${item.videos.map(v => `
+                    <figure class="detail-video-list-item">
+                        <video controls preload="metadata" playsinline ${v.poster ? `poster="${contentImg(v.poster)}"` : ''}>
+                            <source src="${PREFIX}assets/videos/${escapeHtml(v.file)}" type="video/mp4">
+                        </video>
+                        ${v.label ? `<figcaption>${escapeHtml(v.label)}</figcaption>` : ''}
+                    </figure>
+                `).join('')}
+            </div>
+        `;
+    }
+
     function renderArticleLayout(item) {
         const imgUrl = getImageUrl(item, 'content');
+        // When the main image is just the author's portrait, show it in the author card instead
+        const showHero = imgUrl && !item.videos && !(item.images && item.images.length) && item.image !== item.authorPhoto;
         return `
             <article class="detail-article">
-                ${imgUrl ? `<div class="detail-hero-image"><img src="${imgUrl}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'"></div>` : ''}
+                ${showHero ? `<div class="detail-hero-image"><img src="${imgUrl}" alt="${escapeHtml(item.title)}" onerror="this.style.display='none'"></div>` : ''}
+                ${renderAuthorCard(item)}
                 <div class="detail-body">${buildBodyHtml(item.body || item.excerpt || 'Full content coming soon.')}</div>
+                ${renderVideoList(item)}
+                ${renderImageGallery(item)}
             </article>
         `;
     }
@@ -102,15 +159,17 @@
         const videoUrl = item.video || '';
         let embedHtml = '';
 
-        if (source === 'youtube') {
+        if (!videoUrl || PLACEHOLDER_VIDEO.test(videoUrl)) {
+            embedHtml = `<div class="detail-video-soon"><strong>Video coming soon</strong><span>We're still uploading this one. Check back later!</span></div>`;
+        } else if (source === 'youtube') {
             embedHtml = `<div class="detail-video-wrapper"><iframe src="${getYouTubeEmbed(videoUrl)}" frameborder="0" allowfullscreen></iframe></div>`;
         } else if (source === 'local') {
-            embedHtml = `<div class="detail-video-wrapper"><video controls><source src="${PREFIX}assets/videos/${escapeHtml(videoUrl)}" type="video/mp4"></video></div>`;
+            embedHtml = `<div class="detail-video-wrapper"><video controls preload="metadata" playsinline ${item.image ? `poster="${getImageUrl(item, 'content')}"` : ''}><source src="${PREFIX}assets/videos/${escapeHtml(videoUrl)}" type="video/mp4"></video></div>`;
         } else if (source === 'url') {
             embedHtml = `<div class="detail-video-wrapper"><iframe src="${escapeHtml(videoUrl)}" frameborder="0" allowfullscreen></iframe></div>`;
         }
 
-        return `<article class="detail-video">${embedHtml}<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div></article>`;
+        return `<article class="detail-video">${embedHtml}<div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div>${renderImageGallery(item)}</article>`;
     }
 
     function renderBookLayout(item, typeLabel) {
@@ -221,6 +280,47 @@
         `;
     }
 
+    function renderCompetitionLayout(item) {
+        const poster = item.image ? contentImg(item.image) : '';
+        const media = item.video
+            ? `<div class="detail-video-wrapper"><video controls preload="metadata" playsinline ${poster ? `poster="${poster}"` : ''}><source src="${PREFIX}assets/videos/${escapeHtml(item.video)}" type="video/mp4"></video></div>`
+            : (poster ? `<div class="detail-hero-image"><img src="${poster}" alt="${escapeHtml(item.title)}"></div>` : '');
+
+        const groups = {};
+        const order = [];
+        (item.winners || []).forEach(w => {
+            const g = String(w.grade || String(w.class || '').charAt(0) || '');
+            if (!groups[g]) { groups[g] = []; order.push(g); }
+            groups[g].push(w);
+        });
+
+        const winnersHtml = order.length ? `
+            <div class="competition-winners">
+                <h3>${escapeHtml(item.winnersTitle || 'Winners')}</h3>
+                <div class="competition-grade-list">
+                    ${order.map(g => `
+                        <div class="competition-grade">
+                            <span class="competition-grade-badge">Grade ${escapeHtml(g)}</span>
+                            <ul>
+                                ${groups[g].map(w => `<li><span class="competition-winner-name">${escapeHtml(w.name)}</span>${w.class ? `<span class="competition-winner-class">${escapeHtml(w.class)}</span>` : ''}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        ` : '';
+
+        return `
+            <article class="detail-competition">
+                ${media}
+                <div class="detail-body">${buildBodyHtml(item.body || item.excerpt || '')}</div>
+                ${winnersHtml}
+                ${renderImageGallery(item)}
+                ${item.organizers ? `<p class="competition-organizers">Organized by ${escapeHtml(item.organizers)}</p>` : ''}
+            </article>
+        `;
+    }
+
     function renderByType(item) {
         const type = item.type || 'article';
         switch (type) {
@@ -229,6 +329,7 @@
             case 'book':      return renderBookLayout(item, 'Book');
             case 'movie':     return renderBookLayout(item, 'Movie');
             case 'contest':   return renderContestLayout(item);
+            case 'competition': return renderCompetitionLayout(item);
             case 'interview': return renderArticleLayout(item); // Fallback for simple text
             case 'advice':    return renderArticleLayout(item); // Fallback
             default:          return renderArticleLayout(item);
@@ -244,6 +345,9 @@
         if (badgeEl) {
             if (item.type === 'contest') {
                 badgeEl.style.display = 'none';
+            } else if (item.type === 'competition') {
+                badgeEl.textContent = 'School Competition';
+                badgeEl.className = 'detail-badge badge-coral';
             } else if (item.category) {
                 badgeEl.textContent = getCategoryLabel(item.category) || item.category;
                 badgeEl.className = 'detail-badge ' + getCategoryBadgeClass(item.category);
@@ -278,10 +382,10 @@
 
         const crumbSectionEl = document.getElementById('detail-crumb-section');
         if (crumbSectionEl && item._source) {
-            const sectionNames = { 'news': 'News', 'young-writers': 'Young Writers', 'watch': 'Watch', 'book-corner': 'Book/Movie Suggestions', 'creative-corner': 'Creative Corner', 'reporters': 'Meet the Reporters', 'archive': 'Archive', 'english-stars': 'English Stars', 'spelling-bee': 'Spelling Bee', 'enrichment': 'Enrichment', 'contest': 'Contest', 'lexis-advice': "Lexi's Advice" };
+            const sectionNames = { 'news': 'News', 'young-writers': 'Young Writers', 'watch': 'Watch', 'book-corner': 'Book/Movie Suggestions', 'creative-corner': 'Creative Corner', 'reporters': 'Meet the Reporters', 'archive': 'Archive', 'english-stars': 'English Stars', 'spelling-bee': 'Spelling Bee', 'enrichment': 'Enrichment', 'contest': 'Contests', 'competitions': 'Competitions', 'lexis-advice': "Lexi's Advice" };
             crumbSectionEl.textContent = sectionNames[item._source] || 'Content';
             
-            const sectionUrls = { 'news': 'news.html', 'young-writers': 'young-writers.html', 'watch': 'watch.html', 'book-corner': 'book-corner.html', 'creative-corner': 'creative-corner.html', 'reporters': 'meet-the-reporters.html', 'archive': 'archive.html', 'english-stars': 'english-stars.html', 'spelling-bee': 'spelling-bee.html', 'enrichment': 'enrichment.html', 'contest': 'contest.html', 'lexis-advice': 'lexis-advice.html' };
+            const sectionUrls = { 'news': 'news.html', 'young-writers': 'young-writers.html', 'watch': 'watch.html', 'book-corner': 'book-corner.html', 'creative-corner': 'creative-corner.html', 'reporters': 'meet-the-reporters.html', 'archive': 'archive.html', 'english-stars': 'english-stars.html', 'spelling-bee': 'spelling-bee.html', 'enrichment': 'enrichment.html', 'contest': 'contest.html#contests', 'competitions': 'contest.html#competitions', 'lexis-advice': 'lexis-advice.html' };
             crumbSectionEl.href = sectionUrls[item._source] || '#';
         }
     }
@@ -305,6 +409,14 @@
         const item = findItemById(allItems, id);
         if (!item) { showNotFound(); return; }
         fillPage(item);
+
+        if (window.AlbayanComments) {
+            window.AlbayanComments.mount({
+                container: document.getElementById('site-comments'),
+                pageId: `${item._source}/${item.id}`,
+                pageTitle: item.title || document.title
+            });
+        }
     }
 
     if (document.readyState === 'loading') {

@@ -635,3 +635,207 @@
     .detail-contest .contest-intro-title { font-size: 32px; }
     .detail-contest .contest-gallery-grid { gap: 12px; }
 }
+/* ==========================================
+   AUTHOR CARD, IMAGE GALLERY, VIDEO LIST
+   ========================================== */
+
+.detail-author-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto 28px;
+}
+
+.detail-author-card img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    border: 4px solid var(--color-yellow);
+}
+
+.detail-author-label {
+    display: block;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-coral);
+    font-weight: 700;
+}
+
+.detail-author-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--color-navy);
+}
+
+.detail-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 32px auto 0;
+    max-width: 1000px;
+}
+
+.detail-gallery-item {
+    margin: 0;
+    background: #fff;
+    border: 1px solid var(--color-gray-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.detail-gallery-item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #f7f5f1;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.detail-gallery-item a:hover img {
+    transform: scale(1.03);
+}
+
+.detail-gallery-item figcaption,
+.detail-video-list-item figcaption {
+    padding: 10px 14px;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-align: center;
+}
+
+.detail-video-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 32px auto 0;
+}
+
+.detail-video-list-item {
+    margin: 0;
+    background: var(--color-navy);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.detail-video-list-item video {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    background: #000;
+}
+
+.detail-video-list-item figcaption {
+    color: #fff;
+}
+
+.detail-video-soon {
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto 40px;
+    border-radius: var(--radius-lg);
+    background: var(--color-navy);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    padding: 24px;
+}
+
+.detail-video-soon strong {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    color: var(--color-yellow);
+}
+
+/* ==========================================
+   SCHOOL COMPETITION LAYOUT
+   ========================================== */
+
+.competition-winners {
+    max-width: 1000px;
+    margin: 40px auto 0;
+}
+
+.competition-winners h3 {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    text-align: center;
+    color: var(--color-navy);
+    margin-bottom: 24px;
+}
+
+.competition-grade-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.competition-grade {
+    background: #fff;
+    border: 2px solid var(--color-gray-light);
+    border-top: 6px solid var(--color-yellow);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+}
+
+.competition-grade:nth-child(3n+2) { border-top-color: var(--color-teal); }
+.competition-grade:nth-child(3n+3) { border-top-color: var(--color-coral); }
+
+.competition-grade-badge {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-navy);
+    margin-bottom: 10px;
+}
+
+.competition-grade ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.competition-grade li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--color-gray-light);
+}
+
+.competition-grade li:last-child { border-bottom: none; }
+
+.competition-winner-name {
+    font-weight: 700;
+    color: var(--color-navy);
+}
+
+.competition-winner-class {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 800;
+    background: var(--color-yellow);
+    color: var(--color-navy);
+    border-radius: 999px;
+    padding: 2px 10px;
+}
+
+.competition-organizers {
+    text-align: center;
+    margin-top: 32px;
+    color: var(--color-navy-light);
+    font-style: italic;
+}
